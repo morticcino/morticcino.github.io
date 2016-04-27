@@ -209,14 +209,17 @@
         tool = toolstr;
         switch(tool){
         	case 'load':
+				F3D_Polygon.selected_tool = 'load';
         		if(document.getElementById('svgfile').innerHTML.length > 1){
         			document.getElementById('svgpaper').outerHTML = document.getElementById('svgfile').innerHTML;
         		}
 	        	break;
         	case 'save':
+				F3D_Polygon.selected_tool = 'save';
 	        	document.getElementById('svgfile').innerHTML = document.getElementById('svgpaper').outerHTML;
 	        	break;
 	        case 'select':
+				F3D_Polygon.selected_tool = 'select';
 	        	if(F3D_Scene.hand_draw_objects.circles){
 	        		F3D_Scene.hand_draw_objects.circles.setAttribute('onmousedown', "F3D_Sphere.selectElement(evt)");
 	        	}
@@ -229,6 +232,7 @@
 	        	
 	        	break;
 	        case 'draw':
+				F3D_Polygon.selected_tool = 'draw';
 	        	if(F3D_Scene.hand_draw_objects.circles){
 	        		F3D_Scene.hand_draw_objects.circles.removeAttributeNS(null, 'onmousedown');
 	        	}

@@ -170,6 +170,7 @@ var F3D_Sphere = {
 
 var F3D_Polygon = {
 	line_group: '',
+	selected_tool: '',
 	addPolygon: function(name, x1, y1, x2, y2, x3, y3, x4, y4 ){
 	  polygon = document.createElementNS(NS,"polygon");
 	  polygon.setAttribute('name', name);
@@ -266,8 +267,10 @@ var F3D_Polygon = {
 			  		group.circles = document.createElementNS(NS,"g");
 				  	group.circles.setAttribute('id', 'f3dsphere_group');
 				  	group.circles.setAttribute('fill', 'blue');
-				  	//group.circles.setAttribute('onmousedown', "F3D_Sphere.selectElement(evt)");
-				  	
+				  	if(F3D_Polygon.selected_tool === 'select'){
+					  group.circles.setAttribute('onmousedown', "F3D_Sphere.selectElement(evt)");
+				  	}
+					  
 			
 					group.circles.innerHTML = f3dspheres;
 					svgpaper.appendChild(group.circles);	
