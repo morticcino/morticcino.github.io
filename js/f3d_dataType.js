@@ -162,7 +162,7 @@ var F3D_Sphere = {
 		    F3D_Sphere.selectedElement.removeAttributeNS(null, "onmouseup");
 		    F3D_Sphere.selectedElement = 0;
 		  }
-		  tool = 'draw';
+		  //tool = 'draw';
 		  F3D_Polygon.drawTangent();
 		  
 		}
@@ -266,7 +266,7 @@ var F3D_Polygon = {
 			  		group.circles = document.createElementNS(NS,"g");
 				  	group.circles.setAttribute('id', 'f3dsphere_group');
 				  	group.circles.setAttribute('fill', 'blue');
-				  	group.circles.setAttribute('onmousedown', "F3D_Sphere.selectElement(evt)");
+				  	//group.circles.setAttribute('onmousedown', "F3D_Sphere.selectElement(evt)");
 				  	
 			
 					group.circles.innerHTML = f3dspheres;
@@ -288,13 +288,6 @@ var F3D_Polygon = {
     		F3D_Polygon.getTangents(F3D_Scene.tentacle_objects[i]);
     	}
     	
-    },
-    addPolygon: function(name, x1, y1, x2, y2, x3, y3, x4, y4 ){
-      	polygon = document.createElementNS(NS,"polygon");
-      	polygon.setAttribute('name', name);
- 	    polygon.setAttribute('points', x1+','+y1+' '+x2+','+y2+' '+x3+','+y3+' '+x4+','+y4);
-        polygon.setAttribute('fill', 'blue');
-        return polygon;
     }
 }
 
