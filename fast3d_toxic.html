@@ -1,0 +1,413 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+	<title>Smooth Doodle - Spline2D - toxiclibs.js examples</title>
+	<meta name="author" content="Kyle Phillips">
+	<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"/>
+	<link href="css/layout.css" type="text/css" rel="stylesheet"/>
+	
+	<!-- Date: 2011-01-09 -->
+	<script type="text/javascript" src="js/toxiclibs.js"></script>
+	<script type="text/javascript" src="js/jquery-1.4.4.min.js"></script>
+	<script type="text/javascript" src="ReDollar/src/dollar.js"></script>
+
+	
+	<script type="text/javascript">
+	
+	window.onload = init;
+	document.addEventListener( 'mousemove', onDocumentMouseMove, false );
+	document.addEventListener( 'touchmove', onDocumentMobileMouseMove, false );
+	document.addEventListener( 'mousedown', onDocumentMouseDown, false );
+	document.addEventListener( 'touchstart', onDocumentMobileMouseDown, false );
+	//document.addEventListener( 'keydown', onDocumentKeyDown, false );
+	//document.addEventListener( 'keyup', onDocumentKeyUp, false );
+	document.addEventListener( 'mouseup', onDocumentMouseUp, false );
+	document.addEventListener( 'touchend', onDocumentMobileMouseUp, false );
+	
+	var canvas, ctx,spline;
+	var points, lastSplineVertices;
+	var sampleDistance = 10;
+	var can_sketch = false;
+	var r = new DollarRecognizer();
+	var gest = [];
+	var maxX = minX = maxY = minY = 0;
+	var circles = new Array();
+	var num_circles = 0;
+	
+	function init(){
+		canvas = document.getElementById('myCanvas');
+		ctx = canvas.getContext('2d');
+		canvas.width = window.innerWidth;
+		canvas.height = window.innerHeight;
+		spline = new toxi.geom.Spline2D();
+		points = [];
+		
+		//controls
+		$("#distance").change(function(){
+			sampleDistance = $(this).val();
+			updateLabels();
+		});
+		
+		$("#tightness").change(function(){
+			spline.setTightness($(this).val());
+			updateLabels();
+		});
+		
+		$("#clear").click(function(){
+			ctx.clearRect(0,0,canvas.width,canvas.height);
+		});
+		//
+		
+		//window.onmousemove = function(e){
+		//	update(e.pageX,e.pageY);
+		//}
+		//updateLabels();
+		
+		
+	}
+	
+	
+	function updateLabels(){
+		$("label[for='distance']").html("sample distance: "+sampleDistance);
+		$("label[for='tightness']").html("spline tightness: "+spline.tightness.toString().slice(0,4));
+	}
+	
+	function update(mouseX,mouseY){
+		 var numP=points.length;
+  		 var currP=new toxi.geom.Vec2D(mouseX,mouseY);
+  		 
+  		 if (numP>0) {
+  		 
+	  		 var prevP=points[numP-1];
+	  		 if (currP.distanceTo(prevP)>sampleDistance) {
+	  		 	points.push(currP);
+	  		 	//ctx.strokeStyle = "rgba(0,0,0,0.5)";
+	  		 	//ctx.beginPath();
+	  		 	//ctx.arc(currP.x,currP.y,3,0,Math.PI*2);
+	  		 	//ctx.stroke();
+	  		 	//ctx.closePath();
+	  		 	spline.add(currP);
+	  		 	if (numP > 1) {
+	  		 		var lastP = points[numP-2];
+	    			var p = points[numP-1];
+	    			line(lastP.x,lastP.y,p.x,p.y);
+	    			//ctx.strokeStyle = "rgba(0,0,0,0.5)";
+	    			//ctx.arc(p.x,p.y,7,0,Math.PI*2);
+	    		}
+	    		
+	    		// need at least 4 vertices for a spline
+	    		if (numP>3) {
+	     			ctx.strokeStyle = "rgba(0,0,0,.125)";
+	    			// sample the curve at a higher resolution
+	    			// so that we get extra 8 points between each original pair of points
+	    			var vertices=spline.computeVertices(8);
+	    			
+				    // draw the smoothened curve
+				    /*
+				    ctx.beginPath();
+				    var numRecent = Math.max(vertices.length-64,0);
+				    for(var i=numRecent;i<vertices.length;i++) {
+				      var v = vertices[i];
+				      if(i == numRecent){
+				      	ctx.moveTo(v.x,v.y);
+				      }
+				      else {
+				      	ctx.lineTo(v.x,v.y); 
+				      }
+				   
+				    }
+				    ctx.stroke();
+				    ctx.closePath();
+				    */
+				    lastVertices = vertices;
+				}
+			}
+		}
+		else {
+			points.push(currP);
+		}
+	}
+	
+	var draw = {
+        ellipse: function( x, X, y, Y ){
+			ctx.strokeStyle = "rgba(255,0,0,0.25)";
+            ctx.beginPath();
+            ctx.moveTo(x,y+(Y-y)/2);
+            ctx.quadraticCurveTo(x,y,x+(X-x)/2,y );
+            ctx.moveTo(x+(X-x)/2,y);
+			ctx.quadraticCurveTo(X,y,X,y+(Y-y)/2 );
+			ctx.moveTo(X,y+(Y-y)/2);
+			ctx.quadraticCurveTo(X,Y,x+(X-x)/2,Y );
+			ctx.moveTo(x+(X-x)/2,Y);
+			ctx.quadraticCurveTo(x,Y,x,y+(Y-y)/2 );
+            ctx.stroke();
+            ctx.closePath();
+        },
+		circle: function( c ){
+			ctx.strokeStyle = "rgba(255,0,0,0.25)";
+            ctx.beginPath();
+            ctx.arc(c.x, c.y, c.getRadius(), 0, Math.PI * 2 );
+			ctx.stroke();
+            ctx.closePath();
+        },
+        line: function( line ){
+            ctx.beginPath();
+            ctx.moveTo(line.a.x, line.a.y);
+            ctx.lineTo(line.b.x, line.b.y);
+            ctx.closePath();
+        }
+    };
+	
+	function line(x1,y1,x2,y2){
+		ctx.beginPath();
+		ctx.strokeStyle = "rgba(255,0,0,0.25)";
+		ctx.moveTo(x1,y1);
+		ctx.lineTo(x2,y2);
+		ctx.stroke();
+		ctx.closePath();
+	}
+	
+	function getTangents( ){
+		//http://forums.phpfreaks.com/topic/98615-common-tangents-of-two-circles/
+		var x1 = circles[0].x;
+		var y1 = circles[0].y;
+		var r1 = circles[0].r;
+		var x2 = circles[1].x;
+		var y2 = circles[1].y;
+		var r2 = circles[1].r;
+		line(x1, y1,x2, y2);		//function tangent($pt1, $pt2, $r1, $r2, &$result){
+	 	//Default is r1 > r2
+	 	if (r1 < r2){
+			var temp = r1;
+			r1 = r2;
+			r2 = temp;
+			cen1x = x1; 
+			cen1y = y1;
+			cen2x = x2; 
+			cen2y = y2;
+		} else {
+			cen1x = x1; 
+			cen1y = y1;
+			cen2x = x2; 
+			cen2y = y2;
+		}
+		//Distance between two centres
+		var cendistance = Math.sqrt((cen1x-cen2x)*(cen1x-cen2x) + (cen1y-cen2y)*(cen1y-cen2y));
+		var a = cendistance*r2/Math.max(r1-r2,0.0000001);
+		//Coordinates at the vertex
+		var vx = cen2x + (cen2x - cen1x)/cendistance*a;
+		var vy = cen2y + (cen2y - cen1y)/cendistance*a;
+		//Angle between line joining two centres and the x-axis
+		var pheta = Math.atan2(cen1y-cen2y,cen1x-cen2x);
+		//Angle between line joining two centres and the common tangent
+		var phi = Math.asin(r2/a);
+		//One tangent is at the angle (pheta-phi) with x-axis; the other is (pheta+phi)
+		var tan1angle = pheta - phi;
+		var tan2angle = pheta + phi;
+		//Find the length of tangents (to C1 and C2)
+		var criterion = a*a-r2*r2;
+		if (criterion < 0){
+			console.log('criterion < 0');
+		}
+		t1 = Math.sqrt(criterion);
+		t2 = Math.sqrt((cendistance+a)*(cendistance+a)-r1*r1);
+		//Find the points of contact; this sequence is used to form a polygon
+		var poc1x = vx + Math.cos(tan1angle)*t1; var poc1y = vy + Math.sin(tan1angle)*t1;
+		var poc2x = vx + Math.cos(tan1angle)*t2; var poc2y = vy + Math.sin(tan1angle)*t2;
+		var poc3x = vx + Math.cos(tan2angle)*t2; var poc3y = vy + Math.sin(tan2angle)*t2;
+		var poc4x = vx + Math.cos(tan2angle)*t1; var poc4y = vy + Math.sin(tan2angle)*t1;
+		line(poc1x,poc1y,poc2x,poc2y);
+		line(poc3x,poc3y,poc4x,poc4y);
+		//var result = array(poc1x,poc1y,poc2x,poc2y,poc3x,poc3y,poc4x,poc4y);
+	}
+	//tangent(array(3,10),array(11,4),6,4,$result);
+	//tangent(array(712,462),array(810,520),28,16,$result);
+
+
+	
+	
+
+	/*
+	document.ontouchmove = function(e){
+		e.preventDefault(); //prevents scrolling
+		for(var i=0;i<e.touches.length;i++){
+			update(e.touches[i].pageX,e.touches[i].pageY);
+		}
+	}
+	*/
+	function onDocumentMobileMouseDown( event ){
+		event.preventDefault();
+				
+		var x = event.targetTouches[0].pageX;
+		var y = event.targetTouches[0].pageY;
+		mousedown(x,y);
+	}
+	
+	function onDocumentMouseDown( event ) {
+		event.preventDefault();
+				
+		var x = event.clientX;
+		var y =  event.clientY;
+		mousedown(x,y);
+	}
+	
+	function mousedown( x, y ) {
+
+		can_sketch = true;
+		gest[0] = new Point(x,y);
+		maxX = minX = x;
+	    maxY = minY = y;
+		
+	}
+	
+	function onDocumentMobileMouseMove( event ){
+		event.preventDefault();
+		var x = event.targetTouches[0].pageX;
+		var y = event.targetTouches[0].pageY;
+		mouse_sketch(x,y);
+	}
+	
+	function onDocumentMouseMove( event ) {
+		event.preventDefault();
+		var x = event.clientX;
+		var y =  event.clientY;
+		mouse_sketch(x,y);
+	}
+	
+	function mouse_sketch(x,y){
+		if(can_sketch === true){
+			 //prevents scrolling
+			//for(var i=0;i<e.touches.length;i++){
+				if( x > maxX ){
+					maxX = x;
+				}
+				if( x < minX ){
+					minX = x;
+				}
+					
+				if( y > maxY ){
+					maxY = y;
+				}
+					
+				if( y < minY ){
+					minY = y;
+				}
+				update(x,y);
+				gest[gest.length] = new Point(x,y);
+				
+			//}	
+		}
+		
+	}
+	
+	function onDocumentMobileMouseUp( event ){
+		event.preventDefault();
+		mouseup();
+	}
+	
+	function onDocumentMouseUp( event ){
+		event.preventDefault();
+		mouseup();
+	}
+	
+		
+	
+	
+	function mouseup(  ){
+		
+		can_sketch = false;
+		var matched = r.Recognize(gest);
+		switch(matched.Name){
+			case "rectangle":
+				console.log('rectangle');
+				break;
+			case "circle":
+			    //x,y,r
+				//circle = new toxi.geom.Circle( (maxX-minX)/2, (maxY-minY)/2, ((maxX-minX)>(maxY-minY))?(maxY-minY):(maxX-minX));
+				
+				console.log();
+				var radius = 0;
+				if((maxX-minX)>(maxY-minY))
+					radius = (maxY-minY)/2;
+				else
+					radius = (maxX-minX)/2;
+				
+				var circle_toxic = new toxi.geom.Circle( minX+(maxX-minX)/2, minY+(maxY-minY)/2, radius);
+				draw.circle(circle_toxic);
+				//var ellipse = new toxi.geom.Ellipse( minX+(maxX-minX)/2, minY+(maxY-minY)/2, (maxX-minX)/2, (maxY-minY)/2);
+				//draw.ellipse(minX, maxX, minY, maxY);
+				circles.push({x:  minX+(maxX-minX)/2, y: minY+(maxY-minY)/2, r: radius});
+				num_circles++;
+				if (num_circles === 2)
+					getTangents();
+					
+				break;
+			case "triangle":
+				console.log('triangle');
+				break;
+			case "x":
+				console.log('x');
+				break;
+			case "arrow":
+				console.log('arrow');
+				break;
+			case "delete":
+				console.log('delete');
+				break;
+			case "star":
+				console.log('star');
+				break;
+			case "pigtail":
+				console.log('pigtail');
+				break;
+			case "v":
+				console.log('v');
+				break;
+			case "left square bracket":
+				console.log('left square bracket');
+				break;
+			case "right square bracket":
+				console.log('right square bracket');
+				break;
+			case "left curly brace":
+				console.log('left curly brace');
+				break;
+			case "right curly brace":
+				console.log('right curly brace');
+				break;
+			case "check":
+				console.log('check');
+				break;
+			case "caret":
+				console.log('caret');
+				break;
+			case "zig-zag":
+				console.log('zig-zag');
+				break;
+			default:
+				console.log(mystroke);
+		}
+
+		gest = new Array();
+		points = new Array();
+		maxX = minX = maxY = minY = 0;
+	}
+	
+	</script>
+</head>
+<body class="full_page">
+<!--
+<div class="controls">
+<div style="float:left;width: 150px;"><input id="distance" type="range" min="5" max="200" value="50"/><br/><label for="distance">distance</label></div>
+<div style="float:left;width: 150px;"><input id="tightness" type="range" min="0.001", max="0.5" step="0.025" value="0.25" /><br/><label for="tightness">spline tightness</label></div>
+<input id="clear" type="button" value="clear"/>
+</div>
+-->
+<canvas id="myCanvas" width="200" height="200">
+	your browser doesnt support canvas
+</canvas>
+
+
+</body>
+</html>

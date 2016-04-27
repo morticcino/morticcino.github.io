@@ -1,0 +1,553 @@
+<html>
+  <head>
+    <title>Two.js: Dynamic Vertices</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <script type="text/javascript" src="ReDollar/src/dollar.js"></script>
+    <script type="text/javascript" src="js/simplify.js"></script>
+    <script type="text/javascript" src="js/f3d_dataType.js"></script>
+    <style>
+    .draggable {
+        cursor: move;
+    }
+    
+    .textarea{
+    	width: 100%;
+    }
+		</style>
+
+  </head>
+  <body>
+      <!-- Todo:
+      			gruppi
+      			ridefinire eventHandler se si vuole disegnare o solezionare per spostare
+      -->
+      <svg id="svgpaper" width="100%" height="80%" style="border: solid red 1px">
+      </svg>
+      <textarea id="svgfile" class="textarea" rows="6"></textarea><br />
+      <input id="draw" type="radio" name="tools" onclick="tools('draw')" checked> Draw<br />
+      <input id="select" type="radio" name="tools" onclick="tools('select')" > Select<br />
+      <input id="save" type="radio" name="tools" onclick="tools('save')" > Save<br />
+      <input id="load" type="radio" name="tools" onclick="tools('load')" > Load<br />
+      <script type="text/ecmascript">
+      var svgpaper;
+      var circle;
+      var polygon;
+      	var Fast3d = {
+				  selectedElement: 0,
+				  currentX: 0,
+				  currentY: 0,
+				  currentMatrix: 0,
+				  sketch_group: '',
+				  f3dsphere_group: '',
+				  line_group: '',
+				  circle_in_scene: 0,
+			    selectElement: function(evt) {
+				    Fast3d.selectedElement = evt.target;
+				    Fast3d.currentX = evt.clientX;
+				    Fast3d.currentY = evt.clientY;
+				    /*
+				    Fast3d.currentMatrix = Fast3d.selectedElement.getAttribute("transform").slice(7,-1).split(' ');
+				    
+				      for(var i=0; i<Fast3d.currentMatrix.length; i++) {
+				        Fast3d.currentMatrix[i] = parseFloat(Fast3d.currentMatrix[i]);
+				      }
+				    */
+						Fast3d.selectedElement.setAttribute("onmousemove", "Fast3d.moveElement(evt)");
+						Fast3d.selectedElement.setAttribute("onmouseup", "Fast3d.deselectElement(evt)");
+						tool = 'select';
+				  },
+			    moveElement: function(evt) {
+					  dx = evt.clientX;// - Fast3d.currentX;
+					  dy = evt.clientY;// - Fast3d.currentY;
+					  /*
+					  Fast3d.currentMatrix[4] += dx;
+					  Fast3d.currentMatrix[5] += dy;
+					  newMatrix = "matrix(" + Fast3d.currentMatrix.join(' ') + ")";
+					            
+					  Fast3d.selectedElement.setAttributeNS(null, "transform", newMatrix);
+					  Fast3d.currentX = evt.clientX;
+					  Fast3d.currentY = evt.clientY;
+					  */
+					  Fast3d.selectedElement.setAttributeNS(null, "cx", dx);
+					  Fast3d.selectedElement.setAttributeNS(null, "cy", dy);
+					  //Fast3d.selectedElement.setAttribute("onmousemove", "Fast3d.deselectElement(evt)");
+					},
+				  overElement: function(evt) {
+					  evt.target.setAttributeNS(null, "fill", 'green');
+					},
+				  outElement: function(evt) {
+					  evt.target.setAttributeNS(null, "fill", 'blue');
+					},
+				  wheelElement: function(evt) {
+				  	var tmpElem = evt.target;
+					var radius = tmpElem.getAttribute('rx');
+						
+					if(evt.wheelDelta > 0){
+						tmpElem.setAttribute('rx', ++radius);
+						tmpElem.setAttribute('ry', ++radius);
+					}else{
+						tmpElem.setAttribute('rx', --radius);
+						tmpElem.setAttribute('ry', --radius);
+					}
+					Fast3d.getTangents();
+				  },
+				  deselectElement: function(evt) {
+					  if(Fast3d.selectedElement != 0){
+					    Fast3d.selectedElement.removeAttributeNS(null, "onmousemove");
+					    //Fast3d.selectedElement.removeAttributeNS(null, "onmouseout");
+					    Fast3d.selectedElement.removeAttributeNS(null, "onmouseup");
+					    Fast3d.selectedElement = 0;
+					  }
+					  tool = 'draw';
+					  Fast3d.getTangents();
+					  
+					},
+					getTangents: function(){
+						if(Fast3d.circle_in_scene > 1){
+							//http://forums.phpfreaks.com/topic/98615-common-tangents-of-two-circles/
+							var	cen1x = cen1y = cen2x = cen2y = 0;
+							while (Fast3d.line_group.firstChild) {
+							    Fast3d.line_group.removeChild(Fast3d.line_group.firstChild);
+							}
+							
+							var group = document.getElementById('f3dsphere_group');
+							//var nodes_array = group.childNodes;
+							var nodes_array = group.getElementsByTagName('ellipse');
+							var nodes_array_length = nodes_array.length;
+							for(var i = 0; i < nodes_array_length-1; i++){
+								
+								var x1 = parseInt(nodes_array[i].getAttribute('cx'));
+								var y1 = parseInt(nodes_array[i].getAttribute('cy'));
+								var r1 = parseInt(nodes_array[i].getAttribute('rx'));
+								var x2 = parseInt(nodes_array[i+1].getAttribute('cx'));
+								var y2 = parseInt(nodes_array[i+1].getAttribute('cy'));
+								var r2 = parseInt(nodes_array[i+1].getAttribute('rx'));
+								//Default is r1 > r2
+							 	if (r1 < r2){
+									var temp = r1;
+									r1 = r2;
+									r2 = temp;
+									cen1x = x2; 
+									cen1y = y2;
+									cen2x = x1; 
+									cen2y = y1;
+								} else {
+									cen1x = x1; 
+									cen1y = y1;
+									cen2x = x2; 
+									cen2y = y2;
+								}
+								//Distance between two centres
+								var cendistance = Math.sqrt((cen1x-cen2x)*(cen1x-cen2x) + (cen1y-cen2y)*(cen1y-cen2y));
+								var a = cendistance*r2/Math.max(r1-r2,0.0000001);
+								//Coordinates at the vertex
+								var vx = cen2x + (cen2x - cen1x)/cendistance*a;
+								var vy = cen2y + (cen2y - cen1y)/cendistance*a;
+								//Angle between line joining two centres and the x-axis
+								var pheta = Math.atan2(cen1y-cen2y,cen1x-cen2x);
+								//Angle between line joining two centres and the common tangent
+								var phi = Math.asin(r2/a);
+								//One tangent is at the angle (pheta-phi) with x-axis; the other is (pheta+phi)
+								var tan1angle = pheta - phi;
+								var tan2angle = pheta + phi;
+								//Find the length of tangents (to C1 and C2)
+								var criterion = a*a-r2*r2;
+								if (criterion < 0){
+									console.log('criterion < 0');
+								}
+								t1 = Math.sqrt(criterion);
+								t2 = Math.sqrt((cendistance+a)*(cendistance+a)-r1*r1);
+								//Find the points of contact; this sequence is used to form a polygon
+								var poc1x = vx + Math.cos(tan1angle)*t1; var poc1y = vy + Math.sin(tan1angle)*t1;
+								var poc2x = vx + Math.cos(tan1angle)*t2; var poc2y = vy + Math.sin(tan1angle)*t2;
+								var poc3x = vx + Math.cos(tan2angle)*t2; var poc3y = vy + Math.sin(tan2angle)*t2;
+								var poc4x = vx + Math.cos(tan2angle)*t1; var poc4y = vy + Math.sin(tan2angle)*t1;
+								if(!Fast3d.line_group){
+								  	Fast3d.line_group = document.createElementNS(NS,"g");
+								  	Fast3d.line_group.setAttribute('id', 'line_group');
+								  	Fast3d.line_group.setAttribute('fill', 'blue');
+								  	//Fast3d.f3dsphere_group.setAttribute('stroke', 'green');
+								  	svgpaper.appendChild(Fast3d.line_group);
+								  }
+								Fast3d.line_group.appendChild(fast3d_addPolygon('polygon',poc2x,poc2y,poc1x,poc1y,poc4x,poc4y,poc3x,poc3y));
+								
+								//to put spheres on top
+								var f3dspheres = Fast3d.f3dsphere_group.innerHTML;
+								var spheregroup = svgpaper.getElementById('f3dsphere_group');
+								svgpaper.removeChild(spheregroup);
+						
+						  		Fast3d.f3dsphere_group = document.createElementNS(NS,"g");
+							  	Fast3d.f3dsphere_group.setAttribute('id', 'f3dsphere_group');
+							  	Fast3d.f3dsphere_group.setAttribute('fill', 'blue');
+							  	
+						
+								Fast3d.f3dsphere_group.innerHTML = f3dspheres;
+								svgpaper.appendChild(Fast3d.f3dsphere_group);
+						
+						  	
+								//Fast3d.line_group.appendChild(fast3d_addLine('line',poc4x,poc4y,poc3x,poc3y));
+								//var result = array(poc1x,poc1y,poc2x,poc2y,poc3x,poc3y,poc4x,poc4y);	
+							}
+								
+						}
+						
+					}
+      	}
+  </script>
+  <script>
+      NS="http://www.w3.org/2000/svg";
+      var tool = 'draw';
+      //var mousebuttondown = false;
+      /*
+      var gest = [];
+      var draw_gest = [];
+      var minX, maxX, minY, maxY = 0;
+      */
+      var r = new DollarRecognizer();
+      function tools(toolstr){
+        tool = toolstr;
+        switch(tool){
+        	case 'load':
+        		if(document.getElementById('svgfile').innerHTML.length > 1){
+        			document.getElementById('svgpaper').outerHTML = document.getElementById('svgfile').innerHTML;
+        		}
+	        	break;
+        	case 'save':
+	        	document.getElementById('svgfile').innerHTML = document.getElementById('svgpaper').outerHTML;
+	        	break;
+	        case 'select':
+	        	if(F3D_Scene.hand_draw_objects.circles){
+	        		F3D_Scene.hand_draw_objects.circles.setAttribute('onmousedown', "F3D_Sphere.selectElement(evt)");
+	        	}
+        		for(var i = 0;i<F3D_Scene.tentacle_objects.length;i++){
+        			F3D_Scene.tentacle_objects[i].circles.setAttribute('onmousedown', "F3D_Sphere.selectElement(evt)");
+        		}
+        		svgpaper.removeEventListener( 'mousedown', onDocumentMouseDown, false );
+    			svgpaper.removeEventListener( 'touchstart', onDocumentMobileMouseDown, false );
+	
+	        	
+	        	break;
+	        case 'draw':
+	        	if(F3D_Scene.hand_draw_objects.circles){
+	        		F3D_Scene.hand_draw_objects.circles.removeAttributeNS(null, 'onmousedown');
+	        	}
+        		svgpaper.addEventListener( 'mousedown', onDocumentMouseDown, false );
+		    	svgpaper.addEventListener( 'touchstart', onDocumentMobileMouseDown, false );
+		    	for(var i = 0;i<F3D_Scene.tentacle_objects.length;i++){
+        			F3D_Scene.tentacle_objects.circles.removeAttributeNS(null, 'onmousedown');
+        		}
+		    	
+	        	
+	        	break;
+	        	
+	        	
+        }
+      }
+      /*
+      function fast3d_addCircle(name, x, y, r){
+      	circle = document.createElementNS(NS,"ellipse");
+ 			  circle.setAttribute('cx', x);
+        circle.setAttribute('cy', y);
+        circle.setAttribute('rx', r);
+        circle.setAttribute('ry', r);
+        circle.setAttribute('class', 'draggable');
+        //circle.style.fill = fill;
+        circle.setAttribute('transform', 'matrix(1 0 0 1 0 0)');
+        if(name === 'f3dsphere'){
+	        //circle.setAttribute('onmousedown', "Fast3d.selectElement(evt)");
+	        circle.setAttribute('onmouseover', "Fast3d.overElement(evt)");
+	        circle.setAttribute('onmouseout', "Fast3d.outElement(evt)");
+	        circle.setAttribute('onwheel', "Fast3d.wheelElement(evt)");
+        }
+        return circle;
+        
+      }
+      
+      function fast3d_addLine(name, x1, y1, x2, y2){
+      	circle = document.createElementNS(NS,"line");
+ 			  circle.setAttribute('x1', x1);
+        circle.setAttribute('y1', y1);
+        circle.setAttribute('x2', x2);
+        circle.setAttribute('y2', y2);
+        circle.setAttribute('stroke', 'green');
+        
+			        
+        return circle;
+        
+      }
+      
+      function fast3d_addPolygon(name, x1, y1, x2, y2, x3, y3, x4, y4 ){
+      	polygon = document.createElementNS(NS,"polygon");
+      	polygon.setAttribute('name', name);
+ 	    polygon.setAttribute('points', x1+','+y1+' '+x2+','+y2+' '+x3+','+y3+' '+x4+','+y4);
+        polygon.setAttribute('fill', 'blue');
+        return polygon;
+      }
+      
+      function fast3d_add(elem){
+      	var currentMatrix = elem.getAttribute("transform").slice(7,-1).split(' ');
+	      for(var i=0; i<currentMatrix.length; i++) {
+	        currentMatrix[i] = parseFloat(currentMatrix[i]);
+	      }
+	      //currentMatrix[4] = elem.getAttribute('cx');
+			  //currentMatrix[5] = elem.getAttribute('cy');
+			  //newMatrix = "matrix(" + currentMatrix.join(' ') + ")";
+				var newMatrix = "matrix(currentMatrix)";            
+			  elem.setAttribute("transform", 'matrix('+currentMatrix.join(' ')+')');
+			  if(!Fast3d.sketch_group){
+			  	Fast3d.sketch_group = document.createElementNS(NS,"g");
+			  	Fast3d.sketch_group.setAttribute('id', 'sketch_group');
+			  	Fast3d.sketch_group.setAttribute('fill', 'red');
+			  	//Fast3d.sphere_group.setAttribute('stroke', 'yellow');
+			  }
+			  Fast3d.sketch_group.appendChild(elem);
+        document.getElementById('svgpaper').appendChild(Fast3d.sketch_group);
+      }
+      */
+      function init(){
+        //F3D_Sphere.init();
+        //F3D_sketch.init();
+        //F3D_Polyline.init();
+      }
+      
+      window.onload = init;
+      svgpaper = document.getElementById('svgpaper');
+      svgpaper.addEventListener( 'mousedown', onDocumentMouseDown, false );
+      svgpaper.addEventListener( 'touchstart', onDocumentMobileMouseDown, false );
+      
+      function onDocumentMobileMouseDown( event ){
+				var x = event.targetTouches[0].pageX;
+				var y = event.targetTouches[0].pageY;
+				
+				mousedown(x,y);
+			}
+			
+			function onDocumentMouseDown( event ) {
+				var x = event.clientX;
+				var y =  event.clientY;
+				//if(tool === 'draw'){
+				mousedown(x,y);
+				/*
+				
+			}else{
+					Fast3d.selectElement(event);
+				}
+				*/
+				  
+			}
+			
+			function mousedown( x, y ) {
+				//switch(tool){
+				//	case 'draw':
+				event.preventDefault();
+				svgpaper.addEventListener( 'mousemove', onDocumentMouseMove, false );
+		    	svgpaper.addEventListener( 'touchmove', onDocumentMobileMouseMove, false );
+		    	svgpaper.addEventListener( 'mouseup', onDocumentMouseUp, false );
+		    	svgpaper.addEventListener( 'touchend', onDocumentMobileMouseUp, false );
+				mousebuttondown = true;
+				
+				F3D_sketch.init(x,y);
+				/*
+				maxX = minX = x;
+				maxY = minY = y;
+				fast3d_add(fast3d_addCircle('sketch', x, y, 5));
+				gest[0] = new Point(x,y);
+				draw_gest[0] = {'x':x, 'y':y};
+
+				maxX = x;
+				minX = x;
+				maxY = y;
+				minY = y;
+				*/
+	        		//	break;
+					//case 'select':
+						
+					//	break;
+				
+			}
+
+
+			function onDocumentMobileMouseMove( event ){
+				var x = event.targetTouches[0].pageX;
+				var y = event.targetTouches[0].pageY;
+				mousemove(x,y);
+			}
+			
+			function onDocumentMouseMove( event ) {
+				var x = event.clientX;
+				var y =  event.clientY;
+				//if(tool === 'draw'){
+					mousemove(x,y);
+				
+				/*
+			}else{
+					Fast3d.selectElement(event);
+				}
+				*/
+				
+			}
+			
+			function mousemove( x, y ) {
+
+					event.preventDefault();
+					F3D_sketch.addPoint(x,y);
+					/*
+						//scene.add( voxel );
+						gest[gest.length] = new Point(x,y);
+						// | is x, _ is z and / is y
+						if( x > maxX ){
+							maxX = x;
+						}
+						if( x < minX ){
+							minX = x;
+						}
+							
+						if( y > maxY ){
+							maxY = y;
+						}
+							
+						if( y < minY ){
+							minY = y;
+						}
+            
+						draw_gest[draw_gest.length] = {'x': x, 'y': y}; 
+						fast3d_add(fast3d_addCircle('sketch', x, y, 5));
+							
+					}else{
+					
+					
+				*/
+				
+			}
+        /*
+		function drawPolyline(){
+			var simplyline = simplify(draw_gest, 5);
+			polyline = document.createElementNS(NS,"polyline");
+      		polyline.setAttribute('name', 'line');
+      		var point_string = '';
+      		for (var i =0;i<simplyline.length;i++){
+      			point_string += simplyline[i].x+','+simplyline[i].y+' ';
+      		}
+ 	    	polyline.setAttribute('points', point_string);
+ 	    	polyline.setAttribute('fill', 'none');
+        	polyline.setAttribute('stroke', 'orange');
+        	polyline.setAttribute('stroke-width', '3');
+        	
+        	Fast3d.sketch_group.appendChild(polyline);
+				  
+		}
+		*/		
+			
+			function onDocumentMobileMouseUp( event ){
+				mouseup();
+			}
+			
+			function onDocumentMouseUp( event ){
+			
+				mouseup();
+			}
+			
+			function mouseup(  ){
+				event.preventDefault();
+				svgpaper.removeEventListener( 'mousemove', onDocumentMouseMove, false );
+		    	svgpaper.removeEventListener( 'touchmove', onDocumentMobileMouseMove, false );
+		    	svgpaper.removeEventListener( 'mouseup', onDocumentMouseUp, false );
+		    	svgpaper.removeEventListener( 'touchend', onDocumentMobileMouseUp, false );
+		    	//mousebuttondown = false;
+				while (F3D_Scene.sketch_group.firstChild) {
+				    F3D_Scene.sketch_group.removeChild(F3D_Scene.sketch_group.firstChild);
+				}
+				//if(tool === 'draw'){
+					if(F3D_Sphere.selectedElement != 0){
+				    	F3D_Sphere.selectedElement = 0;
+				    }
+					var matched = r.Recognize(F3D_sketch.gest);
+					console.log(matched);
+	
+					switch(matched.Name){
+						case "rectangle":
+							
+							//console.log('width '+width+', height '+height);
+							//var geometry = new THREE.BoxGeometry( width, 1 , height );
+							//geometry.translate(_3dminX+width/2, 1, _3dminZ+height/2);
+							//var material = new THREE.MeshBasicMaterial( {color: 0x00ff00} );
+							//var cube = new THREE.Mesh( geometry, material );
+							//scene.add( cube );
+							break;
+						case "circle":
+							var radius = 0;
+							var width = (F3D_sketch.maxX-F3D_sketch.minX);
+							var height = (F3D_sketch.maxY-F3D_sketch.minY);
+							if(width<height){
+								radius = width/2;
+							}else{
+								radius = height/2;
+							}
+							if(!F3D_Scene.hand_draw_objects.circles){
+						  	  F3D_Scene.hand_draw_objects.circles = document.createElementNS(NS,"g");
+						  	  F3D_Scene.hand_draw_objects.circles.setAttribute('id', 'f3dhanddraw_circle_group');
+						  	  F3D_Scene.hand_draw_objects.circles.setAttribute('fill', 'blue');
+						  	  //Fast3d.f3dsphere_group.setAttribute('stroke', 'green');
+                              svgpaper.appendChild(F3D_Scene.hand_draw_objects.circles);
+						    }
+						    F3D_Scene.hand_draw_objects.circles.appendChild(F3D_Sphere.fast3d_addCircle('f3dhanddraw_circle', F3D_sketch.minX+(F3D_sketch.maxX-F3D_sketch.minX)/2, F3D_sketch.minY+(F3D_sketch.maxY-F3D_sketch.minY)/2, radius, 'blue'));
+			        
+							
+							
+							F3D_Sphere.circle_in_scene++;
+							F3D_Polygon.getTangents(F3D_Scene.hand_draw_objects);
+							break;
+						case "triangle":
+						case "x":
+						case "arrow":
+						case "delete":
+						case "star":
+						case "pigtail":
+						case "v":
+						case "left square bracket":
+						case "right square bracket":
+						case "left curly brace":
+						case "right curly brace":
+						case "check":
+						case "caret":
+						case "zig-zag":
+							//drawPolyline();
+							//sketch();
+							//drawTube();
+							F3D_Polyline.drawTentacle();
+							
+							  
+							  
+						//}
+						break;
+	              
+	            
+						default:
+							console.log('default');
+							
+						//Fast3d.selectedElement.setAttribute("onmouseout", "deselectElement(evt)");
+						//Fast3d.selectedElement.setAttribute("onmouseup", "deselectElement(evt)");
+							
+	  
+							
+	
+					}
+					F3D_sketch.clean_data();
+	                //document.getElementById('coordinates').innerText =  '_3dmaxX '+_3dmaxX+' _3dminX '+_3dminX+' _3dmaxZ '+_3dmaxZ+' _3dminZ '+_3dminZ;	               
+					/*
+					gest = new Array();
+					mystroke = new Array();
+					draw_gest = [];
+	        	    */
+				}
+				
+				
+			
+			
+
+      
+      
+  </script>
+  </body>
+</htmls
