@@ -18,3 +18,15 @@ ogni oggetto disegna i cerchi e poligoni
 sketch sfera->hand_draw->finisce nelle sfere dell'hand_draw->se più di una, allora polygon (addSpere, draw)
        tentacolo->aggiunge un tentacolo, le sfere ed i poligoni
       hand draw e tentacolo si differiscono solo dal fatto che il tentacolo viene creato automaticamente a partire dallo schizzo
+      
+I fumetti saranno editabili ed ogni uscita presenterà una nuova feature.
+hd
+...+ profilo
+...+ audio
+...+ animazione automatica
+...+ più hd
+...+ tentacoli
+...+ colore
+...+ salvataggio
+...+ caricamento
+...+animazione a mano
