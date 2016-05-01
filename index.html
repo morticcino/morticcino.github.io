@@ -1,8 +1,18 @@
 <html>
     <head></head>
     <body>
+        <ul id="listfiles"></ul>
         <script>
-            
+            var files = ['0001','0002'];
+            var lenght = files.lenght;
+            var ul = document.getElementById('listfiles');
+            for(var i = 0;i<lenght;i++){
+                var li = document.createElement('li');
+                var a = document.createElemeny('a');
+                a.setAttribute('href','crealo_tu/'+files[i]+'.html');
+                li.appendChild(a);
+                ul.appendChild(li);
+            }
         </script>
     </body>
 </html>
