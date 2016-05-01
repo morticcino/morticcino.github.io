@@ -236,7 +236,7 @@
         	case 'load':
 				F3D_Polygon.selected_tool = 'load';
         		if(document.getElementById('svgfile').innerHTML.length > 1){
-        			document.getElementById('svgpaper').outerHTML = document.getElementById('svgfile').innerHTML;
+        			document.getElementById('svgpaper').innerHTML = document.getElementById('svgfile').innerHTML;
         		}
 	        	break;
         	case 'save':
