@@ -48,178 +48,13 @@
 		<input id="draw" type="radio" name="tools" onclick="tools('draw')" checked> Draw<br />
 		<input id="select" type="radio" name="tools" onclick="tools('select')" > Select<br />
 		<input id="save" type="radio" name="tools" onclick="tools('save')" > Save<br />
-		<input id="load" type="radio" name="tools" onclick="tools('load')" > Load<br />
+		<!-- <input id="load" type="radio" name="tools" onclick="tools('load')" > Load<br /> -->
       </div>
 	  <div id="right_column">
 		<svg id="svgpaper" xmlns='http://www.w3.org/2000/svg'>
 		</svg>
 	  </div>
-	  <script type="text/ecmascript">
-      var svgpaper;
-      var circle;
-      var polygon;
-      	var Fast3d = {
-				  selectedElement: 0,
-				  currentX: 0,
-				  currentY: 0,
-				  currentMatrix: 0,
-				  sketch_group: '',
-				  f3dsphere_group: '',
-				  line_group: '',
-				  circle_in_scene: 0,
-			    selectElement: function(evt) {
-				    Fast3d.selectedElement = evt.target;
-				    Fast3d.currentX = evt.clientX;
-				    Fast3d.currentY = evt.clientY;
-				    /*
-				    Fast3d.currentMatrix = Fast3d.selectedElement.getAttribute("transform").slice(7,-1).split(' ');
-				    
-				      for(var i=0; i<Fast3d.currentMatrix.length; i++) {
-				        Fast3d.currentMatrix[i] = parseFloat(Fast3d.currentMatrix[i]);
-				      }
-				    */
-						Fast3d.selectedElement.setAttribute("onmousemove", "Fast3d.moveElement(evt)");
-						Fast3d.selectedElement.setAttribute("onmouseup", "Fast3d.deselectElement(evt)");
-						tool = 'select';
-				  },
-			    moveElement: function(evt) {
-					  dx = evt.clientX;// - Fast3d.currentX;
-					  dy = evt.clientY;// - Fast3d.currentY;
-					  /*
-					  Fast3d.currentMatrix[4] += dx;
-					  Fast3d.currentMatrix[5] += dy;
-					  newMatrix = "matrix(" + Fast3d.currentMatrix.join(' ') + ")";
-					            
-					  Fast3d.selectedElement.setAttributeNS(null, "transform", newMatrix);
-					  Fast3d.currentX = evt.clientX;
-					  Fast3d.currentY = evt.clientY;
-					  */
-					  Fast3d.selectedElement.setAttributeNS(null, "cx", dx);
-					  Fast3d.selectedElement.setAttributeNS(null, "cy", dy);
-					  //Fast3d.selectedElement.setAttribute("onmousemove", "Fast3d.deselectElement(evt)");
-					},
-				  overElement: function(evt) {
-					  evt.target.setAttributeNS(null, "fill", 'green');
-					},
-				  outElement: function(evt) {
-					  evt.target.setAttributeNS(null, "fill", 'blue');
-					},
-				  wheelElement: function(evt) {
-				  	var tmpElem = evt.target;
-					var radius = tmpElem.getAttribute('rx');
-						
-					if(evt.wheelDelta > 0){
-						tmpElem.setAttribute('rx', ++radius);
-						tmpElem.setAttribute('ry', ++radius);
-					}else{
-						tmpElem.setAttribute('rx', --radius);
-						tmpElem.setAttribute('ry', --radius);
-					}
-					Fast3d.getTangents();
-				  },
-				  deselectElement: function(evt) {
-					  if(Fast3d.selectedElement != 0){
-					    Fast3d.selectedElement.removeAttributeNS(null, "onmousemove");
-					    //Fast3d.selectedElement.removeAttributeNS(null, "onmouseout");
-					    Fast3d.selectedElement.removeAttributeNS(null, "onmouseup");
-					    Fast3d.selectedElement = 0;
-					  }
-					  tool = 'draw';
-					  Fast3d.getTangents();
-					  
-					},
-					getTangents: function(){
-						if(Fast3d.circle_in_scene > 1){
-							//http://forums.phpfreaks.com/topic/98615-common-tangents-of-two-circles/
-							var	cen1x = cen1y = cen2x = cen2y = 0;
-							while (Fast3d.line_group.firstChild) {
-							    Fast3d.line_group.removeChild(Fast3d.line_group.firstChild);
-							}
-							
-							var group = document.getElementById('f3dsphere_group');
-							//var nodes_array = group.childNodes;
-							var nodes_array = group.getElementsByTagName('ellipse');
-							var nodes_array_length = nodes_array.length;
-							for(var i = 0; i < nodes_array_length-1; i++){
-								
-								var x1 = parseInt(nodes_array[i].getAttribute('cx'));
-								var y1 = parseInt(nodes_array[i].getAttribute('cy'));
-								var r1 = parseInt(nodes_array[i].getAttribute('rx'));
-								var x2 = parseInt(nodes_array[i+1].getAttribute('cx'));
-								var y2 = parseInt(nodes_array[i+1].getAttribute('cy'));
-								var r2 = parseInt(nodes_array[i+1].getAttribute('rx'));
-								//Default is r1 > r2
-							 	if (r1 < r2){
-									var temp = r1;
-									r1 = r2;
-									r2 = temp;
-									cen1x = x2; 
-									cen1y = y2;
-									cen2x = x1; 
-									cen2y = y1;
-								} else {
-									cen1x = x1; 
-									cen1y = y1;
-									cen2x = x2; 
-									cen2y = y2;
-								}
-								//Distance between two centres
-								var cendistance = Math.sqrt((cen1x-cen2x)*(cen1x-cen2x) + (cen1y-cen2y)*(cen1y-cen2y));
-								var a = cendistance*r2/Math.max(r1-r2,0.0000001);
-								//Coordinates at the vertex
-								var vx = cen2x + (cen2x - cen1x)/cendistance*a;
-								var vy = cen2y + (cen2y - cen1y)/cendistance*a;
-								//Angle between line joining two centres and the x-axis
-								var pheta = Math.atan2(cen1y-cen2y,cen1x-cen2x);
-								//Angle between line joining two centres and the common tangent
-								var phi = Math.asin(r2/a);
-								//One tangent is at the angle (pheta-phi) with x-axis; the other is (pheta+phi)
-								var tan1angle = pheta - phi;
-								var tan2angle = pheta + phi;
-								//Find the length of tangents (to C1 and C2)
-								var criterion = a*a-r2*r2;
-								if (criterion < 0){
-									console.log('criterion < 0');
-								}
-								t1 = Math.sqrt(criterion);
-								t2 = Math.sqrt((cendistance+a)*(cendistance+a)-r1*r1);
-								//Find the points of contact; this sequence is used to form a polygon
-								var poc1x = vx + Math.cos(tan1angle)*t1; var poc1y = vy + Math.sin(tan1angle)*t1;
-								var poc2x = vx + Math.cos(tan1angle)*t2; var poc2y = vy + Math.sin(tan1angle)*t2;
-								var poc3x = vx + Math.cos(tan2angle)*t2; var poc3y = vy + Math.sin(tan2angle)*t2;
-								var poc4x = vx + Math.cos(tan2angle)*t1; var poc4y = vy + Math.sin(tan2angle)*t1;
-								if(!Fast3d.line_group){
-								  	Fast3d.line_group = document.createElementNS(NS,"g");
-								  	Fast3d.line_group.setAttribute('id', 'line_group');
-								  	Fast3d.line_group.setAttribute('fill', 'blue');
-								  	//Fast3d.f3dsphere_group.setAttribute('stroke', 'green');
-								  	svgpaper.appendChild(Fast3d.line_group);
-								  }
-								Fast3d.line_group.appendChild(fast3d_addPolygon('polygon',poc2x,poc2y,poc1x,poc1y,poc4x,poc4y,poc3x,poc3y));
-								
-								//to put spheres on top
-								var f3dspheres = Fast3d.f3dsphere_group.innerHTML;
-								var spheregroup = svgpaper.getElementById('f3dsphere_group');
-								svgpaper.removeChild(spheregroup);
-						
-						  		Fast3d.f3dsphere_group = document.createElementNS(NS,"g");
-							  	Fast3d.f3dsphere_group.setAttribute('id', 'f3dsphere_group');
-							  	Fast3d.f3dsphere_group.setAttribute('fill', 'blue');
-							  	
-						
-								Fast3d.f3dsphere_group.innerHTML = f3dspheres;
-								svgpaper.appendChild(Fast3d.f3dsphere_group);
-						
-						  	
-								//Fast3d.line_group.appendChild(fast3d_addLine('line',poc4x,poc4y,poc3x,poc3y));
-								//var result = array(poc1x,poc1y,poc2x,poc2y,poc3x,poc3y,poc4x,poc4y);	
-							}
-								
-						}
-						
-					}
-      	}
-  </script>
+	  
   <script>
       NS="http://www.w3.org/2000/svg";
       var tool = 'draw';
@@ -233,12 +68,14 @@
       function tools(toolstr){
         tool = toolstr;
         switch(tool){
-        	case 'load':
+      		/*
+	    	case 'load':
 				F3D_Polygon.selected_tool = 'load';
         		if(document.getElementById('svgfile').innerHTML.length > 1){
         			document.getElementById('svgpaper').innerHTML = document.getElementById('svgfile').innerHTML;
         		}
 	        	break;
+			*/
         	case 'save':
 				F3D_Polygon.selected_tool = 'save';
 	        	document.getElementById('svgfile').innerHTML = document.getElementById('svgpaper').outerHTML;
@@ -273,67 +110,7 @@
 	        	
         }
       }
-      /*
-      function fast3d_addCircle(name, x, y, r){
-      	circle = document.createElementNS(NS,"ellipse");
- 			  circle.setAttribute('cx', x);
-        circle.setAttribute('cy', y);
-        circle.setAttribute('rx', r);
-        circle.setAttribute('ry', r);
-        circle.setAttribute('class', 'draggable');
-        //circle.style.fill = fill;
-        circle.setAttribute('transform', 'matrix(1 0 0 1 0 0)');
-        if(name === 'f3dsphere'){
-	        //circle.setAttribute('onmousedown', "Fast3d.selectElement(evt)");
-	        circle.setAttribute('onmouseover', "Fast3d.overElement(evt)");
-	        circle.setAttribute('onmouseout', "Fast3d.outElement(evt)");
-	        circle.setAttribute('onwheel', "Fast3d.wheelElement(evt)");
-        }
-        return circle;
-        
-      }
       
-      function fast3d_addLine(name, x1, y1, x2, y2){
-      	circle = document.createElementNS(NS,"line");
- 			  circle.setAttribute('x1', x1);
-        circle.setAttribute('y1', y1);
-        circle.setAttribute('x2', x2);
-        circle.setAttribute('y2', y2);
-        circle.setAttribute('stroke', 'green');
-        
-			        
-        return circle;
-        
-      }
-      
-      function fast3d_addPolygon(name, x1, y1, x2, y2, x3, y3, x4, y4 ){
-      	polygon = document.createElementNS(NS,"polygon");
-      	polygon.setAttribute('name', name);
- 	    polygon.setAttribute('points', x1+','+y1+' '+x2+','+y2+' '+x3+','+y3+' '+x4+','+y4);
-        polygon.setAttribute('fill', 'blue');
-        return polygon;
-      }
-      
-      function fast3d_add(elem){
-      	var currentMatrix = elem.getAttribute("transform").slice(7,-1).split(' ');
-	      for(var i=0; i<currentMatrix.length; i++) {
-	        currentMatrix[i] = parseFloat(currentMatrix[i]);
-	      }
-	      //currentMatrix[4] = elem.getAttribute('cx');
-			  //currentMatrix[5] = elem.getAttribute('cy');
-			  //newMatrix = "matrix(" + currentMatrix.join(' ') + ")";
-				var newMatrix = "matrix(currentMatrix)";            
-			  elem.setAttribute("transform", 'matrix('+currentMatrix.join(' ')+')');
-			  if(!Fast3d.sketch_group){
-			  	Fast3d.sketch_group = document.createElementNS(NS,"g");
-			  	Fast3d.sketch_group.setAttribute('id', 'sketch_group');
-			  	Fast3d.sketch_group.setAttribute('fill', 'red');
-			  	//Fast3d.sphere_group.setAttribute('stroke', 'yellow');
-			  }
-			  Fast3d.sketch_group.appendChild(elem);
-        document.getElementById('svgpaper').appendChild(Fast3d.sketch_group);
-      }
-      */
       function init(){
         //F3D_Sphere.init();
         //F3D_sketch.init();
@@ -422,53 +199,9 @@
 
 					event.preventDefault();
 					F3D_sketch.addPoint(x,y);
-					/*
-						//scene.add( voxel );
-						gest[gest.length] = new Point(x,y);
-						// | is x, _ is z and / is y
-						if( x > maxX ){
-							maxX = x;
-						}
-						if( x < minX ){
-							minX = x;
-						}
-							
-						if( y > maxY ){
-							maxY = y;
-						}
-							
-						if( y < minY ){
-							minY = y;
-						}
-            
-						draw_gest[draw_gest.length] = {'x': x, 'y': y}; 
-						fast3d_add(fast3d_addCircle('sketch', x, y, 5));
-							
-					}else{
-					
-					
-				*/
 				
 			}
-        /*
-		function drawPolyline(){
-			var simplyline = simplify(draw_gest, 5);
-			polyline = document.createElementNS(NS,"polyline");
-      		polyline.setAttribute('name', 'line');
-      		var point_string = '';
-      		for (var i =0;i<simplyline.length;i++){
-      			point_string += simplyline[i].x+','+simplyline[i].y+' ';
-      		}
- 	    	polyline.setAttribute('points', point_string);
- 	    	polyline.setAttribute('fill', 'none');
-        	polyline.setAttribute('stroke', 'orange');
-        	polyline.setAttribute('stroke-width', '3');
-        	
-        	Fast3d.sketch_group.appendChild(polyline);
-				  
-		}
-		*/		
-			
+    		
 			function onDocumentMobileMouseUp( event ){
 				mouseup();
 			}
@@ -497,13 +230,7 @@
 	
 					switch(matched.Name){
 						case "rectangle":
-							
-							//console.log('width '+width+', height '+height);
-							//var geometry = new THREE.BoxGeometry( width, 1 , height );
-							//geometry.translate(_3dminX+width/2, 1, _3dminZ+height/2);
-							//var material = new THREE.MeshBasicMaterial( {color: 0x00ff00} );
-							//var cube = new THREE.Mesh( geometry, material );
-							//scene.add( cube );
+	
 							break;
 						case "circle":
 							var radius = 0;
@@ -542,41 +269,22 @@
 						case "check":
 						case "caret":
 						case "zig-zag":
-							//drawPolyline();
-							//sketch();
-							//drawTube();
 							//F3D_Polyline.drawTentacle();
 							
 							  
-							  
-						//}
 						break;
 	              
 	            
 						default:
 							console.log('default');
 							
-						//Fast3d.selectedElement.setAttribute("onmouseout", "deselectElement(evt)");
-						//Fast3d.selectedElement.setAttribute("onmouseup", "deselectElement(evt)");
 							
 	  
 							
 	
 					}
 					F3D_sketch.clean_data();
-	                //document.getElementById('coordinates').innerText =  '_3dmaxX '+_3dmaxX+' _3dminX '+_3dminX+' _3dmaxZ '+_3dmaxZ+' _3dminZ '+_3dminZ;	               
-					/*
-					gest = new Array();
-					mystroke = new Array();
-					draw_gest = [];
-	        	    */
-				}
-				
-				
-			
-			
-
-      
+				}  
       
   </script>
   </body>
