@@ -10,7 +10,8 @@
                 var li = document.createElement('li');
                 var a = document.createElement('a');
                 a.setAttribute('href','crealo_tu/'+files[i]+'.html');
-                a.setAttribute('text',files[i]+'.html');
+                var text = document.createTextNode(files[i]+'.html');
+                a.appendChild(text);
                 li.appendChild(a);
                 ul.appendChild(li);
             }
