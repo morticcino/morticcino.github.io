@@ -25,8 +25,11 @@
                             var allText = rawFile.responseText;
                             a.appendChild(img);
                             var txt = document.createTextNode(allText);
+                            var txtdiv = document.createElement('div');
+                            txtdiv.setAttribute('id','txtdiv');
                             li.appendChild(a);
-                            li.appendChild(txt);
+                            txtdiv.appendChild(txt);
+                            li.appendChild(txtdiv);
                             ul.appendChild(li);
                         }
                     }
