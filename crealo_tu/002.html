@@ -48,7 +48,7 @@
 		<input id="draw" type="radio" name="tools" onclick="tools('draw')" checked> Draw<br />
 		<input id="select" type="radio" name="tools" onclick="tools('select')" > Select<br />
 		<input id="save" type="radio" name="tools" onclick="tools('save')" > Save<br />
-		<!-- <input id="load" type="radio" name="tools" onclick="tools('load')" > Load<br /> -->
+		<input id="load" type="radio" name="tools" onclick="tools('load')" > Load<br />
       </div>
 	  <div id="right_column">
 		<svg id="svgpaper" xmlns='http://www.w3.org/2000/svg'>
@@ -68,14 +68,17 @@
       function tools(toolstr){
         tool = toolstr;
         switch(tool){
-      		/*
+      		
 	    	case 'load':
-				F3D_Polygon.selected_tool = 'load';
+			F3D_Polygon.selected_tool = 'load';
         		if(document.getElementById('svgfile').innerHTML.length > 1){
-        			document.getElementById('svgpaper').innerHTML = document.getElementById('svgfile').innerHTML;
+        			var svgcontent = document.getElementById('svgfile').innerHTML;
+        			svgcontent.replace('<svg id="svgpaper" xmlns="http:\/\/www.w3.org\/2000\/svg">',"");
+        			svgcontent.replace('<\/svg>',"");
+        			document.getElementById('svgpaper').innerHTML = svgcontent;
         		}
 	        	break;
-			*/
+			
         	case 'save':
 				F3D_Polygon.selected_tool = 'save';
 	        	document.getElementById('svgfile').innerHTML = document.getElementById('svgpaper').outerHTML;
@@ -269,7 +272,7 @@
 						case "check":
 						case "caret":
 						case "zig-zag":
-							//F3D_Polyline.drawTentacle();
+							F3D_Polyline.drawTentacle();
 							
 							  
 						break;
