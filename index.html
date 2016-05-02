@@ -14,9 +14,26 @@
                 a.setAttribute('href','crealo_tu/'+files[i]+'.html');
                 var img = document.createElement('img');
                 img.src = 'img/'+files[i]+'.png';
-                a.appendChild(img);
-                li.appendChild(a);
-                ul.appendChild(li);
+                var rawFile = new XMLHttpRequest();
+                rawFile.open("GET", 'text/'+files[i]+'.txt', false);
+                rawFile.onreadystatechange = function ()
+                {
+                    if(rawFile.readyState === 4)
+                    {
+                        if(rawFile.status === 200 || rawFile.status == 0)
+                        {
+                            var allText = rawFile.responseText;
+                            a.appendChild(img);
+                            var txt = document.createTextNode(allText);
+                            a.appendChild(txt);
+                            li.appendChild(a);
+                            ul.appendChild(li);
+                        }
+                    }
+                }
+                rawFile.send(null);
+}
+                
             }
         </script>
     </body>
