@@ -71,8 +71,8 @@
       		
 	    	case 'load':
 			F3D_Polygon.selected_tool = 'load';
-        		if(document.getElementById('svgfile').innerHTML.length > 1){
-        			var svgcontent = document.getElementById('svgfile').innerHTML;
+        		if(document.getElementById('svgfile').value.length > 1){
+        			var svgcontent = document.getElementById('svgfile').value;
         			svgcontent.replace('<svg id="svgpaper" xmlns="http:\/\/www.w3.org\/2000\/svg">',"");
         			svgcontent.replace('<\/svg>',"");
         			document.getElementById('svgpaper').innerHTML = svgcontent;
