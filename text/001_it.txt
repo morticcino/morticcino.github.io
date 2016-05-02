@@ -1,0 +1,1 @@
+Prima versione del tool sviluppato. Riconosce i cerchi, li unisce, posso spostare i cerchi disegnati e posso "salvare" il contenuto in una text area.
