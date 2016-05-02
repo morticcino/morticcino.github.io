@@ -7,6 +7,6 @@ li img{
   width: auto;
 }
 
-a{
-  float: left;
+div#divtxt{
+  float: right;
 }
