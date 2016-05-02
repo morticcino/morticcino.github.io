@@ -15,7 +15,7 @@
                 var img = document.createElement('img');
                 img.src = 'img/'+files[i]+'.png';
                 var rawFile = new XMLHttpRequest();
-                rawFile.open("GET", 'text/'+files[i]+'.txt', false);
+                rawFile.open("GET", 'text/'+files[i]+'_it.txt', false);
                 rawFile.onreadystatechange = function ()
                 {
                     if(rawFile.readyState === 4)
