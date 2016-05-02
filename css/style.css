@@ -7,10 +7,10 @@ li img{
   width: auto;
 }
 
-div#a_div{
+li div#a_div{
   float: left;
 }
 
-div#txtdiv{
+li div#txtdiv{
   float: right;
 }
