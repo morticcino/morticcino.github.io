@@ -10,3 +10,7 @@ li img{
 div#txtdiv{
   float: right;
 }
+
+a{
+  float: left;
+}
