@@ -24,10 +24,13 @@
                         {
                             var allText = rawFile.responseText;
                             a.appendChild(img);
+                            var a_div = document.createElement('div');
+                            a_div.setAttribute('id','a_div');
+                            a_div.appendChild(a);
                             var txt = document.createTextNode(allText);
                             var txtdiv = document.createElement('div');
                             txtdiv.setAttribute('id','txtdiv');
-                            li.appendChild(a);
+                            li.appendChild(a_div);
                             txtdiv.appendChild(txt);
                             li.appendChild(txtdiv);
                             ul.appendChild(li);
