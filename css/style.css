@@ -6,3 +6,7 @@ li img{
   height: 100px;
   width: auto;
 }
+
+a{
+  float: right;
+}
