@@ -7,6 +7,10 @@ li img{
   width: auto;
 }
 
+div#a_div{
+  float: left;
+}
+
 div#txtdiv{
   float: right;
 }
