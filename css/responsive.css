@@ -28,4 +28,7 @@
   div#txtdiv{
     font-size: 32px;
   }
+  div#a_div{
+    width: 300px;
+  }
 }
