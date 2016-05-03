@@ -21,14 +21,14 @@
 }
 
 @media screen and (max-width:380px) {
-  div#txtdiv{
+ 
+}
+
+@media all and (orientation: portrait) { 
+   div#txtdiv{
     font-size: 32px;
   }
   div#a_div{
     width: 200px;
   }
-}
-
-@media all and (orientation: portrait) { 
-  
 }
