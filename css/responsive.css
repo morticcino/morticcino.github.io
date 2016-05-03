@@ -27,9 +27,10 @@
 @media all and (orientation: portrait) { 
    div#txtdiv{
     font-size: 32px;
-    height: 200px;
+    
   }
   div#a_div{
     width: 200px;
+    height: 200px;
   }
 }
