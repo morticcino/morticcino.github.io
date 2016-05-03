@@ -1,15 +1,6 @@
 @media screen and (min-width: 1301px) {
 }
 
-/* samsung gt-i9060 gran neo */
-@media screen and (device-height: 800px) and (device-width: 480px) {
-}
-
-/* samsung s3 neo */
-@media screen and (max-width: 720px) and (max-height: 1280px) {
-}
-
-/* samsung gt-5200 */
 @media screen and (min-height: 1280px) {
 }
 
@@ -30,6 +21,9 @@
 }
 
 @media screen and (max-width:380px) {
+  #txtdiv{
+    font-size: 32px;
+  }
 }
 
 @media all and (orientation: landscape) { 
