@@ -21,7 +21,7 @@
 }
 
 @media screen and (max-width:380px) {
-  #txtdiv{
+  div#txtdiv{
     font-size: 32px;
   }
 }
