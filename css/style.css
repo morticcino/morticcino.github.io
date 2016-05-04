@@ -15,3 +15,8 @@ div#a_div{
 div#txtdiv{
   height: 100%;
 }
+
+img#toolimg{
+  height: 100px;
+  width: auto;
+}
