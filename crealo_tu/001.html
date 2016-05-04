@@ -50,9 +50,10 @@
 		<input id="save" type="radio" name="tools" onclick="tools('save')" > Save<br />
 		<div>
 			<h2>IT</h2><br />
-			Selezionando 'draw' è possibile disegnare nel canvas, per ora viene riconosciuta la forma del cerchio 
-			ed una volta che questa viene individuata viene creato un cerchio e, se ce ne sono più di uno, collegati 
-			fra loro.
+			Selezionando 'draw' è possibile disegnare nel canvas.
+			Ogni tratto passa per un riconoscitore di forme: per ora viene riconosciuta solo la forma del cerchio 
+			ed una volta che questa viene individuata viene creato un ellipse svg con i due assi uguali e, 
+			se ce ne sono più di uno, collegati fra loro.
 			Selezionando lo strumento 'select' è possibile scalarli usando la rotella del mouse e postarli.
 			Selezionando 'save' è spossibile "salvare" il contenuto della scena in una text area, 
 			copiarlo in un file con estensione svg ed usarlo in un programma di grafica.
