@@ -9,9 +9,9 @@ li img{
 
 div#a_div{
   float: left;
-  height: 200px;
+  height: 100%;
 }
 
 div#txtdiv{
-  height: 300px;
+  height: 100%;
 }
