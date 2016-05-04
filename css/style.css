@@ -5,6 +5,7 @@ ul#toolslist{
 li img{
   height: 100px;
   width: auto;
+  float: right;
 }
 
 div#a_div{
