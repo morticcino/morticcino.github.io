@@ -24,7 +24,7 @@
                 img.alt = files[1]+' tool';
                 div_image.appendChild(img);
                 var rawFile = new XMLHttpRequest();
-                rawFile.open("GET", 'text/'+files[i]+'_it.txt', false);
+                rawFile.open("GET", 'text/'+files[i]+'_it.txt', true);
                 rawFile.onreadystatechange = function ()
                 {
                     if(rawFile.readyState === 4)
