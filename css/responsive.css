@@ -1,3 +1,8 @@
+div#a_div{
+    width: 200px;
+    height: 200px;
+}
+
 @media screen and (min-width: 1301px) {
 }
 
@@ -29,8 +34,5 @@
     font-size: 32px;
     
   }
-  div#a_div{
-    width: 200px;
-    height: 200px;
-  }
+  
 }
