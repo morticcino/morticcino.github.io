@@ -5,7 +5,9 @@
         <link rel="stylesheet" type="text/css" href="css/style.css"></link>
     </head>
     <body>
-        <ul id="toolslist"></ul>
+        <div id="pattern" class="pattern">
+  	        <ul class="list img-list"></ul>
+  	    </div>
         <script>
             var files = ['001','002'];
             var length = files.length;
@@ -14,8 +16,13 @@
                 var li = document.createElement('li');
                 var a = document.createElement('a');
                 a.setAttribute('href','crealo_tu/'+files[i]+'.html');
+                a.setAttribute('class','inner');
+                var div_image = document.createElement('div');
+                div_image.setAttribute('class','li-img');
                 var img = document.createElement('img');
                 img.src = 'img/'+files[i]+'.png';
+                img.alt = files[1]+' tool';
+                div_image.appendChild(img);
                 var rawFile = new XMLHttpRequest();
                 rawFile.open("GET", 'text/'+files[i]+'_it.txt', false);
                 rawFile.onreadystatechange = function ()
@@ -25,17 +32,16 @@
                         if(rawFile.status === 200 || rawFile.status == 0)
                         {
                             var allText = rawFile.responseText;
-                            a.appendChild(img);
-                            var a_div = document.createElement('div');
-                            a_div.setAttribute('id','a_div');
-                            a_div.appendChild(a);
-                            var txt = document.createTextNode(allText);
-                            var txtdiv = document.createElement('div');
-                            txtdiv.setAttribute('id','txtdiv');
-                            li.appendChild(a_div);
-                            txtdiv.appendChild(txt);
-                            li.appendChild(txtdiv);
-                            ul.appendChild(li);
+                            var p = document.createElement('p');
+                            p.setAttribute('class', 'li-sub');
+                            vat p_txt = document.createTextNode(alltext);
+                            p.appendChild(p_txt);
+                            var div_txt = document.createElement('div');
+                            div_txt.setAttribute('class','li-text');
+                            div_txt.appendChild(p);
+                            a.appendChild(div_image);
+                            a.appendChild(div_txt);
+                            
                         }
                     }
                 }
