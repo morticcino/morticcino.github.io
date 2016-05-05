@@ -77,14 +77,18 @@
       function tools(toolstr){
         tool = toolstr;
         switch(tool){
-      		/*
+      		
 	    	case 'load':
 				F3D_Polygon.selected_tool = 'load';
-        		if(document.getElementById('svgfile').innerHTML.length > 1){
-        			document.getElementById('svgpaper').innerHTML = document.getElementById('svgfile').innerHTML;
+        		if(document.getElementById('svgfile').value.length > 1){
+        			var to_load = document.getElementById('svgfile').value;
+        			to_load.replace('<svg id="svgpaper" xmlns='http:\/\/www.w3.org\/2000\/svg'>','');
+        			to_load.replace('<\/svg>','');
+        			
+        			document.getElementById('svgpaper').value = to_load;
         		}
 	        	break;
-			*/
+			
         	case 'save':
 				F3D_Polygon.selected_tool = 'save';
 	        	document.getElementById('svgfile').innerHTML = document.getElementById('svgpaper').outerHTML;
@@ -278,7 +282,7 @@
 						case "check":
 						case "caret":
 						case "zig-zag":
-							//F3D_Polyline.drawTentacle();
+							F3D_Polyline.drawTentacle();
 							
 							  
 						break;
