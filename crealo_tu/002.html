@@ -84,7 +84,7 @@
         		if(document.getElementById('svgfile').value.length > 1){
         			var to_load = document.getElementById('svgfile').value;
         			var tmp = to_load.replace('<svg id="svgpaper" xmlns="http:\/\/www.w3.org\/2000\/svg">','');
-        			var tmp2 = to_load.replace('<\/svg>','');
+        			var tmp2 = tmp.replace('<\/svg>','');
         			
         			document.getElementById('svgpaper').value = tmp2;
         		}
