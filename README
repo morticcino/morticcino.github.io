@@ -22,6 +22,7 @@ sketch sfera->hand_draw->finisce nelle sfere dell'hand_draw->se più di una, all
 I fumetti saranno editabili ed ogni uscita presenterà una nuova feature.
 hd
 ...+ profilo
+    jsclipper 
 ...+ audio
 ...+ animazione automatica
     https://elrumordelaluz.github.io/csshake/
