@@ -46,15 +46,13 @@
 	  <div id="left_column">
 		<textarea id="svgfile" class="textarea" rows="6"></textarea><br />
 		<input id="draw" type="radio" name="tools" onclick="tools('draw')" checked> Draw<br />
+		<input id="more_fhd" type="button" name="add_fhd" onclick="add_fhd()"
 		<input id="select" type="radio" name="tools" onclick="tools('select')" > Select<br />
 		<input id="save" type="radio" name="tools" onclick="tools('save')" > Save<br />
 		<input id="load" type="radio" name="tools" onclick="tools('load')" > Load<br />
 		<div>
 			<h2>IT</h2><br />
-			Seconda versione del mio tool di disegno.
-			Ora viene disegnato un cerchio, se viene riconosciuto il cerchio, e negli altri casi
-			viene creato un "tentacolo", formato da elementi circolari che posso muovere e scalare.
-			Posso "caricare" una scena già creata in precedenza, copiando il contenuto di un file svg nella textarea.
+			wip più hd.
 		</div>
       </div>
 	  <div id="right_column">
@@ -72,6 +70,11 @@
       var minX, maxX, minY, maxY = 0;
       */
       var r = new DollarRecognizer();
+      function add_fhd(){
+      	if(F3D_Scene.hand_draw_objects[F3D_Scene.hand_draw_object].circles.lenght !== 0)
+      		F3D_Scene.hand_draw_object++;
+      }
+      
       function tools(toolstr){
         tool = toolstr;
         switch(tool){
