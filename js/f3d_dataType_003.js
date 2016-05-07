@@ -1,5 +1,6 @@
 var F3D_Scene = {
-	hand_draw_objects: {circles:'', polygons: ''},
+	hand_draw_object: 0,
+	hand_draw_objects: [],
 	tentacle_objects: [],
 	sketch_group: ''
 }
