@@ -1,0 +1,303 @@
+<html>
+  <head>
+    <title>Crealo tu #2</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <script type="text/javascript" src="../ReDollar/src/dollar.js"></script>
+    <script type="text/javascript" src="../js/simplify.js"></script>
+    <script type="text/javascript" src="../js/f3d_dataType.js"></script>
+    <style>
+    .draggable {
+        cursor: move;
+    }
+    
+    .textarea{
+    	width: 100%;
+    }
+	
+	#left_column{
+		height: 100%;
+		width: 20%;
+		float: right;
+	}
+	
+	#right_column{
+		height: 100%;
+		width: 79%;
+	}
+	
+	#svgpaper{
+		height: 100%;
+		width: 100%;
+	}
+	
+	svg{
+		border: solid red 1px;
+	}
+		</style>
+
+  </head>
+  <body>
+      <!-- Todo:
+      			gruppi
+      			ridefinire eventHandler se si vuole disegnare o solezionare per spostare
+      -->
+	  
+	  <div id="left_column">
+		<textarea id="svgfile" class="textarea" rows="6"></textarea><br />
+		<input id="draw" type="radio" name="tools" onclick="tools('draw')" checked> Draw<br />
+		<input id="select" type="radio" name="tools" onclick="tools('select')" > Select<br />
+		<input id="save" type="radio" name="tools" onclick="tools('save')" > Save<br />
+		<input id="load" type="radio" name="tools" onclick="tools('load')" > Load<br />
+		<div>
+			<h2>IT</h2><br />
+			Seconda versione del mio tool di disegno.
+			Ora viene disegnato un cerchio, se viene riconosciuto il cerchio, e negli altri casi
+			viene creato un "tentacolo", formato da elementi circolari che posso muovere e scalare.
+			Posso "caricare" una scena già creata in precedenza, copiando il contenuto di un file svg nella textarea.
+		</div>
+      </div>
+	  <div id="right_column">
+		<svg id="svgpaper" xmlns='http://www.w3.org/2000/svg'>
+		</svg>
+	  </div>
+	  
+  <script>
+      NS="http://www.w3.org/2000/svg";
+      var tool = 'draw';
+      //var mousebuttondown = false;
+      /*
+      var gest = [];
+      var draw_gest = [];
+      var minX, maxX, minY, maxY = 0;
+      */
+      var r = new DollarRecognizer();
+      function tools(toolstr){
+        tool = toolstr;
+        switch(tool){
+      		
+	    	case 'load':
+				F3D_Polygon.selected_tool = 'load';
+        		if(document.getElementById('svgfile').value.length > 1){
+        			var to_load = document.getElementById('svgfile').value;
+        			var tmp = to_load.replace('<svg id="svgpaper" xmlns="http:\/\/www.w3.org\/2000\/svg">','');
+        			var tmp2 = tmp.replace('<\/svg>','');
+        			
+        			document.getElementById('svgpaper').innerHTML = tmp2;
+        		}
+        		F3D_Scene.sketch_group = document.getElementById('sketch_group');
+	        	break;
+			
+        	case 'save':
+				F3D_Polygon.selected_tool = 'save';
+	        	document.getElementById('svgfile').innerHTML = document.getElementById('svgpaper').outerHTML;
+	        	break;
+	        case 'select':
+				F3D_Polygon.selected_tool = 'select';
+	        	if(F3D_Scene.hand_draw_objects.circles){
+	        		F3D_Scene.hand_draw_objects.circles.setAttribute('onmousedown', "F3D_Sphere.selectElement(evt)");
+	        	}
+        		for(var i = 0;i<F3D_Scene.tentacle_objects.length;i++){
+        			F3D_Scene.tentacle_objects[i].circles.setAttribute('onmousedown', "F3D_Sphere.selectElement(evt)");
+        		}
+        		svgpaper.removeEventListener( 'mousedown', onDocumentMouseDown, false );
+    			svgpaper.removeEventListener( 'touchstart', onDocumentMobileMouseDown, false );
+	
+	        	
+	        	break;
+	        case 'draw':
+				F3D_Polygon.selected_tool = 'draw';
+	        	if(F3D_Scene.hand_draw_objects.circles){
+	        		F3D_Scene.hand_draw_objects.circles.removeAttributeNS(null, 'onmousedown');
+	        	}
+        		svgpaper.addEventListener( 'mousedown', onDocumentMouseDown, false );
+		    	svgpaper.addEventListener( 'touchstart', onDocumentMobileMouseDown, false );
+		    	for(var i = 0;i<F3D_Scene.tentacle_objects.length;i++){
+        			F3D_Scene.tentacle_objects.circles.removeAttributeNS(null, 'onmousedown');
+        		}
+		    	
+	        	
+	        	break;
+	        	
+	        	
+        }
+      }
+      
+      function init(){
+        //F3D_Sphere.init();
+        //F3D_sketch.init();
+        //F3D_Polyline.init();
+		tools('draw');
+      }
+      
+      window.onload = init;
+      svgpaper = document.getElementById('svgpaper');
+      svgpaper.addEventListener( 'mousedown', onDocumentMouseDown, false );
+      svgpaper.addEventListener( 'touchstart', onDocumentMobileMouseDown, false );
+      
+      function onDocumentMobileMouseDown( event ){
+				var x = event.targetTouches[0].pageX;
+				var y = event.targetTouches[0].pageY;
+				
+				mousedown(x,y);
+			}
+			
+			function onDocumentMouseDown( event ) {
+				var x = event.clientX;
+				var y =  event.clientY;
+				//if(tool === 'draw'){
+				mousedown(x,y);
+				/*
+				
+			}else{
+					Fast3d.selectElement(event);
+				}
+				*/
+				  
+			}
+			
+			function mousedown( x, y ) {
+				//switch(tool){
+				//	case 'draw':
+				event.preventDefault();
+				svgpaper.addEventListener( 'mousemove', onDocumentMouseMove, false );
+		    	svgpaper.addEventListener( 'touchmove', onDocumentMobileMouseMove, false );
+		    	svgpaper.addEventListener( 'mouseup', onDocumentMouseUp, false );
+		    	svgpaper.addEventListener( 'touchend', onDocumentMobileMouseUp, false );
+				mousebuttondown = true;
+				
+				F3D_sketch.init(x,y);
+				/*
+				maxX = minX = x;
+				maxY = minY = y;
+				fast3d_add(fast3d_addCircle('sketch', x, y, 5));
+				gest[0] = new Point(x,y);
+				draw_gest[0] = {'x':x, 'y':y};
+
+				maxX = x;
+				minX = x;
+				maxY = y;
+				minY = y;
+				*/
+	        		//	break;
+					//case 'select':
+						
+					//	break;
+				
+			}
+
+
+			function onDocumentMobileMouseMove( event ){
+				var x = event.targetTouches[0].pageX;
+				var y = event.targetTouches[0].pageY;
+				mousemove(x,y);
+			}
+			
+			function onDocumentMouseMove( event ) {
+				var x = event.clientX;
+				var y =  event.clientY;
+				//if(tool === 'draw'){
+					mousemove(x,y);
+				
+				/*
+			}else{
+					Fast3d.selectElement(event);
+				}
+				*/
+				
+			}
+			
+			function mousemove( x, y ) {
+
+					event.preventDefault();
+					F3D_sketch.addPoint(x,y);
+				
+			}
+    		
+			function onDocumentMobileMouseUp( event ){
+				mouseup();
+			}
+			
+			function onDocumentMouseUp( event ){
+			
+				mouseup();
+			}
+			
+			function mouseup(  ){
+				event.preventDefault();
+				svgpaper.removeEventListener( 'mousemove', onDocumentMouseMove, false );
+		    	svgpaper.removeEventListener( 'touchmove', onDocumentMobileMouseMove, false );
+		    	svgpaper.removeEventListener( 'mouseup', onDocumentMouseUp, false );
+		    	svgpaper.removeEventListener( 'touchend', onDocumentMobileMouseUp, false );
+		    	//mousebuttondown = false;
+				while (F3D_Scene.sketch_group.firstChild) {
+				    F3D_Scene.sketch_group.removeChild(F3D_Scene.sketch_group.firstChild);
+				}
+				//if(tool === 'draw'){
+					if(F3D_Sphere.selectedElement != 0){
+				    	F3D_Sphere.selectedElement = 0;
+				    }
+					var matched = r.Recognize(F3D_sketch.gest);
+					console.log(matched);
+	
+					switch(matched.Name){
+						case "rectangle":
+	
+							break;
+						case "circle":
+							var radius = 0;
+							var width = (F3D_sketch.maxX-F3D_sketch.minX);
+							var height = (F3D_sketch.maxY-F3D_sketch.minY);
+							if(width<height){
+								radius = width/2;
+							}else{
+								radius = height/2;
+							}
+							if(!F3D_Scene.hand_draw_objects.circles){
+						  	  F3D_Scene.hand_draw_objects.circles = document.createElementNS(NS,"g");
+						  	  F3D_Scene.hand_draw_objects.circles.setAttribute('id', 'f3dhanddraw_circle_group');
+						  	  F3D_Scene.hand_draw_objects.circles.setAttribute('fill', 'blue');
+						  	  //Fast3d.f3dsphere_group.setAttribute('stroke', 'green');
+                              svgpaper.appendChild(F3D_Scene.hand_draw_objects.circles);
+						    }
+						    F3D_Scene.hand_draw_objects.circles.appendChild(F3D_Sphere.fast3d_addCircle('f3dhanddraw_circle', F3D_sketch.minX+(F3D_sketch.maxX-F3D_sketch.minX)/2, F3D_sketch.minY+(F3D_sketch.maxY-F3D_sketch.minY)/2, radius, 'blue'));
+			        
+							
+							
+							F3D_Sphere.circle_in_scene++;
+							F3D_Polygon.getTangents(F3D_Scene.hand_draw_objects);
+							break;
+						case "triangle":
+						case "x":
+						case "arrow":
+						case "delete":
+						case "star":
+						case "pigtail":
+						case "v":
+						case "left square bracket":
+						case "right square bracket":
+						case "left curly brace":
+						case "right curly brace":
+						case "check":
+						case "caret":
+						case "zig-zag":
+							F3D_Polyline.drawTentacle();
+							
+							  
+						break;
+	              
+	            
+						default:
+							console.log('default');
+							
+							
+	  
+							
+	
+					}
+					F3D_sketch.clean_data();
+				}  
+      
+  </script>
+  </body>
+</htmls
