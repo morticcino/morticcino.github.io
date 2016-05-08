@@ -98,8 +98,8 @@
 	        	break;
 	        case 'select':
 				F3D_Polygon.selected_tool = 'select';
-	        	if(F3D_Scene.hand_draw_objects.circles){
-	        		F3D_Scene.hand_draw_objects.circles.setAttribute('onmousedown', "F3D_Sphere.selectElement(evt)");
+	        	for(var i = 0;i<F3D_Scene.hand_draw_objects.length;i++){
+	        		F3D_Scene.hand_draw_objects[i].circles.setAttribute('onmousedown', "F3D_Sphere.selectElement(evt)");
 	        	}
         		for(var i = 0;i<F3D_Scene.tentacle_objects.length;i++){
         			F3D_Scene.tentacle_objects[i].circles.setAttribute('onmousedown', "F3D_Sphere.selectElement(evt)");
@@ -111,13 +111,13 @@
 	        	break;
 	        case 'draw':
 				F3D_Polygon.selected_tool = 'draw';
-	        	if(F3D_Scene.hand_draw_objects.circles){
-	        		F3D_Scene.hand_draw_objects.circles.removeAttributeNS(null, 'onmousedown');
+	        	for(var i = 0;i<F3D_Scene.hand_draw_objects.length;i++){
+	        		F3D_Scene.hand_draw_objects[i].circles.removeAttributeNS(null, 'onmousedown');
 	        	}
         		svgpaper.addEventListener( 'mousedown', onDocumentMouseDown, false );
 		    	svgpaper.addEventListener( 'touchstart', onDocumentMobileMouseDown, false );
 		    	for(var i = 0;i<F3D_Scene.tentacle_objects.length;i++){
-        			F3D_Scene.tentacle_objects.circles.removeAttributeNS(null, 'onmousedown');
+        			F3D_Scene.tentacle_objects[i].circles.removeAttributeNS(null, 'onmousedown');
         		}
 		    	
 	        	
