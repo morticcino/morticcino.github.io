@@ -256,19 +256,19 @@
 							}else{
 								radius = height/2;
 							}
-							if(!F3D_Scene.hand_draw_objects.circles){
-						  	  F3D_Scene.hand_draw_objects.circles = document.createElementNS(NS,"g");
-						  	  F3D_Scene.hand_draw_objects.circles.setAttribute('id', 'f3dhanddraw_circle_group');
-						  	  F3D_Scene.hand_draw_objects.circles.setAttribute('fill', 'blue');
+							if(!F3D_Scene.hand_draw_objects[F3D_Scene.hand_draw_object].circles){
+						  	  F3D_Scene.hand_draw_objects[F3D_Scene.hand_draw_object].circles = document.createElementNS(NS,"g");
+						  	  F3D_Scene.hand_draw_objects[F3D_Scene.hand_draw_object].circles.setAttribute('id', 'f3dhanddraw_circle_group');
+						  	  F3D_Scene.hand_draw_objects[F3D_Scene.hand_draw_object].circles.setAttribute('fill', 'blue');
 						  	  //Fast3d.f3dsphere_group.setAttribute('stroke', 'green');
-                              svgpaper.appendChild(F3D_Scene.hand_draw_objects.circles);
+                              svgpaper.appendChild(F3D_Scene.hand_draw_objects[F3D_Scene.hand_draw_object].circles);
 						    }
-						    F3D_Scene.hand_draw_objects.circles.appendChild(F3D_Sphere.fast3d_addCircle('f3dhanddraw_circle', F3D_sketch.minX+(F3D_sketch.maxX-F3D_sketch.minX)/2, F3D_sketch.minY+(F3D_sketch.maxY-F3D_sketch.minY)/2, radius, 'blue'));
+						    F3D_Scene.hand_draw_objects[F3D_Scene.hand_draw_object].circles.appendChild(F3D_Sphere.fast3d_addCircle('f3dhanddraw_circle', F3D_sketch.minX+(F3D_sketch.maxX-F3D_sketch.minX)/2, F3D_sketch.minY+(F3D_sketch.maxY-F3D_sketch.minY)/2, radius, 'blue'));
 			        
 							
 							
 							F3D_Sphere.circle_in_scene++;
-							F3D_Polygon.getTangents(F3D_Scene.hand_draw_objects);
+							F3D_Polygon.getTangents(F3D_Scene.hand_draw_objects[F3D_Scene.hand_draw_object]);
 							break;
 						case "triangle":
 						case "x":
