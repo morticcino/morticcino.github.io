@@ -286,7 +286,7 @@ var F3D_Polygon = {
     	/*
     	
     	*/
-    	var length = F3D_Scene.hand_draw_object;
+    	var length = F3D_Scene.hand_draw_objects.length;
     	for(var i = 0;i<length;i++){
     		F3D_Polygon.getTangents(F3D_Scene.hand_draw_objects[i]);
     	}
