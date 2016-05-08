@@ -286,8 +286,11 @@ var F3D_Polygon = {
     	/*
     	
     	*/
-    	F3D_Polygon.getTangents(F3D_Scene.hand_draw_objects);
-    	var length = F3D_Polyline.number_of_tentacle;
+    	var length = F3D_Scene.hand_draw_object;
+    	for(var i = 0;i<length;i++){
+    		F3D_Polygon.getTangents(F3D_Scene.hand_draw_objects[i]);
+    	}
+    	length = F3D_Polyline.number_of_tentacle;
     	for(var i = 0;i<length;i++){
     		F3D_Polygon.getTangents(F3D_Scene.tentacle_objects[i]);
     	}
