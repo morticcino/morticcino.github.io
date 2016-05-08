@@ -46,7 +46,7 @@
 	  <div id="left_column">
 		<textarea id="svgfile" class="textarea" rows="6"></textarea><br />
 		<input id="draw" type="radio" name="tools" onclick="tools('draw')" checked> Draw<br />
-		<input id="more_fhd" type="button" name="add_fhd" onclick="add_fhd()">Add<br />
+		<input id="more_fhd" type="button" name="add_fhd" onclick="add_fhd()"
 		<input id="select" type="radio" name="tools" onclick="tools('select')" > Select<br />
 		<input id="save" type="radio" name="tools" onclick="tools('save')" > Save<br />
 		<input id="load" type="radio" name="tools" onclick="tools('load')" > Load<br />
@@ -256,7 +256,8 @@
 							}else{
 								radius = height/2;
 							}
-							if(!F3D_Scene.hand_draw_objects[F3D_Scene.hand_draw_object].circles){
+							if(!F3D_Scene.hand_draw_objects[F3D_Scene.hand_draw_object]){
+							  F3D_Scene.hand_draw_objects[F3D_Scene.hand_draw_object]= {'circles': '', 'polygons':''};	
 						  	  F3D_Scene.hand_draw_objects[F3D_Scene.hand_draw_object].circles = document.createElementNS(NS,"g");
 						  	  F3D_Scene.hand_draw_objects[F3D_Scene.hand_draw_object].circles.setAttribute('id', 'f3dhanddraw_circle_group');
 						  	  F3D_Scene.hand_draw_objects[F3D_Scene.hand_draw_object].circles.setAttribute('fill', 'blue');
