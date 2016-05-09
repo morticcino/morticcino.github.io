@@ -205,7 +205,7 @@ var F3D_Polygon = {
     			if(!group.polygons){
 				  	group.polygons = document.createElementNS(NS,"g");
 				  	group.polygons.setAttribute('id', 'line_group');
-				  	group.polygons.setAttribute('fill', document.getElementById('color_picker').value);
+				  	group.polygons.setAttribute('fill', '#'+document.getElementById('color_picker').value);
 				  	//Fast3d.f3dsphere_group.setAttribute('stroke', 'green');
 				  	svgpaper.appendChild(group.polygons);
 				  }else if(group.polygons.childElementCount >= 1){
@@ -284,7 +284,7 @@ var F3D_Polygon = {
 			
 			  		group.circles = document.createElementNS(NS,"g");
 				  	group.circles.setAttribute('id', 'f3dsphere_group');
-				  	group.circles.setAttribute('fill', document.getElementById('color_picker').value);
+				  	group.circles.setAttribute('fill', '#'+document.getElementById('color_picker').value);
 				  	if(F3D_Polygon.selected_tool === 'select'){
 					  group.circles.setAttribute('onmousedown', "F3D_Sphere.selectElement(evt)");
 					  group.circles.setAttribute('ontouchstart', "F3D_Sphere.mobileSelectElement(evt)");
