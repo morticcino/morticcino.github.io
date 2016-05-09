@@ -130,6 +130,14 @@ var F3D_Sphere = {
 		F3D_Sphere.selectedElement.setAttribute("onmouseup", "F3D_Sphere.deselectElement(evt)");
 		tool = 'select';
 	  },
+    mobileSelectElement: function(evt) {
+	    F3D_Sphere.selectedElement = evt.target;
+	    F3D_Sphere.currentX = evt.targetTouches[0].pageX;
+	    F3D_Sphere.currentY  = event.targetTouches[0].pageY;
+	    F3D_Sphere.selectedElement.setAttribute("ontouchmove", "F3D_Sphere.moveElement(evt)");
+		F3D_Sphere.selectedElement.setAttribute("ontouchend", "F3D_Sphere.deselectElement(evt)");
+		tool = 'select';
+	  },
     moveElement: function(evt) {
 		  var dx = evt.clientX;// - Fast3d.currentX;
 		  var dy = evt.clientY;// - Fast3d.currentY;
