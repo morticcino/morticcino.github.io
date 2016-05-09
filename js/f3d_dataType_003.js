@@ -134,7 +134,7 @@ var F3D_Sphere = {
 	    F3D_Sphere.selectedElement = evt.target;
 	    F3D_Sphere.currentX = evt.targetTouches[0].pageX;
 	    F3D_Sphere.currentY  = event.targetTouches[0].pageY;
-	    F3D_Sphere.selectedElement.setAttribute("ontouchmove", "F3D_Sphere.moveElement(evt)");
+	    F3D_Sphere.selectedElement.setAttribute("ontouchmove", "F3D_Sphere.mobileMoveElement(evt)");
 		F3D_Sphere.selectedElement.setAttribute("ontouchend", "F3D_Sphere.deselectElement(evt)");
 		tool = 'select';
 	  },
@@ -145,6 +145,13 @@ var F3D_Sphere = {
 		  F3D_Sphere.selectedElement.setAttributeNS(null, "cy", dy);
 		  //Fast3d.selectedElement.setAttribute("onmousemove", "Fast3d.deselectElement(evt)");
 		},
+	mobileMoveElement: function(evt) {
+	  var dx = evt.targetTouches[0].pageX;// - Fast3d.currentX;
+	  var dy = evt.targetTouches[0].pageY;// - Fast3d.currentY;
+	  F3D_Sphere.selectedElement.setAttributeNS(null, "cx", dx);
+	  F3D_Sphere.selectedElement.setAttributeNS(null, "cy", dy);
+	  //Fast3d.selectedElement.setAttribute("onmousemove", "Fast3d.deselectElement(evt)");
+	},
 	  overElement: function(evt) {
 		  evt.target.setAttributeNS(null, "fill", 'green');
 		},
@@ -167,8 +174,9 @@ var F3D_Sphere = {
 	  deselectElement: function(evt) {
 		  if(F3D_Sphere.selectedElement != 0){
 		    F3D_Sphere.selectedElement.removeAttributeNS(null, "onmousemove");
-		    //Fast3d.selectedElement.removeAttributeNS(null, "onmouseout");
 		    F3D_Sphere.selectedElement.removeAttributeNS(null, "onmouseup");
+		    F3D_Sphere.selectedElement.removeAttributeNS(null, "ontouchmove");
+		    F3D_Sphere.selectedElement.removeAttributeNS(null, "ontouchend");
 		    F3D_Sphere.selectedElement = 0;
 		  }
 		  //tool = 'draw';
