@@ -102,9 +102,11 @@
 				F3D_Polygon.selected_tool = 'select';
 	        	for(var i = 0;i<F3D_Scene.hand_draw_objects.length;i++){
 	        		F3D_Scene.hand_draw_objects[i].circles.setAttribute('onmousedown', "F3D_Sphere.selectElement(evt)");
+	        		F3D_Scene.hand_draw_objects[i].circles.setAttribute('ontouchstart', "F3D_Sphere.mobileSelectElement(evt)");
 	        	}
         		for(var i = 0;i<F3D_Scene.tentacle_objects.length;i++){
         			F3D_Scene.tentacle_objects[i].circles.setAttribute('onmousedown', "F3D_Sphere.selectElement(evt)");
+        			F3D_Scene.tentacle_objects[i].circles.setAttribute('ontouchstart', "F3D_Sphere.mobileSelectElement(evt)");
         		}
         		svgpaper.removeEventListener( 'mousedown', onDocumentMouseDown, false );
     			svgpaper.removeEventListener( 'touchstart', onDocumentMobileMouseDown, false );
