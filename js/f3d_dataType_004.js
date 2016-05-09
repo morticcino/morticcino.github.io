@@ -115,7 +115,8 @@ var F3D_Sphere = {
 			radius = height/2;
 		}
 		
-		F3D_Scene.hand_draw_objects.circle.appendChild(F3D_Sphere.fast3d_addCircle('f3dsphere', minX+(maxX-minX)/2, minY+(maxY-minY)/2, radius, 'blue'));
+		F3D_Scene.hand_draw_objects.circle.appendChild(F3D_Sphere.fast3d_addCircle('f3dsphere', minX+(maxX-minX)/2, minY+(maxY-minY)/2, radius
+		/*, 'blue'*/));
 
 		
 		
@@ -156,7 +157,7 @@ var F3D_Sphere = {
 		  evt.target.setAttributeNS(null, "fill", 'green');
 		},
 	  outElement: function(evt) {
-		  evt.target.setAttributeNS(null, "fill", 'blue');
+		  evt.target.setAttributeNS(null, "fill", document.getElementById('color_picker').value);
 		},
 	  wheelElement: function(evt) {
 	  	var tmpElem = evt.target;
@@ -192,7 +193,7 @@ var F3D_Polygon = {
 	  polygon = document.createElementNS(NS,"polygon");
 	  polygon.setAttribute('name', name);
 	  polygon.setAttribute('points', x1+','+y1+' '+x2+','+y2+' '+x3+','+y3+' '+x4+','+y4);
-	  polygon.setAttribute('fill', 'blue');
+	  polygon.setAttribute('fill', document.getElementById('color_picker').value);
 	  return polygon;
 	},
     getTangents: function(group){
@@ -204,7 +205,7 @@ var F3D_Polygon = {
     			if(!group.polygons){
 				  	group.polygons = document.createElementNS(NS,"g");
 				  	group.polygons.setAttribute('id', 'line_group');
-				  	group.polygons.setAttribute('fill', 'blue');
+				  	group.polygons.setAttribute('fill', document.getElementById('color_picker').value);
 				  	//Fast3d.f3dsphere_group.setAttribute('stroke', 'green');
 				  	svgpaper.appendChild(group.polygons);
 				  }else if(group.polygons.childElementCount >= 1){
@@ -283,7 +284,7 @@ var F3D_Polygon = {
 			
 			  		group.circles = document.createElementNS(NS,"g");
 				  	group.circles.setAttribute('id', 'f3dsphere_group');
-				  	group.circles.setAttribute('fill', 'blue');
+				  	group.circles.setAttribute('fill', document.getElementById('color_picker').value);
 				  	if(F3D_Polygon.selected_tool === 'select'){
 					  group.circles.setAttribute('onmousedown', "F3D_Sphere.selectElement(evt)");
 					  group.circles.setAttribute('ontouchstart', "F3D_Sphere.mobileSelectElement(evt)");
@@ -341,7 +342,7 @@ var F3D_Polyline = {
 			F3D_Scene.tentacle_objects[F3D_Polyline.number_of_tentacle] = {'circles': '', 'polygons':''};
 			F3D_Scene.tentacle_objects[F3D_Polyline.number_of_tentacle].circles = document.createElementNS(NS,"g");
 	      	F3D_Scene.tentacle_objects[F3D_Polyline.number_of_tentacle].circles.setAttribute('id', 'f3dtentacle_group'+F3D_Polyline.number_of_tentacle);
-	      	F3D_Scene.tentacle_objects[F3D_Polyline.number_of_tentacle].circles.setAttribute('fill', 'blue');
+	      	F3D_Scene.tentacle_objects[F3D_Polyline.number_of_tentacle].circles.setAttribute('fill', document.getElementById('color_picker').value);
 	      	svgpaper.appendChild(F3D_Scene.tentacle_objects[F3D_Polyline.number_of_tentacle].circles);
 			var simplyline = simplify(F3D_sketch.draw_gest, 5);
 			var radius = 20;
