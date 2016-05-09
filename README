@@ -1,34 +1,13 @@
-array di gruppi di sfere: 
-    gruppi sfere disegnate a mano
-    gruppi di tentacoli
-    gruppo poligoni
-    gruppo sketch
-    
 device motion
 device orientation
 
-rivedere il motore che genera i poligoni, perché ora deve esaminare più gruppi svg
-    cerchio a mano -> f3dsphere_group
-più cerchi a mano -> f3dsphere_group e disegno polygon
-FATTO tentacolo -> f3dtentacle_group0...n
-getTangents disegna cerchi e tangemti di f3dsphere_group e dei f3dtentacle_group0...n
-rimuovere i gruppi dalle primitive f3d e creare F3D_Scene con i gruppi per il disegno a mano e per i tentacoli.
-ogni oggetto disegna i cerchi e poligoni
 
-sketch sfera->hand_draw->finisce nelle sfere dell'hand_draw->se più di una, allora polygon (addSpere, draw)
-       tentacolo->aggiunge un tentacolo, le sfere ed i poligoni
-      hand draw e tentacolo si differiscono solo dal fatto che il tentacolo viene creato automaticamente a partire dallo schizzo
-      
 I fumetti saranno editabili ed ogni uscita presenterà una nuova feature.
-hd
 ...+ profilo
     jsclipper 
 ...+ audio
 ...+ animazione automatica
     https://elrumordelaluz.github.io/csshake/
     https://css-tricks.com/almanac/properties/a/animation/
-...+ più hd
-...+ tentacoli
 ...+ colore
-
 ...+animazione a mano
