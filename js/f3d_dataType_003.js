@@ -278,6 +278,7 @@ var F3D_Polygon = {
 				  	group.circles.setAttribute('fill', 'blue');
 				  	if(F3D_Polygon.selected_tool === 'select'){
 					  group.circles.setAttribute('onmousedown', "F3D_Sphere.selectElement(evt)");
+					  group.circles.setAttribute('ontouchstart', "F3D_Sphere.mobileSelectElement(evt)");
 				  	}
 					  
 			
