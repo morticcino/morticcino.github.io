@@ -146,14 +146,14 @@
 				var x = event.targetTouches[0].pageX;
 				var y = event.targetTouches[0].pageY;
 				
-				mousedown(x,y);
+				mousedown(event,x,y);
 			}
 			
 			function onDocumentMouseDown( event ) {
 				var x = event.clientX;
 				var y =  event.clientY;
 				//if(tool === 'draw'){
-				mousedown(x,y);
+				mousedown(event,x,y);
 				/*
 				
 			}else{
@@ -163,10 +163,10 @@
 				  
 			}
 			
-			function mousedown( x, y ) {
+			function mousedown(evt, x, y ) {
 				//switch(tool){
 				//	case 'draw':
-				event.preventDefault();
+				evt.preventDefault();
 				svgpaper.addEventListener( 'mousemove', onDocumentMouseMove, false );
 		    	svgpaper.addEventListener( 'touchmove', onDocumentMobileMouseMove, false );
 		    	svgpaper.addEventListener( 'mouseup', onDocumentMouseUp, false );
@@ -195,12 +195,14 @@
 
 
 			function onDocumentMobileMouseMove( event ){
+				event.preventDefault();
 				var x = event.targetTouches[0].pageX;
 				var y = event.targetTouches[0].pageY;
 				mousemove(x,y);
 			}
 			
 			function onDocumentMouseMove( event ) {
+				event.preventDefault();
 				var x = event.clientX;
 				var y =  event.clientY;
 				//if(tool === 'draw'){
@@ -216,22 +218,22 @@
 			
 			function mousemove( x, y ) {
 
-					event.preventDefault();
+					
 					F3D_sketch.addPoint(x,y);
 				
 			}
     		
 			function onDocumentMobileMouseUp( event ){
+				event.preventDefault();
 				mouseup();
 			}
 			
 			function onDocumentMouseUp( event ){
-			
+				event.preventDefault();
 				mouseup();
 			}
 			
 			function mouseup(  ){
-				event.preventDefault();
 				svgpaper.removeEventListener( 'mousemove', onDocumentMouseMove, false );
 		    	svgpaper.removeEventListener( 'touchmove', onDocumentMobileMouseMove, false );
 		    	svgpaper.removeEventListener( 'mouseup', onDocumentMouseUp, false );
