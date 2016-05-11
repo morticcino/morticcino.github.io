@@ -2,6 +2,7 @@ var F3D_Scene = {
 	hand_draw_object: 0,
 	hand_draw_objects: [],
 	tentacle_objects: [],
+	extrude_objects: [],
 	sketch_group: ''
 }
 
@@ -321,6 +322,8 @@ var F3D_Polygon = {
 var F3D_Polyline = {
 	f3dtentacle_group: [],
 	number_of_tentacle: 0,
+	number_of_extrude: 0,
+	clickedTargetId: '',
     init: function(){
         
     },
@@ -339,6 +342,23 @@ var F3D_Polyline = {
         	
         	F3D_sketch.sketch_group.appendChild(polyline);
 				  
+		},
+		drawExtrude: function(){
+			F3D_Scene.extrude_objects[F3D_Polyline.number_of_extrude] = {'circles': '', 'polygons':''};
+			F3D_Scene.extrude_objects[F3D_Polyline.number_of_extrude].circles = document.createElementNS(NS,"g");
+	      	F3D_Scene.extrude_objects[F3D_Polyline.number_of_extrude].circles.setAttribute('id', 'f3dextrude_group'+F3D_Polyline.number_of_extrude);
+	      	F3D_Scene.extrude_objects[F3D_Polyline.number_of_extrude].circles.setAttribute('fill', document.getElementById('color_picker').value);
+	      	svgpaper.appendChild(F3D_Scene.extrude_objects[F3D_Polyline.number_of_extrude].circles);
+			var simplyline = simplify(F3D_sketch.draw_gest, 5);
+			var radius = document.getElementById(F3D_Polyline.clickedTargetId).getAttribute('rx');
+			//var step = radius/simplyline.length;
+      		for (var i =0;i<simplyline.length;i++){
+      			F3D_Scene.extrude_objects[F3D_Polyline.number_of_extrude].circles.appendChild(F3D_Sphere.fast3d_addCircle('extrude'+F3D_Polyline.number_of_extrude,simplyline[i].x,simplyline[i].y,radius,'pink'));
+      			F3D_Sphere.circle_in_scene++;
+      		}
+      		F3D_Polygon.getTangents(F3D_Scene.extrude_objects[F3D_Polyline.number_of_extrude]);
+      		F3D_Polyline.number_of_extrude++;
+ 	    		  
 		},
 		drawTentacle: function(){
 			F3D_Scene.tentacle_objects[F3D_Polyline.number_of_tentacle] = {'circles': '', 'polygons':''};
