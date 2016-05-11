@@ -51,7 +51,7 @@ var F3D_sketch = {
         },
         fast3d_addCircle: function(name, x, y, r){
             var circle = document.createElementNS(NS,"ellipse");
-     	    circle.setAttribute('id'. 'ellipse_'+F3D_Sphere.circle_in_scene);
+     	    circle.setAttribute('id', 'ellipse_'+F3D_Sphere.circle_in_scene);
      	    circle.setAttribute('cx', x);
             circle.setAttribute('cy', y);
             circle.setAttribute('rx', r);
