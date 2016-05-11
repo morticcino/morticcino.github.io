@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <script type="text/javascript" src="../ReDollar/src/dollar.js"></script>
     <script type="text/javascript" src="../js/simplify.js"></script>
-    <script type="text/javascript" src="../js/f3d_dataType_004.js"></script>
+    <script type="text/javascript" src="../js/f3d_dataType_005.js"></script>
     <script type="text/javascript" src="../js/jscolor.min.js"></script>
     <style>
     .draggable {
@@ -294,7 +294,11 @@
 				case "check":
 				case "caret":
 				case "zig-zag":
-					F3D_Polyline.drawTentacle();
+					if(clickedTarget === 'ellipse'){
+						F3D_Polyline.drawExtrude();
+					}else{
+						F3D_Polyline.drawTentacle();
+					}
 					
 					  
 				break;
