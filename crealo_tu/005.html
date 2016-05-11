@@ -145,7 +145,7 @@
       
       function onDocumentMobileMouseDown( event ){
       		if(event.targetTouches[0].nodeName === 'ellipse'){
-      			F3D_Polyline.clickedTargetId === event.targetTouches[0].id;
+      			F3D_Polyline.clickedTargetId = event.targetTouches[0].id;
       		}else{
       			F3D_Polyline.clickedTargetId = '';
       		}
@@ -157,7 +157,7 @@
 	
 	function onDocumentMouseDown( event ) {
 		if(event.target.nodeName === 'ellipse'){
-      			F3D_Polyline.clickedTargetId === event.target.id;
+      			F3D_Polyline.clickedTargetId = event.target.id;
       		}else{
       			F3D_Polyline.clickedTargetId = '';
       		}
