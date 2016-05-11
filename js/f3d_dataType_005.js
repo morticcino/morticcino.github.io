@@ -51,13 +51,11 @@ var F3D_sketch = {
         },
         fast3d_addCircle: function(name, x, y, r){
             var circle = document.createElementNS(NS,"ellipse");
-     	    circle.setAttribute('id', 'ellipse_'+F3D_Sphere.circle_in_scene);
      	    circle.setAttribute('cx', x);
             circle.setAttribute('cy', y);
             circle.setAttribute('rx', r);
             circle.setAttribute('ry', r);
             circle.setAttribute('class', 'draggable');
-            F3D_Sphere.circle_in_scene++;
             return circle;
             
           },
@@ -96,7 +94,8 @@ var F3D_Sphere = {
     },
     fast3d_addCircle: function(name, x, y, r){
       	var circle = document.createElementNS(NS,"ellipse");
- 	    circle.setAttribute('cx', x);
+ 	circle.setAttribute('id', 'ellipse_'+F3D_Sphere.circle_in_scene);
+ 	circle.setAttribute('cx', x);
         circle.setAttribute('cy', y);
         circle.setAttribute('rx', r);
         circle.setAttribute('ry', r);
@@ -104,6 +103,7 @@ var F3D_Sphere = {
         circle.setAttribute('onmouseover', "F3D_Sphere.overElement(evt)");
         circle.setAttribute('onmouseout', "F3D_Sphere.outElement(evt)");
         circle.setAttribute('onwheel', "F3D_Sphere.wheelElement(evt)");
+        F3D_Sphere.circle_in_scene++;
         return circle;
         
     },
