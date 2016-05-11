@@ -65,7 +65,7 @@
   <script>
       NS="http://www.w3.org/2000/svg";
       var tool = 'draw';
-      var clickedTargetId = '';
+      
       //var mousebuttondown = false;
       /*
       var gest = [];
@@ -145,9 +145,9 @@
       
       function onDocumentMobileMouseDown( event ){
       		if(event.targetTouches[0].nodeName === 'ellipse'){
-      			clickedTargetId === event.targetTouches[0].id;
+      			F3D_Polyline.clickedTargetId === event.targetTouches[0].id;
       		}else{
-      			clickedTargetId = '';
+      			F3D_Polyline.clickedTargetId = '';
       		}
 		var x = event.targetTouches[0].pageX;
 		var y = event.targetTouches[0].pageY;
@@ -157,9 +157,9 @@
 	
 	function onDocumentMouseDown( event ) {
 		if(event.target.nodeName === 'ellipse'){
-      			clickedTargetId === event.target.id;
+      			F3D_Polyline.clickedTargetId === event.target.id;
       		}else{
-      			clickedTargetId = '';
+      			F3D_Polyline.clickedTargetId = '';
       		}
 		var x = event.clientX;
 		var y =  event.clientY;
@@ -303,7 +303,7 @@
 				case "check":
 				case "caret":
 				case "zig-zag":
-					if(clickedTargetId.indexOf('ellipse') !== -1){
+					if(F3D_Polyline.clickedTargetId.indexOf('ellipse') !== -1){
 						F3D_Polyline.drawExtrude();
 					}else{
 						F3D_Polyline.drawTentacle();
