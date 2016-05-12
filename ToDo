@@ -14,5 +14,6 @@ I fumetti saranno editabili ed ogni uscita presenterà una nuova feature.
     https://css-tricks.com/almanac/properties/a/animation/
 ...+animazione a mano
 ...+move oggetti
-        provare a mettere cerchi e poligoni, di uno stesso oggetto, in un gruppo
+        provare a mettere cerchi e poligoni, di uno stesso oggetto, in un gruppo per poterli spostare insieme.
+        Registrare un mousedown sul cerchio ed uno sul poligono
 
