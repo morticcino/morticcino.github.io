@@ -306,6 +306,11 @@ var F3D_Polyline = {
 	number_of_extrude: 0,
 	clickedTargetId: '',
 	selectedElement: '',
+	currentX: 0,
+	currentY: 0,
+	oldX: 0,
+	oldY: 0,
+	group_to_move: '',
     init: function(){
         
     },
@@ -360,9 +365,17 @@ var F3D_Polyline = {
      		  
 	},
     selectElement: function(evt) {
-	F3D_Polyline.selectedElement = evt.target;
+    	function getGroup(t){
+	    	if(evt.target.name === 'g')
+			F3D_Polyline.group_to_move = t;
+		else
+		   return getGroup(t.parentElement);
+    	}
+    	getGroup(evt.target);
 	F3D_Polyline.currentX = evt.clientX;
 	F3D_Polyline.currentY = evt.clientY;
+	F3D_Polyline.oldX = evt.clientX;
+	F3D_Polyline.oldY = evt.clientY;
 	F3D_Polyline.selectedElement.setAttribute("onmousemove", "F3D_Polyline.moveElement(evt)");
 	F3D_Polyline.selectedElement.setAttribute("onmouseup", "F3D_Polyline.deselectElement(evt)");
 	tool = 'select';
@@ -376,10 +389,15 @@ var F3D_Polyline = {
 	tool = 'select';
     },
     moveElement: function(evt) {
-	var dx = evt.clientX;// - Fast3d.currentX;
-	var dy = evt.clientY;// - Fast3d.currentY;
-	F3D_Polyline.selectedElement.setAttributeNS(null, "cx", dx);
-	F3D_Polyline.selectedElement.setAttributeNS(null, "cy", dy);
+	F3D_Polyline.currentX = evt.clientX;
+	F3D_Polyline.currentY = evt.clientY;
+	if(F3D_Polyline.group_to_move !== ''){
+		F3D_Polyline.group_to_move.setAttributeNS(null, "transform", F3D_Polyline.currentX-F3D_Polyline.oldX);
+		F3D_Polyline.group_to_move.setAttributeNS(null, "transform", F3D_Polyline.currentY-F3D_Polyline.oldY);
+			
+	}
+	F3D_Polyline.oldX = evt.clientX;
+	F3D_Polyline.oldY = evt.clientY;
     },
     mobileMoveElement: function(evt) {
 	var dx = evt.targetTouches[0].pageX;// - Fast3d.currentX;
