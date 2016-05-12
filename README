@@ -13,11 +13,3 @@ I fumetti saranno editabili ed ogni uscita presenterà una nuova feature.
     https://elrumordelaluz.github.io/csshake/
     https://css-tricks.com/almanac/properties/a/animation/
 ...+animazione a mano
-...+drawExtrude
-    memorize unique id for every element
-        ellipse_xxx
-        tentacle_xxx
-        extrude_xxx
-        fhd_xxx
-    mouse down: memorizzo id elemento target
-    drawExtrude: uso l'id dell'elemento target per reperire il raggio da estrudere
