@@ -194,7 +194,7 @@ var F3D_Polygon = {
     			var	cen1x = cen1y = cen2x = cen2y = 0;
     			if(!group.polygons){
 				  	group.polygons = document.createElementNS(NS,"g");
-				  	group.polygons.setAttribute('id', 'line_group');
+				  	group.polygons.setAttribute('id', 'line_group_'+i);
 				  	group.polygons.setAttribute('fill', '#'+document.getElementById('color_picker').value);
 				  	//Fast3d.f3dsphere_group.setAttribute('stroke', 'green');
 				  	svgpaper.appendChild(group.polygons);
