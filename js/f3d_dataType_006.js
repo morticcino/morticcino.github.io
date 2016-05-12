@@ -305,6 +305,7 @@ var F3D_Polyline = {
 	number_of_tentacle: 0,
 	number_of_extrude: 0,
 	clickedTargetId: '',
+	selectedElement: '',
     init: function(){
         
     },
@@ -324,7 +325,7 @@ var F3D_Polyline = {
 	F3D_sketch.sketch_group.appendChild(polyline);
 			  
 	},
-	drawExtrude: function(){
+   drawExtrude: function(){
 		F3D_Scene.extrude_objects[F3D_Polyline.number_of_extrude] = {'circles': '', 'polygons':''};
 		F3D_Scene.extrude_objects[F3D_Polyline.number_of_extrude].circles = document.createElementNS(NS,"g");
       	F3D_Scene.extrude_objects[F3D_Polyline.number_of_extrude].circles.setAttribute('id', 'f3dextrude_group'+F3D_Polyline.number_of_extrude);
@@ -341,7 +342,7 @@ var F3D_Polyline = {
       	F3D_Polyline.number_of_extrude++;
      		  
 	},
-	drawTentacle: function(){
+    drawTentacle: function(){
 		F3D_Scene.tentacle_objects[F3D_Polyline.number_of_tentacle] = {'circles': '', 'polygons':''};
 		F3D_Scene.tentacle_objects[F3D_Polyline.number_of_tentacle].circles = document.createElementNS(NS,"g");
       	F3D_Scene.tentacle_objects[F3D_Polyline.number_of_tentacle].circles.setAttribute('id', 'f3dtentacle_group'+F3D_Polyline.number_of_tentacle);
@@ -357,6 +358,62 @@ var F3D_Polyline = {
       	F3D_Polygon.getTangents(F3D_Scene.tentacle_objects[F3D_Polyline.number_of_tentacle]);
       	F3D_Polyline.number_of_tentacle++;
      		  
+	},
+    selectElement: function(evt) {
+	F3D_Polyline.selectedElement = evt.target;
+	F3D_Polyline.currentX = evt.clientX;
+	F3D_Polyline.currentY = evt.clientY;
+	F3D_Polyline.selectedElement.setAttribute("onmousemove", "F3D_Polyline.moveElement(evt)");
+	F3D_Polyline.selectedElement.setAttribute("onmouseup", "F3D_Polyline.deselectElement(evt)");
+	tool = 'select';
+    },
+    mobileSelectElement: function(evt) {
+	F3D_Polyline.selectedElement = evt.target;
+	F3D_Polyline.currentX = evt.targetTouches[0].pageX;
+	F3D_Polyline.currentY  = event.targetTouches[0].pageY;
+	F3D_Polyline.selectedElement.setAttribute("ontouchmove", "F3D_Polyline.mobileMoveElement(evt)");
+	F3D_Polyline.selectedElement.setAttribute("ontouchend", "F3D_Polyline.deselectElement(evt)");
+	tool = 'select';
+    },
+    moveElement: function(evt) {
+	var dx = evt.clientX;// - Fast3d.currentX;
+	var dy = evt.clientY;// - Fast3d.currentY;
+	F3D_Polyline.selectedElement.setAttributeNS(null, "cx", dx);
+	F3D_Polyline.selectedElement.setAttributeNS(null, "cy", dy);
+    },
+    mobileMoveElement: function(evt) {
+	var dx = evt.targetTouches[0].pageX;// - Fast3d.currentX;
+	var dy = evt.targetTouches[0].pageY;// - Fast3d.currentY;
+	F3D_Polyline.selectedElement.setAttributeNS(null, "cx", dx);
+	F3D_Polyline.selectedElement.setAttributeNS(null, "cy", dy);
+    },
+    overElement: function(evt) {
+        evt.target.setAttributeNS(null, "fill", 'green');
+    },
+    outElement: function(evt) {
+	evt.target.setAttributeNS(null, "fill", document.getElementById('color_picker').value);
+    },
+    wheelElement: function(evt) {
+  	var tmpElem = evt.target;
+	var radius = tmpElem.getAttribute('rx');
+	if(evt.wheelDelta > 0){
+		tmpElem.setAttribute('rx', ++radius);
+		tmpElem.setAttribute('ry', ++radius);
+	}else{
+		tmpElem.setAttribute('rx', --radius);
+		tmpElem.setAttribute('ry', --radius);
 	}
+	F3D_Polygon.drawTangent();
+    },
+    deselectElement: function(evt) {
+  	if(F3D_Polyline.selectedElement != 0){
+		F3D_Polyline.selectedElement.removeAttributeNS(null, "onmousemove");
+		F3D_Polyline.selectedElement.removeAttributeNS(null, "onmouseup");
+		F3D_Polyline.selectedElement.removeAttributeNS(null, "ontouchmove");
+		F3D_Polyline.selectedElement.removeAttributeNS(null, "ontouchend");
+		F3D_Polyline.selectedElement = 0;
+	}
+	F3D_Polygon.drawTangent();
+    }
     
 }
