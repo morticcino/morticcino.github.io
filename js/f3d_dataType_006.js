@@ -394,8 +394,7 @@ var F3D_Polyline = {
 	F3D_Polyline.currentX = evt.clientX;
 	F3D_Polyline.currentY = evt.clientY;
 	if(F3D_Polyline.group_to_move !== ''){
-		F3D_Polyline.group_to_move.setAttributeNS(null, "transform", F3D_Polyline.currentX-F3D_Polyline.oldX);
-		F3D_Polyline.group_to_move.setAttributeNS(null, "transform", F3D_Polyline.currentY-F3D_Polyline.oldY);
+		F3D_Polyline.group_to_move.setAttributeNS(null, "transform", "translate(F3D_Polyline.currentX-F3D_Polyline.oldX, F3D_Polyline.currentY-F3D_Polyline.oldY)");
 			
 	}
 	F3D_Polyline.oldX = evt.clientX;
