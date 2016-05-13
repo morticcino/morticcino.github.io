@@ -366,19 +366,21 @@ var F3D_Polyline = {
 	},
     selectElement: function(evt) {
     	function getGroup(t){
-	    	if(t.nodeName === 'g')
+	    	if(t.nodeName === 'g'){
 			F3D_Polyline.group_to_move = t;
-		else
+			F3D_Polyline.currentX = evt.clientX;
+			F3D_Polyline.currentY = evt.clientY;
+			F3D_Polyline.oldX = evt.clientX;
+			F3D_Polyline.oldY = evt.clientY;
+			F3D_Polyline.group_to_move.setAttribute("onmousemove", "F3D_Polyline.moveElement(evt)");
+			F3D_Polyline.group_to_move.setAttribute("onmouseup", "F3D_Polyline.deselectElement(evt)");
+			tool = 'select';
+		}else{
 		   getGroup(t.parentElement);
+		}
     	}
     	getGroup(evt.target);
-	F3D_Polyline.currentX = evt.clientX;
-	F3D_Polyline.currentY = evt.clientY;
-	F3D_Polyline.oldX = evt.clientX;
-	F3D_Polyline.oldY = evt.clientY;
-	F3D_Polyline.selectedElement.setAttribute("onmousemove", "F3D_Polyline.moveElement(evt)");
-	F3D_Polyline.selectedElement.setAttribute("onmouseup", "F3D_Polyline.deselectElement(evt)");
-	tool = 'select';
+	
     },
     mobileSelectElement: function(evt) {
 	F3D_Polyline.selectedElement = evt.target;
