@@ -369,7 +369,7 @@ var F3D_Polyline = {
 	    	if(evt.target.name === 'g')
 			F3D_Polyline.group_to_move = t;
 		else
-		   return getGroup(t.parentElement);
+		   getGroup(t.parentElement);
     	}
     	getGroup(evt.target);
 	F3D_Polyline.currentX = evt.clientX;
