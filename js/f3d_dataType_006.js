@@ -366,7 +366,7 @@ var F3D_Polyline = {
 	},
     selectElement: function(evt) {
     	function getGroup(t){
-	    	if(evt.target.name === 'g')
+	    	if(t.nodeName === 'g')
 			F3D_Polyline.group_to_move = t;
 		else
 		   getGroup(t.parentElement);
