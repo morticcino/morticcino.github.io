@@ -393,7 +393,7 @@ var F3D_Polyline = {
     moveElement: function(evt) {
 	F3D_Polyline.currentX = evt.clientX;
 	F3D_Polyline.currentY = evt.clientY;
-	console.log(F3D_Polyline.currentX-F3D_Polyline.oldX+' '+F3D_Polyline.currentY-F3D_Polyline.oldY);
+	console.log((F3D_Polyline.currentX-F3D_Polyline.oldX)+' '+(F3D_Polyline.currentY-F3D_Polyline.oldY));
 	if(F3D_Polyline.group_to_move !== ''){
 		F3D_Polyline.group_to_move.setAttributeNS(null, "transform", "translate(F3D_Polyline.currentX-F3D_Polyline.oldX, F3D_Polyline.currentY-F3D_Polyline.oldY)");
 			
