@@ -395,7 +395,7 @@ var F3D_Polyline = {
 	F3D_Polyline.currentY = evt.clientY;
 	console.log(F3D_Polyline.currentX-F3D_Polyline.oldX+' '+F3D_Polyline.currentY-F3D_Polyline.oldY);
 	if(F3D_Polyline.group_to_move !== ''){
-		F3D_Polyline.group_to_move.setAttributeNS(null, "transform", translate(F3D_Polyline.currentX-F3D_Polyline.oldX, F3D_Polyline.currentY-F3D_Polyline.oldY));
+		F3D_Polyline.group_to_move.setAttributeNS(null, "transform", "translate(F3D_Polyline.currentX-F3D_Polyline.oldX, F3D_Polyline.currentY-F3D_Polyline.oldY)");
 			
 	}
 	F3D_Polyline.oldX = evt.clientX;
@@ -404,8 +404,8 @@ var F3D_Polyline = {
     mobileMoveElement: function(evt) {
 	var dx = evt.targetTouches[0].pageX;// - Fast3d.currentX;
 	var dy = evt.targetTouches[0].pageY;// - Fast3d.currentY;
-	F3D_Polyline.selectedElement.setAttributeNS(null, "cx", dx);
-	F3D_Polyline.selectedElement.setAttributeNS(null, "cy", dy);
+	F3D_Polyline.group_to_move.setAttributeNS(null, "cx", dx);
+	F3D_Polyline.group_to_move.setAttributeNS(null, "cy", dy);
     },
     overElement: function(evt) {
         evt.target.setAttributeNS(null, "fill", 'green');
@@ -413,27 +413,15 @@ var F3D_Polyline = {
     outElement: function(evt) {
 	evt.target.setAttributeNS(null, "fill", document.getElementById('color_picker').value);
     },
-    wheelElement: function(evt) {
-  	var tmpElem = evt.target;
-	var radius = tmpElem.getAttribute('rx');
-	if(evt.wheelDelta > 0){
-		tmpElem.setAttribute('rx', ++radius);
-		tmpElem.setAttribute('ry', ++radius);
-	}else{
-		tmpElem.setAttribute('rx', --radius);
-		tmpElem.setAttribute('ry', --radius);
-	}
-	F3D_Polygon.drawTangent();
-    },
     deselectElement: function(evt) {
-  	if(F3D_Polyline.selectedElement != 0){
-		F3D_Polyline.selectedElement.removeAttributeNS(null, "onmousemove");
-		F3D_Polyline.selectedElement.removeAttributeNS(null, "onmouseup");
-		F3D_Polyline.selectedElement.removeAttributeNS(null, "ontouchmove");
-		F3D_Polyline.selectedElement.removeAttributeNS(null, "ontouchend");
-		F3D_Polyline.selectedElement = 0;
+  	if(F3D_Polyline.group_to_move != 0){
+		F3D_Polyline.group_to_move.removeAttributeNS(null, "onmousemove");
+		F3D_Polyline.group_to_move.removeAttributeNS(null, "onmouseup");
+		F3D_Polyline.group_to_move.removeAttributeNS(null, "ontouchmove");
+		F3D_Polyline.group_to_move.removeAttributeNS(null, "ontouchend");
+		F3D_Polyline.group_to_move = '';
 	}
-	F3D_Polygon.drawTangent();
+	//F3D_Polygon.drawTangent();
     }
     
 }
