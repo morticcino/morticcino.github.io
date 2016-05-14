@@ -390,14 +390,22 @@ var F3D_Polyline = {
 	F3D_Polyline.selectedElement.setAttribute("ontouchend", "F3D_Polyline.deselectElement(evt)");
 	tool = 'select';
     },
+    // translate svg element
+    translate: function( _element , _x , _y )
+    {
+	  var transform = _element.transform.baseVal.getItem(0);   
+	  var mat = transform.matrix;   
+	
+	  mat = mat.translate( _x, _y );  
+	  transform.setMatrix( mat );
+	
+    },
     moveElement: function(evt) {
 	F3D_Polyline.currentX = evt.clientX;
 	F3D_Polyline.currentY = evt.clientY;
 	console.log((F3D_Polyline.currentX-F3D_Polyline.oldX)+' '+(F3D_Polyline.currentY-F3D_Polyline.oldY));
 	if(F3D_Polyline.group_to_move !== ''){
-		F3D_Polyline.group_to_move.transform.baseVal.setTranslate((F3D_Polyline.currentX-F3D_Polyline.oldX), (F3D_Polyline.currentY-F3D_Polyline.oldY));
-		//F3D_Polyline.group_to_move.setAttribute("transform", "translate("+(F3D_Polyline.currentX-F3D_Polyline.oldX)+", "+(F3D_Polyline.currentY-F3D_Polyline.oldY)+")");
-			
+		F3D_Polyline.translate(F3D_Polyline.group_to_move, (F3D_Polyline.currentX-F3D_Polyline.oldX), (F3D_Polyline.currentY-F3D_Polyline.oldY));
 	}
 	F3D_Polyline.oldX = evt.clientX;
 	F3D_Polyline.oldY = evt.clientY;
