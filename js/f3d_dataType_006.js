@@ -87,6 +87,7 @@ var F3D_Sphere = {
     	F3D_Scene.hand_draw_objects = document.createElementNS(NS,"g");
       	F3D_Scene.hand_draw_objects.setAttribute('id', 'f3dsphere_group');
       	F3D_Scene.hand_draw_objects.setAttribute('fill', 'blue');
+      	F3D_Scene.hand_draw_objects.setAttribute('transform',"matrix(1 0 0 1 0 0)");
       	svgpaper.appendChild(F3D_Scene.hand_draw_objects);
     },
     fast3d_addCircle: function(name, x, y, r){
@@ -197,6 +198,7 @@ var F3D_Polygon = {
 				  	group.polygons.setAttribute('id', 'line_group_'+i);
 				  	group.polygons.setAttribute('fill', '#'+document.getElementById('color_picker').value);
 				  	//Fast3d.f3dsphere_group.setAttribute('stroke', 'green');
+				  	group.polygons.setAttribute('transform',"matrix(1 0 0 1 0 0)");
 				  	svgpaper.appendChild(group.polygons);
 				}else if(group.polygons.childElementCount >= 1){
 					while (group.polygons.firstChild) {
@@ -273,6 +275,7 @@ var F3D_Polygon = {
 			  		group.circles = document.createElementNS(NS,"g");
 				  	group.circles.setAttribute('id', 'f3dsphere_group');
 				  	group.circles.setAttribute('fill', '#'+document.getElementById('color_picker').value);
+				  	group.polygons.setAttribute('transform',"matrix(1 0 0 1 0 0)");
 				if(F3D_Polygon.selected_tool === 'select'){
 					  group.circles.setAttribute('onmousedown', "F3D_Sphere.selectElement(evt)");
 					  group.circles.setAttribute('ontouchstart', "F3D_Sphere.mobileSelectElement(evt)");
