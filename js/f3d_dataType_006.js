@@ -334,11 +334,12 @@ var F3D_Polyline = {
 			  
 	},
    drawExtrude: function(){
-		F3D_Scene.extrude_objects[F3D_Polyline.number_of_extrude] = {'circles': '', 'polygons':''};
+		F3D_Scene.extrude_objects[F3D_Polyline.number_of_extrude] = {'group': '','circles': '', 'polygons':''};
 		F3D_Scene.extrude_objects[F3D_Polyline.number_of_extrude].circles = document.createElementNS(NS,"g");
       	F3D_Scene.extrude_objects[F3D_Polyline.number_of_extrude].circles.setAttribute('id', 'f3dextrude_group'+F3D_Polyline.number_of_extrude);
       	F3D_Scene.extrude_objects[F3D_Polyline.number_of_extrude].circles.setAttribute('fill', document.getElementById('color_picker').value);
-      	svgpaper.appendChild(F3D_Scene.extrude_objects[F3D_Polyline.number_of_extrude].circles);
+      	F3D_Scene.extrude_objects[F3D_Polyline.number_of_extrude].group.appendChild(F3D_Scene.extrude_objects[F3D_Polyline.number_of_extrude].circle);
+      	svgpaper.appendChild(F3D_Scene.extrude_objects[F3D_Polyline.number_of_extrude].group);
 		var simplyline = simplify(F3D_sketch.draw_gest, 5);
 		var radius = document.getElementById(F3D_Polyline.clickedTargetId).getAttribute('rx');
 		//var step = radius/simplyline.length;
