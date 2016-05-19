@@ -378,7 +378,8 @@ var F3D_Polyline = {
 	},
     selectElement: function(evt) {
     	function getGroup(t){
-	    	if(t.nodeName === 'g'){
+    		var id = t.getAttribute('id');
+	    	if(id.indexOf('f3dhanddraw_group_') !== -1){
 			F3D_Polyline.group_to_move = t;
 			F3D_Polyline.currentX = evt.clientX;
 			F3D_Polyline.currentY = evt.clientY;
