@@ -114,6 +114,12 @@
         			F3D_Scene.tentacle_objects[i].polygons.setAttribute('onmousedown', "F3D_Polyline.selectElement(evt)");
 	        		F3D_Scene.tentacle_objects[i].polygons.setAttribute('ontouchstart', "F3D_Polyline.mobileSelectElement(evt)");
         		}
+        		for(var i = 0;i<F3D_Scene.extrude_objects.length;i++){
+        			F3D_Scene.extrude_objects[i].circles.setAttribute('onmousedown', "F3D_Sphere.selectElement(evt)");
+        			F3D_Scene.extrude_objects[i].circles.setAttribute('ontouchstart', "F3D_Sphere.mobileSelectElement(evt)");
+        			F3D_Scene.extrude_objects[i].polygons.setAttribute('onmousedown', "F3D_Polyline.selectElement(evt)");
+	        		F3D_Scene.extrude_objects[i].polygons.setAttribute('ontouchstart', "F3D_Polyline.mobileSelectElement(evt)");
+        		}
         		svgpaper.removeEventListener( 'mousedown', onDocumentMouseDown, false );
     			svgpaper.removeEventListener( 'touchstart', onDocumentMobileMouseDown, false );
 	
@@ -131,6 +137,18 @@
 		    	svgpaper.addEventListener( 'touchstart', onDocumentMobileMouseDown, false );
 		    	for(var i = 0;i<F3D_Scene.tentacle_objects.length;i++){
         			F3D_Scene.tentacle_objects[i].circles.removeAttributeNS(null, 'onmousedown');
+        		}
+        		for(var i = 0;i<F3D_Scene.tentacle_objects.length;i++){
+        			F3D_Scene.tentacle_objects[i].circles.removeAttributeNS(null, 'onmousedown');
+        			F3D_Scene.tentacle_objects[i].circles.removeAttributeNS(null, 'ontouchstart');
+        			F3D_Scene.tentacle_objects[i].polygons.removeAttributeNS(null, 'ontouchstart');
+        			F3D_Scene.tentacle_objects[i].polygons.removeAttributeNS(null, 'ontouchstart');
+        		}
+        		for(var i = 0;i<F3D_Scene.extrude_objects.length;i++){
+        			F3D_Scene.extrude_objects[i].circles.removeAttributeNS(null, 'onmousedown');
+        			F3D_Scene.extrude_objects[i].circles.removeAttributeNS(null, 'ontouchstart');
+        			F3D_Scene.extrude_objects[i].polygons.removeAttributeNS(null, 'onmousedown');
+        			F3D_Scene.extrude_objects[i].polygons.removeAttributeNS(null, 'ontouchstart');
         		}
 		    	
 	        	
