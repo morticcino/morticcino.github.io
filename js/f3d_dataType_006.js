@@ -270,7 +270,7 @@ var F3D_Polygon = {
 					//to put spheres on top
 					var f3dspheres = group.circles.innerHTML;
 					//var spheregroup = svgpaper.getElementById('f3dsphere_group');
-					group.removeChild(group.circles);
+					group.group.removeChild(group.circles);
 			
 			  		group.circles = document.createElementNS(NS,"g");
 				  	group.circles.setAttribute('id', 'f3dsphere_group');
@@ -283,7 +283,7 @@ var F3D_Polygon = {
 					  
 			
 				group.circles.innerHTML = f3dspheres;
-				group.appendChild(group.circles);	
+				group.group.appendChild(group.circles);	
 				
     			}
     		}else{
