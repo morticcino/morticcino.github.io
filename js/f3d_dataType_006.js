@@ -342,6 +342,7 @@ var F3D_Polyline = {
 		F3D_Scene.extrude_objects[F3D_Polyline.number_of_extrude].group = document.createElementNS(NS,"g");
       	F3D_Scene.extrude_objects[F3D_Polyline.number_of_extrude].group.setAttribute('id', 'f3dextrude_group'+F3D_Polyline.number_of_extrude);
       	F3D_Scene.extrude_objects[F3D_Polyline.number_of_extrude].group.setAttribute('fill', document.getElementById('color_picker').value);
+      	F3D_Scene.extrude_objects[F3D_Polyline.number_of_extrude].group.setAttribute('transform',"matrix(1 0 0 1 0 0)");
 		F3D_Scene.extrude_objects[F3D_Polyline.number_of_extrude].circles = document.createElementNS(NS,"g");
       	F3D_Scene.extrude_objects[F3D_Polyline.number_of_extrude].circles.setAttribute('id', 'f3dextrude_circles_group'+F3D_Polyline.number_of_extrude);
       	F3D_Scene.extrude_objects[F3D_Polyline.number_of_extrude].circles.setAttribute('fill', document.getElementById('color_picker').value);
