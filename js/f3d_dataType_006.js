@@ -180,9 +180,12 @@ var F3D_Sphere = {
 var F3D_Polygon = {
     line_group: '',
     selected_tool: '',
+    num_polygon: 0,
     addPolygon: function(name, x1, y1, x2, y2, x3, y3, x4, y4 ){
 	polygon = document.createElementNS(NS,"polygon");
 	polygon.setAttribute('name', name);
+	polygon.setAttribute('id', 'polygon_'+F3D_Polygon.num_polygon);
+	F3D_Polygon.num_polygon += 1;
 	polygon.setAttribute('points', x1+','+y1+' '+x2+','+y2+' '+x3+','+y3+' '+x4+','+y4);
 	polygon.setAttribute('fill', document.getElementById('color_picker').value);
 	return polygon;
