@@ -188,6 +188,7 @@ var F3D_Polygon = {
 	F3D_Polygon.num_polygon += 1;
 	polygon.setAttribute('points', x1+','+y1+' '+x2+','+y2+' '+x3+','+y3+' '+x4+','+y4);
 	polygon.setAttribute('fill', document.getElementById('color_picker').value);
+	polygon.setAttribute('class', 'draggable');
 	return polygon;
     },
     getTangents: function(group){
