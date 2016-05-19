@@ -199,7 +199,7 @@ var F3D_Polygon = {
 				  	group.polygons.setAttribute('fill', '#'+document.getElementById('color_picker').value);
 				  	//Fast3d.f3dsphere_group.setAttribute('stroke', 'green');
 				  	group.polygons.setAttribute('transform',"matrix(1 0 0 1 0 0)");
-				  	svgpaper.appendChild(group.polygons);
+				  	group.group.appendChild(group.polygons);
 				}else if(group.polygons.childElementCount >= 1){
 					while (group.polygons.firstChild) {
 					    group.polygons.removeChild(group.polygons.firstChild);
@@ -338,7 +338,7 @@ var F3D_Polyline = {
 		F3D_Scene.extrude_objects[F3D_Polyline.number_of_extrude].circles = document.createElementNS(NS,"g");
       	F3D_Scene.extrude_objects[F3D_Polyline.number_of_extrude].circles.setAttribute('id', 'f3dextrude_group'+F3D_Polyline.number_of_extrude);
       	F3D_Scene.extrude_objects[F3D_Polyline.number_of_extrude].circles.setAttribute('fill', document.getElementById('color_picker').value);
-      	F3D_Scene.extrude_objects[F3D_Polyline.number_of_extrude].group.appendChild(F3D_Scene.extrude_objects[F3D_Polyline.number_of_extrude].circle);
+      	F3D_Scene.extrude_objects[F3D_Polyline.number_of_extrude].group.appendChild(F3D_Scene.extrude_objects[F3D_Polyline.number_of_extrude].circles);
       	svgpaper.appendChild(F3D_Scene.extrude_objects[F3D_Polyline.number_of_extrude].group);
 		var simplyline = simplify(F3D_sketch.draw_gest, 5);
 		var radius = document.getElementById(F3D_Polyline.clickedTargetId).getAttribute('rx');
