@@ -335,8 +335,11 @@ var F3D_Polyline = {
 	},
    drawExtrude: function(){
 		F3D_Scene.extrude_objects[F3D_Polyline.number_of_extrude] = {'group': '','circles': '', 'polygons':''};
+		F3D_Scene.extrude_objects[F3D_Polyline.number_of_extrude].group = document.createElementNS(NS,"g");
+      	F3D_Scene.extrude_objects[F3D_Polyline.number_of_extrude].group.setAttribute('id', 'f3dextrude_group'+F3D_Polyline.number_of_extrude);
+      	F3D_Scene.extrude_objects[F3D_Polyline.number_of_extrude].group.setAttribute('fill', document.getElementById('color_picker').value);
 		F3D_Scene.extrude_objects[F3D_Polyline.number_of_extrude].circles = document.createElementNS(NS,"g");
-      	F3D_Scene.extrude_objects[F3D_Polyline.number_of_extrude].circles.setAttribute('id', 'f3dextrude_group'+F3D_Polyline.number_of_extrude);
+      	F3D_Scene.extrude_objects[F3D_Polyline.number_of_extrude].circles.setAttribute('id', 'f3dextrude_circles_group'+F3D_Polyline.number_of_extrude);
       	F3D_Scene.extrude_objects[F3D_Polyline.number_of_extrude].circles.setAttribute('fill', document.getElementById('color_picker').value);
       	F3D_Scene.extrude_objects[F3D_Polyline.number_of_extrude].group.appendChild(F3D_Scene.extrude_objects[F3D_Polyline.number_of_extrude].circles);
       	svgpaper.appendChild(F3D_Scene.extrude_objects[F3D_Polyline.number_of_extrude].group);
@@ -352,12 +355,16 @@ var F3D_Polyline = {
      		  
 	},
     drawTentacle: function(){
-		F3D_Scene.tentacle_objects[F3D_Polyline.number_of_tentacle] = {'circles': '', 'polygons':''};
+		F3D_Scene.tentacle_objects[F3D_Polyline.number_of_tentacle] = {'group': '', 'circles': '', 'polygons':''};
+		F3D_Scene.tentacle_objects[F3D_Polyline.number_of_tentacle].group = document.createElementNS(NS,"g");
+      	F3D_Scene.tentacle_objects[F3D_Polyline.number_of_tentacle].group.setAttribute('id', 'f3dtentacle_group'+F3D_Polyline.number_of_tentacle);
+      	F3D_Scene.tentacle_objects[F3D_Polyline.number_of_tentacle].group.setAttribute('fill', document.getElementById('color_picker').value);
 		F3D_Scene.tentacle_objects[F3D_Polyline.number_of_tentacle].circles = document.createElementNS(NS,"g");
-      	F3D_Scene.tentacle_objects[F3D_Polyline.number_of_tentacle].circles.setAttribute('id', 'f3dtentacle_group'+F3D_Polyline.number_of_tentacle);
+      	F3D_Scene.tentacle_objects[F3D_Polyline.number_of_tentacle].circles.setAttribute('id', 'f3dtentacle_circles_group'+F3D_Polyline.number_of_tentacle);
       	F3D_Scene.tentacle_objects[F3D_Polyline.number_of_tentacle].circles.setAttribute('fill', document.getElementById('color_picker').value);
-      	F3D_Scene.tentacle_objects[F3D_Polyline.number_of_tentacle].circles.setAttribute('transform',"matrix(1 0 0 1 0 0)");
-      	svgpaper.appendChild(F3D_Scene.tentacle_objects[F3D_Polyline.number_of_tentacle].circles);
+      	//F3D_Scene.tentacle_objects[F3D_Polyline.number_of_tentacle].circles.setAttribute('transform',"matrix(1 0 0 1 0 0)");
+      	F3D_Scene.tentacle_objects[F3D_Polyline.number_of_tentacle].group.appendChild(F3D_Scene.tentacle_objects[F3D_Polyline.number_of_tentacle].circles);
+      	svgpaper.appendChild(F3D_Scene.tentacle_objects[F3D_Polyline.number_of_tentacle].group);
 		var simplyline = simplify(F3D_sketch.draw_gest, 5);
 		var radius = 20;
 		var step = radius/simplyline.length;
