@@ -362,6 +362,7 @@ var F3D_Polyline = {
 		F3D_Scene.tentacle_objects[F3D_Polyline.number_of_tentacle].group = document.createElementNS(NS,"g");
       	F3D_Scene.tentacle_objects[F3D_Polyline.number_of_tentacle].group.setAttribute('id', 'f3dtentacle_group'+F3D_Polyline.number_of_tentacle);
       	F3D_Scene.tentacle_objects[F3D_Polyline.number_of_tentacle].group.setAttribute('fill', document.getElementById('color_picker').value);
+		F3D_Scene.tentacle_objects[F3D_Polyline.number_of_tentacle].group.setAttribute('transform',"matrix(1 0 0 1 0 0)");
 		F3D_Scene.tentacle_objects[F3D_Polyline.number_of_tentacle].circles = document.createElementNS(NS,"g");
       	F3D_Scene.tentacle_objects[F3D_Polyline.number_of_tentacle].circles.setAttribute('id', 'f3dtentacle_circles_group'+F3D_Polyline.number_of_tentacle);
       	F3D_Scene.tentacle_objects[F3D_Polyline.number_of_tentacle].circles.setAttribute('fill', document.getElementById('color_picker').value);
