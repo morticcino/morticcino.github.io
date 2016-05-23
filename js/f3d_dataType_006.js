@@ -404,12 +404,31 @@ var F3D_Polyline = {
 	
     },
     mobileSelectElement: function(evt) {
+	/*
 	F3D_Polyline.selectedElement = evt.target;
 	F3D_Polyline.currentX = evt.targetTouches[0].pageX;
 	F3D_Polyline.currentY  = event.targetTouches[0].pageY;
 	F3D_Polyline.selectedElement.setAttribute("ontouchmove", "F3D_Polyline.mobileMoveElement(evt)");
 	F3D_Polyline.selectedElement.setAttribute("ontouchend", "F3D_Polyline.deselectElement(evt)");
 	tool = 'select';
+	*/
+	function getGroup(t){
+    		var id = t.getAttribute('id');
+	    	if(id.indexOf('f3dhanddraw_group_') !== -1 || id.indexOf('f3dtentacle_group') !== -1 || id.indexOf('f3dextrude_group') !== -1){
+			F3D_Polyline.group_to_move = t;
+			F3D_Polyline.currentX = evt.targetTouches[0].pageX;
+			F3D_Polyline.currentY = event.targetTouches[0].pageY;
+			F3D_Polyline.oldX = evt.targetTouches[0].pageX;
+			F3D_Polyline.oldY = event.targetTouches[0].pageY;
+			F3D_Polyline.group_to_move.setAttribute("ontouchmove", "F3D_Polyline.mobileMoveElement(evt)");
+			F3D_Polyline.group_to_move.setAttribute("ontouchend", "F3D_Polyline.deselectElement(evt)");
+			
+		}else{
+		   getGroup(t.parentElement);
+		}
+    	}
+    	getGroup(evt.target);
+    	tool = 'select';
     },
     // translate svg element
     translate: function( _element , _x , _y )
