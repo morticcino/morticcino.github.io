@@ -51,6 +51,7 @@
 		<input id="select" type="radio" name="tools" onclick="tools('select')" > Select<br />
 		<input id="save" type="radio" name="tools" onclick="tools('save')" > Save<br />
 		<input id="load" type="radio" name="tools" onclick="tools('load')" > Load<br />
+		<input id="curve" name="show_curve" onclick="tools('curve')">Add</button>
 		<button id="more_fhd" name="add_fhd" onclick="add_fhd()">Add</button>
 		<div>
 			<h2>IT</h2><br />
@@ -81,7 +82,10 @@
       function tools(toolstr){
         tool = toolstr;
         switch(tool){
-      		
+      		case 'curve':
+      			document.getElementById('curve_group').setAttribute('style','display:""');
+      			F3D_Polygon.selected_tool = 'curve';
+      			break;
 	    	case 'load':
 				F3D_Polygon.selected_tool = 'load';
         		if(document.getElementById('svgfile').value.length > 1){
