@@ -451,11 +451,12 @@ var F3D_Polyline = {
 	F3D_Polyline.oldY = evt.clientY;
     },
     mobileMoveElement: function(evt) {
+    	/*
 	var dx = evt.targetTouches[0].pageX;// - Fast3d.currentX;
 	var dy = evt.targetTouches[0].pageY;// - Fast3d.currentY;
 	F3D_Polyline.group_to_move.setAttributeNS(null, "cx", dx);
 	F3D_Polyline.group_to_move.setAttributeNS(null, "cy", dy);
-	
+	*/
 	F3D_Polyline.currentX = evt.targetTouches[0].pageX;
 	F3D_Polyline.currentY = evt.targetTouches[0].pageY;
 	console.log((F3D_Polyline.currentX-F3D_Polyline.oldX)+' '+(F3D_Polyline.currentY-F3D_Polyline.oldY));
