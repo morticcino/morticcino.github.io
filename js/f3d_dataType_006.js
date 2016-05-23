@@ -455,6 +455,15 @@ var F3D_Polyline = {
 	var dy = evt.targetTouches[0].pageY;// - Fast3d.currentY;
 	F3D_Polyline.group_to_move.setAttributeNS(null, "cx", dx);
 	F3D_Polyline.group_to_move.setAttributeNS(null, "cy", dy);
+	
+	F3D_Polyline.currentX = evt.targetTouches[0].pageX;
+	F3D_Polyline.currentY = evt.targetTouches[0].pageY;
+	console.log((F3D_Polyline.currentX-F3D_Polyline.oldX)+' '+(F3D_Polyline.currentY-F3D_Polyline.oldY));
+	if(F3D_Polyline.group_to_move !== ''){
+		F3D_Polyline.translate(F3D_Polyline.group_to_move, (F3D_Polyline.currentX-F3D_Polyline.oldX), (F3D_Polyline.currentY-F3D_Polyline.oldY));
+	}
+	F3D_Polyline.oldX = evt.targetTouches[0].pageX;
+	F3D_Polyline.oldY = evt.targetTouches[0].pageY;
     },
     overElement: function(evt) {
         evt.target.setAttributeNS(null, "fill", 'green');
