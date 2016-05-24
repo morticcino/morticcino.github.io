@@ -51,7 +51,8 @@
 		<input id="select" type="radio" name="tools" onclick="tools('select')" > Select<br />
 		<input id="save" type="radio" name="tools" onclick="tools('save')" > Save<br />
 		<input id="load" type="radio" name="tools" onclick="tools('load')" > Load<br />
-		<input id="curve" type="radio" name="tools" onclick="tools('curve')">Curve<br />
+		<!-- <input id="curve" type="radio" name="tools" onclick="tools('curve')">Curve<br /> -->
+		<input id="tentacle" type="radio" name="tools" onclick="tools('tentacle')">Tentacle<br />
 		<button id="more_fhd" name="add_fhd" onclick="add_fhd()">Add</button>
 		<div>
 			<h2>IT</h2><br />
@@ -79,12 +80,46 @@
       		F3D_Scene.hand_draw_object++;
       }
       
+      function setDrawInteraction(){
+      		for(var i = 0;i<F3D_Scene.hand_draw_objects.length;i++){
+			F3D_Scene.hand_draw_objects[i].circles.removeAttributeNS(null, 'onmousedown');
+			F3D_Scene.hand_draw_objects[i].circles.removeAttributeNS(null, 'ontouchstart');
+			F3D_Scene.hand_draw_objects[i].polygons.removeAttributeNS(null, 'onmousedown');
+			F3D_Scene.hand_draw_objects[i].polygons.removeAttributeNS(null, 'ontouchstart');
+		}
+		svgpaper.addEventListener( 'mousedown', onDocumentMouseDown, false );
+	    	svgpaper.addEventListener( 'touchstart', onDocumentMobileMouseDown, false );
+	    	//for(var i = 0;i<F3D_Scene.tentacle_objects.length;i++){
+		//	F3D_Scene.tentacle_objects[i].circles.removeAttributeNS(null, 'onmousedown');
+		//}
+		for(var i = 0;i<F3D_Scene.tentacle_objects.length;i++){
+			F3D_Scene.tentacle_objects[i].circles.removeAttributeNS(null, 'onmousedown');
+			F3D_Scene.tentacle_objects[i].circles.removeAttributeNS(null, 'ontouchstart');
+			F3D_Scene.tentacle_objects[i].polygons.removeAttributeNS(null, 'ontouchstart');
+			F3D_Scene.tentacle_objects[i].polygons.removeAttributeNS(null, 'ontouchstart');
+		}
+		for(var i = 0;i<F3D_Scene.extrude_objects.length;i++){
+			F3D_Scene.extrude_objects[i].circles.removeAttributeNS(null, 'onmousedown');
+			F3D_Scene.extrude_objects[i].circles.removeAttributeNS(null, 'ontouchstart');
+			F3D_Scene.extrude_objects[i].polygons.removeAttributeNS(null, 'onmousedown');
+			F3D_Scene.extrude_objects[i].polygons.removeAttributeNS(null, 'ontouchstart');
+		}
+	    	
+	        	
+      }
+      
       function tools(toolstr){
         tool = toolstr;
         switch(tool){
+        	/*
       		case 'curve':
       			document.getElementById('curve_group').setAttribute('style','display:""');
       			F3D_Polygon.selected_tool = 'curve';
+      			break;
+      		*/
+      		case 'tentacle':
+      			F3D_Polygon.selected_tool = 'tentacle';
+      			setDrawInteraction();
       			break;
 	    	case 'load':
 				F3D_Polygon.selected_tool = 'load';
@@ -131,31 +166,7 @@
 	        	break;
 	        case 'draw':
 				F3D_Polygon.selected_tool = 'draw';
-	        	for(var i = 0;i<F3D_Scene.hand_draw_objects.length;i++){
-	        		F3D_Scene.hand_draw_objects[i].circles.removeAttributeNS(null, 'onmousedown');
-	        		F3D_Scene.hand_draw_objects[i].circles.removeAttributeNS(null, 'ontouchstart');
-	        		F3D_Scene.hand_draw_objects[i].polygons.removeAttributeNS(null, 'onmousedown');
-	        		F3D_Scene.hand_draw_objects[i].polygons.removeAttributeNS(null, 'ontouchstart');
-	        	}
-        		svgpaper.addEventListener( 'mousedown', onDocumentMouseDown, false );
-		    	svgpaper.addEventListener( 'touchstart', onDocumentMobileMouseDown, false );
-		    	for(var i = 0;i<F3D_Scene.tentacle_objects.length;i++){
-        			F3D_Scene.tentacle_objects[i].circles.removeAttributeNS(null, 'onmousedown');
-        		}
-        		for(var i = 0;i<F3D_Scene.tentacle_objects.length;i++){
-        			F3D_Scene.tentacle_objects[i].circles.removeAttributeNS(null, 'onmousedown');
-        			F3D_Scene.tentacle_objects[i].circles.removeAttributeNS(null, 'ontouchstart');
-        			F3D_Scene.tentacle_objects[i].polygons.removeAttributeNS(null, 'ontouchstart');
-        			F3D_Scene.tentacle_objects[i].polygons.removeAttributeNS(null, 'ontouchstart');
-        		}
-        		for(var i = 0;i<F3D_Scene.extrude_objects.length;i++){
-        			F3D_Scene.extrude_objects[i].circles.removeAttributeNS(null, 'onmousedown');
-        			F3D_Scene.extrude_objects[i].circles.removeAttributeNS(null, 'ontouchstart');
-        			F3D_Scene.extrude_objects[i].polygons.removeAttributeNS(null, 'onmousedown');
-        			F3D_Scene.extrude_objects[i].polygons.removeAttributeNS(null, 'ontouchstart');
-        		}
-		    	
-	        	
+	        	setDrawInteraction();
 	        	break;
 	        	
 	        	
