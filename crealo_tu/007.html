@@ -352,9 +352,18 @@
 				case "caret":
 				case "zig-zag":
 					if(F3D_Polyline.clickedTargetId.indexOf('ellipse') !== -1){
-						F3D_Polyline.drawExtrude();
+						if(F3D_Polygon.selected_tool === 'draw'){
+							F3D_Polyline.drawExtrude();	
+						}else if(F3D_Polygon.selected_tool === 'tentacle'){
+							F3D_Polyline.drawTentacle();	
+						}
+						
 					}else{
-						F3D_Polyline.drawTentacle();
+						if(F3D_Polygon.selected_tool === 'draw'){
+							F3D_Polyline.drawExtrude(20);	
+						}else if(F3D_Polygon.selected_tool === 'tentacle'){
+							F3D_Polyline.drawTentacle(20);	
+						}
 					}
 					
 					  
