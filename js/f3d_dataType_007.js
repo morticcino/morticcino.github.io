@@ -339,7 +339,7 @@ var F3D_Polyline = {
 	F3D_sketch.sketch_group.appendChild(polyline);
 			  
 	},
-   drawExtrude: function(){
+   drawExtrude: function(ray){
 		F3D_Scene.extrude_objects[F3D_Polyline.number_of_extrude] = {'group': '','circles': '', 'polygons':''};
 		F3D_Scene.extrude_objects[F3D_Polyline.number_of_extrude].group = document.createElementNS(NS,"g");
       	F3D_Scene.extrude_objects[F3D_Polyline.number_of_extrude].group.setAttribute('id', 'f3dextrude_group'+F3D_Polyline.number_of_extrude);
@@ -351,7 +351,12 @@ var F3D_Polyline = {
       	F3D_Scene.extrude_objects[F3D_Polyline.number_of_extrude].group.appendChild(F3D_Scene.extrude_objects[F3D_Polyline.number_of_extrude].circles);
       	svgpaper.appendChild(F3D_Scene.extrude_objects[F3D_Polyline.number_of_extrude].group);
 		var simplyline = simplify(F3D_sketch.draw_gest, 5);
-		var radius = document.getElementById(F3D_Polyline.clickedTargetId).getAttribute('rx');
+		if(ray){
+			var radius = ray;
+		}else{
+			var radius = document.getElementById(F3D_Polyline.clickedTargetId).getAttribute('rx');	
+		}
+		
 		//var step = radius/simplyline.length;
       	for (var i =0;i<simplyline.length;i++){
       		F3D_Scene.extrude_objects[F3D_Polyline.number_of_extrude].circles.appendChild(F3D_Sphere.fast3d_addCircle('extrude'+F3D_Polyline.number_of_extrude,simplyline[i].x,simplyline[i].y,radius,'pink'));
@@ -361,7 +366,7 @@ var F3D_Polyline = {
       	F3D_Polyline.number_of_extrude++;
      		  
 	},
-    drawTentacle: function(){
+    drawTentacle: function(ray){
 		F3D_Scene.tentacle_objects[F3D_Polyline.number_of_tentacle] = {'group': '', 'circles': '', 'polygons':''};
 		F3D_Scene.tentacle_objects[F3D_Polyline.number_of_tentacle].group = document.createElementNS(NS,"g");
       	F3D_Scene.tentacle_objects[F3D_Polyline.number_of_tentacle].group.setAttribute('id', 'f3dtentacle_group'+F3D_Polyline.number_of_tentacle);
@@ -374,7 +379,12 @@ var F3D_Polyline = {
       	F3D_Scene.tentacle_objects[F3D_Polyline.number_of_tentacle].group.appendChild(F3D_Scene.tentacle_objects[F3D_Polyline.number_of_tentacle].circles);
       	svgpaper.appendChild(F3D_Scene.tentacle_objects[F3D_Polyline.number_of_tentacle].group);
 		var simplyline = simplify(F3D_sketch.draw_gest, 5);
-		var radius = 20;
+		//var radius = 20;
+		if(ray){
+			var radius = ray;
+		}else{
+			var radius = document.getElementById(F3D_Polyline.clickedTargetId).getAttribute('rx');	
+		}
 		var step = radius/simplyline.length;
       	for (var i =0;i<simplyline.length;i++){
       		F3D_Scene.tentacle_objects[F3D_Polyline.number_of_tentacle].circles.appendChild(F3D_Sphere.fast3d_addCircle('tentacle'+F3D_Polyline.number_of_tentacle,simplyline[i].x,simplyline[i].y,step*(simplyline.length-i),'pink'));
