@@ -295,7 +295,15 @@ var F3D_Polygon = {
 					  group.circles.setAttribute('onmousedown', "F3D_Sphere.selectElement(evt)");
 					  group.circles.setAttribute('ontouchstart', "F3D_Sphere.mobileSelectElement(evt)");
 				}
-					  
+					
+					var path = document.createElementNS(NS,"g");
+				  	path.setAttribute('id', 'f3dpath');
+				  	path.setAttribute('transform',"matrix(1 0 0 1 0 0)");
+				  	path.setAttribute('d', path1);
+				  	path.setAttribute('stroke',"black");
+  					path.setAttribute('stroke-width','3'); 
+  					path.setAttribute('fill','none');
+  					document.getElementById('svgpaper').appendChild(path);
 			
 				group.circles.innerHTML = f3dspheres;
 				group.group.appendChild(group.circles);	
