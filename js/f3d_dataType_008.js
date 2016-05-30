@@ -296,7 +296,7 @@ var F3D_Polygon = {
 					  group.circles.setAttribute('ontouchstart', "F3D_Sphere.mobileSelectElement(evt)");
 				}
 					
-					var path = document.createElementNS(NS,"g");
+					var path = document.createElementNS(NS,"path");
 				  	path.setAttribute('id', 'f3dpath');
 				  	path.setAttribute('transform',"matrix(1 0 0 1 0 0)");
 				  	path.setAttribute('d', path1);
