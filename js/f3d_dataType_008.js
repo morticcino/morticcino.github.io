@@ -214,7 +214,7 @@ var F3D_Polygon = {
 				
 				var nodes_array = group.circles.getElementsByTagName('ellipse');
 				var nodes_array_length = nodes_array.length;
-				var path1 = [], path2 = [];
+				var path1 = '', path2 = '';
 				for(var i = 0; i < nodes_array_length-1; i++){
 					var x1 = parseInt(nodes_array[i].getAttribute('cx'));
 					var y1 = parseInt(nodes_array[i].getAttribute('cy'));
@@ -270,10 +270,14 @@ var F3D_Polygon = {
 					  	//svgpaper.appendChild(F3D_Polygon.line_group);
 					  }
 					 */
-					 path1.push(poc1x,poc1y);
-					 path1.push(poc4x,poc4y);
-					 path2.push(poc2x,poc2y);
-					 path2.push(poc3x,poc3y);
+					 if(path1 === '' && path2 === ''){
+					 	path1 += "M "+poc1x+" "+poc1y+" C "+poc4x+" "+poc4y;
+					 	path2 += "M "+poc2x+" "+poc2y+" C "+poc3x+" "+poc3y;
+					 }else{
+					 	path1 += " "+poc1x+" "+poc1y+" C "+poc4x+" "+poc4y;
+					 	path2 += " "+poc2x+" "+poc2y+" C "+poc3x+" "+poc3y;
+					 }
+					 
 					group.polygons.appendChild(F3D_Polygon.addPolygon('polygon',poc2x,poc2y,poc1x,poc1y,poc4x,poc4y,poc3x,poc3y));
 					
     				}
