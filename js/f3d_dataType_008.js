@@ -304,9 +304,9 @@ var F3D_Polygon = {
 					
 					for(var i = 0;i<path1.length;i++){
 						var circle = document.createElementNS(NS,"ellipse");
-					  	circle.setAttribute('id', 'f3dpatchellipse');
-					  	circle.setAttribute('cx',path1[0].x);
-					  	circle.setAttribute('cy',path1[0].y);
+					  	circle.setAttribute('id', 'f3dpatchellipse'+i);
+					  	circle.setAttribute('cx',path1[i].x);
+					  	circle.setAttribute('cy',path1[i].y);
 					  	circle.setAttribute('rx', 5);
 					  	circle.setAttribute('ry', 5);
 					  	circle.setAttribute('fill','black');
