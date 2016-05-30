@@ -274,8 +274,8 @@ var F3D_Polygon = {
 					 	path1 += "M "+poc1x+" "+poc1y+" C "+poc4x+" "+poc4y;
 					 	path2 += "M "+poc2x+" "+poc2y+" C "+poc3x+" "+poc3y;
 					 }else{
-					 	path1 += " "+poc1x+" "+poc1y+" C "+poc4x+" "+poc4y;
-					 	path2 += " "+poc2x+" "+poc2y+" C "+poc3x+" "+poc3y;
+					 	path1 += " "+poc1x+" "+poc1y+" "+poc4x+" "+poc4y;
+					 	path2 += " "+poc2x+" "+poc2y+" "+poc3x+" "+poc3y;
 					 }
 					 
 					group.polygons.appendChild(F3D_Polygon.addPolygon('polygon',poc2x,poc2y,poc1x,poc1y,poc4x,poc4y,poc3x,poc3y));
