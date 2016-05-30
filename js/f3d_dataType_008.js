@@ -214,7 +214,7 @@ var F3D_Polygon = {
 				
 				var nodes_array = group.circles.getElementsByTagName('ellipse');
 				var nodes_array_length = nodes_array.length;
-				var path1 = '', path2 = '';
+				var path1 = [], path2 = [];
 				for(var i = 0; i < nodes_array_length-1; i++){
 					var x1 = parseInt(nodes_array[i].getAttribute('cx'));
 					var y1 = parseInt(nodes_array[i].getAttribute('cy'));
@@ -270,6 +270,7 @@ var F3D_Polygon = {
 					  	//svgpaper.appendChild(F3D_Polygon.line_group);
 					  }
 					 */
+					 /*
 					 if(path1 === '' && path2 === ''){
 					 	path1 += "M "+poc1x+" "+poc1y+" C "+poc4x+" "+poc4y;
 					 	path2 += "M "+poc2x+" "+poc2y+" C "+poc3x+" "+poc3y;
@@ -277,6 +278,11 @@ var F3D_Polygon = {
 					 	path1 += " "+poc1x+" "+poc1y+" "+poc4x+" "+poc4y;
 					 	path2 += " "+poc2x+" "+poc2y+" "+poc3x+" "+poc3y;
 					 }
+					 */
+					 path1.push({'x':poc1x, 'y':poc1y});
+					 path1.push({'x':poc4x, 'y':poc4y});
+					 path2.push({'x':poc2x, 'y':poc2y});
+					 path2.push({'x':poc3x, 'y':poc3y});
 					 
 					group.polygons.appendChild(F3D_Polygon.addPolygon('polygon',poc2x,poc2y,poc1x,poc1y,poc4x,poc4y,poc3x,poc3y));
 					
@@ -296,14 +302,17 @@ var F3D_Polygon = {
 					  group.circles.setAttribute('ontouchstart', "F3D_Sphere.mobileSelectElement(evt)");
 				}
 					
-					var path = document.createElementNS(NS,"path");
-				  	path.setAttribute('id', 'f3dpath');
-				  	path.setAttribute('transform',"matrix(1 0 0 1 0 0)");
-				  	path.setAttribute('d', path1);
-				  	path.setAttribute('stroke',"black");
-  					path.setAttribute('stroke-width','3'); 
-  					path.setAttribute('fill','none');
-  					document.getElementById('svgpaper').appendChild(path);
+					for(var i = 0;i<path1.length;i++){
+						var circle = document.createElementNS(NS,"ellipse");
+					  	circle.setAttribute('id', 'f3dpatchellipse');
+					  	circle.setAttribute('cx',path1[0].x);
+					  	circle.setAttribute('cy',path1[0].y);
+					  	circle.setAttribute('rx', 5);
+					  	circle.setAttribute('ry', 5);
+					  	circle.setAttribute('fill','black');
+	  					document.getElementById('svgpaper').appendChild(circle);	
+					}
+					
 			
 				group.circles.innerHTML = f3dspheres;
 				group.group.appendChild(group.circles);	
