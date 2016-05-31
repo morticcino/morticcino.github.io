@@ -280,9 +280,9 @@ var F3D_Polygon = {
 					 }
 					 */
 					 path1.push({'x':poc1x, 'y':poc1y});
-					 path1.push({'x':poc4x, 'y':poc4y});
-					 path2.push({'x':poc2x, 'y':poc2y});
+					 path1.push({'x':poc2x, 'y':poc2y});
 					 path2.push({'x':poc3x, 'y':poc3y});
+					 path2.push({'x':poc4x, 'y':poc4y});
 					 
 					group.polygons.appendChild(F3D_Polygon.addPolygon('polygon',poc2x,poc2y,poc1x,poc1y,poc4x,poc4y,poc3x,poc3y));
 					
