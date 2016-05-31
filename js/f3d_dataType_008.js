@@ -322,7 +322,7 @@ var F3D_Polygon = {
 	  					document.getElementById('svgpaper').appendChild(curve2);
 				*/	
 				var pathlength = path1.length;
-				for(var 1 = 0;i<pathlength;i++){
+				for(var i = 0;i<pathlength;i++){
 					var curve1 = document.createElementNS(NS,"ellipse");
 				  	curve1.setAttribute('id', 'f3d_pathellipse_'+i);
 				  	curve1.setAttribute('cx',path1[i].x);
