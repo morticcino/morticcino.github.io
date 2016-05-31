@@ -327,12 +327,16 @@ var F3D_Polygon = {
 				  	curve1.setAttribute('id', 'f3d_pathellipse_'+i);
 				  	curve1.setAttribute('cx',path1[i].x);
 				  	curve1.setAttribute('cy',path1[i].y);
+				  	curve1.setAttribute('rx',5);
+				  	curve1.setAttribute('ry',5);
 				  	curve1.setAttribute('fill','black');
 				  	document.getElementById('svgpaper').appendChild(curve1);
   					var curve2 = document.createElementNS(NS,"ellipse");
 				  	curve2.setAttribute('id', 'f3d_pathellipse2_'+i);
 				  	curve2.setAttribute('cx',path2[i].x);
 				  	curve2.setAttribute('cy',path2[i].y);
+				  	curve2.setAttribute('rx',5);
+				  	curve2.setAttribute('ry',5);
 				  	curve2.setAttribute('fill','red');
 				  	document.getElementById('svgpaper').appendChild(curve2);
 				}
