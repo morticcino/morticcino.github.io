@@ -324,8 +324,7 @@ var F3D_Polygon = {
 				*/	
 				var pathlength = path1.length;
 				if(F3D_Scene.curves_group !== ''){
-					F3D_Scene.curves_group = document.createElementNS(NS,"g");
-						
+					F3D_Scene.curves_group.outerHTML = '';
 				}else{
 					F3D_Scene.curves_group = document.createElementNS(NS,"g");
 					document.getElementById('svgpaper').appendChild(F3D_Scene.curves_group);
