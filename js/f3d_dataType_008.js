@@ -302,7 +302,7 @@ var F3D_Polygon = {
 					  group.circles.setAttribute('ontouchstart', "F3D_Sphere.mobileSelectElement(evt)");
 				}
 					var path1length = path1.length;
-					for(var i = 0;i<=path1length;i++){
+					for(var i = 0;i<path1length;i++){
 						var circle = document.createElementNS(NS,"ellipse");
 					  	circle.setAttribute('id', 'f3dpatchellipse'+i);
 					  	circle.setAttribute('cx',path1[i].x);
