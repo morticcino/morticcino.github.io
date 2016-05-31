@@ -214,7 +214,7 @@ var F3D_Polygon = {
 				
 				var nodes_array = group.circles.getElementsByTagName('ellipse');
 				var nodes_array_length = nodes_array.length;
-				var path1 = [], path2 = [];
+				var path1 = '', path2 = '';
 				for(var i = 0; i < nodes_array_length-1; i++){
 					var x1 = parseInt(nodes_array[i].getAttribute('cx'));
 					var y1 = parseInt(nodes_array[i].getAttribute('cy'));
@@ -279,10 +279,17 @@ var F3D_Polygon = {
 					 	path2 += " "+poc2x+" "+poc2y+" "+poc3x+" "+poc3y;
 					 }
 					 */
-					 path1.push({'x':poc1x, 'y':poc1y});
-					 path1.push({'x':poc2x, 'y':poc2y});
-					 path2.push({'x':poc3x, 'y':poc3y});
-					 path2.push({'x':poc4x, 'y':poc4y});
+					 if(path1 === ''){
+					 	path1 += 'M '+poc1x+' '+poc1y+' C '+poc2x+' '+poc2y+' ';
+					 }else{
+					 	path1 += poc1x+' '+poc1y+' '+poc2x+' '+poc2y+' ';
+					 }
+					 
+					 if(path2 === ''){
+					 	path2 += 'M '+poc3x+' '+poc3y+' C '+poc4x+' '+poc4y+' ';
+					 }else{
+					 	path2 += poc3x+' '+poc3y+' '+poc4x+' '+poc4y+' ';
+					 }
 					 
 					group.polygons.appendChild(F3D_Polygon.addPolygon('polygon',poc2x,poc2y,poc1x,poc1y,poc4x,poc4y,poc3x,poc3y));
 					
@@ -301,25 +308,20 @@ var F3D_Polygon = {
 					  group.circles.setAttribute('onmousedown', "F3D_Sphere.selectElement(evt)");
 					  group.circles.setAttribute('ontouchstart', "F3D_Sphere.mobileSelectElement(evt)");
 				}
-					var path1length = path1.length;
-					for(var i = 0;i<path1length;i++){
-						var circle = document.createElementNS(NS,"ellipse");
-					  	circle.setAttribute('id', 'f3dpatchellipse'+i);
-					  	circle.setAttribute('cx',path1[i].x);
-					  	circle.setAttribute('cy',path1[i].y);
-					  	circle.setAttribute('rx', 5);
-					  	circle.setAttribute('ry', 5);
-					  	circle.setAttribute('fill','black');
-	  					document.getElementById('svgpaper').appendChild(circle);
-	  					var circle2 = document.createElementNS(NS,"ellipse");
-					  	circle2.setAttribute('id', 'f3dpatchellipse2'+i);
-					  	circle2.setAttribute('cx',path2[i].x);
-					  	circle2.setAttribute('cy',path2[i].y);
-					  	circle2.setAttribute('rx', 5);
-					  	circle2.setAttribute('ry', 5);
-					  	circle2.setAttribute('fill','red');
-	  					document.getElementById('svgpaper').appendChild(circle2);
-					}
+						var curve1 = document.createElementNS(NS,"path");
+					  	curve1.setAttribute('id', 'f3d_path_'+i);
+					  	curve1.setAttribute('d',path1);
+					  	curve1.setAttribute('fill','none');
+					  	curve1.setAttribute('stroke','black');
+  						curve1.setAttribute('stroke-width','3'); 
+	  					document.getElementById('svgpaper').appendChild(curve1);
+	  					var curve2 = document.createElementNS(NS,"path");
+					  	curve2.setAttribute('id', 'f3d_path_'+i);
+					  	curve2.setAttribute('d',path2);
+					  	curve2.setAttribute('fill','none');
+					  	curve2.setAttribute('stroke','red');
+  						curve2.setAttribute('stroke-width','3'); 
+	  					document.getElementById('svgpaper').appendChild(curve2);
 					
 			
 				group.circles.innerHTML = f3dspheres;
