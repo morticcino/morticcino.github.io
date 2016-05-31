@@ -3,7 +3,8 @@ var F3D_Scene = {
 	hand_draw_objects: [],
 	tentacle_objects: [],
 	extrude_objects: [],
-	sketch_group: ''
+	sketch_group: '',
+	curves_group: ''
 }
 
 var F3D_sketch = {
@@ -322,6 +323,13 @@ var F3D_Polygon = {
 	  					document.getElementById('svgpaper').appendChild(curve2);
 				*/	
 				var pathlength = path1.length;
+				if(F3D_Scene.curves_group !== ''){
+					F3D_Scene.curves_group = document.createElementNS(NS,"g");
+						
+				}else{
+					F3D_Scene.curves_group = document.createElementNS(NS,"g");
+					document.getElementById('svgpaper').appendChild(F3D_Scene.curves_group);
+				}
 				for(var i = 0;i<pathlength;i++){
 					var curve1 = document.createElementNS(NS,"ellipse");
 				  	curve1.setAttribute('id', 'f3d_pathellipse_'+i);
@@ -330,7 +338,7 @@ var F3D_Polygon = {
 				  	curve1.setAttribute('rx',5);
 				  	curve1.setAttribute('ry',5);
 				  	curve1.setAttribute('fill','#0000'+i+i);
-				  	document.getElementById('svgpaper').appendChild(curve1);
+				  	F3D_Scene.curves_group.appendChild(curve1);
   					var curve2 = document.createElementNS(NS,"ellipse");
 				  	curve2.setAttribute('id', 'f3d_pathellipse2_'+i);
 				  	curve2.setAttribute('cx',path2[i].x);
@@ -338,7 +346,7 @@ var F3D_Polygon = {
 				  	curve2.setAttribute('rx',5);
 				  	curve2.setAttribute('ry',5);
 				  	curve2.setAttribute('fill','#ff00'+i+i);
-				  	document.getElementById('svgpaper').appendChild(curve2);
+				  	F3D_Scene.curves_group.appendChild(curve2);
 				}
 			
 				group.circles.innerHTML = f3dspheres;
