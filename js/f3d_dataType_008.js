@@ -310,7 +310,15 @@ var F3D_Polygon = {
 					  	circle.setAttribute('rx', 5);
 					  	circle.setAttribute('ry', 5);
 					  	circle.setAttribute('fill','black');
-	  					document.getElementById('svgpaper').appendChild(circle);	
+	  					document.getElementById('svgpaper').appendChild(circle);
+	  					var circle2 = document.createElementNS(NS,"ellipse");
+					  	circle2.setAttribute('id', 'f3dpatchellipse2'+i);
+					  	circle2.setAttribute('cx',path2[i].x);
+					  	circle2.setAttribute('cy',path2[i].y);
+					  	circle2.setAttribute('rx', 5);
+					  	circle2.setAttribute('ry', 5);
+					  	circle2.setAttribute('fill','red');
+	  					document.getElementById('svgpaper').appendChild(circle2);
 					}
 					
 			
