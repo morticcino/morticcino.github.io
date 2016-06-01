@@ -216,7 +216,7 @@ var F3D_Polygon = {
 				var nodes_array = group.circles.getElementsByTagName('ellipse');
 				var nodes_array_length = nodes_array.length;
 				var path1 = '', path2 = '';
-				//var path1 = [], path2 = [];
+				var sphere_path1 = [], sphere_path2 = [];
 				for(var i = 0; i < nodes_array_length-1; i++){
 					var x1 = parseInt(nodes_array[i].getAttribute('cx'));
 					var y1 = parseInt(nodes_array[i].getAttribute('cy'));
@@ -284,12 +284,12 @@ var F3D_Polygon = {
 					 }else{
 					 	path2 += ' '+poc3x+' '+poc3y+' '+poc4x+' '+poc4y;
 					 }
-					/* 
-					 path1.push({'x':poc1x,'y':poc1y});
-					 path1.push({'x':poc2x,'y':poc2y});
-					 path2.push({'x':poc3x,'y':poc3y});
-					 path2.push({'x':poc4x,'y':poc4y});
-					 */
+					 
+					 sphere_path1.push({'x':poc1x,'y':poc1y});
+					 sphere_path1.push({'x':poc2x,'y':poc2y});
+					 sphere_path2.push({'x':poc3x,'y':poc3y});
+					 sphere_path2.push({'x':poc4x,'y':poc4y});
+					 
 					group.polygons.appendChild(F3D_Polygon.addPolygon('polygon',poc2x,poc2y,poc1x,poc1y,poc4x,poc4y,poc3x,poc3y));
 					
     				}
@@ -323,8 +323,8 @@ var F3D_Polygon = {
   						curve2.setAttribute('stroke-width','3'); 
 	  					document.getElementById('svgpaper').appendChild(curve2);
 					
-				/*
-				var pathlength = path1.length;
+				
+				var pathlength = sphere_path1.length;
 				if(F3D_Scene.curves_group !== ''){
 					document.getElementById('svgpaper').removeChild(F3D_Scene.curves_group);
 				}
@@ -334,22 +334,22 @@ var F3D_Polygon = {
 				for(var i = 0;i<pathlength;i++){
 					var curve1 = document.createElementNS(NS,"ellipse");
 				  	curve1.setAttribute('id', 'f3d_pathellipse_'+i);
-				  	curve1.setAttribute('cx',path1[i].x);
-				  	curve1.setAttribute('cy',path1[i].y);
+				  	curve1.setAttribute('cx',sphere_path1[i].x);
+				  	curve1.setAttribute('cy',sphere_path1[i].y);
 				  	curve1.setAttribute('rx',5);
 				  	curve1.setAttribute('ry',5);
 				  	curve1.setAttribute('fill','#0000'+i+i);
 				  	F3D_Scene.curves_group.appendChild(curve1);
   					var curve2 = document.createElementNS(NS,"ellipse");
 				  	curve2.setAttribute('id', 'f3d_pathellipse2_'+i);
-				  	curve2.setAttribute('cx',path2[i].x);
-				  	curve2.setAttribute('cy',path2[i].y);
+				  	curve2.setAttribute('cx',sphere_path2[i].x);
+				  	curve2.setAttribute('cy',sphere_path2[i].y);
 				  	curve2.setAttribute('rx',5);
 				  	curve2.setAttribute('ry',5);
 				  	curve2.setAttribute('fill','#ff00'+i+i);
 				  	F3D_Scene.curves_group.appendChild(curve2);
 				}
-				*/
+				
 				group.circles.innerHTML = f3dspheres;
 				group.group.appendChild(group.circles);	
 				
