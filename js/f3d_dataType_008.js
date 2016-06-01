@@ -272,7 +272,7 @@ var F3D_Polygon = {
 					  	//svgpaper.appendChild(F3D_Polygon.line_group);
 					  }
 					 */
-					 /*
+					 
 					 if(path1 === ''){
 					 	path1 += 'M '+poc1x+' '+poc1y+' C '+poc2x+' '+poc2y+' ';
 					 }else{
@@ -284,7 +284,7 @@ var F3D_Polygon = {
 					 }else{
 					 	path2 += poc3x+' '+poc3y+' '+poc4x+' '+poc4y+' ';
 					 }
-					 */
+					 
 					 path1.push({'x':poc1x,'y':poc1y});
 					 path1.push({'x':poc2x,'y':poc2y});
 					 path2.push({'x':poc3x,'y':poc3y});
@@ -306,7 +306,7 @@ var F3D_Polygon = {
 					  group.circles.setAttribute('onmousedown', "F3D_Sphere.selectElement(evt)");
 					  group.circles.setAttribute('ontouchstart', "F3D_Sphere.mobileSelectElement(evt)");
 				}
-				/*
+				
 						var curve1 = document.createElementNS(NS,"path");
 					  	curve1.setAttribute('id', 'f3d_path_'+i);
 					  	curve1.setAttribute('d',path1);
@@ -321,7 +321,7 @@ var F3D_Polygon = {
 					  	curve2.setAttribute('stroke','red');
   						curve2.setAttribute('stroke-width','3'); 
 	  					document.getElementById('svgpaper').appendChild(curve2);
-				*/	
+					
 				var pathlength = path1.length;
 				if(F3D_Scene.curves_group !== ''){
 					document.getElementById('svgpaper').removeChild(F3D_Scene.curves_group);
