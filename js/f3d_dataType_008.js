@@ -274,15 +274,15 @@ var F3D_Polygon = {
 					 */
 					 
 					 if(path1 === ''){
-					 	path1 += 'M '+poc1x+' '+poc1y+' C '+poc2x+' '+poc2y+' ';
+					 	path1 += 'M '+poc1x+' '+poc1y+' C '+poc2x+' '+poc2y;
 					 }else{
-					 	path1 += poc1x+' '+poc1y+' '+poc2x+' '+poc2y+' ';
+					 	path1 += ' '+poc1x+' '+poc1y+' '+poc2x+' '+poc2y;
 					 }
 					 
 					 if(path2 === ''){
-					 	path2 += 'M '+poc3x+' '+poc3y+' C '+poc4x+' '+poc4y+' ';
+					 	path2 += 'M '+poc3x+' '+poc3y+' C '+poc4x+' '+poc4y;
 					 }else{
-					 	path2 += poc3x+' '+poc3y+' '+poc4x+' '+poc4y+' ';
+					 	path2 += ' '+poc3x+' '+poc3y+' '+poc4x+' '+poc4y;
 					 }
 					/* 
 					 path1.push({'x':poc1x,'y':poc1y});
