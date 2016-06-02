@@ -340,6 +340,7 @@ var F3D_Polygon = {
 				  	curve1.setAttribute('ry',5);
 				  	curve1.setAttribute('fill','#0000'+i+i);
 				  	F3D_Scene.curves_group.appendChild(curve1);
+  				/*
   					var curve2 = document.createElementNS(NS,"ellipse");
 				  	curve2.setAttribute('id', 'f3d_pathellipse2_'+i);
 				  	curve2.setAttribute('cx',sphere_path2[i].x);
@@ -348,6 +349,7 @@ var F3D_Polygon = {
 				  	curve2.setAttribute('ry',5);
 				  	curve2.setAttribute('fill','#ff00'+i+i);
 				  	F3D_Scene.curves_group.appendChild(curve2);
+				  */
 				}
 				
 				group.circles.innerHTML = f3dspheres;
