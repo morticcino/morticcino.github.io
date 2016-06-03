@@ -3,6 +3,7 @@ var F3D_Scene = {
 	hand_draw_objects: [],
 	tentacle_objects: [],
 	extrude_objects: [],
+	elementToColor: 0,
 	sketch_group: ''
 }
 
@@ -81,7 +82,7 @@ var F3D_Sphere = {
     polygon: '',
     //f3dsphere_polyline_group: '',
     selectedElement: 0,
-    elementToColor: 0,
+    
     currentX: 0,
     currentY: 0,
     init: function(){
