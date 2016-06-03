@@ -81,6 +81,7 @@ var F3D_Sphere = {
     polygon: '',
     //f3dsphere_polyline_group: '',
     selectedElement: 0,
+    elementToColor: 0,
     currentX: 0,
     currentY: 0,
     init: function(){
@@ -402,6 +403,7 @@ var F3D_Polyline = {
     	function getGroup(t){
     		var id = t.getAttribute('id');
 	    	if(id.indexOf('f3dhanddraw_group_') !== -1 || id.indexOf('f3dtentacle_group') !== -1 || id.indexOf('f3dextrude_group') !== -1){
+			F3D_Scene.elementToColor = t;
 			F3D_Polyline.group_to_move = t;
 			F3D_Polyline.currentX = evt.clientX;
 			F3D_Polyline.currentY = evt.clientY;
