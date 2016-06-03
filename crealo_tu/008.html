@@ -47,7 +47,7 @@
 	  <div id="left_column">
 		<textarea id="svgfile" class="textarea" rows="6"></textarea><br />
 		<input id="draw" type="radio" name="tools" onclick="tools('draw')" checked> Draw<br />
-		<input id="color_picker" class="jscolor" value="0000ff"><br />
+		<input id="color_picker" class="jscolor" value="0000ff" onchange="change_group_color(this.value)"><br />
 		<input id="select" type="radio" name="tools" onclick="tools('select')" > Select<br />
 		<input id="save" type="radio" name="tools" onclick="tools('save')" > Save<br />
 		<input id="load" type="radio" name="tools" onclick="tools('load')" > Load<br />
@@ -106,6 +106,10 @@
 		}
 	    	
 	        	
+      }
+      
+      function change_group_color(color_value){
+      	F3D_Sphere.selectedElement.setAttribute('fill', color_value);
       }
       
       function tools(toolstr){
