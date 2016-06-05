@@ -4,7 +4,7 @@ var F3D_Scene = {
 	tentacle_objects: [],
 	extrude_objects: [],
 	elementToColor: 0,
-	colorDict = {};
+	colorDict: {},
 	sketch_group: ''
 }
 
