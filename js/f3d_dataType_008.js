@@ -192,7 +192,7 @@ var F3D_Polygon = {
 	polygon.setAttribute('id', 'polygon_'+F3D_Polygon.num_polygon);
 	F3D_Polygon.num_polygon += 1;
 	polygon.setAttribute('points', x1+','+y1+' '+x2+','+y2+' '+x3+','+y3+' '+x4+','+y4);
-	polygon.setAttribute('style','fill:#'+document.getElementById('color_picker').value);
+	//polygon.setAttribute('style','fill:#'+document.getElementById('color_picker').value);
 	polygon.setAttribute('class', 'draggable');
 	polygon.setAttribute('onmouseover', "F3D_Sphere.overElement(evt)");
         polygon.setAttribute('onmouseout', "F3D_Sphere.outElement(evt)");
@@ -339,7 +339,7 @@ var F3D_Polyline = {
       		point_string += simplyline[i].x+','+simplyline[i].y+' ';
       	}
      	polyline.setAttribute('points', point_string);
-     	polyline.setAttribute('fill', 'none');
+     	//polyline.setAttribute('fill', 'none');
 	polyline.setAttribute('stroke', 'orange');
 	polyline.setAttribute('stroke-width', '3');
 	
