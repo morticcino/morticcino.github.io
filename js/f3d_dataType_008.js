@@ -206,7 +206,11 @@ var F3D_Polygon = {
     			if(!group.polygons){
 				  	group.polygons = document.createElementNS(NS,"g");
 				  	group.polygons.setAttribute('id', 'line_group_'+i);
-				  	group.polygons.setAttribute('fill', '#'+document.getElementById('color_picker').value);
+				  	if(group.color === ''){
+				  		group.polygons.setAttribute('fill', '#'+document.getElementById('color_picker').value);
+				  	}else{
+				  		group.polygons.setAttribute('fill', '#'+color);
+				  	}
 				  	//Fast3d.f3dsphere_group.setAttribute('stroke', 'green');
 				  	group.polygons.setAttribute('transform',"matrix(1 0 0 1 0 0)");
 				  	group.group.appendChild(group.polygons);
@@ -284,7 +288,11 @@ var F3D_Polygon = {
 			
 			  		group.circles = document.createElementNS(NS,"g");
 				  	group.circles.setAttribute('id', 'f3dsphere_group');
-				  	group.circles.setAttribute('fill', '#'+document.getElementById('color_picker').value);
+				  	if(group.color === ''){
+				  		group.circles.setAttribute('fill', '#'+document.getElementById('color_picker').value);
+				  	}else{
+				  		group.circles.setAttribute('fill', '#'+group.color);
+				  	}
 				  	group.polygons.setAttribute('transform',"matrix(1 0 0 1 0 0)");
 				if(F3D_Polygon.selected_tool === 'select'){
 					  group.circles.setAttribute('onmousedown', "F3D_Sphere.selectElement(evt)");
@@ -348,10 +356,10 @@ var F3D_Polyline = {
 			  
 	},
    drawExtrude: function(ray){
-		F3D_Scene.extrude_objects[F3D_Polyline.number_of_extrude] = {'group': '','circles': '', 'polygons':''};
+		F3D_Scene.extrude_objects[F3D_Polyline.number_of_extrude] = {'group': '','circles': '', 'polygons':'', color: ''};
 		F3D_Scene.extrude_objects[F3D_Polyline.number_of_extrude].group = document.createElementNS(NS,"g");
       	F3D_Scene.extrude_objects[F3D_Polyline.number_of_extrude].group.setAttribute('id', 'f3dextrude_group'+F3D_Polyline.number_of_extrude);
-      	F3D_Scene.extrude_objects[F3D_Polyline.number_of_extrude].group.setAttribute('fill', document.getElementById('color_picker').value);
+      	F3D_Scene.extrude_objects[F3D_Polyline.number_of_extrude].group.setAttribute('fill', '#'+document.getElementById('color_picker').value);
       	F3D_Scene.extrude_objects[F3D_Polyline.number_of_extrude].group.setAttribute('transform',"matrix(1 0 0 1 0 0)");
 		F3D_Scene.extrude_objects[F3D_Polyline.number_of_extrude].circles = document.createElementNS(NS,"g");
       	F3D_Scene.extrude_objects[F3D_Polyline.number_of_extrude].circles.setAttribute('id', 'f3dextrude_circles_group'+F3D_Polyline.number_of_extrude);
@@ -375,10 +383,10 @@ var F3D_Polyline = {
      		  
 	},
     drawTentacle: function(ray){
-		F3D_Scene.tentacle_objects[F3D_Polyline.number_of_tentacle] = {'group': '', 'circles': '', 'polygons':''};
+		F3D_Scene.tentacle_objects[F3D_Polyline.number_of_tentacle] = {'group': '', 'circles': '', 'polygons':'', color: ''};
 		F3D_Scene.tentacle_objects[F3D_Polyline.number_of_tentacle].group = document.createElementNS(NS,"g");
       	F3D_Scene.tentacle_objects[F3D_Polyline.number_of_tentacle].group.setAttribute('id', 'f3dtentacle_group'+F3D_Polyline.number_of_tentacle);
-      	F3D_Scene.tentacle_objects[F3D_Polyline.number_of_tentacle].group.setAttribute('fill', document.getElementById('color_picker').value);
+      	F3D_Scene.tentacle_objects[F3D_Polyline.number_of_tentacle].group.setAttribute('fill', '#'+document.getElementById('color_picker').value);
 		F3D_Scene.tentacle_objects[F3D_Polyline.number_of_tentacle].group.setAttribute('transform',"matrix(1 0 0 1 0 0)");
 		F3D_Scene.tentacle_objects[F3D_Polyline.number_of_tentacle].circles = document.createElementNS(NS,"g");
       	F3D_Scene.tentacle_objects[F3D_Polyline.number_of_tentacle].circles.setAttribute('id', 'f3dtentacle_circles_group'+F3D_Polyline.number_of_tentacle);
@@ -441,7 +449,7 @@ var F3D_Polyline = {
 			F3D_Polyline.oldY = event.targetTouches[0].pageY;
 			F3D_Polyline.group_to_move.setAttribute("ontouchmove", "F3D_Polyline.mobileMoveElement(evt)");
 			F3D_Polyline.group_to_move.setAttribute("ontouchend", "F3D_Polyline.deselectElement(evt)");
-			F3D_Polyline.group_to_move.setAttribute("fill", "666666");
+			//F3D_Polyline.group_to_move.setAttribute("fill", "666666");
 			
 		}else{
 		   getGroup(t.parentElement);
