@@ -110,6 +110,7 @@
       
       function change_group_color(color_value){
       	F3D_Scene.elementToColor.setAttribute('fill', '#'+color_value);
+      	F3D_Scene.colorDict[F3D_Scene.elementToColor.getAttribute('id')]=color_value;	
       }
       
       function tools(toolstr){
