@@ -206,11 +206,6 @@ var F3D_Polygon = {
     			if(!group.polygons){
 				  	group.polygons = document.createElementNS(NS,"g");
 				  	group.polygons.setAttribute('id', 'line_group_'+i);
-				  	if(group.color === ''){
-				  		group.polygons.setAttribute('fill', '#'+document.getElementById('color_picker').value);
-				  	}else{
-				  		group.polygons.setAttribute('fill', '#'+color);
-				  	}
 				  	//Fast3d.f3dsphere_group.setAttribute('stroke', 'green');
 				  	group.polygons.setAttribute('transform',"matrix(1 0 0 1 0 0)");
 				  	group.group.appendChild(group.polygons);
@@ -288,11 +283,6 @@ var F3D_Polygon = {
 			
 			  		group.circles = document.createElementNS(NS,"g");
 				  	group.circles.setAttribute('id', 'f3dsphere_group');
-				  	if(group.color === ''){
-				  		group.circles.setAttribute('fill', '#'+document.getElementById('color_picker').value);
-				  	}else{
-				  		group.circles.setAttribute('fill', '#'+group.color);
-				  	}
 				  	group.polygons.setAttribute('transform',"matrix(1 0 0 1 0 0)");
 				if(F3D_Polygon.selected_tool === 'select'){
 					  group.circles.setAttribute('onmousedown', "F3D_Sphere.selectElement(evt)");
