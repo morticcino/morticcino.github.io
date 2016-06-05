@@ -85,6 +85,7 @@ var F3D_Sphere = {
     
     currentX: 0,
     currentY: 0,
+    /*
     init: function(){
     	F3D_Scene.hand_draw_objects = document.createElementNS(NS,"g");
       	F3D_Scene.hand_draw_objects.setAttribute('id', 'f3dsphere_group');
@@ -92,6 +93,7 @@ var F3D_Sphere = {
       	F3D_Scene.hand_draw_objects.setAttribute('transform',"matrix(1 0 0 1 0 0)");
       	svgpaper.appendChild(F3D_Scene.hand_draw_objects);
     },
+    */
     fast3d_addCircle: function(name, x, y, r){
       	var circle = document.createElementNS(NS,"ellipse");
  	circle.setAttribute('id', 'ellipse_'+F3D_Sphere.circle_in_scene);
