@@ -173,6 +173,14 @@ var F3D_Sphere = {
 	}
 	F3D_Polygon.drawTangent();
     },
+    wheelScaleElement: function(evt) {
+  	var tmpElem = evt.target;
+	if(evt.wheelDelta > 0){
+		tmpElem.setAttribute('transform', 'scale(2)');
+	}else{
+		tmpElem.setAttribute('transform', 'scale(-2)');
+	}
+    },
     deselectElement: function(evt) {
   	if(F3D_Sphere.selectedElement != 0){
 		F3D_Sphere.selectedElement.removeAttributeNS(null, "onmousemove");
