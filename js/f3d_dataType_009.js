@@ -6,7 +6,8 @@ var F3D_Scene = {
 	extrude_objects: [],
 	elementToColor: 0,
 	colorDict: {},
-	sketch_group: ''
+	sketch_group: '',
+	text_group: ''
 }
 
 var F3D_sketch = {
