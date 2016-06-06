@@ -191,6 +191,8 @@
         			F3D_Scene.extrude_objects[i].polygons.setAttribute('onmousedown', "F3D_Polyline.selectElement(evt)");
 	        		F3D_Scene.extrude_objects[i].polygons.setAttribute('ontouchstart', "F3D_Polyline.mobileSelectElement(evt)");
         		}
+        		F3D_Scene.text_group.group.setAttribute('onmousedown', "F3D_Sphere.selectElement(evt)");
+        		F3D_Scene.text_group.group.setAttribute('ontouchstart', "F3D_Sphere.mobileSelectElement(evt)");
         		svgpaper.removeEventListener( 'mousedown', onDocumentMouseDown, false );
     			svgpaper.removeEventListener( 'touchstart', onDocumentMobileMouseDown, false );
 	
