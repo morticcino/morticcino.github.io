@@ -176,9 +176,9 @@ var F3D_Sphere = {
     wheelScaleElement: function(evt) {
   	var tmpElem = evt.target;
 	if(evt.wheelDelta > 0){
-		tmpElem.setAttribute('transform', 'scale(1.1)');
+		tmpElem.setAttribute('transform', 'scale(2)');
 	}else{
-		tmpElem.setAttribute('transform', 'scale(0.9)');
+		tmpElem.setAttribute('transform', 'scale(-2)');
 	}
     },
     deselectElement: function(evt) {
