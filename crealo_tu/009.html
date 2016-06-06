@@ -86,19 +86,19 @@
       function add_text2scene(){
       	var color = document.getElementById('color_picker').value;
       	function addText2Scene(){
-      		var text = document.createElementNS(NS,"text");
-	  	
+      		var text  = document.createElementNS(NS,"text");
+	  	text.setAttribute('id', 'f3dtext_group_'+F3D_Scene.text_object);
   	  	text.setAttribute('style', 'fill:#'+color);
   	  	var text2Add = document.createTextNode(document.getElementById('textarea').value);
   	  	text.appendChild(text2Add);
+  	  	F3D_Scene.text_object += 1;
   	  	return text
       	}
       	if(F3D_Scene.text_group === ''){
 		F3D_Scene.text_group= {'group': '', text: ''};
 		F3D_Scene.text_group.group = document.createElementNS(NS,"g");
-		F3D_Scene.text_group.group.setAttribute('id', 'f3dtext_group_'+F3D_Scene.text_object);
 		F3D_Scene.text_group.group.setAttribute('transform',"translate(100,100)");
-		F3D_Scene.text_object += 1;
+		
                 F3D_Scene.text_group.group.appendChild(addText2Scene());
                 svgpaper.appendChild(F3D_Scene.text_group.group);
 	                         
