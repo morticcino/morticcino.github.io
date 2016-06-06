@@ -96,14 +96,14 @@
   	  	text.appendChild(text2Add);
   	  	return text
       	}
-      	if(F3D_Scene.text_objects === ''){
-					  F3D_Scene.text_objects= {'group': '', text: ''};
-					  F3D_Scene.text_objects.group = document.createElementNS(NS,"g");
-	                                  F3D_Scene.text_objects.group.appendChild(addText2Scene());
-	                                  svgpaper.appendChild(F3D_Scene.text_objects.group);
+      	if(F3D_Scene.text_group === ''){
+					  F3D_Scene.text_group= {'group': '', text: ''};
+					  F3D_Scene.text_group.group = document.createElementNS(NS,"g");
+	                                  F3D_Scene.text_group.group.appendChild(addText2Scene());
+	                                  svgpaper.appendChild(F3D_Scene.text_group.group);
 	                         
 	}else{
-		F3D_Scene.text_objects.group.appendChild(addText2Scene());	
+		F3D_Scene.text_group.group.appendChild(addText2Scene());	
 	}
       	//alert(document.getElementById('textarea').value);
       }
