@@ -83,6 +83,10 @@
       		F3D_Scene.hand_draw_object++;
       }
       
+      function add_text2Scene(){
+      	alert(this.value);
+      }
+      
       function setDrawInteraction(){
       		for(var i = 0;i<F3D_Scene.hand_draw_objects.length;i++){
 			F3D_Scene.hand_draw_objects[i].circles.removeAttributeNS(null, 'onmousedown');
