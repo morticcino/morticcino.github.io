@@ -176,11 +176,11 @@ var F3D_Sphere = {
     wheelScaleElement: function(evt) {
   	var tmpElem = evt.target;
 	if(evt.wheelDelta > 0){
-		tmpElem.setAttribute('x', '110%');
-		tmpElem.setAttribute('y', '110%');
+		tmpElem.setAttribute('x', '10%');
+		tmpElem.setAttribute('y', '10%');
 	}else{
-		tmpElem.setAttribute('x', '90%');
-		tmpElem.setAttribute('y', '90%');
+		tmpElem.setAttribute('x', '-10%');
+		tmpElem.setAttribute('y', '-10%');
 	}
     },
     deselectElement: function(evt) {
