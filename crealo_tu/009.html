@@ -196,6 +196,7 @@
         		var text_length = F3D_Scene.text_group.group.childElementCount;
         		if (text_length > 0){
         			for(var t = 0; t < text_length; t++){
+        				F3D_Scene.text_group.group.children[t].setAttribute('class', 'draggable');
 		        		F3D_Scene.text_group.group.children[t].setAttribute('onmousedown', "F3D_Polyline.selectElement(evt)");
 		        		F3D_Scene.text_group.group.children[t].setAttribute('ontouchstart', "F3D_Polyline.mobileSelectElement(evt)");
 		        		F3D_Scene.text_group.group.children[t].setAttribute('onmouseover', "F3D_Sphere.overElement(evt)");
