@@ -181,7 +181,7 @@ var F3D_Sphere = {
 	}else{
 		F3D_Sphere.scale -= 1;
 	}
-	tmpElem.setAttribute('transform', 'scale('+F3D_Sphere.scale+')');
+	tmpElem.setAttribute('transform', 'traslate('+evt.clientX+','+evt.clientY+') scale('+F3D_Sphere.scale+')');
     },
     deselectElement: function(evt) {
   	if(F3D_Sphere.selectedElement != 0){
