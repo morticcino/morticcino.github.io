@@ -174,14 +174,23 @@ var F3D_Sphere = {
 	}
 	F3D_Polygon.drawTangent();
     },
+    scale_fn: function(value, selectedElement){
+    	var currentMatrix = selectedElement.getAttributeNS(null, "transform").slice(7,-1).split(' ');
+      	for(var i=0; i<currentMatrix.length; i++) {
+        	currentMatrix[i] = parseFloat(currentMatrix[i]);
+      	}
+	currentMatrix[1] = value;
+	currentMatrix[5] = value;
+  	var newMatrix = "matrix(" + currentMatrix.join(' ') + ")";
+  	selectedElement.setAttributeNS(null, "transform", newMatrix);
+    },
     wheelScaleElement: function(evt) {
-  	var tmpElem = evt.target;
-	if(evt.wheelDelta > 0){
+  	if(evt.wheelDelta > 0){
 		F3D_Sphere.scale += 1;	
 	}else{
 		F3D_Sphere.scale -= 1;
 	}
-	tmpElem.setAttribute('transform', 'translate('+evt.clientX+','+evt.clientY+') scale('+F3D_Sphere.scale+')');
+	F3D_Sphere.scale_fn(F3D_Sphere.scale, evt.target);
     },
     deselectElement: function(evt) {
   	if(F3D_Sphere.selectedElement != 0){
