@@ -174,8 +174,8 @@ var F3D_Sphere = {
 	}
 	F3D_Polygon.drawTangent();
     },
-    scale_fn: function(value, selectedElement, x, y){
-    	selectedElement.setAttributeNS(null, "transform", 'translate('+x+','+y+') scale('+value+')');
+    scale_fn: function(value, selectedElement){
+    	selectedElement.setAttributeNS(null, "transform", 'scale('+value+')');
     },
     wheelScaleElement: function(evt) {
   	if(evt.wheelDelta > 0){
@@ -183,7 +183,7 @@ var F3D_Sphere = {
 	}else{
 		F3D_Sphere.scale -= 1;
 	}
-	F3D_Sphere.scale_fn(F3D_Sphere.scale, evt.target, evt.clientX, evt.clientY);
+	F3D_Sphere.scale_fn(F3D_Sphere.scale, evt.target);
     },
     deselectElement: function(evt) {
   	if(F3D_Sphere.selectedElement != 0){
