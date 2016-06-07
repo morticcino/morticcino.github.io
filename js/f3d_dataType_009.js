@@ -178,9 +178,8 @@ var F3D_Sphere = {
     	var currentMatrix = selectedElement.getAttributeNS(null, "transform").slice(7,-1).split(' ');
       	for(var i=0; i<currentMatrix.length; i++) {
         	currentMatrix[i] = parseFloat(currentMatrix[i]);
+        	currentMatrix[i] *= F3D_Sphere.scale;
       	}
-	currentMatrix[4] = value;
-	currentMatrix[5] = value;
   	var newMatrix = "matrix(" + currentMatrix.join(' ') + ")";
   	selectedElement.setAttributeNS(null, "transform", newMatrix);
     },
