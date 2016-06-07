@@ -175,13 +175,7 @@ var F3D_Sphere = {
 	F3D_Polygon.drawTangent();
     },
     scale_fn: function(value, selectedElement){
-    	var currentMatrix = selectedElement.getAttributeNS(null, "transform").slice(7,-1).split(' ');
-      	for(var i=0; i<currentMatrix.length; i++) {
-        	currentMatrix[i] = parseFloat(currentMatrix[i]);
-        	currentMatrix[i] *= F3D_Sphere.scale;
-      	}
-  	var newMatrix = "matrix(" + currentMatrix.join(' ') + ")";
-  	selectedElement.setAttributeNS(null, "transform", newMatrix);
+    	selectedElement.setAttributeNS(null, "transform", 'translate('+evt.clientX+','+evt.clientY+') scale('+value+')');
     },
     wheelScaleElement: function(evt) {
   	if(evt.wheelDelta > 0){
