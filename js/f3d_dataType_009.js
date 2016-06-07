@@ -86,6 +86,7 @@ var F3D_Sphere = {
     polygon: '',
     //f3dsphere_polyline_group: '',
     selectedElement: 0,
+    scale: 0,
     
     currentX: 0,
     currentY: 0,
@@ -176,10 +177,11 @@ var F3D_Sphere = {
     wheelScaleElement: function(evt) {
   	var tmpElem = evt.target;
 	if(evt.wheelDelta > 0){
-		tmpElem.setAttribute('transform', 'scale(2)');
+		F3D_Sphere.scale += 1;	
 	}else{
-		tmpElem.setAttribute('transform', 'scale(-2)');
+		F3D_Sphere.scale -= 1;
 	}
+	tmpElem.setAttribute('transform', F3D_Sphere.scale);
     },
     deselectElement: function(evt) {
   	if(F3D_Sphere.selectedElement != 0){
