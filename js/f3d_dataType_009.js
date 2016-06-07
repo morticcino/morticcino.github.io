@@ -179,7 +179,7 @@ var F3D_Sphere = {
       	for(var i=0; i<currentMatrix.length; i++) {
         	currentMatrix[i] = parseFloat(currentMatrix[i]);
       	}
-	currentMatrix[1] = value;
+	currentMatrix[4] = value;
 	currentMatrix[5] = value;
   	var newMatrix = "matrix(" + currentMatrix.join(' ') + ")";
   	selectedElement.setAttributeNS(null, "transform", newMatrix);
