@@ -4,7 +4,7 @@ var F3D_Scene = {
 	hand_draw_objects: [],
 	tentacle_objects: [],
 	extrude_objects: [],
-	elementToColor: 0,
+	elementToColor: '',
 	colorDict: {},
 	sketch_group: '',
 	text_group: '',
