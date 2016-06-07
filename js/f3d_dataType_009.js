@@ -130,6 +130,7 @@ var F3D_Sphere = {
     },
     selectElement: function(evt) {
 	F3D_Sphere.selectedElement = evt.target;
+	F3D_Scene.elementToColor = evt.target;
 	F3D_Sphere.currentX = evt.clientX;
 	F3D_Sphere.currentY = evt.clientY;
 	F3D_Sphere.selectedElement.setAttribute("onmousemove", "F3D_Sphere.moveElement(evt)");
