@@ -175,7 +175,7 @@ var F3D_Sphere = {
 	F3D_Polygon.drawTangent();
     },
     scale_fn: function(value, selectedElement){
-    	selectedElement.setAttributeNS(null, "transform", 'translate('+evt.clientX+','+evt.clientY+') scale('+value+')');
+    	selectedElement.setAttributeNS(null, "transform", 'translate('+selectedElement.clientX+','+selectedElement.clientY+') scale('+value+')');
     },
     wheelScaleElement: function(evt) {
   	if(evt.wheelDelta > 0){
