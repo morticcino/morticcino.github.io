@@ -89,6 +89,18 @@
       var minX, maxX, minY, maxY = 0;
       */
       var r = new DollarRecognizer();
+      
+      function move_next(){
+      	if(F3D_Scene.elementToColor !== ''){
+      		var next = F3D_Scene.elementToColor.nextSibling;
+      		next.insertBefore(F3D_Scene.elementToColor);
+      	}
+      }
+      
+      function move_prev(){
+      	
+      }
+      
       function add_fhd(){
       	if(F3D_Scene.hand_draw_objects[F3D_Scene.hand_draw_object].circles.lenght !== 0)
       		F3D_Scene.hand_draw_object++;
