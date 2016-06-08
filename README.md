@@ -1,5 +1,9 @@
 # morticcino.github.io
 
+A new way to quickly create your vector creation!
+
+Thanks to:
+
 shape recognizer
 https://depts.washington.edu/aimgroup/proj/dollar/ndollar.html
 
