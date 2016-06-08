@@ -190,7 +190,8 @@
 	        	break;
 	        case 'select':
 				F3D_Polygon.selected_tool = 'select';
-	        	for(var i = 0;i<F3D_Scene.hand_draw_objects.length;i++){
+				var hdl = F3D_Scene.hand_draw_objects.length;
+	        	for(var i = 0;i<hdl;i++){
 	        		F3D_Scene.hand_draw_objects[i].circles.setAttribute('onmousedown', "F3D_Sphere.selectElement(evt)");
 	        		F3D_Scene.hand_draw_objects[i].circles.setAttribute('ontouchstart', "F3D_Sphere.mobileSelectElement(evt)");
 	        		if(F3D_Scene.hand_draw_objects[i].polygons.childNodes){
@@ -198,13 +199,15 @@
 		        		F3D_Scene.hand_draw_objects[i].polygons.setAttribute('ontouchstart', "F3D_Polyline.mobileSelectElement(evt)");
 	        		}
 	        	}
-        		for(var i = 0;i<F3D_Scene.tentacle_objects.length;i++){
+	        	var tol = F3D_Scene.tentacle_objects.length;
+        		for(var i = 0;i<tol;i++){
         			F3D_Scene.tentacle_objects[i].circles.setAttribute('onmousedown', "F3D_Sphere.selectElement(evt)");
         			F3D_Scene.tentacle_objects[i].circles.setAttribute('ontouchstart', "F3D_Sphere.mobileSelectElement(evt)");
         			F3D_Scene.tentacle_objects[i].polygons.setAttribute('onmousedown', "F3D_Polyline.selectElement(evt)");
 	        		F3D_Scene.tentacle_objects[i].polygons.setAttribute('ontouchstart', "F3D_Polyline.mobileSelectElement(evt)");
         		}
-        		for(var i = 0;i<F3D_Scene.extrude_objects.length;i++){
+        		var eol = F3D_Scene.extrude_objects.length;
+        		for(var i = 0;i<eol;i++){
         			F3D_Scene.extrude_objects[i].circles.setAttribute('onmousedown', "F3D_Sphere.selectElement(evt)");
         			F3D_Scene.extrude_objects[i].circles.setAttribute('ontouchstart', "F3D_Sphere.mobileSelectElement(evt)");
         			F3D_Scene.extrude_objects[i].polygons.setAttribute('onmousedown', "F3D_Polyline.selectElement(evt)");
@@ -380,27 +383,28 @@
 					}else{
 						radius = height/2;
 					}
-					if(!F3D_Scene.hand_draw_objects[F3D_Scene.hand_draw_object]){
-					  F3D_Scene.hand_draw_objects[F3D_Scene.hand_draw_object]= {'group': '', 'circles': '', 'polygons':'', color: ''};
-					  F3D_Scene.hand_draw_objects[F3D_Scene.hand_draw_object].color = color;
-					  F3D_Scene.hand_draw_objects[F3D_Scene.hand_draw_object].group = document.createElementNS(NS,"g");
-				  	  F3D_Scene.hand_draw_objects[F3D_Scene.hand_draw_object].group.setAttribute('id', 'f3dhanddraw_group_'+F3D_Scene.hand_draw_object);
-				  	  F3D_Scene.hand_draw_objects[F3D_Scene.hand_draw_object].group.setAttribute('style', 'fill:#'+color);
-				  	  F3D_Scene.hand_draw_objects[F3D_Scene.hand_draw_object].group.setAttribute('transform',"matrix(1 0 0 1 0 0)");
-				  	  F3D_Scene.hand_draw_objects[F3D_Scene.hand_draw_object].circles = document.createElementNS(NS,"g");
-				  	  F3D_Scene.hand_draw_objects[F3D_Scene.hand_draw_object].circles.setAttribute('id', 'f3dhanddraw_circle_group');
-				  	  F3D_Scene.hand_draw_objects[F3D_Scene.hand_draw_object].circles.setAttribute('style', 'fill:#'+color);
+					var f3d_hdo = F3D_Scene.hand_draw_object;
+					if(!F3D_Scene.hand_draw_objects[]){
+					  F3D_Scene.hand_draw_objects[f3d_hdo]= {'group': '', 'circles': '', 'polygons':'', color: ''};
+					  F3D_Scene.hand_draw_objects[f3d_hdo].color = color;
+					  F3D_Scene.hand_draw_objects[f3d_hdo].group = document.createElementNS(NS,"g");
+				  	  F3D_Scene.hand_draw_objects[f3d_hdo].group.setAttribute('id', 'f3dhanddraw_group_'+F3D_Scene.hand_draw_object);
+				  	  F3D_Scene.hand_draw_objects[f3d_hdo].group.setAttribute('style', 'fill:#'+color);
+				  	  F3D_Scene.hand_draw_objects[f3d_hdo].group.setAttribute('transform',"matrix(1 0 0 1 0 0)");
+				  	  F3D_Scene.hand_draw_objects[f3d_hdo].circles = document.createElementNS(NS,"g");
+				  	  F3D_Scene.hand_draw_objects[f3d_hdo].circles.setAttribute('id', 'f3dhanddraw_circle_group');
+				  	  F3D_Scene.hand_draw_objects[f3d_hdo].circles.setAttribute('style', 'fill:#'+color);
 				  	  //Fast3d.f3dsphere_group.setAttribute('stroke', 'green');
-				  	  F3D_Scene.hand_draw_objects[F3D_Scene.hand_draw_object].group.appendChild(F3D_Scene.hand_draw_objects[F3D_Scene.hand_draw_object].circles);
-	                                  svgpaper.appendChild(F3D_Scene.hand_draw_objects[F3D_Scene.hand_draw_object].group);
+				  	  F3D_Scene.hand_draw_objects[f3d_hdo].group.appendChild(F3D_Scene.hand_draw_objects[f3d_hdo].circles);
+	                                  svgpaper.appendChild(F3D_Scene.hand_draw_objects[f3d_hdo].group);
 	                                  
 				    }
-				    F3D_Scene.hand_draw_objects[F3D_Scene.hand_draw_object].circles.appendChild(F3D_Sphere.fast3d_addCircle('f3dhanddraw_circle', F3D_sketch.minX+(F3D_sketch.maxX-F3D_sketch.minX)/2, F3D_sketch.minY+(F3D_sketch.maxY-F3D_sketch.minY)/2, radius, 'blue'));
+				    F3D_Scene.hand_draw_objects[f3d_hdo].circles.appendChild(F3D_Sphere.fast3d_addCircle('f3dhanddraw_circle', F3D_sketch.minX+(F3D_sketch.maxX-F3D_sketch.minX)/2, F3D_sketch.minY+(F3D_sketch.maxY-F3D_sketch.minY)/2, radius, 'blue'));
 	        
 					
 					
 					
-					F3D_Polygon.getTangents(F3D_Scene.hand_draw_objects[F3D_Scene.hand_draw_object]);
+					F3D_Polygon.getTangents(F3D_Scene.hand_draw_objects[f3d_hdo]);
 					break;
 				case "triangle":
 				case "x":
