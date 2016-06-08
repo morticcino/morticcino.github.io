@@ -1,6 +1,20 @@
+history
+	backup svgpaper, every update
+layer
+	insertBefore (togliere la variabile che fa da indice all'array)
+icons
+	http://www.w3schools.com/icons/google_icons_content.asp
+gests
+	hammer.js to detect pinch to scale obj
+remove
+	removeElement
+icons
+	mouse has the same icon selected from menu
+		pencil
+		menu
 device motion
 device orientation
-
+        gravity or move to a side
 
 I fumetti saranno editabili ed ogni uscita presenterà una nuova feature.
 ...+ profilo
