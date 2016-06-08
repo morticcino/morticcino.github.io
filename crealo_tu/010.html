@@ -93,7 +93,8 @@
       function move_next(){
       	if(F3D_Scene.elementToColor !== ''){
       		var next = F3D_Scene.elementToColor.nextSibling;
-      		next.insertBefore(F3D_Scene.elementToColor);
+      		var parent = F3D_Scene.elementToColor.parentElement;
+      		parent.insertBefore(next,F3D_Scene.elementToColor);
       	}
       }
       
