@@ -57,7 +57,8 @@
 		<input id="select" type="radio" name="tools" onclick="tools('select')" > Select<br />
 		<input id="save" type="radio" name="tools" onclick="tools('save')" > Save<br />
 		<input id="load" type="radio" name="tools" onclick="tools('load')" > Load<br />
-		<input id="curve" type="radio" name="tools" onclick="tools('curve')">Curve<br />
+		<!-- <input id="curve" type="radio" name="tools" onclick="tools('curve')">Curve<br /> -->
+		<input id="remove" type="radio" name="tools" onclick="tools('remove')">Remove<br />
 		<input id="tentacle" type="radio" name="tools" onclick="tools('tentacle')"> Tentacle<br />
 		<button id="more_fhd" name="add_fhd" onclick="add_fhd()">Add FHD</button><br />
 		Add text to scene<br />
@@ -158,6 +159,13 @@
       		case 'curve':
       			document.getElementById('curve_group').setAttribute('style','display:""');
       			F3D_Polygon.selected_tool = 'curve';
+      			break;
+      			
+      		case 'remove':
+      			if(F3D_Polyline.group_to_move !== ''){
+      				document.getElementById('svgpaper').removeChild(F3D_Polyline.group_to_move);
+      			}
+      			F3D_Polygon.selected_tool = 'remove';
       			break;
       		
       		case 'tentacle':
