@@ -81,6 +81,7 @@
   <script>
       NS="http://www.w3.org/2000/svg";
       var tool = 'draw';
+      var undo_redo = [];
       
       //var mousebuttondown = false;
       /*
@@ -473,6 +474,7 @@
 	
 			}
 			F3D_sketch.clean_data();
+			undo_redo.push(document.getElementById('svgpaper').outerHTML);
 		}  
       
   </script>
