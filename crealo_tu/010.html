@@ -65,6 +65,9 @@
 		<button id="move_prev" name="move_prev" onclick="move_prev()">Move prev</button><br />
 		<button id="move_next" name="move_next" onclick="move_next()">Move next</button><br />
 		<br />
+		<button id="undo" name="undo" onclick="undo()">Undo</button><br />
+		<button id="redo" name="redo" onclick="redo()">Redo</button><br />
+		<br />
 		Add text to scene<br />
 		<textarea id="textarea" name="text" rows="4"></textarea><br />
 		<button id="text_to_scene" name="text2scene" onclick="add_text2scene()">Add text</button><br />
@@ -82,6 +85,7 @@
       NS="http://www.w3.org/2000/svg";
       var tool = 'draw';
       var undo_redo = [];
+      var histoy = 0;
       
       //var mousebuttondown = false;
       /*
@@ -109,6 +113,14 @@
       	}else{
       		alert('no item to move selected!');
       	}
+      }
+      
+      function undo(){
+      	
+      }
+      
+      function redo(){
+      	
       }
       
       function add_fhd(){
@@ -178,6 +190,16 @@
       	
       }
       
+      function load(value){
+      	if(value.length > 1){
+		var to_load = value;
+		var tmp = to_load.replace('<svg id="svgpaper" xmlns="http:\/\/www.w3.org\/2000\/svg">','');
+		var tmp2 = tmp.replace('<\/svg>','');
+		
+		document.getElementById('svgpaper').innerHTML = tmp2;
+	}
+      }
+      
       function tools(toolstr){
         tool = toolstr;
         switch(tool){
@@ -199,7 +221,9 @@
       			setDrawInteraction();
       			break;
 	    	case 'load':
-				F3D_Polygon.selected_tool = 'load';
+			F3D_Polygon.selected_tool = 'load';
+			load(document.getElementById('svgfile').value);
+			/*
         		if(document.getElementById('svgfile').value.length > 1){
         			var to_load = document.getElementById('svgfile').value;
         			var tmp = to_load.replace('<svg id="svgpaper" xmlns="http:\/\/www.w3.org\/2000\/svg">','');
@@ -207,6 +231,7 @@
         			
         			document.getElementById('svgpaper').innerHTML = tmp2;
         		}
+        		*/
         		F3D_Scene.sketch_group = document.getElementById('sketch_group');
 	        	break;
 			
@@ -474,7 +499,7 @@
 	
 			}
 			F3D_sketch.clean_data();
-			undo_redo.push(document.getElementById('svgpaper').outerHTML);
+			undo_redo[history] = document.getElementById('svgpaper').outerHTML;
 		}  
       
   </script>
