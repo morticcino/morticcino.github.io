@@ -508,7 +508,7 @@
 			F3D_sketch.clean_data();
 			undo_redo_history += 1;
 			undo_redo[undo_redo_history] = document.getElementById('svgpaper').outerHTML;
-			undo_redo.length = undo_redo_history;
+			undo_redo.length = (undo_redo_history+1);
 		}  
       
   </script>
