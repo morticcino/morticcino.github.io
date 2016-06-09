@@ -116,7 +116,7 @@
       }
       
       function undo(){
-      	if(undo_redo_history < 0){
+      	if(undo_redo_history > 0){
       		undo_redo_history -= 1;
       	}
       	load(undo_redo[undo_redo_history]);
