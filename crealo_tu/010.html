@@ -60,6 +60,7 @@
 		<!-- <input id="curve" type="radio" name="tools" onclick="tools('curve')">Curve<br /> -->
 		<input id="remove" type="radio" name="tools" onclick="tools('remove')">Remove<br />
 		<input id="tentacle" type="radio" name="tools" onclick="tools('tentacle')"> Tentacle<br />
+		<input id="radius" type="number" name="radius" onclick="javascript:radius=this.value;" value="20"> Radius brush<br />
 		<button id="more_fhd" name="add_fhd" onclick="add_fhd()">Add FHD</button><br />
 		<br />
 		<button id="move_prev" name="move_prev" onclick="move_prev()">Move prev</button><br />
@@ -87,6 +88,7 @@
       var undo_redo = [];
       var undo_redo_history = 0;
       undo_redo[undo_redo_history] = document.getElementById('svgpaper').outerHTML;
+      var radius = 20;
       
       //var mousebuttondown = false;
       /*
@@ -489,9 +491,9 @@
 						
 					}else{
 						if(F3D_Polygon.selected_tool === 'draw'){
-							F3D_Polyline.drawExtrude(20);	
+							F3D_Polyline.drawExtrude(radius);	
 						}else if(F3D_Polygon.selected_tool === 'tentacle'){
-							F3D_Polyline.drawTentacle(20);	
+							F3D_Polyline.drawTentacle(radius);	
 						}
 					}
 					
