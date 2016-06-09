@@ -152,7 +152,7 @@
 		F3D_Scene.text_group= {'group': '', text: ''};
 		F3D_Scene.text_group.group = document.createElementNS(NS,"g");
 		F3D_Scene.text_group.group.setAttribute('id', 'f3dtext_group_'+tgl);
-		F3D_Scene.text_group.group.setAttribute('style', 'fill:#'+color+';font-family:bebas;');
+		F3D_Scene.text_group.group.setAttribute('style', 'fill:'+color+';font-family:bebas;');
   	  	F3D_Scene.text_group.group.setAttribute('transform',"matrix(1 0 0 1 100 100)");
 		F3D_Scene.text_group.group.appendChild(addText2Scene());
                 svgpaper.appendChild(F3D_Scene.text_group.group);
@@ -451,11 +451,11 @@
 					  F3D_Scene.hand_draw_objects[f3d_hdo].color = color;
 					  F3D_Scene.hand_draw_objects[f3d_hdo].group = document.createElementNS(NS,"g");
 				  	  F3D_Scene.hand_draw_objects[f3d_hdo].group.setAttribute('id', 'f3dhanddraw_group_'+F3D_Scene.hand_draw_object);
-				  	  F3D_Scene.hand_draw_objects[f3d_hdo].group.setAttribute('style', 'fill:#'+color);
+				  	  F3D_Scene.hand_draw_objects[f3d_hdo].group.setAttribute('style', 'fill:'+color);
 				  	  F3D_Scene.hand_draw_objects[f3d_hdo].group.setAttribute('transform',"matrix(1 0 0 1 0 0)");
 				  	  F3D_Scene.hand_draw_objects[f3d_hdo].circles = document.createElementNS(NS,"g");
 				  	  F3D_Scene.hand_draw_objects[f3d_hdo].circles.setAttribute('id', 'f3dhanddraw_circle_group');
-				  	  F3D_Scene.hand_draw_objects[f3d_hdo].circles.setAttribute('style', 'fill:#'+color);
+				  	  F3D_Scene.hand_draw_objects[f3d_hdo].circles.setAttribute('style', 'fill:'+color);
 				  	  //Fast3d.f3dsphere_group.setAttribute('stroke', 'green');
 				  	  F3D_Scene.hand_draw_objects[f3d_hdo].group.appendChild(F3D_Scene.hand_draw_objects[f3d_hdo].circles);
 	                                  svgpaper.appendChild(F3D_Scene.hand_draw_objects[f3d_hdo].group);
