@@ -6,7 +6,7 @@
     <script type="text/javascript" src="../ReDollar/src/dollar.js"></script>
     <script type="text/javascript" src="../js/simplify.js"></script>
     <script type="text/javascript" src="../js/f3d_dataType_010.js"></script>
-    <script type="text/javascript" src="../js/jscolor.min.js"></script>
+    <!-- <script type="text/javascript" src="../js/jscolor.min.js"></script> -->
     <script type="text/javascript" src="../js/hammer.min.js"></script>
     <style>
     .draggable {
@@ -53,7 +53,7 @@
 	  <div id="left_column">
 		<textarea id="svgfile" class="textarea" rows="6"></textarea><br />
 		<input id="draw" type="radio" name="tools" onclick="tools('draw')" checked> Draw<br />
-		<input id="color_picker" class="jscolor" value="0000ff" onchange="change_group_color(this.value)"><br />
+		<input id="color_picker" type="color" value="0000ff" onchange="change_group_color(this.value)"><br />
 		<input id="select" type="radio" name="tools" onclick="tools('select')" > Select<br />
 		<input id="save" type="radio" name="tools" onclick="tools('save')" > Save<br />
 		<input id="load" type="radio" name="tools" onclick="tools('load')" > Load<br />
@@ -193,7 +193,7 @@
       
       function change_group_color(color_value){
       	if(F3D_Scene.elementToColor !== ''){
-	      	F3D_Scene.elementToColor.setAttribute('style', 'fill:#'+color_value+';font-family:bebas;');
+	      	F3D_Scene.elementToColor.setAttribute('style', 'fill:'+color_value+';font-family:bebas;');
 	      	F3D_Scene.colorDict[F3D_Scene.elementToColor.getAttribute('id')]=color_value;			
       	}
       	
