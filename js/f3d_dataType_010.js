@@ -365,11 +365,11 @@ var F3D_Polyline = {
 		F3D_Scene.extrude_objects[F3D_Polyline.number_of_extrude] = {'group': '','circles': '', 'polygons':'', color: ''};
 		F3D_Scene.extrude_objects[F3D_Polyline.number_of_extrude].group = document.createElementNS(NS,"g");
       	F3D_Scene.extrude_objects[F3D_Polyline.number_of_extrude].group.setAttribute('id', 'f3dextrude_group'+F3D_Polyline.number_of_extrude);
-      	F3D_Scene.extrude_objects[F3D_Polyline.number_of_extrude].group.setAttribute('style','fill:#'+document.getElementById('color_picker').value);
+      	F3D_Scene.extrude_objects[F3D_Polyline.number_of_extrude].group.setAttribute('style','fill:'+document.getElementById('color_picker').value);
       	F3D_Scene.extrude_objects[F3D_Polyline.number_of_extrude].group.setAttribute('transform',"matrix(1 0 0 1 0 0)");
 		F3D_Scene.extrude_objects[F3D_Polyline.number_of_extrude].circles = document.createElementNS(NS,"g");
       	F3D_Scene.extrude_objects[F3D_Polyline.number_of_extrude].circles.setAttribute('id', 'f3dextrude_circles_group'+F3D_Polyline.number_of_extrude);
-      	F3D_Scene.extrude_objects[F3D_Polyline.number_of_extrude].circles.setAttribute('style','fill:#'+document.getElementById('color_picker').value);
+      	F3D_Scene.extrude_objects[F3D_Polyline.number_of_extrude].circles.setAttribute('style','fill:'+document.getElementById('color_picker').value);
       	F3D_Scene.extrude_objects[F3D_Polyline.number_of_extrude].group.appendChild(F3D_Scene.extrude_objects[F3D_Polyline.number_of_extrude].circles);
       	svgpaper.appendChild(F3D_Scene.extrude_objects[F3D_Polyline.number_of_extrude].group);
 		var simplyline = simplify(F3D_sketch.draw_gest, 5);
@@ -392,11 +392,11 @@ var F3D_Polyline = {
 		F3D_Scene.tentacle_objects[F3D_Polyline.number_of_tentacle] = {'group': '', 'circles': '', 'polygons':'', color: ''};
 		F3D_Scene.tentacle_objects[F3D_Polyline.number_of_tentacle].group = document.createElementNS(NS,"g");
       	F3D_Scene.tentacle_objects[F3D_Polyline.number_of_tentacle].group.setAttribute('id', 'f3dtentacle_group'+F3D_Polyline.number_of_tentacle);
-      	F3D_Scene.tentacle_objects[F3D_Polyline.number_of_tentacle].group.setAttribute('style','fill:#'+document.getElementById('color_picker').value);
+      	F3D_Scene.tentacle_objects[F3D_Polyline.number_of_tentacle].group.setAttribute('style','fill:'+document.getElementById('color_picker').value);
 		F3D_Scene.tentacle_objects[F3D_Polyline.number_of_tentacle].group.setAttribute('transform',"matrix(1 0 0 1 0 0)");
 		F3D_Scene.tentacle_objects[F3D_Polyline.number_of_tentacle].circles = document.createElementNS(NS,"g");
       	F3D_Scene.tentacle_objects[F3D_Polyline.number_of_tentacle].circles.setAttribute('id', 'f3dtentacle_circles_group'+F3D_Polyline.number_of_tentacle);
-      	F3D_Scene.tentacle_objects[F3D_Polyline.number_of_tentacle].circles.setAttribute('style','fill:#'+document.getElementById('color_picker').value);
+      	F3D_Scene.tentacle_objects[F3D_Polyline.number_of_tentacle].circles.setAttribute('style','fill:'+document.getElementById('color_picker').value);
       	//F3D_Scene.tentacle_objects[F3D_Polyline.number_of_tentacle].circles.setAttribute('transform',"matrix(1 0 0 1 0 0)");
       	F3D_Scene.tentacle_objects[F3D_Polyline.number_of_tentacle].group.appendChild(F3D_Scene.tentacle_objects[F3D_Polyline.number_of_tentacle].circles);
       	svgpaper.appendChild(F3D_Scene.tentacle_objects[F3D_Polyline.number_of_tentacle].group);
@@ -505,7 +505,7 @@ var F3D_Polyline = {
         evt.target.setAttributeNS(null, "fill", 'green');
     },
     outElement: function(evt) {
-	evt.target.setAttributeNS(null, 'style','fill:#'+document.getElementById('color_picker').value);
+	evt.target.setAttributeNS(null, 'style','fill:'+document.getElementById('color_picker').value);
     },
     deselectElement: function(evt) {
   	if(F3D_Polyline.group_to_move != 0){
