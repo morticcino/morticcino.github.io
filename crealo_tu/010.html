@@ -204,6 +204,7 @@
 		var tmp2 = tmp.replace('<\/svg>','');
 		
 		document.getElementById('svgpaper').innerHTML = tmp2;
+		F3D_Scene.sketch_group = document.getElementById('sketch_group');
 	//}
       }
       
@@ -238,8 +239,9 @@
         			
         			document.getElementById('svgpaper').innerHTML = tmp2;
         		}
-        		*/
+        		
         		F3D_Scene.sketch_group = document.getElementById('sketch_group');
+	        	*/
 	        	break;
 			
         	case 'save':
