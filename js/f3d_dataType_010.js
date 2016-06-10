@@ -373,7 +373,7 @@ var F3D_Polyline = {
       	//F3D_Scene.extrude_objects[F3D_Polyline.number_of_extrude].circles.setAttribute('style','fill:'+document.getElementById('color_picker').value);
       	F3D_Scene.extrude_objects[F3D_Polyline.number_of_extrude].group.appendChild(F3D_Scene.extrude_objects[F3D_Polyline.number_of_extrude].circles);
       	svgpaper.appendChild(F3D_Scene.extrude_objects[F3D_Polyline.number_of_extrude].group);
-		var simplyline = simplify(F3D_sketch.draw_gest, 5);
+		var simplyline = simplify(F3D_sketch.draw_gest, simplify_value);
 		if(ray){
 			var radius = ray;
 		}else{
@@ -401,7 +401,7 @@ var F3D_Polyline = {
       	//F3D_Scene.tentacle_objects[F3D_Polyline.number_of_tentacle].circles.setAttribute('transform',"matrix(1 0 0 1 0 0)");
       	F3D_Scene.tentacle_objects[F3D_Polyline.number_of_tentacle].group.appendChild(F3D_Scene.tentacle_objects[F3D_Polyline.number_of_tentacle].circles);
       	svgpaper.appendChild(F3D_Scene.tentacle_objects[F3D_Polyline.number_of_tentacle].group);
-		var simplyline = simplify(F3D_sketch.draw_gest, 5);
+		var simplyline = simplify(F3D_sketch.draw_gest, simplify_value);
 		//var radius = 20;
 		if(ray){
 			var radius = ray;
