@@ -160,7 +160,7 @@ var F3D_Sphere = {
         evt.target.setAttributeNS(null, "fill", 'green');
     },
     outElement: function(evt) {
-	evt.target.setAttributeNS(null, "fill", document.getElementById('color_picker').value);
+	evt.target.removeAttribute("fill");
     },
     wheelElement: function(evt) {
   	var tmpElem = evt.target;
