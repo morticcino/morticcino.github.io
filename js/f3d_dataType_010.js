@@ -291,7 +291,8 @@ var F3D_Polygon = {
 					group.polygons.appendChild(F3D_Polygon.addPolygon('polygon',poc2x,poc2y,poc1x,poc1y,poc4x,poc4y,poc3x,poc3y));
 					
     				}
-    			
+    				group.group.insertBefore(group.circles,group.polygons);
+    				/*
 					//to put spheres on top
 					var f3dspheres = group.circles.innerHTML;
 					//var spheregroup = svgpaper.getElementById('f3dsphere_group');
@@ -308,7 +309,7 @@ var F3D_Polygon = {
 			
 				group.circles.innerHTML = f3dspheres;
 				group.group.appendChild(group.circles);	
-				
+				*/
     			}
     		}else{
     		}
