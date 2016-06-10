@@ -184,6 +184,7 @@ var F3D_Sphere = {
 		F3D_Sphere.scale -= 1;
 	}
 	F3D_Sphere.scale_fn(F3D_Sphere.scale, evt.target);
+	F3D_Polygon.drawTangent();
     },
     deselectElement: function(evt) {
   	if(F3D_Sphere.selectedElement != 0){
