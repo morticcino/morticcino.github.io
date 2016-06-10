@@ -61,6 +61,7 @@
 		<input id="remove" type="radio" name="tools" onclick="tools('remove')">Remove<br />
 		<input id="tentacle" type="radio" name="tools" onclick="tools('tentacle')"> Tentacle<br />
 		<input id="radius" type="number" name="radius" onclick="javascript:brush_size=this.value;" value="20" min="1" max="100"> Radius brush<br />
+		<input id="simplify" type="number" name="simplify" onclick="javascript:simplify_value=this.value;" value="5" min="1" max="5"> Simplify value<br />
 		<button id="more_fhd" name="add_fhd" onclick="add_fhd()">Add FHD</button><br />
 		<br />
 		<button id="move_prev" name="move_prev" onclick="move_prev()">Move prev</button><br />
@@ -92,6 +93,7 @@
       var undo_redo_history = 0;
       undo_redo[undo_redo_history] = document.getElementById('svgpaper').outerHTML;
       var brush_size = 20;
+      var simplify_value = 5;
       
       //var mousebuttondown = false;
       /*
