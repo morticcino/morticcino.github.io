@@ -383,7 +383,7 @@ var F3D_Polyline = {
 		//var step = radius/simplyline.length;
       	for (var i =0;i<simplyline.length;i++){
       		F3D_Scene.extrude_objects[F3D_Polyline.number_of_extrude].circles.appendChild(F3D_Sphere.fast3d_addCircle('extrude'+F3D_Polyline.number_of_extrude,simplyline[i].x,simplyline[i].y,radius,'pink'));
-      		F3D_Sphere.circle_in_scene++;
+      		//F3D_Sphere.circle_in_scene++;
       	}
       	F3D_Polygon.getTangents(F3D_Scene.extrude_objects[F3D_Polyline.number_of_extrude]);
       	F3D_Polyline.number_of_extrude++;
@@ -411,7 +411,7 @@ var F3D_Polyline = {
 		var step = radius/simplyline.length;
       	for (var i =0;i<simplyline.length;i++){
       		F3D_Scene.tentacle_objects[F3D_Polyline.number_of_tentacle].circles.appendChild(F3D_Sphere.fast3d_addCircle('tentacle'+F3D_Polyline.number_of_tentacle,simplyline[i].x,simplyline[i].y,(step*(simplyline.length-i))>1?step*(simplyline.length-i):1,'pink'));
-      		F3D_Sphere.circle_in_scene++;
+      		//F3D_Sphere.circle_in_scene++;
       	}
       	F3D_Polygon.getTangents(F3D_Scene.tentacle_objects[F3D_Polyline.number_of_tentacle]);
       	F3D_Polyline.number_of_tentacle++;
