@@ -19,5 +19,8 @@ http://hammerjs.github.io/
 Custom font
 http://flat-it.com
 
+Undo redo
+http://backbone.undojs.com/
+
 Tutorials, manual, pages...
 http://docs.webplatform.org/wiki/svg/tutorials
