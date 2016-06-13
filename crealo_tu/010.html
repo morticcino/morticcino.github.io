@@ -127,6 +127,10 @@
       		undo_redo_history -= 1;
       	}
       	load(undo_redo[undo_redo_history].html);
+      	
+      	F3D_Scene.hand_draw_objects = undo_redo[undo_redo_history].hd;
+      	F3D_Scene.extrude_objects = undo_redo[undo_redo_history].ex;
+      	F3D_Scene.tentacle_objects = undo_redo[undo_redo_history].tn;
       }
       
       function redo(){
