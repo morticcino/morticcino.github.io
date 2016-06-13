@@ -213,7 +213,8 @@
 		var to_load = value;
 		var tmp = to_load.replace('<svg id="svgpaper" xmlns="http:\/\/www.w3.org\/2000\/svg">','');
 		var tmp2 = tmp.replace('<\/svg>','');
-		
+		var parser = new DOMParser();
+		var doc = parser.parseFromString(tmp, "image/svg+xml");
 		document.getElementById('svgpaper').innerHTML = tmp2;
 		F3D_Scene.sketch_group = document.getElementById('sketch_group');
 	//}
