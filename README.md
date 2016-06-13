@@ -21,6 +21,8 @@ http://flat-it.com
 
 Undo redo
 http://backbone.undojs.com/
+http://backbonejs.org/
+http://underscorejs.org/
 
 Tutorials, manual, pages...
 http://docs.webplatform.org/wiki/svg/tutorials
