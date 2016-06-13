@@ -8,9 +8,6 @@
     <script type="text/javascript" src="../js/f3d_dataType_010.js"></script>
     <!-- <script type="text/javascript" src="../js/jscolor.min.js"></script> -->
     <script type="text/javascript" src="../js/hammer.min.js"></script>
-    <script type="text/javascript" src="../js/underscore-min.js"></script>
-    <script type="text/javascript" src="../js/backbone-min.js"></script>
-    <script type="text/javascript" src="../js/Backbone.Undo.min.js"></script>
     <style>
     .draggable {
         cursor: move;
@@ -96,9 +93,7 @@
       undo_redo[undo_redo_history] = document.getElementById('svgpaper').outerHTML;
       var brush_size = 20;
       var simplify_value = 5;
-      var undoManager = new Backbone.UndoManager();
-      undoManager.register(document.getElementById('svgpaper'), F3D_Scene.hand_draw_objects, F3D_Scene.extrude_objects, F3D_Scene.tentacle_objects);
-      undoManager.startTracking();
+      
       
       //var mousebuttondown = false;
       /*
