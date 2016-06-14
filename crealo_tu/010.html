@@ -214,7 +214,7 @@
       		//svg.selectAll("*").remove();
 		var to_load = value;
 		var parser = new DOMParser();
-		var doc = parser.parseFromString(tmp, "image/svg+xml");
+		var doc = parser.parseFromString(to_load, "image/svg+xml");
 		document.getElementById("svgpaper").remove();
 		document.appendChild(doc.documentElement);
 		F3D_Scene.sketch_group = document.getElementById('sketch_group');
