@@ -174,7 +174,8 @@
       }
       
       function setDrawInteraction(){
-      		for(var i = 0;i<F3D_Scene.hand_draw_objects.length;i++){
+      		var f3d_hd_l = F3D_Scene.hand_draw_objects.length;
+      		for(var i = 0;i<f3d_hd_l;i++){
 			F3D_Scene.hand_draw_objects[i].circles.removeAttributeNS(null, 'onmousedown');
 			F3D_Scene.hand_draw_objects[i].circles.removeAttributeNS(null, 'ontouchstart');
 			F3D_Scene.hand_draw_objects[i].polygons.removeAttributeNS(null, 'onmousedown');
@@ -185,13 +186,15 @@
 	    	//for(var i = 0;i<F3D_Scene.tentacle_objects.length;i++){
 		//	F3D_Scene.tentacle_objects[i].circles.removeAttributeNS(null, 'onmousedown');
 		//}
-		for(var i = 0;i<F3D_Scene.tentacle_objects.length;i++){
+		var f3d_to_l = F3D_Scene.tentacle_objects.length;
+		for(var i = 0;i<f3d_to_l;i++){
 			F3D_Scene.tentacle_objects[i].circles.removeAttributeNS(null, 'onmousedown');
 			F3D_Scene.tentacle_objects[i].circles.removeAttributeNS(null, 'ontouchstart');
 			F3D_Scene.tentacle_objects[i].polygons.removeAttributeNS(null, 'ontouchstart');
 			F3D_Scene.tentacle_objects[i].polygons.removeAttributeNS(null, 'ontouchstart');
 		}
-		for(var i = 0;i<F3D_Scene.extrude_objects.length;i++){
+		var f3d_eo_l = F3D_Scene.extrude_objects.length;
+		for(var i = 0;i<f3d_to_l;i++){
 			F3D_Scene.extrude_objects[i].circles.removeAttributeNS(null, 'onmousedown');
 			F3D_Scene.extrude_objects[i].circles.removeAttributeNS(null, 'ontouchstart');
 			F3D_Scene.extrude_objects[i].polygons.removeAttributeNS(null, 'onmousedown');
@@ -456,12 +459,12 @@
 					}else{
 						radius = height/2;
 					}
-					var f3d_hdo = F3D_Scene.hand_draw_object;
+					var f3d_hdo = F3D_Scene.hand_draw_objects.length;
 					if(!F3D_Scene.hand_draw_objects[f3d_hdo]){
 					  F3D_Scene.hand_draw_objects[f3d_hdo]= {'group': '', 'circles': '', 'polygons':'', color: ''};
 					  F3D_Scene.hand_draw_objects[f3d_hdo].color = color;
 					  F3D_Scene.hand_draw_objects[f3d_hdo].group = document.createElementNS(NS,"g");
-				  	  F3D_Scene.hand_draw_objects[f3d_hdo].group.setAttribute('id', 'f3dhanddraw_group_'+F3D_Scene.hand_draw_object);
+				  	  F3D_Scene.hand_draw_objects[f3d_hdo].group.setAttribute('id', 'f3dhanddraw_group_'+f3d_hdo);
 				  	  F3D_Scene.hand_draw_objects[f3d_hdo].group.setAttribute('style', 'fill:'+color);
 				  	  F3D_Scene.hand_draw_objects[f3d_hdo].group.setAttribute('transform',"matrix(1 0 0 1 0 0)");
 				  	  F3D_Scene.hand_draw_objects[f3d_hdo].circles = document.createElementNS(NS,"g");
