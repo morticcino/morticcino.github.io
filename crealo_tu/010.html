@@ -124,16 +124,19 @@
       	}
       }
       
+      function json_parse(str){
+      	return JSON.parse(str);
+      }
+      
       function undo(){
       	if(undo_redo_history > 0){
       		undo_redo_history -= 1;
       	}
       	load(undo_redo[undo_redo_history].html);
       	
-      	F3D_Scene.hand_draw_objects[F3D_Scene.hand_draw_object].circles.childNodes.length = undo_redo[undo_redo_history].hdcce;
-      	F3D_Scene.hand_draw_objects.length = undo_redo[undo_redo_history].hd;
-      	F3D_Scene.extrude_objects.length = undo_redo[undo_redo_history].ex;
-      	F3D_Scene.tentacle_objects.length = undo_redo[undo_redo_history].tn;
+      	F3D_Scene.hand_draw_objects = json_parse(undo_redo[undo_redo_history].hd);
+      	F3D_Scene.extrude_objects = json_parse(undo_redo[undo_redo_history].ex);
+      	F3D_Scene.tentacle_objects = json_parse(undo_redo[undo_redo_history].tn);
       }
       
       function redo(){
@@ -434,6 +437,11 @@
 		mouseup();
 	}
 	
+	function save(obj){
+		//return JSON.parse(JSON.stringify(obj));
+		return JSON.stringify(obj);
+	}
+	
 	function mouseup(  ){
 		svgpaper.removeEventListener( 'mousemove', onDocumentMouseMove, false );
 	    svgpaper.removeEventListener( 'touchmove', onDocumentMobileMouseMove, false );
@@ -530,7 +538,7 @@
 			}
 			F3D_sketch.clean_data();
 			undo_redo_history += 1;
-			undo_redo[undo_redo_history] = {html: document.getElementById('svgpaper').outerHTML, hd: F3D_Scene.hand_draw_objects.length, hdcce: F3D_Scene.hand_draw_objects[F3D_Scene.hand_draw_object].circles.childNodes.length, ex: F3D_Scene.extrude_objects.length,tn: F3D_Scene.tentacle_objects.length};
+			undo_redo[undo_redo_history] = {html: document.getElementById('svgpaper').outerHTML, hd: save(F3D_Scene.hand_draw_object), ex: save(F3D_Scene.extrude_objects),tn: save(F3D_Scene.tentacle_objects)};
 			undo_redo.length = (undo_redo_history+1);
 		}  
       
