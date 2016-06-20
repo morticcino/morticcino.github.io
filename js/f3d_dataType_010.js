@@ -317,18 +317,25 @@ var F3D_Polygon = {
     	
     	},
     drawTangent: function(){
-    	var length = F3D_Scene.hand_draw_objects.length;
-    	for(var i = 0;i<length;i++){
-    		F3D_Polygon.getTangents(F3D_Scene.hand_draw_objects[i]);
+    	if(F3D_Scene.hand_draw_objects){
+    		var length = F3D_Scene.hand_draw_objects.length;
+	    	for(var i = 0;i<length;i++){
+	    		F3D_Polygon.getTangents(F3D_Scene.hand_draw_objects[i]);
+	    	}	
     	}
-    	length = F3D_Polyline.tentacle_objects.length;
-    	for(var i = 0;i<length;i++){
-    		F3D_Polygon.getTangents(F3D_Scene.tentacle_objects[i]);
+    	if(F3D_Polyline.tentacle_objects){
+    		length = F3D_Polyline.tentacle_objects.length;
+	    	for(var i = 0;i<length;i++){
+	    		F3D_Polygon.getTangents(F3D_Scene.tentacle_objects[i]);
+	    	}	
     	}
-    	length = F3D_Scene.extrude_objects.length;
-    	for(var i = 0;i<length;i++){
-    		F3D_Polygon.getTangents(F3D_Scene.extrude_objects[i]);
+    	if(F3D_Scene.extrude_objects){
+    		length = F3D_Scene.extrude_objects.length;
+	    	for(var i = 0;i<length;i++){
+	    		F3D_Polygon.getTangents(F3D_Scene.extrude_objects[i]);
+	    	}	
     	}
+    	
     	
     }
 }
