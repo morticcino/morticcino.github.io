@@ -147,8 +147,10 @@
 	  //span.appendChild(document
 	  //  .createTextNode(part.value));
 	  //document.documentElement.appendChild(span);
-	 
-	  indexes.push(part.value);
+	 if(part.value !== 'f3dhanddraw_group_'){
+	 	indexes.push(part.value);	
+	 }
+	  
 	});
         //F3D_Scene.hand_draw_objects[0].group = document.getElementById('f3dhanddraw_group_'+0);
         var diff = JsDiff.diffChars('f3dhanddraw_group_', document.getElementById('svgpaper').outerHTML.match(/f3dhanddraw_group_(\d*)/g)[0]);
