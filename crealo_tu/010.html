@@ -538,7 +538,7 @@
 			}
 			F3D_sketch.clean_data();
 			undo_redo_history += 1;
-			undo_redo[undo_redo_history] = {html: document.getElementById('svgpaper').outerHTML, hd: save(F3D_Scene.hand_draw_object), ex: save(F3D_Scene.extrude_objects),tn: save(F3D_Scene.tentacle_objects)};
+			undo_redo[undo_redo_history] = {html: document.getElementById('svgpaper').outerHTML, hd: save(F3D_Scene.hand_draw_objects), ex: save(F3D_Scene.extrude_objects),tn: save(F3D_Scene.tentacle_objects)};
 			undo_redo.length = (undo_redo_history+1);
 		}  
       
