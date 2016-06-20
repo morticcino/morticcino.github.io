@@ -24,5 +24,8 @@ http://backbone.undojs.com/
 http://backbonejs.org/
 http://underscorejs.org/
 
+String diff
+https://github.com/kpdecker/jsdiff
+
 Tutorials, manual, pages...
 http://docs.webplatform.org/wiki/svg/tutorials
