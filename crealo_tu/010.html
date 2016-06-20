@@ -133,25 +133,30 @@
       //document.getElementById('svgpaper').outerHTML.match(/f3dhanddraw_group_(\d*)/g)[0]
         
       function undo(){
+      	function find_index(str){
+      		JsDiff.diffChars('f3dhanddraw_group_', document.getElementById('svgpaper').outerHTML.match(/f3dhanddraw_group_(\d*)/g)[0]).forEach(function(part){
+		color = part.added ? 'green' :
+		    part.removed ? 'red' : 'grey';
+		  //span = document.createElement('span');
+		  //span.style.color = color;
+		  //span.appendChild(document
+		  //  .createTextNode(part.value));
+		  //document.documentElement.appendChild(span);
+		 if(part.value !== 'f3dhanddraw_group_'){
+		 	indexes.push(part.value);	
+		 }
+		  
+		});
+      	}
+      	
+      	F3D_Scene.text_group.group = document.getElementById('f3dtext_group_'+0);
+	        
       	if(undo_redo_history > 0){
       		undo_redo_history -= 1;
       	}
       	load(undo_redo[undo_redo_history].html);
       	var indexes = [];
-      	F3D_Scene.text_group.group = document.getElementById('f3dtext_group_'+0);
-        JsDiff.diffChars('f3dhanddraw_group_', document.getElementById('svgpaper').outerHTML.match(/f3dhanddraw_group_(\d*)/g)[0]).forEach(function(part){
-	color = part.added ? 'green' :
-	    part.removed ? 'red' : 'grey';
-	  //span = document.createElement('span');
-	  //span.style.color = color;
-	  //span.appendChild(document
-	  //  .createTextNode(part.value));
-	  //document.documentElement.appendChild(span);
-	 if(part.value !== 'f3dhanddraw_group_'){
-	 	indexes.push(part.value);	
-	 }
-	  
-	});
+      	
         //F3D_Scene.hand_draw_objects[0].group = document.getElementById('f3dhanddraw_group_'+0);
         var diff = JsDiff.diffChars('f3dhanddraw_group_', document.getElementById('svgpaper').outerHTML.match(/f3dhanddraw_group_(\d*)/g)[0]);
         F3D_Scene.hand_draw_objects[0].circles = document.getElementById('f3dhanddraw_circle_group_'+0);
