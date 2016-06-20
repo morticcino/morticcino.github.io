@@ -215,7 +215,7 @@ var F3D_Polygon = {
 	return polygon;
     },
     getTangents: function(group){
-    	var l = group.circles.childElementCount;
+    	var l = group.circles.childNodes.length;
     	if(l > 1){
     		for(var i = 0;i<l;i++){
     			var el = group.circles.childNodes[i];
