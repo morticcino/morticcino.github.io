@@ -135,20 +135,15 @@
       function undo(){
       	var primitive = ['f3dtext_group_','f3dhanddraw_group_','f3dhanddraw_circles_group_','line_group_','f3dextrude_group_', 'f3dextrude_circles_group','f3dtentacle_group_','f3dtentacle_circles_group_'];
       	function find_index(str){
-      		//document.getElementById('svgpaper').outerHTML.match(/f3dhanddraw_group_(\d+)/g).forEach(function(str){console.log(str.match(/(\d+)/g)[1]);})
-      		JsDiff.diffChars('f3dhanddraw_group_', document.getElementById('svgpaper').outerHTML.match(/f3dhanddraw_group_(\d*)/g)[0]).forEach(function(part){
-		color = part.added ? 'green' :
-		    part.removed ? 'red' : 'grey';
-		  //span = document.createElement('span');
-		  //span.style.color = color;
-		  //span.appendChild(document
-		  //  .createTextNode(part.value));
-		  //document.documentElement.appendChild(span);
-		 if(part.value !== 'f3dhanddraw_group_'){
-		 	indexes.push(part.value);	
-		 }
-		  
-		});
+      		var re = new RegExp(str+"(\\d+)","g")
+      		document.getElementById('svgpaper').outerHTML.match(re).forEach(function(str){
+      			var index = str.match(/(\d+)/g)[1];
+      			//create a dict for all structure data!!!
+      			F3D_Scene.hand_draw_objects[0].group = document.getElementById('f3dhanddraw_group_'+index);
+      			F3D_Scene.hand_draw_objects[0].circles = document.getElementById('f3dhanddraw_circles_group_'+index);
+      			F3D_Scene.hand_draw_objects[0].polygons = document.getElementById('line_group_'+index);
+      		})
+      		
       	}
       	
       	F3D_Scene.text_group.group = document.getElementById('f3dtext_group_'+0);
@@ -165,8 +160,7 @@
       	//da finire...!!!
       	//F3D_Scene.hand_draw_objects[0].group = document.getElementById('f3dhanddraw_group_'+0);
         var diff = JsDiff.diffChars('f3dhanddraw_group_', document.getElementById('svgpaper').outerHTML.match(/f3dhanddraw_group_(\d*)/g)[0]);
-        F3D_Scene.hand_draw_objects[0].circles = document.getElementById('f3dhanddraw_circles_group_'+0);
-      	F3D_Scene.hand_draw_objects[0].polygons = document.getElementById('line_group_'+0);
+        
       	//F3D_Scene.hand_draw_objects = json_parse(undo_redo[undo_redo_history].hd);
       	//F3D_Scene.extrude_objects = json_parse(undo_redo[undo_redo_history].ex);
       	//F3D_Scene.tentacle_objects = json_parse(undo_redo[undo_redo_history].tn);
