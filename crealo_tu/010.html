@@ -135,6 +135,7 @@
       function undo(){
       	var primitive = ['f3dtext_group_','f3dhanddraw_group_','f3dhanddraw_circles_group_','line_group_','f3dextrude_group_', 'f3dextrude_circles_group','f3dtentacle_group_','f3dtentacle_circles_group_'];
       	function find_index(str){
+      		//document.getElementById('svgpaper').outerHTML.match(/f3dhanddraw_group_(\d+)/)
       		JsDiff.diffChars('f3dhanddraw_group_', document.getElementById('svgpaper').outerHTML.match(/f3dhanddraw_group_(\d*)/g)[0]).forEach(function(part){
 		color = part.added ? 'green' :
 		    part.removed ? 'red' : 'grey';
