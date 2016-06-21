@@ -129,38 +129,7 @@
       	return JSON.parse(str);
       }
       
-      //DA GENERALIZZARE!!!!
-      
-        
-      function undo(){
-      	//var primitive = ['f3dtext_group_','f3dhanddraw_group_','f3dhanddraw_circles_group_','line_group_','f3dextrude_group_', 'f3dextrude_circles_group','f3dtentacle_group_','f3dtentacle_circles_group_'];
-      	
-      	function find_index(str){
-      		var res = [];
-      		var re = new RegExp(str+"(\\d+)","g")
-      		var match_results = document.getElementById('svgpaper').outerHTML.match(re)
-      		if(match_results){
-      			match_results.forEach(function(str){
-	      			res.push(str.match(/(\d+)/g)[1]);
-	      			//create a dict for all structure data!!!
-	      			//F3D_Scene.hand_draw_objects[0].group = document.getElementById('f3dhanddraw_group_'+index);
-	      			//F3D_Scene.hand_draw_objects[0].circles = document.getElementById('f3dhanddraw_circles_group_'+index);
-	      			//?!?F3D_Scene.hand_draw_objects[0].polygons = document.getElementById('line_group_'+index);
-	      		});	
-      		}else{
-      			return '';
-      		}
-      		
-      		return res;
-      		
-      	}
-      	
-      	if(undo_redo_history > 0){
-      		undo_redo_history -= 1;
-      	}
-      	
-      	load(undo_redo[undo_redo_history].html);
-      	
+      function update_data_structure(){
       	var find_results = find_index('f3dtext_group_');
       	if(find_results !== ''){
       		for(var i = 0; i < find_results.length;i++){
@@ -189,9 +158,35 @@
 	      		F3D_Scene.hand_draw_objects[i].circles = document.getElementById('f3dtentacle_circles_group_'+i);	
 	      	}
       	}
-      	//F3D_Scene.hand_draw_objects = json_parse(undo_redo[undo_redo_history].hd);
-      	//F3D_Scene.extrude_objects = json_parse(undo_redo[undo_redo_history].ex);
-      	//F3D_Scene.tentacle_objects = json_parse(undo_redo[undo_redo_history].tn);
+      }
+        
+      function undo(){
+      	//var primitive = ['f3dtext_group_','f3dhanddraw_group_','f3dhanddraw_circles_group_','line_group_','f3dextrude_group_', 'f3dextrude_circles_group','f3dtentacle_group_','f3dtentacle_circles_group_'];
+      	
+      	function find_index(str){
+      		var res = [];
+      		var re = new RegExp(str+"(\\d+)","g")
+      		var match_results = document.getElementById('svgpaper').outerHTML.match(re)
+      		if(match_results){
+      			match_results.forEach(function(str){
+	      			res.push(str.match(/(\d+)/g)[1]);
+	      		});	
+      		}else{
+      			return '';
+      		}
+      		
+      		return res;
+      		
+      	}
+      	
+      	if(undo_redo_history > 0){
+      		undo_redo_history -= 1;
+      	}
+      	
+      	load(undo_redo[undo_redo_history].html);
+      	
+      	update_data_structure();
+      	
       }
       
       function redo(){
@@ -200,9 +195,7 @@
       	}
       	load(undo_redo[undo_redo_history]);
       	
-      	F3D_Scene.hand_draw_objects.length = undo_redo[undo_redo_history].hd;
-      	F3D_Scene.extrude_objects.length = undo_redo[undo_redo_history].ex;
-      	F3D_Scene.tentacle_objects.length = undo_redo[undo_redo_history].tn;
+      	update_data_structure();
       }
       
       function add_fhd(){
