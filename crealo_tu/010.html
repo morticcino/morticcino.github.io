@@ -138,13 +138,19 @@
       	function find_index(str){
       		var res = [];
       		var re = new RegExp(str+"(\\d+)","g")
-      		document.getElementById('svgpaper').outerHTML.match(re).forEach(function(str){
-      			res.push(str.match(/(\d+)/g)[1]);
-      			//create a dict for all structure data!!!
-      			//F3D_Scene.hand_draw_objects[0].group = document.getElementById('f3dhanddraw_group_'+index);
-      			//F3D_Scene.hand_draw_objects[0].circles = document.getElementById('f3dhanddraw_circles_group_'+index);
-      			//?!?F3D_Scene.hand_draw_objects[0].polygons = document.getElementById('line_group_'+index);
-      		});
+      		var match_results = document.getElementById('svgpaper').outerHTML.match(re)
+      		if(match_results){
+      			match_results.forEach(function(str){
+	      			res.push(str.match(/(\d+)/g)[1]);
+	      			//create a dict for all structure data!!!
+	      			//F3D_Scene.hand_draw_objects[0].group = document.getElementById('f3dhanddraw_group_'+index);
+	      			//F3D_Scene.hand_draw_objects[0].circles = document.getElementById('f3dhanddraw_circles_group_'+index);
+	      			//?!?F3D_Scene.hand_draw_objects[0].polygons = document.getElementById('line_group_'+index);
+	      		});	
+      		}else{
+      			return '';
+      		}
+      		
       		return res;
       		
       	}
@@ -156,26 +162,32 @@
       	load(undo_redo[undo_redo_history].html);
       	
       	var find_results = find_index('f3dtext_group_');
-      	for(var i = 0; i < find_results.length;i++){
-      		F3D_Scene.text_group[i].group = document.getElementById('f3dtext_group_'+i);
+      	if(find_results !== ''){
+      		for(var i = 0; i < find_results.length;i++){
+	      		F3D_Scene.text_group[i].group = document.getElementById('f3dtext_group_'+i);
+	      	}	
       	}
+      	
       	var find_results = find_index('f3dhanddraw_group_');
-      	for(var i = 0; i < find_results.length;i++){
-      		F3D_Scene.hand_draw_objects[i].group = document.getElementById('f3dhanddraw_group_'+i);
-      		F3D_Scene.hand_draw_objects[i].circles = document.getElementById('f3dhanddraw_circles_group_'+i);	
+      	if(find_results !== ''){
+	      	for(var i = 0; i < find_results.length;i++){
+	      		F3D_Scene.hand_draw_objects[i].group = document.getElementById('f3dhanddraw_group_'+i);
+	      		F3D_Scene.hand_draw_objects[i].circles = document.getElementById('f3dhanddraw_circles_group_'+i);	
+	      	}
       	}
-      	//da finire...!!!
-      	//F3D_Scene.hand_draw_objects[0].group = document.getElementById('f3dhanddraw_group_'+0);
-        var diff = JsDiff.diffChars('f3dhanddraw_group_', document.getElementById('svgpaper').outerHTML.match(/f3dhanddraw_group_(\d*)/g)[0]);
-        var find_results = find_index('f3dextrude_group_');
-      	for(var i = 0; i < find_results.length;i++){
-      		F3D_Scene.hand_draw_objects[i].group = document.getElementById('f3dextrude_group_'+i);
-      		F3D_Scene.hand_draw_objects[i].circles = document.getElementById('f3dextrude_circles_group_'+i);	
+      	var find_results = find_index('f3dextrude_group_');
+      	if(find_results !== ''){
+	      	for(var i = 0; i < find_results.length;i++){
+	      		F3D_Scene.hand_draw_objects[i].group = document.getElementById('f3dextrude_group_'+i);
+	      		F3D_Scene.hand_draw_objects[i].circles = document.getElementById('f3dextrude_circles_group_'+i);	
+	      	}
       	}
       	var find_results = find_index('f3dtentacle_group_');
-      	for(var i = 0; i < find_results.length;i++){
-      		F3D_Scene.hand_draw_objects[i].group = document.getElementById('f3dtentacle_group_'+i);
-      		F3D_Scene.hand_draw_objects[i].circles = document.getElementById('f3dtentacle_circles_group_'+i);	
+      	if(find_results !== ''){
+	      	for(var i = 0; i < find_results.length;i++){
+	      		F3D_Scene.hand_draw_objects[i].group = document.getElementById('f3dtentacle_group_'+i);
+	      		F3D_Scene.hand_draw_objects[i].circles = document.getElementById('f3dtentacle_circles_group_'+i);	
+	      	}
       	}
       	//F3D_Scene.hand_draw_objects = json_parse(undo_redo[undo_redo_history].hd);
       	//F3D_Scene.extrude_objects = json_parse(undo_redo[undo_redo_history].ex);
