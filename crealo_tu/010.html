@@ -133,7 +133,7 @@
       //document.getElementById('svgpaper').outerHTML.match(/f3dhanddraw_group_(\d*)/g)[0]
         
       function undo(){
-      	var primitive = ['f3dtext_group_','f3dhanddraw_group_','f3dhanddraw_circle_group_','line_group_','f3dextrude_group', 'f3dextrude_circles_group','f3dtentacle_group','f3dtentacle_circles_group'];
+      	var primitive = ['f3dtext_group_','f3dhanddraw_group_','f3dhanddraw_circles_group_','line_group_','f3dextrude_group_', 'f3dextrude_circles_group','f3dtentacle_group_','f3dtentacle_circles_group_'];
       	function find_index(str){
       		JsDiff.diffChars('f3dhanddraw_group_', document.getElementById('svgpaper').outerHTML.match(/f3dhanddraw_group_(\d*)/g)[0]).forEach(function(part){
 		color = part.added ? 'green' :
@@ -164,7 +164,7 @@
       	//da finire...!!!
       	//F3D_Scene.hand_draw_objects[0].group = document.getElementById('f3dhanddraw_group_'+0);
         var diff = JsDiff.diffChars('f3dhanddraw_group_', document.getElementById('svgpaper').outerHTML.match(/f3dhanddraw_group_(\d*)/g)[0]);
-        F3D_Scene.hand_draw_objects[0].circles = document.getElementById('f3dhanddraw_circle_group_'+0);
+        F3D_Scene.hand_draw_objects[0].circles = document.getElementById('f3dhanddraw_circles_group_'+0);
       	F3D_Scene.hand_draw_objects[0].polygons = document.getElementById('line_group_'+0);
       	//F3D_Scene.hand_draw_objects = json_parse(undo_redo[undo_redo_history].hd);
       	//F3D_Scene.extrude_objects = json_parse(undo_redo[undo_redo_history].ex);
@@ -513,14 +513,14 @@
 				  	  F3D_Scene.hand_draw_objects[f3d_hdo].group.setAttribute('style', 'fill:'+color);
 				  	  F3D_Scene.hand_draw_objects[f3d_hdo].group.setAttribute('transform',"matrix(1 0 0 1 0 0)");
 				  	  F3D_Scene.hand_draw_objects[f3d_hdo].circles = document.createElementNS(NS,"g");
-				  	  F3D_Scene.hand_draw_objects[f3d_hdo].circles.setAttribute('id', 'f3dhanddraw_circle_group_'+f3d_hdo);
+				  	  F3D_Scene.hand_draw_objects[f3d_hdo].circles.setAttribute('id', 'f3dhanddraw_circles_group_'+f3d_hdo);
 				  	  //F3D_Scene.hand_draw_objects[f3d_hdo].circles.setAttribute('style', 'fill:'+color);
 				  	  //Fast3d.f3dsphere_group.setAttribute('stroke', 'green');
 				  	  F3D_Scene.hand_draw_objects[f3d_hdo].group.appendChild(F3D_Scene.hand_draw_objects[f3d_hdo].circles);
 	                                  svgpaper.appendChild(F3D_Scene.hand_draw_objects[f3d_hdo].group);
 	                                  
 				    }
-				    F3D_Scene.hand_draw_objects[f3d_hdo].circles.appendChild(F3D_Sphere.fast3d_addCircle('f3dhanddraw_circle', F3D_sketch.minX+(F3D_sketch.maxX-F3D_sketch.minX)/2, F3D_sketch.minY+(F3D_sketch.maxY-F3D_sketch.minY)/2, radius, 'blue'));
+				    F3D_Scene.hand_draw_objects[f3d_hdo].circles.appendChild(F3D_Sphere.fast3d_addCircle('f3dhanddraw_circles_', F3D_sketch.minX+(F3D_sketch.maxX-F3D_sketch.minX)/2, F3D_sketch.minY+(F3D_sketch.maxY-F3D_sketch.minY)/2, radius, 'blue'));
 	        
 					
 					
