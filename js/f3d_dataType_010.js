@@ -214,7 +214,7 @@ var F3D_Polygon = {
         polygon.setAttribute('onmouseout', "F3D_Sphere.outElement(evt)");
 	return polygon;
     },
-    getTangents: function(group){
+    getTangents: function(group,str_type){
     	var l = group.circles.childNodes.length;
     	if(l > 1){
     		for(var i = 0;i<l;i++){
@@ -222,7 +222,7 @@ var F3D_Polygon = {
     			var	cen1x = cen1y = cen2x = cen2y = 0;
     			if(!group.polygons){
 				  	group.polygons = document.createElementNS(NS,"g");
-				  	group.polygons.setAttribute('id', 'line_group_'+i);
+				  	group.polygons.setAttribute('id', str_type+'_lines_group_'+i);
 				  	//Fast3d.f3dsphere_group.setAttribute('stroke', 'green');
 				  	group.polygons.setAttribute('transform',"matrix(1 0 0 1 0 0)");
 				  	group.group.appendChild(group.polygons);
@@ -320,19 +320,19 @@ var F3D_Polygon = {
     	if(F3D_Scene.hand_draw_objects){
     		var length = F3D_Scene.hand_draw_objects.length;
 	    	for(var i = 0;i<length;i++){
-	    		F3D_Polygon.getTangents(F3D_Scene.hand_draw_objects[i]);
+	    		F3D_Polygon.getTangents(F3D_Scene.hand_draw_objects[i],'f3dhanddraw');
 	    	}	
     	}
     	if(F3D_Polyline.tentacle_objects){
     		length = F3D_Polyline.tentacle_objects.length;
 	    	for(var i = 0;i<length;i++){
-	    		F3D_Polygon.getTangents(F3D_Scene.tentacle_objects[i]);
+	    		F3D_Polygon.getTangents(F3D_Scene.tentacle_objects[i],'f3dtentacle');
 	    	}	
     	}
     	if(F3D_Scene.extrude_objects){
     		length = F3D_Scene.extrude_objects.length;
 	    	for(var i = 0;i<length;i++){
-	    		F3D_Polygon.getTangents(F3D_Scene.extrude_objects[i]);
+	    		F3D_Polygon.getTangents(F3D_Scene.extrude_objects[i],'f3dextrude');
 	    	}	
     	}
     	
