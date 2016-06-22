@@ -351,7 +351,7 @@
 	        	for(var i = 0;i<hdl;i++){
 	        		F3D_Scene.hand_draw_objects[i].circles.setAttribute('onmousedown', "F3D_Sphere.selectElement(evt)");
 	        		F3D_Scene.hand_draw_objects[i].circles.setAttribute('ontouchstart', "F3D_Sphere.mobileSelectElement(evt)");
-	        		if(F3D_Scene.hand_draw_objects[i].polygons !== ''){
+	        		if(F3D_Scene.hand_draw_objects[i].polygons){
 		        		F3D_Scene.hand_draw_objects[i].polygons.setAttribute('onmousedown', "F3D_Polyline.selectElement(evt)");
 		        		F3D_Scene.hand_draw_objects[i].polygons.setAttribute('ontouchstart', "F3D_Polyline.mobileSelectElement(evt)");
 	        		}
