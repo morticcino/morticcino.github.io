@@ -1,6 +1,6 @@
 # morticcino.github.io
 
-A new way to quickly create your vector creation!
+A new way to quickly create your svg content!
 
 Thanks to:
 
