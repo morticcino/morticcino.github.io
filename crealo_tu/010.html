@@ -338,6 +338,8 @@
       			break;
 	    	case 'load':
 			F3D_Polygon.selected_tool = 'load';
+			var undo_redo = [];
+			var undo_redo_history = -1;
 			load(document.getElementById('svgfile').value);
 			/*
         		if(document.getElementById('svgfile').value.length > 1){
