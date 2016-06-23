@@ -360,8 +360,10 @@
 				F3D_Polygon.selected_tool = 'select';
 				var hdl = F3D_Scene.hand_draw_objects.length;
 	        	for(var i = 0;i<hdl;i++){
-	        		F3D_Scene.hand_draw_objects[i].circles.setAttribute('onmousedown', "F3D_Sphere.selectElement(evt)");
-	        		F3D_Scene.hand_draw_objects[i].circles.setAttribute('ontouchstart', "F3D_Sphere.mobileSelectElement(evt)");
+	        		if(F3D_Scene.hand_draw_objects[i].circles){
+		        		F3D_Scene.hand_draw_objects[i].circles.setAttribute('onmousedown', "F3D_Sphere.selectElement(evt)");
+		        		F3D_Scene.hand_draw_objects[i].circles.setAttribute('ontouchstart', "F3D_Sphere.mobileSelectElement(evt)");
+	        		}
 	        		if(F3D_Scene.hand_draw_objects[i].polygons){
 		        		F3D_Scene.hand_draw_objects[i].polygons.setAttribute('onmousedown', "F3D_Polyline.selectElement(evt)");
 		        		F3D_Scene.hand_draw_objects[i].polygons.setAttribute('ontouchstart', "F3D_Polyline.mobileSelectElement(evt)");
@@ -369,8 +371,10 @@
 	        	}
 	        	var tol = F3D_Scene.tentacle_objects.length;
         		for(var i = 0;i<tol;i++){
-        			F3D_Scene.tentacle_objects[i].circles.setAttribute('onmousedown', "F3D_Sphere.selectElement(evt)");
-        			F3D_Scene.tentacle_objects[i].circles.setAttribute('ontouchstart', "F3D_Sphere.mobileSelectElement(evt)");
+        			if(F3D_Scene.tentacle_objects[i].circles){
+	        			F3D_Scene.tentacle_objects[i].circles.setAttribute('onmousedown', "F3D_Sphere.selectElement(evt)");
+	        			F3D_Scene.tentacle_objects[i].circles.setAttribute('ontouchstart', "F3D_Sphere.mobileSelectElement(evt)");
+        			}
         			if(F3D_Scene.tentacle_objects[i].polygons){
         				F3D_Scene.tentacle_objects[i].polygons.setAttribute('onmousedown', "F3D_Polyline.selectElement(evt)");
 	        			F3D_Scene.tentacle_objects[i].polygons.setAttribute('ontouchstart', "F3D_Polyline.mobileSelectElement(evt)");	
@@ -379,8 +383,10 @@
         		}
         		var eol = F3D_Scene.extrude_objects.length;
         		for(var i = 0;i<eol;i++){
-        			F3D_Scene.extrude_objects[i].circles.setAttribute('onmousedown', "F3D_Sphere.selectElement(evt)");
-        			F3D_Scene.extrude_objects[i].circles.setAttribute('ontouchstart', "F3D_Sphere.mobileSelectElement(evt)");
+        			if(F3D_Scene.extrude_objects[i].circles){
+	        			F3D_Scene.extrude_objects[i].circles.setAttribute('onmousedown', "F3D_Sphere.selectElement(evt)");
+	        			F3D_Scene.extrude_objects[i].circles.setAttribute('ontouchstart', "F3D_Sphere.mobileSelectElement(evt)");
+        			}
         			if(F3D_Scene.extrude_objects[i].polygons){
 	        			F3D_Scene.extrude_objects[i].polygons.setAttribute('onmousedown', "F3D_Polyline.selectElement(evt)");
 		        		F3D_Scene.extrude_objects[i].polygons.setAttribute('ontouchstart', "F3D_Polyline.mobileSelectElement(evt)");	
