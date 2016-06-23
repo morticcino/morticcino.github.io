@@ -286,7 +286,8 @@
       function change_group_color(color_value){
       	if(F3D_Scene.elementToColor !== ''){
 	      	F3D_Scene.elementToColor.setAttribute('style', 'fill:'+color_value+';font-family:bebas;');
-	      	F3D_Scene.colorDict[F3D_Scene.elementToColor.getAttribute('id')]=color_value;			
+	      	F3D_Scene.colorDict[F3D_Scene.elementToColor.getAttribute('id')]=color_value;	
+	      	save_undo();
       	}
       	
       }
@@ -528,6 +529,12 @@
 		return JSON.stringify(obj);
 	}
 	
+	function save_undo(){
+		undo_redo_history += 1;
+		undo_redo[undo_redo_history] = {html: document.getElementById('svgpaper').outerHTML, hd: F3D_Scene.hand_draw_objects.length, ex: F3D_Scene.extrude_objects.length,tn: F3D_Scene.tentacle_objects.length};
+		undo_redo.length = (undo_redo_history+1);
+	}
+	
 	function mouseup(  ){
 		svgpaper.removeEventListener( 'mousemove', onDocumentMouseMove, false );
 	    svgpaper.removeEventListener( 'touchmove', onDocumentMobileMouseMove, false );
@@ -623,9 +630,7 @@
 	
 			}
 			F3D_sketch.clean_data();
-			undo_redo_history += 1;
-			undo_redo[undo_redo_history] = {html: document.getElementById('svgpaper').outerHTML, hd: F3D_Scene.hand_draw_objects.length, ex: F3D_Scene.extrude_objects.length,tn: F3D_Scene.tentacle_objects.length};
-			undo_redo.length = (undo_redo_history+1);
+			save_undo();
 		}  
       
   </script>
