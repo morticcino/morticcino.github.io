@@ -444,7 +444,7 @@ var F3D_Polyline = {
 		        rect.setAttributeNS(null, 'y', bbox.y);
 		        rect.setAttributeNS(null, 'height', bbox.height);
 		        rect.setAttributeNS(null, 'width', bbox.width);
-		        rect.setAttributeNS(null, 'fill', '#'+Math.round(0xffffff * Math.random()).toString(16));
+		        rect.setAttributeNS(null, 'stroke', '#'+Math.round(0xffffff * Math.random()).toString(16));
 		        document.getElementById('svgpaper').appendChild(rect);
 			tool = 'select';
 		}else{
