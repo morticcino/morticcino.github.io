@@ -439,15 +439,13 @@ var F3D_Polyline = {
 			F3D_Polyline.group_to_move.setAttribute("onmousemove", "F3D_Polyline.moveElement(evt)");
 			F3D_Polyline.group_to_move.setAttribute("onmouseup", "F3D_Polyline.deselectElement(evt)");
 			var bbox = document.getElementById(id).getBBox();
-			var rect = document.createElementNS(NS,"rect");
+			var rect = document.getElementById('selection_rect');
 			rect.setAttributeNS(null, 'x', bbox.x);
 		        rect.setAttributeNS(null, 'y', bbox.y);
 		        rect.setAttributeNS(null, 'height', bbox.height);
 		        rect.setAttributeNS(null, 'width', bbox.width);
-		        rect.setAttributeNS(null, 'stroke', '#'+Math.round(0xffffff * Math.random()).toString(16));
-		        rect.setAttributeNS(null, 'fill', 'none');
-		        document.getElementById('svgpaper').appendChild(rect);
-			tool = 'select';
+		        rect.setAttributeNS(null, 'style', 'display:block');
+		        tool = 'select';
 		}else{
 		   getGroup(t.parentElement);
 		}
