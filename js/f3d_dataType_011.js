@@ -444,7 +444,7 @@ var F3D_Polyline = {
 		        rect.setAttributeNS(null, 'y', bbox.y);
 		        rect.setAttributeNS(null, 'height', bbox.height);
 		        rect.setAttributeNS(null, 'width', bbox.width);
-		        rect.setAttributeNS(null, 'style', 'display:block');
+		        rect.setAttributeNS(null, 'style', 'fill:none;stroke-width:3;stroke:rgb(0,0,0);display:block');
 		        tool = 'select';
 		}else{
 		   getGroup(t.parentElement);
