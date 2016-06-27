@@ -308,12 +308,12 @@ NS="http://www.w3.org/2000/svg";
         		var f3d_tg_l = F3D_Scene.text_group.length;
         		if(f3d_tg_l > 0){
         			for (var i = 0; i < f3d_tg_l;i++){
-        						F3D_Scene.text_group.group.children[t].setAttribute('class', 'draggable');
-				        		F3D_Scene.text_group.group.children[t].setAttribute('onmousedown', "F3D_Polyline.selectElement(evt)");
-				        		F3D_Scene.text_group.group.children[t].setAttribute('ontouchstart', "F3D_Polyline.mobileSelectElement(evt)");
-				        		F3D_Scene.text_group.group.children[t].setAttribute('onmouseover', "F3D_Sphere.overElement(evt)");
-			        			F3D_Scene.text_group.group.children[t].setAttribute('onmouseout', "F3D_Sphere.outElement(evt)");
-			        			F3D_Scene.text_group.group.children[t].setAttribute('onwheel', "F3D_Sphere.wheelScaleElement(evt)");	
+        						F3D_Scene.text_group[i].group.setAttribute('class', 'draggable');
+				        		F3D_Scene.text_group[i].group.setAttribute('onmousedown', "F3D_Polyline.selectElement(evt)");
+				        		F3D_Scene.text_group[i].group.setAttribute('ontouchstart', "F3D_Polyline.mobileSelectElement(evt)");
+				        		F3D_Scene.text_group[i].group.setAttribute('onmouseover', "F3D_Sphere.overElement(evt)");
+			        			F3D_Scene.text_group[i].group.setAttribute('onmouseout', "F3D_Sphere.outElement(evt)");
+			        			F3D_Scene.text_group[i].group.setAttribute('onwheel', "F3D_Sphere.wheelScaleElement(evt)");	
         			}
         			
 	  	  	
