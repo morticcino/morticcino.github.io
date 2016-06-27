@@ -305,7 +305,7 @@ NS="http://www.w3.org/2000/svg";
         			}
         			
         		}
-        		if(F3D_Scene.text_group.group){
+        		if(F3D_Scene.text_group.length > 0){
         			var text_length = F3D_Scene.text_group.group.childElementCount;
 	        		if (text_length > 0){
 	        			for(var t = 0; t < text_length; t++){
