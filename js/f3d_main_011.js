@@ -138,7 +138,7 @@ NS="http://www.w3.org/2000/svg";
   	  	text.appendChild(text2Add);
   	  	return text
       	}
-      	if(F3D_Scene.text_group === ''){
+      	if(F3D_Scene.text_group.length === 0){
 		F3D_Scene.text_group[0]= {'group': '', text: ''};
 		F3D_Scene.text_group[0].group = document.createElementNS(NS,"g");
 		F3D_Scene.text_group[0].group.setAttribute('id', 'f3dtext_group_'+tgl);//????
