@@ -89,6 +89,7 @@
 	  </div>
 	  
   <script>
+      var url_length = document.URL.split('/').length;
       var number_ver = document.URL.split('/')[url_length-1].split('.')[0];
       var head = document.getElementsByTagName('head')[0];
       head.title = "Crealo tu #"+number_ver;
