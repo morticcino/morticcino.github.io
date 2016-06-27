@@ -7,7 +7,7 @@ var F3D_Scene = {
 	elementToColor: '',
 	colorDict: {},
 	sketch_group: '',
-	text_group: '',
+	text_group: [],
 	text_object: 0
 }
 
