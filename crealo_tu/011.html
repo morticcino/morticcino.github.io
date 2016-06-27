@@ -96,11 +96,16 @@
       var script = document.createElement('script');
       script.setAttribute("type","text/javascript");
       script.setAttribute("src", "../js/f3d_dataType_"+number_ver+".js");
+      script.setAttribute("onload","load_main");
       head.appendChild(script);
-      var script = document.createElement('script');
-      script.setAttribute("type","text/javascript");
-      script.setAttribute("src", "../js/f3d_main_"+number_ver+".js");
-      head.appendChild(script);
+      
+      function load_main(){
+	      var script = document.createElement('script');
+	      script.setAttribute("type","text/javascript");
+	      script.setAttribute("src", "../js/f3d_main_"+number_ver+".js");
+	      head.appendChild(script);	
+      }
+      
   </script>
   </body>
 </htmls
