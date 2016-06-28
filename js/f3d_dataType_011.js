@@ -1,4 +1,3 @@
-
 var F3D_Scene = {
 	hand_draw_object: 0,
 	hand_draw_objects: [],
@@ -7,7 +6,7 @@ var F3D_Scene = {
 	elementToColor: '',
 	colorDict: {},
 	sketch_group: '',
-	text_group: [],
+	text_group: '',
 	text_object: 0
 }
 
@@ -438,14 +437,7 @@ var F3D_Polyline = {
 			F3D_Polyline.oldY = evt.clientY;
 			F3D_Polyline.group_to_move.setAttribute("onmousemove", "F3D_Polyline.moveElement(evt)");
 			F3D_Polyline.group_to_move.setAttribute("onmouseup", "F3D_Polyline.deselectElement(evt)");
-			var bbox = document.getElementById(id).getBBox();
-			var rect = document.getElementById('selection_rect');
-			rect.setAttributeNS(null, 'x', bbox.x);
-		        rect.setAttributeNS(null, 'y', bbox.y);
-		        rect.setAttributeNS(null, 'height', bbox.height);
-		        rect.setAttributeNS(null, 'width', bbox.width);
-		        rect.setAttributeNS(null, 'style', 'fill:none;stroke-width:3;stroke:rgb(0,0,0);display:block');
-		        tool = 'select';
+			tool = 'select';
 		}else{
 		   getGroup(t.parentElement);
 		}
