@@ -27,5 +27,8 @@ http://underscorejs.org/
 String diff
 https://github.com/kpdecker/jsdiff
 
+Zoom and Pan
+https://github.com/ariutta/svg-pan-zoom
+
 Tutorials, manual, pages...
 http://docs.webplatform.org/wiki/svg/tutorials
