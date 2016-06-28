@@ -4,7 +4,7 @@ NS="http://www.w3.org/2000/svg";
       var undo_redo_history = -1;
       function save_undo(){
 		undo_redo_history += 1;
-		undo_redo[undo_redo_history] = {html: document.getElementById('svg').outerHTML, hd: F3D_Scene.hand_draw_objects.length, ex: F3D_Scene.extrude_objects.length,tn: F3D_Scene.tentacle_objects.length};
+		undo_redo[undo_redo_history] = {html: document.getElementById('svgpaper').outerHTML, hd: F3D_Scene.hand_draw_objects.length, ex: F3D_Scene.extrude_objects.length,tn: F3D_Scene.tentacle_objects.length};
 		undo_redo.length = (undo_redo_history+1);
       }
       //undo_redo[undo_redo_history] = document.getElementById('svgpaper').outerHTML;
@@ -85,7 +85,7 @@ NS="http://www.w3.org/2000/svg";
       function find_index(str){
       		var res = [];
       		var re = new RegExp(str+"(\\d+)","g")
-      		var match_results = document.getElementById('svg').outerHTML.match(re)
+      		var match_results = document.getElementById('paper').outerHTML.match(re)
       		if(match_results){
       			match_results.forEach(function(str){
 	      			res.push(str.match(/(\d+)/g)[1]);
@@ -214,14 +214,14 @@ NS="http://www.w3.org/2000/svg";
 		var to_load = value;
 		var parser = new DOMParser();
 		var doc = parser.parseFromString(to_load, "image/svg+xml");
-		document.getElementById("svg").remove();
+		document.getElementById("svgpaper").remove();
 		document.getElementById("right_column").appendChild(doc.documentElement);
 		F3D_Scene.sketch_group = document.getElementById('sketch_group');
 		F3D_Scene.hand_draw_objects.length = undo_redo[undo_redo_history].hd;
 		F3D_Scene.extrude_objects.length = undo_redo[undo_redo_history].ex; 
 		F3D_Scene.tentacle_objects.length = undo_redo[undo_redo_history].tn;
 		update_data_structure();
-		svgpaper = document.getElementById("svg");
+		svgpaper = document.getElementById("svgpaper");
 		tools(F3D_Polygon.selected_tool);
 	//}
       }
@@ -237,7 +237,7 @@ NS="http://www.w3.org/2000/svg";
       			
       		case 'remove':
       			if(F3D_Scene.elementToColor !== ''){
-      				document.getElementById('svg').removeChild(F3D_Scene.elementToColor);
+      				document.getElementById('svgpaper').removeChild(F3D_Scene.elementToColor);
       			}
       			F3D_Polygon.selected_tool = 'remove';
       			break;
@@ -349,7 +349,7 @@ NS="http://www.w3.org/2000/svg";
       }
       
       window.onload = init;
-      svgpaper = document.getElementById('svg');
+      svgpaper = document.getElementById('svgpaper');
       svgpaper.addEventListener( 'mousedown', onDocumentMouseDown, false );
       svgpaper.addEventListener( 'touchstart', onDocumentMobileMouseDown, false );
       
