@@ -345,13 +345,7 @@ NS="http://www.w3.org/2000/svg";
         //F3D_sketch.init();
         //F3D_Polyline.init();
 	tools('draw');
-	window.zoom_and_pan = svgPanZoom('#svgpaper', {
-          zoomEnabled: true,
-          controlIconsEnabled: true,
-          fit: true,
-          center: true,
-          // viewportSelector: document.getElementById('demo-tiger').querySelector('#g4') // this option will make library to misbehave. Viewport should have no transform attribute
-        });
+	
       }
       
       window.onload = init;
