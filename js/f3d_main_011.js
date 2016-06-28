@@ -331,7 +331,7 @@ NS="http://www.w3.org/2000/svg";
 				F3D_Polygon.selected_tool = 'draw';
 	        	setDrawInteraction();
 	        	break;
-	        case 'pan_and_zoom';
+	        case 'pan_and_zoom':
 	        	svgpaper.removeEventListener( 'mousedown' );
 	        	svgpaper.addEventListener( 'mousemove' );
 		        svgpaper.addEventListener( 'mouseup' );
