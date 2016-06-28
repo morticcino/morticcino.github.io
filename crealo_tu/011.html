@@ -99,6 +99,11 @@
       script.setAttribute("src", "../js/f3d_dataType_"+number_ver+".js");
       script.setAttribute("onload","load_main()");
       head.appendChild(script);
+      var script = document.createElement('script');
+      script.setAttribute("type","text/javascript");
+      script.setAttribute("src", "../js/svg-pan-zoom.min.js");
+      script.setAttribute("onload","load_main()");
+      head.appendChild(script);
       
       function load_main(){
 	      var script = document.createElement('script');
