@@ -48,7 +48,7 @@ var F3D_sketch = {
     		F3D_Scene.sketch_group = document.createElementNS(NS,"g");
     		F3D_Scene.sketch_group.setAttribute('id', 'sketch_group');
     		F3D_Scene.sketch_group.setAttribute('fill', 'red');
-    		document.getElementById('svg').appendChild(F3D_Scene.sketch_group);
+    		document.getElementById('svgpaper').appendChild(F3D_Scene.sketch_group);
     	}else{
     		F3D_Scene.sketch_group.setAttribute('id', 'sketch_group');
     		F3D_Scene.sketch_group.setAttribute('fill', 'red');
