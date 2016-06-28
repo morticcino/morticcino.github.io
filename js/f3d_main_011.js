@@ -332,9 +332,9 @@ NS="http://www.w3.org/2000/svg";
 	        	setDrawInteraction();
 	        	break;
 	        case 'pan_and_zoom':
-	        	svgpaper.removeEventListener( 'mousedown' );
-	        	svgpaper.addEventListener( 'mousemove' );
-		        svgpaper.addEventListener( 'mouseup' );
+	        	svgpaper.removeEventListener( 'mousemove', onDocumentMouseMove, false );
+	    		svgpaper.removeEventListener( 'mouseup', onDocumentMouseUp, false );
+	        	svgpaper.removeEventListener( 'mousedown', onDocumentMouseDown, false );
 	        	
 	        	
         }
