@@ -344,8 +344,8 @@ NS="http://www.w3.org/2000/svg";
       
       window.onload = init;
       svgpaper = document.getElementById('svgpaper');
-      svgpaper.addEventListener( 'mousedown', onDocumentMouseDown, false );
-      svgpaper.addEventListener( 'touchstart', onDocumentMobileMouseDown, false );
+      document.getElementById('svg').addEventListener( 'mousedown', onDocumentMouseDown, false );
+      document.getElementById('svg').addEventListener( 'touchstart', onDocumentMobileMouseDown, false );
       
       function onDocumentMobileMouseDown( event ){
       		if(event.targetTouches[0].nodeName === 'ellipse'){
