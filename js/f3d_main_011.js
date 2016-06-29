@@ -372,7 +372,7 @@ NS="http://www.w3.org/2000/svg";
 		/*
 		
 	}else{
-			Fast3d.selectElement(event);
+			Fast3document.getElementById('svg').lement(event);
 		}
 		*/
 		  
@@ -382,10 +382,10 @@ NS="http://www.w3.org/2000/svg";
 		//switch(tool){
 		//	case 'draw':
 		evt.preventDefault();
-		svgpaper.addEventListener( 'mousemove', onDocumentMouseMove, false );
-	        svgpaper.addEventListener( 'touchmove', onDocumentMobileMouseMove, false );
-	        svgpaper.addEventListener( 'mouseup', onDocumentMouseUp, false );
-	        svgpaper.addEventListener( 'touchend', onDocumentMobileMouseUp, false );
+		document.getElementById('svg').addEventListener( 'mousemove', onDocumentMouseMove, false );
+	        document.getElementById('svg').addEventListener( 'touchmove', onDocumentMobileMouseMove, false );
+	        document.getElementById('svg').addEventListener( 'mouseup', onDocumentMouseUp, false );
+	        document.getElementById('svg').addEventListener( 'touchend', onDocumentMobileMouseUp, false );
 		mousebuttondown = true;
 		
 		F3D_sketch.init(x,y);
