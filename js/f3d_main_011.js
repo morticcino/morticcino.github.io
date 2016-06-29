@@ -166,8 +166,8 @@ NS="http://www.w3.org/2000/svg";
 			}
 			
 		}
-		svgpaper.addEventListener( 'mousedown', onDocumentMouseDown, false );
-	    	svgpaper.addEventListener( 'touchstart', onDocumentMobileMouseDown, false );
+		svgpaper.setAttribute('onmousedown', "onDocumentMouseDown");
+	    	svgpaper.setAttribute( 'touchstart', "onDocumentMobileMouseDown" );
 	    	//for(var i = 0;i<F3D_Scene.tentacle_objects.length;i++){
 		//	F3D_Scene.tentacle_objects[i].circles.removeAttributeNS(null, 'onmousedown');
 		//}
