@@ -455,10 +455,10 @@ NS="http://www.w3.org/2000/svg";
 	
 	
 	function mouseup(  ){
-		svgpaper.removeEventListener( 'mousemove', onDocumentMouseMove, false );
-	    svgpaper.removeEventListener( 'touchmove', onDocumentMobileMouseMove, false );
-	    svgpaper.removeEventListener( 'mouseup', onDocumentMouseUp, false );
-	    svgpaper.removeEventListener( 'touchend', onDocumentMobileMouseUp, false );
+		document.getElementById('svg').removeEventListener( 'mousemove', onDocumentMouseMove, false );
+	    document.getElementById('svg').removeEventListener( 'touchmove', onDocumentMobileMouseMove, false );
+	    document.getElementById('svg').removeEventListener( 'mouseup', onDocumentMouseUp, false );
+	    document.getElementById('svg').removeEventListener( 'touchend', onDocumentMobileMouseUp, false );
 	    //mousebuttondown = false;
 		while (F3D_Scene.sketch_group.firstChild) {
 		    F3D_Scene.sketch_group.removeChild(F3D_Scene.sketch_group.firstChild);
