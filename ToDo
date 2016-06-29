@@ -68,3 +68,4 @@ I fumetti saranno editabili ed ogni uscita presenterà una nuova feature.
         provare a mettere cerchi e poligoni, di uno stesso oggetto, in un gruppo per poterli spostare insieme.
         Registrare un mousedown sul cerchio ed uno sul poligono
 
+finire pan e zoom setando l'attributo transform con translate e scale
