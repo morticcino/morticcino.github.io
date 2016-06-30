@@ -236,21 +236,27 @@ NS="http://www.w3.org/2000/svg";
         	case 'pan_up':
         		svg_pos_y += 5;
         		pan_and_zoom();
+        		break;
         	case 'pan_down':
         		svg_pos_y -= 5;
         		pan_and_zoom();
+        		break;
         	case 'pan_left':
         		svg_pos_x -= 5;
         		pan_and_zoom();
+        		break;
         	case 'pan_right':
         		svg_pos_x += 5;
         		pan_and_zoom();
+        		break;
         	case 'zoom_in':
         		svg_scale += 0.5;
         		pan_and_zoom();
+        		break;
         	case 'zoom_out':
         		svg_scale -= 0.5;
         		pan_and_zoom();
+        		break;
       		case 'curve':
       			document.getElementById('curve_group').setAttribute('style','display:""');
       			F3D_Polygon.selected_tool = 'curve';
