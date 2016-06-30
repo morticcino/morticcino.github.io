@@ -4,7 +4,7 @@ NS="http://www.w3.org/2000/svg";
       var undo_redo_history = -1;
       var svg_pos_x=0, svg_pos_y=0, svg_scale=1;
       function pan_and_zoom(){
-      	document.getElementById('svgcanvas').setAttribute("transform","translate("+svg_pos_x+","+svg_pos_y+")scale("+svg_scale+")");
+      	document.getElementById('svgpaper').setAttribute("transform","translate("+svg_pos_x+","+svg_pos_y+")scale("+svg_scale+")");
       }
       function save_undo(){
 		undo_redo_history += 1;
