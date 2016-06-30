@@ -2,6 +2,10 @@ NS="http://www.w3.org/2000/svg";
       var tool = 'draw';
       var undo_redo = [];
       var undo_redo_history = -1;
+      var svg_pos_x=0, svg_pos_y=0, svg_scale=1;
+      function pan_and_zoom(){
+      	document.getElementById('svgcanvas').setAttribute("transform","translate("+svg_pos_x+","+svg_pos_y+")scale("+svg_scale+")");
+      }
       function save_undo(){
 		undo_redo_history += 1;
 		undo_redo[undo_redo_history] = {html: document.getElementById('svgpaper').outerHTML, hd: F3D_Scene.hand_draw_objects.length, ex: F3D_Scene.extrude_objects.length,tn: F3D_Scene.tentacle_objects.length};
@@ -229,7 +233,24 @@ NS="http://www.w3.org/2000/svg";
       function tools(toolstr){
         tool = toolstr;
         switch(tool){
-        	
+        	case 'pan_up':
+        		svg_pos_y += 5;
+        		pan_and_zoom();
+        	case 'pan_down':
+        		svg_pos_y -= 5;
+        		pan_and_zoom();
+        	case 'pan_left':
+        		svg_pos_x -= 5;
+        		pan_and_zoom();
+        	case 'pan_right':
+        		svg_pos_x += 5;
+        		pan_and_zoom();
+        	case 'zoom_in':
+        		svg_scale += 0.5;
+        		pan_and_zoom();
+        	case 'zoom_out':
+        		svg_scale -= 0.5;
+        		pan_and_zoom();
       		case 'curve':
       			document.getElementById('curve_group').setAttribute('style','display:""');
       			F3D_Polygon.selected_tool = 'curve';
