@@ -83,7 +83,7 @@
 		</div>
       </div>
 	  <div id="right_column">
-		<svg id="svgpaper" width="100%" height="100%" xmlns='http://www.w3.org/2000/svg' xmlns:xlink="http://www.w3.org/1999/xlink">
+		<svg id="svgpaper" width="100%" height="100%" xmlns='http://www.w3.org/2000/svg' xmlns:xlink="http://www.w3.org/1999/xlink" onready="function(){this.setAttribute('viewBox','0 0 '+this.width+' '+this.height);}">
 		</svg>
 	  </div>
 	  
@@ -92,7 +92,6 @@
       var tool = 'draw';
       var undo_redo = [];
       var undo_redo_history = -1;
-      document.getElementById('svgpaper').setAttribute('viewBox','0 0 '+document.getElementById('svgpaper').innerWidth+' '+document.getElementById('svgpaper').innerHeight);
       function save_undo(){
 		undo_redo_history += 1;
 		undo_redo[undo_redo_history] = {html: document.getElementById('svgpaper').outerHTML, hd: F3D_Scene.hand_draw_objects.length, ex: F3D_Scene.extrude_objects.length,tn: F3D_Scene.tentacle_objects.length};
