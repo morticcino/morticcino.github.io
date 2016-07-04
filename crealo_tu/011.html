@@ -430,7 +430,7 @@
         //F3D_sketch.init();
         //F3D_Polyline.init();
         function set_svgpaper_dimentions(){
-        	document.getElementById('svgpaper').setAttribute('viewBox','0 0 '+document.getElementById('svgpaper').width+' '+document.getElementById('svgpaper').height);
+        	document.getElementById('svgpaper').setAttribute('viewBox','0 0 '+Math.round(document.getElementById('svgpaper').width.baseVal.value)+' '+Math.round(document.getElementById('svgpaper').height.baseVal.value));
         	
         }
 		tools('draw');
