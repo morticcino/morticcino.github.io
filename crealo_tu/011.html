@@ -487,9 +487,9 @@
 		//var y =  event.clientY;
 		//if(tool === 'draw'){
 	       var uupos = document.getElementById('svgpaper').createSVGPoint();
-	        uupos.x = evt.pageX;
-	        uupos.y = evt.pageY;
-	        var ctm = evt.target.getScreenCTM();
+	        uupos.x = event.pageX;
+	        uupos.y = event.pageY;
+	        var ctm = event.target.getScreenCTM();
 	        if (ctm = ctm.inverse())
 	            uupos = uupos.matrixTransform(ctm);
 		mousedown(event,uupos.x,uupos.y);
