@@ -61,6 +61,13 @@
 		<!-- <input id="curve" type="radio" name="tools" onclick="tools('curve')">Curve<br /> -->
 		<input id="remove" type="radio" name="tools" onclick="tools('remove')">Remove<br />
 		<input id="tentacle" type="radio" name="tools" onclick="tools('tentacle')"> Tentacle<br />
+		<button id="pan_up" type="button" name="tools" onclick="tools('pan_up')"> Pan Up</button><br />
+		<button id="pan_down" type="button" name="tools" onclick="tools('pan_down')"> Pan Down</button><br />
+		<button id="pan_left" type="button" name="tools" onclick="tools('pan_left')"> Pan Left</button><br />
+		<button id="pan_right" type="button" name="tools" onclick="tools('pan_right')"> Pan Right</button><br />
+		<button id="zoom_in" type="button" name="tools" onclick="tools('zoom_in')"> Zoom In</button><br />
+		<button id="zoom_out" type="button" name="tools" onclick="tools('zoom_out')"> Zoom Out</button><br />
+		<input id="giger_tool" type="checkbox"> Giger style<br />
 		<input id="radius" type="number" name="radius" onclick="javascript:brush_size=this.value;" value="20" min="1" max="100"> Radius brush<br />
 		<input id="simplify" type="number" name="simplify" onclick="javascript:simplify_value=this.value;" value="5" min="1" max="5"> Simplify value<br />
 		<button id="more_fhd" name="add_fhd" onclick="add_fhd()">Add FHD</button><br />
@@ -321,7 +328,26 @@
       function tools(toolstr){
         tool = toolstr;
         switch(tool){
-        	
+	 	case 'pan_up':
+	 		py += 5;
+        		break;
+        	case 'pan_down':
+        		py -= 5;
+        		break;
+        	case 'pan_left':
+        		px -= 5;
+        		break;
+        	case 'pan_right':
+        		px += 5;
+        		break;
+        	case 'zoom_in':
+        		zh *= 1.1;
+        		zw *= 1.1;
+        		break;
+        	case 'zoom_out':
+        		zh *= 0.9;
+        		zw *= 0.9;
+        		break;
       		case 'curve':
       			document.getElementById('curve_group').setAttribute('style','display:""');
       			F3D_Polygon.selected_tool = 'curve';
