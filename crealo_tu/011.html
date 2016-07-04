@@ -101,6 +101,8 @@
       save_undo();
       var brush_size = 20;
       var simplify_value = 5;
+      var px, py = 0;
+      var sh, sw = 0;
       
       
       //var mousebuttondown = false;
@@ -432,8 +434,10 @@
         //F3D_Sphere.init();
         //F3D_sketch.init();
         //F3D_Polyline.init();
+        zw = Math.round(document.getElementById('svgpaper').width.baseVal.value);
+        zh = Math.round(document.getElementById('svgpaper').height.baseVal.value);
         function set_svgpaper_dimentions(){
-        	document.getElementById('svgpaper').setAttribute('viewBox','0 0 '+Math.round(document.getElementById('svgpaper').width.baseVal.value)+' '+Math.round(document.getElementById('svgpaper').height.baseVal.value));
+        	document.getElementById('svgpaper').setAttribute('viewBox',px+" "+py+" "+sw+" "+sh);
         	
         }
 		tools('draw');
