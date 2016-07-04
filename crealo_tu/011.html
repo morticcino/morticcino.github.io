@@ -454,51 +454,24 @@
 		mousedown(event,x,y);
 	}
 	
-	function onDocumentMouseDown( event ) {
-		/*
-		function click(evt)
-		{
-		
-		var root = document.getElementById('your svg');
-		
-		        var uupos = root.createSVGPoint();
-		
-		        uupos.x = evt.pageX;
-		
-		        uupos.y = evt.pageY;
-		
-		        var ctm = evt.target.getScreenCTM();
-		
-		        if (ctm = ctm.inverse())
-		
-		            uupos = uupos.matrixTransform(ctm);
-		
-		
-		
-		 ///the new x y are : uupos.x , uupos.y 
-		}
-		*/
-		if(event.target.nodeName === 'ellipse'){
-      			F3D_Polyline.clickedTargetId = event.target.id;
-      		}else{
-      			F3D_Polyline.clickedTargetId = '';
-      		}
-		//var x = event.clientX;
-		//var y =  event.clientY;
-		//if(tool === 'draw'){
-	       var uupos = document.getElementById('svgpaper').createSVGPoint();
+	function matrixTransform(event)
+		var uupos = document.getElementById('svgpaper').createSVGPoint();
 	        uupos.x = event.pageX;
 	        uupos.y = event.pageY;
 	        var ctm = event.target.getScreenCTM();
 	        if (ctm = ctm.inverse())
 	            uupos = uupos.matrixTransform(ctm);
+		return uupos;
+	}
+	
+	function onDocumentMouseDown( event ) {
+		if(event.target.nodeName === 'ellipse'){
+      			F3D_Polyline.clickedTargetId = event.target.id;
+      		}else{
+      			F3D_Polyline.clickedTargetId = '';
+      		}
+		uupos = matrixTransform(event);
 		mousedown(event,uupos.x,uupos.y);
-		/*
-		
-	}else{
-			Fast3d.selectElement(event);
-		}
-		*/
 		  
 	}
 	
@@ -544,16 +517,8 @@
 	
 	function onDocumentMouseMove( event ) {
 		event.preventDefault();
-		var x = event.clientX;
-		var y =  event.clientY;
-		//if(tool === 'draw'){
-			mousemove(x,y);
-		
-		/*
-	}else{
-			Fast3d.selectElement(event);
-		}
-		*/
+		uupos = matrixTransform(event);
+		mousemove(x,y);
 		
 	}
 	
