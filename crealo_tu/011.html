@@ -455,15 +455,44 @@
 	}
 	
 	function onDocumentMouseDown( event ) {
+		/*
+		function click(evt)
+		{
+		
+		var root = document.getElementById('your svg');
+		
+		        var uupos = root.createSVGPoint();
+		
+		        uupos.x = evt.pageX;
+		
+		        uupos.y = evt.pageY;
+		
+		        var ctm = evt.target.getScreenCTM();
+		
+		        if (ctm = ctm.inverse())
+		
+		            uupos = uupos.matrixTransform(ctm);
+		
+		
+		
+		 ///the new x y are : uupos.x , uupos.y 
+		}
+		*/
 		if(event.target.nodeName === 'ellipse'){
       			F3D_Polyline.clickedTargetId = event.target.id;
       		}else{
       			F3D_Polyline.clickedTargetId = '';
       		}
-		var x = event.clientX;
-		var y =  event.clientY;
+		//var x = event.clientX;
+		//var y =  event.clientY;
 		//if(tool === 'draw'){
-		mousedown(event,x,y);
+	       var uupos = root.createSVGPoint();
+	        uupos.x = evt.pageX;
+	        uupos.y = evt.pageY;
+	        var ctm = evt.target.getScreenCTM();
+	        if (ctm = ctm.inverse())
+	            uupos = uupos.matrixTransform(ctm);
+		mousedown(event,uupos.x,uupos.y);
 		/*
 		
 	}else{
@@ -477,6 +506,8 @@
 		//switch(tool){
 		//	case 'draw':
 		evt.preventDefault();
+		
+		
 		svgpaper.addEventListener( 'mousemove', onDocumentMouseMove, false );
 	        svgpaper.addEventListener( 'touchmove', onDocumentMobileMouseMove, false );
 	        svgpaper.addEventListener( 'mouseup', onDocumentMouseUp, false );
