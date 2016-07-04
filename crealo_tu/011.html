@@ -429,8 +429,12 @@
         //F3D_Sphere.init();
         //F3D_sketch.init();
         //F3D_Polyline.init();
+        function set_svgpaper_dimentions(){
+        	document.getElementById('svgpaper').setAttribute('viewBox','0 0 '+document.getElementById('svgpaper').width+' '+document.getElementById('svgpaper').height);
+        	
+        }
 		tools('draw');
-		document.getElementById('svgpaper').setAttribute("load", function(){document.getElementById('svgpaper').setAttribute('viewBox','0 0 '+document.getElementById('svgpaper').width+' '+document.getElementById('svgpaper').height);});
+		document.getElementById('svgpaper').setAttribute("load", set_svgpaper_dimentions);
       }
       
       window.onload = init;
