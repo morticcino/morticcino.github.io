@@ -332,23 +332,29 @@
         switch(tool){
 	 	case 'pan_up':
 	 		py += 5;
+	 		p_and_z();
         		break;
         	case 'pan_down':
         		py -= 5;
+        		p_and_z();
         		break;
         	case 'pan_left':
         		px -= 5;
+        		p_and_z();
         		break;
         	case 'pan_right':
         		px += 5;
+        		p_and_z();
         		break;
         	case 'zoom_in':
         		zh *= 1.1;
         		zw *= 1.1;
+        		p_and_z();
         		break;
         	case 'zoom_out':
         		zh *= 0.9;
         		zw *= 0.9;
+        		p_and_z();
         		break;
       		case 'curve':
       			document.getElementById('curve_group').setAttribute('style','display:""');
