@@ -486,7 +486,7 @@
 		//var x = event.clientX;
 		//var y =  event.clientY;
 		//if(tool === 'draw'){
-	       var uupos = root.createSVGPoint();
+	       var uupos = document.getElementById('svgpaper').createSVGPoint();
 	        uupos.x = evt.pageX;
 	        uupos.y = evt.pageY;
 	        var ctm = evt.target.getScreenCTM();
