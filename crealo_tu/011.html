@@ -424,6 +424,9 @@
 	        	
         }
       }
+      function p_and_z(){
+        	document.getElementById('svgpaper').setAttribute('viewBox',px+" "+py+" "+sw+" "+sh);
+        }
       
       function init(){
         //F3D_Sphere.init();
@@ -435,6 +438,7 @@
         }
 		tools('draw');
 		document.getElementById('svgpaper').setAttribute("load", set_svgpaper_dimentions());
+		document.getElementById('svgpaper').setAttribute("resize", set_svgpaper_dimentions());
       }
       
       window.onload = init;
