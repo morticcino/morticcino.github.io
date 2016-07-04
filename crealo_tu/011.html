@@ -108,8 +108,10 @@
       save_undo();
       var brush_size = 20;
       var simplify_value = 5;
-      var px, py = 0;
-      var sh, sw = 0;
+      var px = 0;
+      var py = 0;
+      var sh = 0;
+      var sw = 0;
       
       
       //var mousebuttondown = false;
@@ -460,7 +462,8 @@
         //F3D_Sphere.init();
         //F3D_sketch.init();
         //F3D_Polyline.init();
-        px, py = 0;
+        px = 0;
+        py = 0;
         sw = Math.round(document.getElementById('svgpaper').width.baseVal.value);
         sh = Math.round(document.getElementById('svgpaper').height.baseVal.value);
         function set_svgpaper_dimentions(){
