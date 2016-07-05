@@ -494,14 +494,15 @@
       		}
 		var x = event.targetTouches[0].pageX;
 		var y = event.targetTouches[0].pageY;
-		
-		mousedown(event,x,y);
+		uupos = matrixTransform(event,x,y);
+		mousedown(event,uupos.x,uupos.y);
+		//mousedown(event,x,y);
 	}
 	
-	function matrixTransform(event){
+	function matrixTransform(event,x,y){
 		var uupos = document.getElementById('svgpaper').createSVGPoint();
-	        uupos.x = event.pageX;
-	        uupos.y = event.pageY;
+	        uupos.x = x;
+	        uupos.y = y;
 	        var ctm = event.target.getScreenCTM();
 	        if (ctm = ctm.inverse())
 	            uupos = uupos.matrixTransform(ctm);
@@ -514,7 +515,7 @@
       		}else{
       			F3D_Polyline.clickedTargetId = '';
       		}
-		uupos = matrixTransform(event);
+		uupos = matrixTransform(event,event.pageX,event.pageY);
 		mousedown(event,uupos.x,uupos.y);
 		  
 	}
@@ -556,12 +557,13 @@
 		event.preventDefault();
 		var x = event.targetTouches[0].pageX;
 		var y = event.targetTouches[0].pageY;
-		mousemove(x,y);
+		uupos = matrixTransform(event,x,y);
+		mousemove(uupos.x,uupos.y);
 	}
 	
 	function onDocumentMouseMove( event ) {
 		event.preventDefault();
-		uupos = matrixTransform(event);
+		uupos = matrixTransform(event,event.pageX,event.pageY);
 		mousemove(uupos.x,uupos.y);
 		
 	}
