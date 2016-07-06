@@ -438,7 +438,7 @@ var F3D_Polyline = {
 			F3D_Polyline.group_to_move.setAttribute("onmousemove", "F3D_Polyline.moveElement(evt)");
 			F3D_Polyline.group_to_move.setAttribute("onmouseup", "F3D_Polyline.deselectElement(evt)");
 			tool = 'select';
-			var bbox = pumpkin.getBBox();
+			var bbox = t.getBBox();
 			var bb_frame = document.getElementById('bb_selection');
 			bb_frame.setAttributeNS(null, "x", bbox.x);
 			bb_frame.setAttributeNS(null, "y", bbox.y);
