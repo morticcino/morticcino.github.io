@@ -438,6 +438,14 @@ var F3D_Polyline = {
 			F3D_Polyline.group_to_move.setAttribute("onmousemove", "F3D_Polyline.moveElement(evt)");
 			F3D_Polyline.group_to_move.setAttribute("onmouseup", "F3D_Polyline.deselectElement(evt)");
 			tool = 'select';
+			var bbox = pumpkin.getBBox();
+			var bb_frame = document.getElementById('bb_selection');
+			bb_frame.setAttributeNS(null, "x", bbox.x);
+			bb_frame.setAttributeNS(null, "y", bbox.y);
+			bb_frame.setAttributeNS(null, "width", bbox.width);
+			bb_frame.setAttributeNS(null, "height", bbox.height);
+			bb_frame.setAttributeNS(null, "style", "fill:none;stroke-width:3;stroke:rgb(0,0,0)");
+			
 			//QUI SETTO IL FRAME DELLA SELEZIONE
 		}else{
 		   getGroup(t.parentElement);
