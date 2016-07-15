@@ -143,7 +143,6 @@ var F3D_Sphere = {
 	F3D_Sphere.currentY = evt.clientY;
 	F3D_Sphere.selectedElement.setAttribute("onmousemove", "F3D_Sphere.moveElement(evt)");
 	F3D_Sphere.selectedElement.setAttribute("onmouseup", "F3D_Sphere.deselectElement(evt)");
-	update_bbox();
 	tool = 'select';
     },
     mobileSelectElement: function(evt) {
@@ -448,6 +447,7 @@ var F3D_Polyline = {
 			F3D_Polyline.oldY = evt.clientY;
 			F3D_Polyline.group_to_move.setAttribute("onmousemove", "F3D_Polyline.moveElement(evt)");
 			F3D_Polyline.group_to_move.setAttribute("onmouseup", "F3D_Polyline.deselectElement(evt)");
+			update_bbox();
 			tool = 'select';
 			
 			//QUI SETTO IL FRAME DELLA SELEZIONE
