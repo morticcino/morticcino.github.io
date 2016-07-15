@@ -530,6 +530,7 @@ var F3D_Polyline = {
 	evt.target.setAttributeNS(null, 'style','fill:'+document.getElementById('color_picker').value);
     },
     deselectElement: function(evt) {
+    	F3D_Scene.update_bbox();
   	if(F3D_Polyline.group_to_move != 0){
 		F3D_Polyline.group_to_move.removeAttributeNS(null, "onmousemove");
 		F3D_Polyline.group_to_move.removeAttributeNS(null, "onmouseup");
@@ -538,7 +539,7 @@ var F3D_Polyline = {
 		F3D_Polyline.group_to_move.setAttribute("fill", "0000ff");
 		F3D_Polyline.group_to_move = '';
 	}
-	F3D_Scene.update_bbox();
+	
 	save_undo();
     }
     
