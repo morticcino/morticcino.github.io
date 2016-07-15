@@ -447,7 +447,7 @@ var F3D_Polyline = {
 			F3D_Polyline.oldY = evt.clientY;
 			F3D_Polyline.group_to_move.setAttribute("onmousemove", "F3D_Polyline.moveElement(evt)");
 			F3D_Polyline.group_to_move.setAttribute("onmouseup", "F3D_Polyline.deselectElement(evt)");
-			update_bbox();
+			F3D_Scene.update_bbox();
 			tool = 'select';
 			
 			//QUI SETTO IL FRAME DELLA SELEZIONE
