@@ -448,7 +448,6 @@ var F3D_Polyline = {
 			F3D_Polyline.group_to_move.setAttribute("onmousemove", "F3D_Polyline.moveElement(evt)");
 			F3D_Polyline.group_to_move.setAttribute("onmouseup", "F3D_Polyline.deselectElement(evt)");
 			tool = 'select';
-			F3D_Scene.update_bbox();
 			
 			//QUI SETTO IL FRAME DELLA SELEZIONE
 		}else{
