@@ -506,6 +506,7 @@ var F3D_Polyline = {
 	}
 	F3D_Polyline.oldX = evt.clientX;
 	F3D_Polyline.oldY = evt.clientY;
+	F3D_Scene.update_bbox();
     },
     mobileMoveElement: function(evt) {
     	/*
