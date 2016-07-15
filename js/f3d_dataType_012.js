@@ -9,7 +9,7 @@ var F3D_Scene = {
 	text_group: '',
 	text_object: 0,
 	update_bbox: function(){
-		var bbox = F3D_Scene.elementToColor;
+		var bbox = F3D_Scene.elementToColor.getBBox();
 		var bb_frame = document.getElementById('bb_selection');
 		bb_frame.setAttributeNS(null, "x", bbox.x);
 		bb_frame.setAttributeNS(null, "y", bbox.y);
