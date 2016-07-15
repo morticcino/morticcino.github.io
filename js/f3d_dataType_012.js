@@ -9,7 +9,7 @@ var F3D_Scene = {
 	text_group: '',
 	text_object: 0,
 	update_bbox: function(){
-		var bbox = F3D_Polyline.group_to_move.getClientRects();
+		var bbox = F3D_Polyline.group_to_move.getBoundingClientRect();
 		var bb_frame = document.getElementById('bb_selection');
 		bb_frame.x.baseVal.value = bbox.left;
 		bb_frame.y.baseVal.value = bbox.top;
