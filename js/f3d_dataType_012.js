@@ -11,10 +11,10 @@ var F3D_Scene = {
 	update_bbox: function(){
 		var bbox = F3D_Polyline.group_to_move.getBBox();
 		var bb_frame = document.getElementById('bb_selection');
-		bb_frame.setAttributeNS(null, "x", bbox.x);
-		bb_frame.setAttributeNS(null, "y", bbox.y);
-		bb_frame.setAttributeNS(null, "width", bbox.width);
-		bb_frame.setAttributeNS(null, "height", bbox.height);
+		bb_frame.x.baseVal.value = bbox.x;
+		bb_frame.y.baseVal.value = bbox.y;
+		bb_frame.width.baseVal.value = bbox.width;
+		bb_frame.height.baseVal.value = bbox.height;
 		bb_frame.setAttributeNS(null, "style", "fill:none;stroke-width:3;stroke:rgb(0,0,0)");
 	}
 }
