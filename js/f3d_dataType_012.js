@@ -143,6 +143,7 @@ var F3D_Sphere = {
 	F3D_Sphere.currentY = evt.clientY;
 	F3D_Sphere.selectedElement.setAttribute("onmousemove", "F3D_Sphere.moveElement(evt)");
 	F3D_Sphere.selectedElement.setAttribute("onmouseup", "F3D_Sphere.deselectElement(evt)");
+	update_bbox();
 	tool = 'select';
     },
     mobileSelectElement: function(evt) {
