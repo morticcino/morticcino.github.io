@@ -538,7 +538,7 @@ var F3D_Polyline = {
 		F3D_Polyline.group_to_move.setAttribute("fill", "0000ff");
 		F3D_Polyline.group_to_move = '';
 	}
-	//F3D_Polygon.drawTangent();
+	F3D_scene.update_bbox();
 	save_undo();
     }
     
