@@ -195,6 +195,7 @@ var F3D_Sphere = {
 		F3D_Sphere.selectedElement = 0;
 	}
 	F3D_Polygon.drawTangent();
+	save_undo();
     }
 }
 
@@ -535,6 +536,7 @@ var F3D_Polyline = {
 		F3D_Polyline.group_to_move = '';
 	}
 	//F3D_Polygon.drawTangent();
+	save_undo();
     }
     
 }
