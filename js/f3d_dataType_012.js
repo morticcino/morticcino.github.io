@@ -7,7 +7,16 @@ var F3D_Scene = {
 	colorDict: {},
 	sketch_group: '',
 	text_group: '',
-	text_object: 0
+	text_object: 0,
+	update_bbox: function(){
+		var bbox = F3D_Scene.elementToColor;
+		var bb_frame = document.getElementById('bb_selection');
+		bb_frame.setAttributeNS(null, "x", bbox.x);
+		bb_frame.setAttributeNS(null, "y", bbox.y);
+		bb_frame.setAttributeNS(null, "width", bbox.width);
+		bb_frame.setAttributeNS(null, "height", bbox.height);
+		bb_frame.setAttributeNS(null, "style", "fill:none;stroke-width:3;stroke:rgb(0,0,0)");
+	}
 }
 
 var F3D_sketch = {
@@ -439,13 +448,7 @@ var F3D_Polyline = {
 			F3D_Polyline.group_to_move.setAttribute("onmousemove", "F3D_Polyline.moveElement(evt)");
 			F3D_Polyline.group_to_move.setAttribute("onmouseup", "F3D_Polyline.deselectElement(evt)");
 			tool = 'select';
-			var bbox = t.getBBox();
-			var bb_frame = document.getElementById('bb_selection');
-			bb_frame.setAttributeNS(null, "x", bbox.x);
-			bb_frame.setAttributeNS(null, "y", bbox.y);
-			bb_frame.setAttributeNS(null, "width", bbox.width);
-			bb_frame.setAttributeNS(null, "height", bbox.height);
-			bb_frame.setAttributeNS(null, "style", "fill:none;stroke-width:3;stroke:rgb(0,0,0)");
+			F3D_Scene.update_bbox();
 			
 			//QUI SETTO IL FRAME DELLA SELEZIONE
 		}else{
