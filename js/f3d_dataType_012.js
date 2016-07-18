@@ -6,7 +6,7 @@ var F3D_Scene = {
 	elementToColor: '',
 	colorDict: {},
 	sketch_group: '',
-	text_group: '',
+	text_group: [],
 	text_object: 0,
 	update_bbox: function(){
 		var bbox = F3D_Polyline.group_to_move.getBoundingClientRect();
