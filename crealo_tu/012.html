@@ -239,8 +239,8 @@
   	  	text.appendChild(text2Add);
   	  	return text
       	}
-      	if(F3D_Scene.text_group.length < 1){
-		F3D_Scene.text_group[0]= {'group': '', 'text': ''};
+      	if(F3D_Scene.text_group.length <= 0){
+		F3D_Scene.text_group.push({'group': '', 'text': ''});
 		F3D_Scene.text_group[0].group = document.createElementNS(NS,"g");
 		F3D_Scene.text_group[0].group.setAttribute('id', 'f3dtext_group_'+tgl);//????
 		F3D_Scene.text_group[0].group.setAttribute('style', 'fill:'+color+';font-family:bebas;');
