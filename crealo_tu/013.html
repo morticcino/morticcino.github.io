@@ -432,21 +432,25 @@
         			}
         			
         		}
-        		if(F3D_Scene.text_group.group){
-        			var text_length = F3D_Scene.text_group.group.childElementCount;
-	        		if (text_length > 0){
-	        			for(var t = 0; t < text_length; t++){
-	        				F3D_Scene.text_group.group.children[t].setAttribute('class', 'draggable');
-			        		F3D_Scene.text_group.group.children[t].setAttribute('onmousedown', "F3D_Polyline.selectElement(evt)");
-			        		F3D_Scene.text_group.group.children[t].setAttribute('ontouchstart', "F3D_Polyline.mobileSelectElement(evt)");
-			        		F3D_Scene.text_group.group.children[t].setAttribute('onmouseover', "F3D_Sphere.overElement(evt)");
-		        			F3D_Scene.text_group.group.children[t].setAttribute('onmouseout', "F3D_Sphere.outElement(evt)");
-		        			F3D_Scene.text_group.group.children[t].setAttribute('onwheel', "F3D_Sphere.wheelScaleElement(evt)");
-	  	  	
-			        			
-	        			}
+        		var tgl = F3D_Scene.text_group.length;
+        		for(var i = 0;i<tgl;i++){
+        			if(F3D_Scene.text_group[i].group){
+	        			var text_length = F3D_Scene.text_group[i].group.childElementCount;
+		        		if (text_length > 0){
+		        			for(var t = 0; t < text_length; t++){
+		        				F3D_Scene.text_group[i].group.children[t].setAttribute('class', 'draggable');
+				        		F3D_Scene.text_group[i].group.children[t].setAttribute('onmousedown', "F3D_Polyline.selectElement(evt)");
+				        		F3D_Scene.text_group[i].group.children[t].setAttribute('ontouchstart', "F3D_Polyline.mobileSelectElement(evt)");
+				        		F3D_Scene.text_group[i].group.children[t].setAttribute('onmouseover', "F3D_Sphere.overElement(evt)");
+			        			F3D_Scene.text_group[i].group.children[t].setAttribute('onmouseout', "F3D_Sphere.outElement(evt)");
+			        			F3D_Scene.text_group[i].group.children[t].setAttribute('onwheel', "F3D_Sphere.wheelScaleElement(evt)");
+		  	  	
+				        			
+		        			}
+		        		}	
 	        		}	
         		}
+        		
         		
         		svgpaper.removeEventListener( 'mousedown', onDocumentMouseDown, false );
     			svgpaper.removeEventListener( 'touchstart', onDocumentMobileMouseDown, false );
