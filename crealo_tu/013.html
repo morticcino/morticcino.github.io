@@ -377,7 +377,13 @@
 			F3D_Polygon.selected_tool = 'load';
 			var undo_redo = [];
 			var undo_redo_history = -1;
-			load(document.getElementById('svgfile').value);
+			var svgcontent
+			if(document.getElementById('svgfile').value){
+				svgcontent = document.getElementById('svgfile').value;
+			}else{
+				svgcontent = "";
+			}
+			load(svgcontent);
 			/*
         		if(document.getElementById('svgfile').value.length > 1){
         			var to_load = document.getElementById('svgfile').value;
