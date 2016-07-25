@@ -185,7 +185,7 @@
       function find_index(str){
       		var res = [];
       		var re = new RegExp(str+"(\\d+)","g")
-      		try{
+      		if(document.getElementById('svgpaper')){
       			var match_results = document.getElementById('svgpaper').outerHTML.match(re)
 	      		if(match_results){
 	      			match_results.forEach(function(str){
@@ -194,7 +194,7 @@
 	      		}else{
 	      			return '';
 	      		}
-      		}catch(err){
+      		}else{
       			return '';
       		}
       			
