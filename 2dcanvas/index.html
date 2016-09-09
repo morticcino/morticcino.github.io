@@ -25,13 +25,36 @@
           y: evt.clientY - rect.top
         };
       }
+      function startDrawLine(canvas,evt){
+        var  x = evt.clientX - rect.left;
+        var  y = evt.clientY - rect.top;
+        
+        context.beginPath();
+        context.moveTo(x, y);
+      }
+      function stopDrawLine(canvas,evt){
+        var  x = evt.clientX - rect.left;
+        var  y = evt.clientY - rect.top;
+        
+        context.lineTo(x, y);
+        context.stroke();
+      }
       var canvas = document.getElementById('myCanvas');
       var context = canvas.getContext('2d');
+      var rect = canvas.getBoundingClientRect();
 
       canvas.addEventListener('mousemove', function(evt) {
         var mousePos = getMousePos(canvas, evt);
         var message = 'Mouse position: ' + mousePos.x + ',' + mousePos.y;
         writeMessage(canvas, message);
+      }, false);
+      
+      canvas.addEventListener('mousedown', function(evt) {
+        var mousePos = startDrawLine(canvas, evt);
+      }, false);
+      
+      canvas.addEventListener('mouseup', function(evt) {
+        var mousePos = stopDrawLine(canvas, evt);
       }, false);
     </script>
   </body>
