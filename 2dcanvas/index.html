@@ -41,6 +41,8 @@
       }
       var canvas = document.getElementById('myCanvas');
       var context = canvas.getContext('2d');
+      canvas.height = window.innerHeight;
+      canvas.width = window.innerWidth;
       var rect = canvas.getBoundingClientRect();
 
       /*
