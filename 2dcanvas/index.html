@@ -29,13 +29,13 @@
       function startDrawLine(canvas,evt){
         item.old_x = evt.clientX - rect.left;
         item.old_y = evt.clientY - rect.top;
-        item.draw = true;
+        item.drawbool = true;
         
       }
       function continueDrawLine(canvas,evt){
         item.x = evt.clientX - rect.left;
         item.y = evt.clientY - rect.top;
-        if(item.draw){
+        if(item.drawbool){
           context.beginPath();
           context.moveTo(item.old_x, item.old_y);
           context.lineTo(item.x, item.y);
@@ -46,7 +46,7 @@
         
       }
       function stopDrawLine(canvas,evt){
-        item.draw = false;
+        item.drawbool = false;
         
       }
       var canvas = document.getElementById('myCanvas');
