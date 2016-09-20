@@ -27,26 +27,27 @@
         };
       }
       function startDrawLine(canvas,evt){
-        var  x = evt.clientX - rect.left;
-        var  y = evt.clientY - rect.top;
+        var  old_x = evt.clientX - rect.left;
+        var  old_y = evt.clientY - rect.top;
         item.draw = true;
-        context.beginPath();
-        context.moveTo(x, y);
+        
       }
       function continueDrawLine(canvas,evt){
         var  x = evt.clientX - rect.left;
         var  y = evt.clientY - rect.top;
         if(item.draw){
-          context.lineTo(x, y);  
+          context.beginPath();
+          context.moveTo(old_x, old_y);
+          context.lineTo(x, y);
+          context.stroke();
+          old_x = x;
+          old_y = y;
         }
         
       }
       function stopDrawLine(canvas,evt){
-        var  x = evt.clientX - rect.left;
-        var  y = evt.clientY - rect.top;
         item.draw = false;
-        context.lineTo(x, y);
-        context.stroke();
+        
       }
       var canvas = document.getElementById('myCanvas');
       var context = canvas.getContext('2d');
