@@ -29,14 +29,22 @@
       function startDrawLine(canvas,evt){
         var  x = evt.clientX - rect.left;
         var  y = evt.clientY - rect.top;
-        
+        item.draw = true;
         context.beginPath();
         context.moveTo(x, y);
+      }
+      function continueDrawLine(canvas,evt){
+        var  x = evt.clientX - rect.left;
+        var  y = evt.clientY - rect.top;
+        if(item.draw){
+          context.lineTo(x, y);  
+        }
+        
       }
       function stopDrawLine(canvas,evt){
         var  x = evt.clientX - rect.left;
         var  y = evt.clientY - rect.top;
-        
+        item.draw = false;
         context.lineTo(x, y);
         context.stroke();
       }
@@ -60,6 +68,10 @@
       
       canvas.addEventListener('mouseup', function(evt) {
         var mousePos = stopDrawLine(canvas, evt);
+      }, false);
+      
+      canvas.addEventListener('mousemove', function(evt) {
+        var mousePos = continueDrawLine(canvas, evt);
       }, false);
     </script>
   </body>
