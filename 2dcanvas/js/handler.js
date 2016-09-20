@@ -4,7 +4,5 @@ var item = {
     draw: false,
     selectable: false,
     draw(){},
-    isSelected(){},
-    
-  },
+    isSelected(){}
 };
