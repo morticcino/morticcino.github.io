@@ -64,15 +64,15 @@
       */
       
       canvas.addEventListener('mousedown', function(evt) {
-        var mousePos = startDrawLine(canvas, evt);
+        item.startDrawLine(canvas, evt);
       }, false);
       
       canvas.addEventListener('mouseup', function(evt) {
-        var mousePos = stopDrawLine(canvas, evt);
+        item.stopDrawLine(canvas, evt);
       }, false);
       
       canvas.addEventListener('mousemove', function(evt) {
-        var mousePos = continueDrawLine(canvas, evt);
+        item.continueDrawLine(canvas, evt);
       }, false);
     </script>
   </body>
