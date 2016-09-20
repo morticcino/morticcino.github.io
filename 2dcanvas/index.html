@@ -27,21 +27,21 @@
         };
       }
       function startDrawLine(canvas,evt){
-        var  old_x = evt.clientX - rect.left;
-        var  old_y = evt.clientY - rect.top;
+        item.old_x = evt.clientX - rect.left;
+        item.old_y = evt.clientY - rect.top;
         item.draw = true;
         
       }
       function continueDrawLine(canvas,evt){
-        var  x = evt.clientX - rect.left;
-        var  y = evt.clientY - rect.top;
+        item.x = evt.clientX - rect.left;
+        item.y = evt.clientY - rect.top;
         if(item.draw){
           context.beginPath();
-          context.moveTo(old_x, old_y);
-          context.lineTo(x, y);
+          context.moveTo(item.old_x, item.old_y);
+          context.lineTo(item.x, item.y);
           context.stroke();
-          old_x = x;
-          old_y = y;
+          item.old_x = item.x;
+          item.old_y = item.y;
         }
         
       }
