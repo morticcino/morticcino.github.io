@@ -9,3 +9,6 @@ select
   sphere
   polygon
   
+remove
+  sphere
+  
