@@ -1,0 +1,11 @@
+sketch
+  sphere
+    fh
+  line
+    tentacle
+    extrude
+    
+select
+  sphere
+  polygon
+  
