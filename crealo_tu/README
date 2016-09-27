@@ -10,5 +10,5 @@ select
   polygon
   
 remove
-  sphere
-  
+  ?sphere
+  ?polygon
