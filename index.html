@@ -1,0 +1,45 @@
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="css/responsive.css"></link>
+        <link rel="stylesheet" type="text/css" href="css/style.css"></link>
+        <link rel="stylesheet" type="text/css" href="css/list.css"></link>
+    </head>
+    <body>
+        <div id="pattern" class="pattern">
+  	        <ul id="toolslist" class="list img-list"></ul>
+  	    </div>
+        <script>
+            var files = ['001','002','003','004','005','006','007','008','009','010','011','012','013'];
+            var length = files.length;
+            var ul = document.getElementById('toolslist');
+            for(var i = 0;i<length;i++){
+                var li = document.createElement('li');
+                var a = document.createElement('a');
+                a.setAttribute('href','crealo_tu/'+files[i]+'.html');
+                a.setAttribute('class','inner');
+                var div_image = document.createElement('div');
+                div_image.setAttribute('class','li-img');
+                var img = document.createElement('img');
+                img.src = 'img/'+files[i]+'.png';
+                img.alt = files[i]+' tool';
+                img.id = 'toolimg';
+                div_image.appendChild(img);
+                var rawFile = new XMLHttpRequest();
+                var allText = 'tool'+files[i];
+                var p = document.createElement('p');
+                p.setAttribute('class', 'li-sub');
+                var p_txt = document.createTextNode(allText);
+                p.appendChild(p_txt);
+                var div_txt = document.createElement('div');
+                div_txt.setAttribute('class','li-text');
+                div_txt.appendChild(p);
+                a.appendChild(div_image);
+                a.appendChild(div_txt);
+                li.appendChild(a);
+                ul.appendChild(li);
+    
+            }
+        </script>
+    </body>
+</html>
