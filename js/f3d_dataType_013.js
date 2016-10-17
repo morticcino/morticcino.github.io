@@ -11,6 +11,7 @@ var F3D_Scene = {
 	update_bbox: function(){
 		var bbox = F3D_Polyline.group_to_move.getBBox();
 		var bb_frame = document.getElementById('bb_selection');
+		bbframe.style = "display: none";
 		bb_frame.x.baseVal.value = bbox.x;
 		bb_frame.y.baseVal.value = bbox.y;
 		bb_frame.width.baseVal.value = bbox.width;
