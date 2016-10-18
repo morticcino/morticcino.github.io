@@ -1,3 +1,7 @@
 - giger
 
 - https://github.com/mailzwj/sstp/blob/master/svg-shape-to-path.js
+
+-modifiche crealo tu per ios:
+messo doctype
+tolte height e width nell' svg
