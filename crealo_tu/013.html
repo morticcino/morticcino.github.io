@@ -491,7 +491,11 @@
         }
       }
       function p_and_z(){
-        	document.getElementById('svgpaper').setAttribute('viewBox',px+" "+py+" "+sw+" "+sh);
+        	//document.getElementById('svgpaper').setAttribute('viewBox',px+" "+py+" "+sw+" "+sh);
+	        document.getElementById('svgpaper').viewBox.baseVal.x = px;
+		document.getElementById('svgpaper').viewBox.baseVal.y = py;
+		document.getElementById('svgpaper').viewBox.baseVal.width = sw;
+ 		document.getElementById('svgpaper').viewBox.baseVal.height = sh;
         }
       
       function init(){
@@ -503,8 +507,11 @@
         sw = Math.round(document.getElementById('svgpaper').width.baseVal.value);
         sh = Math.round(document.getElementById('svgpaper').height.baseVal.value);
         function set_svgpaper_dimentions(){
-        	document.getElementById('svgpaper').setAttribute('viewBox',px+" "+py+" "+sw+" "+sh);
-        	
+        	//document.getElementById('svgpaper').setAttribute('viewBox',px+" "+py+" "+sw+" "+sh);
+        	document.getElementById('svgpaper').viewBox.baseVal.x = px;
+		document.getElementById('svgpaper').viewBox.baseVal.y = py;
+		document.getElementById('svgpaper').viewBox.baseVal.width = sw;
+		document.getElementById('svgpaper').viewBox.baseVal.height = sh;
         }
 		tools('draw');
 		document.getElementById('svgpaper').setAttribute("load", set_svgpaper_dimentions());
