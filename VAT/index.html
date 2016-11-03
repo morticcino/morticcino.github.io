@@ -140,10 +140,8 @@
 	    canvaspaper.removeEventListener( 'mouseup', onDocumentMouseUp, false );
 	    canvaspaper.removeEventListener( 'touchend', onDocumentMobileMouseUp, false );
 	    var matched = r.Recognize(F3D_sketch.gest);
-	    console.log(matched);
-	}
-	  
-	switch(matched.Name){
+	    console.log(matched);  
+	    switch(matched.Name){
 		case "rectangle":
 			break;
 		case "circle":
@@ -174,7 +172,9 @@
 			break;
 		default:
 			console.log('default');	
+	  }
 	}
+		
       
   </script>
   </body>
