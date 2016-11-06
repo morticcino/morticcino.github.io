@@ -6,15 +6,15 @@ var F2D = {
     var maxy = maxx = miny = minx = 0;
     for (var i = 0, prev, l = segments.length; i < l; i++) {
         var point = new Point(segments[i].point.x,segments[i].point.y);
-        if(maxx < point.x)
-          maxx = point.x;
-        if(minx > point.x)
-          minx = point.x;
+        if(maxx < point.X)
+          maxx = point.X;
+        if(minx > point.X)
+          minx = point.X;
       
-        if(maxy < point.y)
-          maxy = point.y;
-        if(miny > point.y)
-          miny = point.y;
+        if(maxy < point.Y)
+          maxy = point.Y;
+        if(miny > point.Y)
+          miny = point.Y;
         points.push(point);
     }
     var matched = F2D.r.Recognize(points);
