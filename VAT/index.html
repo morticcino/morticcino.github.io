@@ -1,0 +1,181 @@
+<html>
+  <head>
+    <title>VAT</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <script type="text/javascript" src="../ReDollar/src/dollar.js"></script>
+    <script type="text/javascript" src="js/paper.js"></script>
+    <style>
+    	
+	#svgpaper{
+		height: 100%;
+		width: 100%;
+		
+	}
+	
+	svg{
+		border: solid red 1px;
+	}
+		</style>
+
+  </head>
+  <body>
+    		<canvas id="canvaspaper" style="width:100%;height:100%">
+		</canvas>
+	  
+<!-- Define inlined JavaScript -->
+<script type="text/javascript">
+	// Only executed our code once the DOM is ready.
+	window.onload = function() {
+		// Get a reference to the canvas object
+		var canvas = document.getElementById('canvaspaper');
+		// Create an empty project and a view for the canvas:
+		paper.setup(canvas);
+		// Create a Paper.js Path to draw a line into it:
+		var path = new paper.Path();
+		// Give the stroke a color
+		path.strokeColor = 'black';
+		var start = new paper.Point(100, 100);
+		// Move to start and draw a line from there
+		path.moveTo(start);
+		// Note that the plus operator on Point objects does not work
+		// in JavaScript. Instead, we need to call the add() function:
+		path.lineTo(start.add([ 200, -50 ]));
+		// Draw the view now:
+		paper.view.draw();
+	}
+</script>
+	  
+  <script>
+      var r = new DollarRecognizer();
+      
+      
+     
+      
+      function init(){
+      }
+      
+      window.onload = init;
+      canvaspaper = document.getElementById('canvaspaper');
+      canvaspaper.addEventListener( 'mousedown', onDocumentMouseDown, false );
+      canvaspaper.addEventListener( 'touchstart', onDocumentMobileMouseDown, false );
+      
+      function onDocumentMobileMouseDown( event ){
+      		if(event.targetTouches[0].nodeName === 'ellipse'){
+      			F3D_Polyline.clickedTargetId = event.targetTouches[0].id;
+      		}else{
+      			F3D_Polyline.clickedTargetId = '';
+      		}
+		var x = event.targetTouches[0].pageX;
+		var y = event.targetTouches[0].pageY;
+		uupos = matrixTransform(event,x,y);
+		mousedown(event,uupos.x,uupos.y);
+		//mousedown(event,x,y);
+	}
+	
+		
+	function onDocumentMouseDown( event ) {
+		if(event.target.nodeName === 'ellipse'){
+      			F3D_Polyline.clickedTargetId = event.target.id;
+      		}else{
+      			F3D_Polyline.clickedTargetId = '';
+      		}
+		uupos = matrixTransform(event,event.pageX,event.pageY);
+		mousedown(event,uupos.x,uupos.y);
+		  
+	}
+	
+	function mousedown(evt, x, y ) {
+		//switch(tool){
+		//	case 'draw':
+		evt.preventDefault();
+		
+		
+		canvaspaper.addEventListener( 'mousemove', onDocumentMouseMove, false );
+	        canvaspaper.addEventListener( 'touchmove', onDocumentMobileMouseMove, false );
+	        canvaspaper.addEventListener( 'mouseup', onDocumentMouseUp, false );
+	        canvaspaper.addEventListener( 'touchend', onDocumentMobileMouseUp, false );
+		mousebuttondown = true;
+		
+		F3D_sketch.init(x,y);
+		
+	}
+	
+	
+	function onDocumentMobileMouseMove( event ){
+		event.preventDefault();
+		var x = event.targetTouches[0].pageX;
+		var y = event.targetTouches[0].pageY;
+		mousemove(x,y);
+	}
+	
+	function onDocumentMouseMove( event ) {
+		event.preventDefault();
+		var x = event.pageX;
+		var y = event.pageY;
+		mousemove(x,y);
+		
+	}
+	
+	function mousemove( x, y ) {
+	
+			
+			F3D_sketch.addPoint(x,y);
+		
+	}
+	
+	function onDocumentMobileMouseUp( event ){
+		event.preventDefault();
+		mouseup();
+	}
+	
+	function onDocumentMouseUp( event ){
+		event.preventDefault();
+		mouseup();
+	}
+	
+	function mouseup(  ){
+	    canvaspaper.removeEventListener( 'mousemove', onDocumentMouseMove, false );
+	    canvaspaper.removeEventListener( 'touchmove', onDocumentMobileMouseMove, false );
+	    canvaspaper.removeEventListener( 'mouseup', onDocumentMouseUp, false );
+	    canvaspaper.removeEventListener( 'touchend', onDocumentMobileMouseUp, false );
+	    var matched = r.Recognize(F3D_sketch.gest);
+	    console.log(matched);  
+	    switch(matched.Name){
+		case "rectangle":
+			break;
+		case "circle":
+			var radius = 0;
+			var width = (F3D_sketch.maxX-F3D_sketch.minX);
+			var height = (F3D_sketch.maxY-F3D_sketch.minY);
+			if(width<height){
+				radius = width/2;
+			}else{
+				radius = height/2;
+			}
+			F3D_Sphere.fast3d_addCircle('f3dhanddraw_circles_', F3D_sketch.minX+(F3D_sketch.maxX-F3D_sketch.minX)/2, F3D_sketch.minY+(F3D_sketch.maxY-F3D_sketch.minY)/2, radius, 'blue');
+			break;
+		case "triangle":
+		case "x":
+		case "arrow":
+		case "delete":
+		case "star":
+		case "pigtail":
+		case "v":
+		case "left square bracket":
+		case "right square bracket":
+		case "left curly brace":
+		case "right curly brace":
+		case "check":
+		case "caret":
+		case "zig-zag":
+			break;
+		default:
+			console.log('default');	
+	  }
+	}
+		
+      
+  </script>
+  </body>
+</html>
