@@ -51,6 +51,10 @@
             // Select the path, so we can see its segments:
             //path.fullySelected = true;
             path.remove();
+            if(shape.name === 'circle'){
+                path = new Path.Circle(shape.center.x, shape.center.y,shape.r);
+                path.strokeColor = 'black';
+            }
             /*
             var newSegmentCount = path.segments.length;
             var difference = segmentCount - newSegmentCount;
