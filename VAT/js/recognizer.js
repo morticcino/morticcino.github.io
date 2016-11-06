@@ -1,7 +1,5 @@
 var F2D = {
-  r: function(){ 
-    return new DollarRecognizer()
-  },
+  r: {},
   recognizer: function(segments){
     
     var points = [];
@@ -19,7 +17,7 @@ var F2D = {
           miny = point.y;
         points.push(point);
     }
-    var matched = F2D.r().Recognize(points);
+    var matched = F2D.r.Recognize(points);
     console.log(matched);  
     switch(matched.Name){
       case "circle":
@@ -29,3 +27,4 @@ var F2D = {
     }
   }
 }
+F2D.r = new DollarRecognizer();
