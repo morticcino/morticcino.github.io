@@ -19,7 +19,7 @@ var F2D = {
           miny = point.y;
         points.push(point);
     }
-    var matched = r().Recognize(points);
+    var matched = F2D.r().Recognize(points);
     console.log(matched);  
     switch(matched.Name){
       case "circle":
