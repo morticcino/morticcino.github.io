@@ -23,7 +23,7 @@ var F2D = {
 	  console.log(matched);  
 	  switch(matched.Name){
       case "circle":
-        return matched.Name+' '+maxx+' '+minx+' '+maxy+' 'miny;
+        return matched.Name+' '+maxx+' '+minx+' '+maxy+' '+miny;
         break;
 
   }
