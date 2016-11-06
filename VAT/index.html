@@ -5,6 +5,7 @@
     <title>Simplify</title>
     <link rel="stylesheet" href="css/style.css">
     <script type="text/javascript" src="js/paper.js"></script>
+    <script type="text/javascript" src="js/recognizer.js"></script>
     <script type="text/paperscript" canvas="canvas">
         var path;
 
@@ -44,8 +45,8 @@
             var segmentCount = path.segments.length;
 
             // When the mouse is released, simplify it:
-            path.simplify(10);
-
+            //path.simplify(10);
+            F3D.recognizer(path.segments);
             // Select the path, so we can see its segments:
             path.fullySelected = true;
 
