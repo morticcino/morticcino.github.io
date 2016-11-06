@@ -3,7 +3,7 @@ var F2D = {
   recognizer: function(segments){
     
     var points = [];
-    var maxy = maxx = miny = minx = 0;
+    var maxy = maxx = segments[0].point.x, miny = minx = segments[0].point.y;
     for (var i = 0, prev, l = segments.length; i < l; i++) {
         var point = new Point(segments[i].point.x,segments[i].point.y);
         if(maxx < point.X)
