@@ -20,11 +20,11 @@ var F2D = {
         points.push(point);
     }
     var matched = r().Recognize(points);
-	  console.log(matched);  
-	  switch(matched.Name){
+    console.log(matched);  
+    switch(matched.Name){
       case "circle":
         return matched.Name+' '+maxx+' '+minx+' '+maxy+' '+miny;
         break;
 
   }
-};
+}
