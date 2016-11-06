@@ -1,5 +1,5 @@
 var F2D = {
-  recognizer = function(){
+  recognizer = function(segments){
     var points = [],
     var segments = paper.path._segments,
     var maxy, maxx, miny, minx = 0;
