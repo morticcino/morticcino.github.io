@@ -7,7 +7,7 @@ var F2D = {
     var points = [];
     var maxy, maxx, miny, minx = 0;
     for (var i = 0, prev, l = segments.length; i < l; i++) {
-        var point = {x: segments[i].point.x, y: segments[i].points.y};
+        var point = {x: segments[i].point.x, y: segments[i].point.y};
         if(maxx < point.x)
           maxx = point.x;
         if(minx > point.x)
