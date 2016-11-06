@@ -21,7 +21,13 @@ var F2D = {
     console.log(matched);  
     switch(matched.Name){
       case "circle":
-        return matched.Name+' '+maxx+' '+minx+' '+maxy+' '+miny;
+        var center = {'x':minx+(maxx-minx)/2,'y':miny+(maxy-miny)/2};
+        var r = 0;
+        if(maxx-minx > maxy-miny)
+          r = (maxy-miny)/2;
+        else
+          r = (maxx-minx)/2;
+        return {'name':matched.Name, 'center': center, 'r':r};
         break;
 
     }
