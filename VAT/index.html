@@ -37,6 +37,7 @@
                 // Select the path, so we can see its segment points:
                 fullySelected: true
             });
+	    paper.view.draw();
         }
 
         // While the user drags the mouse, points are added to the path
@@ -47,6 +48,7 @@
             // Update the content of the text item to show how many
             // segments it has:
             textItem.content = 'Segment count: ' + path.segments.length;
+	    paper.view.draw();
         }
 
         // When the mouse is released, we simplify the path:
@@ -70,14 +72,14 @@
             var percentage = 100 - Math.round(newSegmentCount / segmentCount * 100);
             */
             textItem.content = shape;//difference + ' of the ' + segmentCount + ' segments were removed. Saving ' + percentage + '%';
-            
+            paper.view.draw();
             
         }
 	document.addEventListener('mousedown', onMouseDown, false);
 	document.addEventListener('mouseup', onMouseUp, false);
 	document.addEventListener('drag', onMouseDrag, false);
 	    
-	paper.view.draw();
+	
     }
     </script>
 </head>
