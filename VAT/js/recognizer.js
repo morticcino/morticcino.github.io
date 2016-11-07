@@ -28,7 +28,7 @@ var F2D = {
         else
           r = (maxx-minx)/2;
         maxx = minx = maxy = miny = 0;
-        points = 0;
+        points = [];
         return {'name':matched.Name, 'center': center, 'r':r};
         break;
 
