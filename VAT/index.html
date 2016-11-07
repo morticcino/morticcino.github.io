@@ -9,6 +9,8 @@
     <script type="text/javascript" src="js/recognizer.js"></script>
     <script type="text/paperscript" canvas="canvas-1">
 var path;
+var scene = {};
+var num_circle = 0;
 
 var textItem = new PointText({
 	content: 'Click and drag to draw a line.',
@@ -46,7 +48,14 @@ function onMouseUp(event) {
 	var segmentCount = path.segments.length;
 
 	// When the mouse is released, simplify it:
-	path.simplify(10);
+	//path.simplify(10);
+	var match = F2D.recognizer(path.segments);
+	switch(match.name){
+		case 'circle':
+			num_circle += 1;
+			scene['circle_'+num_circle] = new Patch.Circle(new Point(match.center.x, match.center.y),match.r);
+			scene['circle_'+num_circle].strokeColor = 'black';
+	}
 
 	// Select the path, so we can see its segments:
 	path.fullySelected = true;
