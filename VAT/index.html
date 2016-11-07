@@ -14,13 +14,7 @@
     var tentacle = 0;
     var extrude = 0;
     var fhd = 0;
-
-    var textItem = new paper.PointText({
-        content: 'Click and drag to draw a line.',
-        point: new paper.Point(20, 30),
-        fillColor: 'black',
-    });
-
+    
     function onMouseDown(event) {
         // If we produced a path before, deselect it:
         if (path) {
@@ -66,8 +60,7 @@
         var difference = segmentCount - newSegmentCount;
         var percentage = 100 - Math.round(newSegmentCount / segmentCount * 100);
         */
-        textItem.content = shape;//difference + ' of the ' + segmentCount + ' segments were removed. Saving ' + percentage + '%';
-
+    
     }
     var canvas = document.getElementById('mycanvas');
     paper.setup(canvas);
