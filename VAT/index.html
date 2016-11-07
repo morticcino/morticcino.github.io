@@ -9,6 +9,11 @@
     <script type="text/javascript" src="js/recognizer.js"></script>
     <script type="text/paperscript" canvas="mycanvas">
     var path;
+    var scene = {};
+    var circles = 0;
+    var tentacle = 0;
+    var extrude = 0;
+    var fhd = 0;
 
     var textItem = new PointText({
         content: 'Click and drag to draw a line.',
@@ -52,8 +57,9 @@
         //path.fullySelected = true;
         path.remove();
         if(shape.name === 'circle'){
-            path = new Path.Circle(shape.center.x, shape.center.y,shape.r);
-            path.strokeColor = 'black';
+            circles += 1;
+            scene['circles_'+1] = new Path.Circle(shape.center.x, shape.center.y,shape.r);
+            scene['circles_'+1].strokeColor = 'black';
         }
         /*
         var newSegmentCount = path.segments.length;
