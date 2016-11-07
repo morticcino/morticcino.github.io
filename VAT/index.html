@@ -53,6 +53,7 @@ function onMouseUp(event) {
 	switch(match.name){
 		case 'circle':
 			num_circle += 1;
+			console.log(match);			
 			scene['circle_'+num_circle] = new Path.Circle(new Point(match.center.x, match.center.y),match.r);
 			scene['circle_'+num_circle].strokeColor = 'black';
 	}
