@@ -7,7 +7,7 @@
     <script type="text/javascript" src="js/paper.js"></script>
     <script type="text/javascript" src="../ReDollar/src/dollar.js"></script>
     <script type="text/javascript" src="js/recognizer.js"></script>
-    <script type="text/paperscript" canvas="mycanvas">
+    <script type="text/javascript" canvas="mycanvas">
     var path;
     var scene = {};
     var circles = 0;
@@ -15,9 +15,9 @@
     var extrude = 0;
     var fhd = 0;
 
-    var textItem = new PointText({
+    var textItem = new paper.PointText({
         content: 'Click and drag to draw a line.',
-        point: new Point(20, 30),
+        point: new paper.Point(20, 30),
         fillColor: 'black',
     });
 
@@ -28,7 +28,7 @@
         }
 
         // Create a new path and set its stroke color to black:
-        path = new Path({
+        path = new paper.Path({
             segments: [event.point],
             strokeColor: 'black',
             // Select the path, so we can see its segment points:
