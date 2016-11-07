@@ -7,84 +7,59 @@
     <script type="text/javascript" src="js/paper.js"></script>
     <script type="text/javascript" src="../ReDollar/src/dollar.js"></script>
     <script type="text/javascript" src="js/recognizer.js"></script>
-    <script type="text/javascript">
-    window.onload = function() {
-		var canvas = document.getElementById('myCanvas');
-		paper.setup(canvas);
-        var path;
-        var scene = {};
-        var circles = 0;
-        var tentacle = 0;
-        var extrude = 0;
-        var fhd = 0;
+    <script type="text/paperscript" canvas="canvas-1">
+var path;
 
-        var textItem = new paper.PointText({
-            content: 'Click and drag to draw a line.',
-            point: new paper.Point(20, 30),
-            fillColor: 'black',
-        });
+var textItem = new PointText({
+	content: 'Click and drag to draw a line.',
+	point: new Point(20, 30),
+	fillColor: 'black',
+});
 
-        function onMouseDown(event) {
-            // If we produced a path before, deselect it:
-            if (path) {
-                path.selected = false;
-            }
+function onMouseDown(event) {
+	// If we produced a path before, deselect it:
+	if (path) {
+		path.selected = false;
+	}
 
-            // Create a new path and set its stroke color to black:
-            path = new paper.Path({
-                segments: [event.point],
-                strokeColor: 'black',
-                // Select the path, so we can see its segment points:
-                fullySelected: true
-            });
-	    paper.view.draw();
-        }
+	// Create a new path and set its stroke color to black:
+	path = new Path({
+		segments: [event.point],
+		strokeColor: 'black',
+		// Select the path, so we can see its segment points:
+		fullySelected: true
+	});
+}
 
-        // While the user drags the mouse, points are added to the path
-        // at the position of the mouse:
-        function onMouseDrag(event) {
-            path.add(event.point);
+// While the user drags the mouse, points are added to the path
+// at the position of the mouse:
+function onMouseDrag(event) {
+	path.add(event.point);
 
-            // Update the content of the text item to show how many
-            // segments it has:
-            textItem.content = 'Segment count: ' + path.segments.length;
-	    paper.view.draw();
-        }
+	// Update the content of the text item to show how many
+	// segments it has:
+	textItem.content = 'Segment count: ' + path.segments.length;
+}
 
-        // When the mouse is released, we simplify the path:
-        function onMouseUp(event) {
-            var segmentCount = path.segments.length;
+// When the mouse is released, we simplify the path:
+function onMouseUp(event) {
+	var segmentCount = path.segments.length;
 
-            // When the mouse is released, simplify it:
-            //path.simplify(10);
-            var shape = F2D.recognizer(path.segments);
-            // Select the path, so we can see its segments:
-            //path.fullySelected = true;
-            path.remove();
-            if(shape.name === 'circle'){
-                circles += 1;
-                scene['circles_'+1] = new paper.Path.Circle(shape.center.x, shape.center.y,shape.r);
-                scene['circles_'+1].strokeColor = 'black';
-            }
-            /*
-            var newSegmentCount = path.segments.length;
-            var difference = segmentCount - newSegmentCount;
-            var percentage = 100 - Math.round(newSegmentCount / segmentCount * 100);
-            */
-            textItem.content = shape;//difference + ' of the ' + segmentCount + ' segments were removed. Saving ' + percentage + '%';
-            paper.view.draw();
-            
-        }
-	document.addEventListener('mousedown', onMouseDown, false);
-	document.addEventListener('mouseup', onMouseUp, false);
-	document.addEventListener('mousemove', onMouseDrag, false);
-	    
-	
-    }
-    </script>
+	// When the mouse is released, simplify it:
+	path.simplify(10);
+
+	// Select the path, so we can see its segments:
+	path.fullySelected = true;
+
+	var newSegmentCount = path.segments.length;
+	var difference = segmentCount - newSegmentCount;
+	var percentage = 100 - Math.round(newSegmentCount / segmentCount * 100);
+	textItem.content = difference + ' of the ' + segmentCount + ' segments were removed. Saving ' + percentage + '%';
+}
+</script>
 </head>
 <body>
-    <canvas id="mycanvas" resize></canvas>
+    <canvas id="canvas-1" resize></canvas>
     
 </body>
 </html>
