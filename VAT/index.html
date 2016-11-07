@@ -53,9 +53,10 @@ function onMouseUp(event) {
 	switch(match.name){
 		case 'circle':
 			num_circle += 1;
-			scene['circle_'+num_circle] = new Patch.Circle(new Point(match.center.x, match.center.y),match.r);
+			scene['circle_'+num_circle] = new Path.Circle(new Point(match.center.x, match.center.y),match.r);
 			scene['circle_'+num_circle].strokeColor = 'black';
 	}
+	path.remove();
 
 	// Select the path, so we can see its segments:
 	path.fullySelected = true;
