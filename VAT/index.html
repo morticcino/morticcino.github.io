@@ -34,10 +34,6 @@
     // at the position of the mouse:
     function onMouseDrag(event) {
         path.add(event.point);
-
-        // Update the content of the text item to show how many
-        // segments it has:
-        textItem.content = 'Segment count: ' + path.segments.length;
     }
 
     // When the mouse is released, we simplify the path:
