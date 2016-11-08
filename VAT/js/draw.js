@@ -89,3 +89,55 @@ function sketch(){
 				  var line = new THREE.Line(geometry, material);
 				  scene.add(line);
 			}
+
+function draw_circle_link(){
+				
+				if (circle_in_scene % 3 === 0){
+					
+					var geometry = new THREE.Geometry(),
+					colors = [];
+	
+					n_sub = 6;
+	
+					var position, index;
+	
+					var spline = new THREE.Spline( points );
+	
+					for ( i = 0; i < points.length * n_sub; i ++ ) {
+	
+						index = i / ( points.length * n_sub );
+						position = spline.getPoint( index );
+	
+						geometry.vertices[ i ] = new THREE.Vector3( position.x, position.y, position.z );
+	
+						colors[ i ] = new THREE.Color( 0xffffff );
+						colors[ i ].setHSL( 0.6, 1.0, Math.max( 0, - position.x / 200 ) + 0.5 );
+		
+					}
+
+					geometry.colors = colors;
+		
+					// lines
+	
+					material = new THREE.LineBasicMaterial( { color: 0x000000, opacity: 1, linewidth: 3, vertexColors: THREE.VertexColors } );
+	
+					var line, p, scale = 0.3, d = 225;
+					var parameters =  [
+						[ material, scale*1.5, [-d,0,0],  geometry ],
+					];
+	
+					for ( i = 0; i < parameters.length; ++ i ) {
+	
+						p = parameters[ i ];
+						line = new THREE.Line( p[ 3 ],  p[ 0 ] );
+						//line.scale.x = line.scale.y = line.scale.z =  p[ 1 ];
+						//line.position.x = p[ 2 ][ 0 ];
+						//line.position.y = p[ 2 ][ 1 ];
+						//line.position.z = p[ 2 ][ 2 ];
+						scene.add( line );
+	
+					}
+					points = [];
+				}
+				
+			}
