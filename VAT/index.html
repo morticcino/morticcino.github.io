@@ -149,7 +149,7 @@
 				window.addEventListener( 'resize', onWindowResize, false );
 
 			}
-*/
+
 			function onWindowResize() {
 
 				camera.aspect = window.innerWidth / window.innerHeight;
@@ -172,7 +172,7 @@
 				var y =  event.clientY;
 				mousemove(x,y);
 			}
-			
+*/			
 			function sketch(){
 				var geometry = new THREE.Geometry();
 				for(var i = 0;i<draw.length-1;i++){
@@ -265,22 +265,13 @@
 				  scene.add(line);
 			}
 			
-			
+/*			
 			function mousemove( x, y ) {
 
 				if( draw_mode ){
 					
 					event.preventDefault();
 					
-					
-					/*	
-					console.log('minX '+minX);
-					console.log('maxX '+maxX);
-					console.log('minY '+minY);
-					console.log('maxY '+maxY);
-					console.log('clientX '+event.clientX);
-					console.log('clientY '+event.clientY);
-					*/
 					mouse.set( ( x / window.innerWidth ) * 2 - 1, - ( y / window.innerHeight ) * 2 + 1 );
 	
 					raycaster.setFromCamera( mouse, camera );
@@ -336,26 +327,7 @@
 					
 					}
 				}
-				/*
-				event.preventDefault();
-
-				mouse.set( ( event.clientX / window.innerWidth ) * 2 - 1, - ( event.clientY / window.innerHeight ) * 2 + 1 );
-
-				raycaster.setFromCamera( mouse, camera );
-
-				var intersects = raycaster.intersectObjects( objects );
-
-				if ( intersects.length > 0 ) {
-
-					var intersect = intersects[ 0 ];
-
-					rollOverMesh.position.copy( intersect.point ).add( intersect.face.normal );
-					rollOverMesh.position.divideScalar( 50 ).floor().multiplyScalar( 50 ).addScalar( 25 );
-
-				}
-
-				render();
-				*/
+				
 			}
 
 			function onDocumentMobileMouseDown( event ){
@@ -415,7 +387,7 @@
 			
 				mouseup();
 			}
-			
+*/
 			function draw_circle_link(){
 				
 				if (circle_in_scene % 3 === 0){
@@ -467,7 +439,7 @@
 				}
 				
 			}
-			
+/*			
 			function mouseup(  ){
 				
 				draw_mode = false;
@@ -570,7 +542,7 @@
         
 				render();	
 			}
-
+*/
 			function onDocumentKeyDown( event ) {
 
 				switch( event.keyCode ) {
