@@ -41,6 +41,7 @@ function onWindowResize() {
 						var intersect = intersects[ 0 ];
 	
 						var voxel = new THREE.Mesh( cubeGeo, cubeMaterial );
+						voxel.name = "myvoxel";
 						voxel.position.copy( intersect.point ).add( intersect.face.normal );
 						//console.log(voxel);
 						//voxel.position.divideScalar( 50 ).floor().multiplyScalar( 50 ).addScalar( 25 );
@@ -189,7 +190,7 @@ function onWindowResize() {
 							var radius = height/2;
 						}
 						var circleGeometry = new THREE.SphereGeometry( radius, 32, 32 );
-						
+						circleGeometry.name = "circle_"+circles;
 						circleGeometry.translate(_3dminX+width/2, 3, _3dminZ+height/2);
 						points.push(
 							new THREE.Vector3(_3dminX+width/2, 3, _3dminZ+height/2)
