@@ -16,7 +16,7 @@ function init() {
 	camera.lookAt( new THREE.Vector3() );
 
 	scene = new THREE.Scene();
-
+	circles = 0;
 	// roll-over helpers
 
 	rollOverGeo = new THREE.BoxGeometry( 50, 50, 50 );
