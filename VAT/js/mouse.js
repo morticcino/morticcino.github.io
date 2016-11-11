@@ -41,7 +41,7 @@ function onWindowResize() {
 						var intersect = intersects[ 0 ];
 	
 						var voxel = new THREE.Mesh( cubeGeo, cubeMaterial );
-						voxel.name = "myvoxel";
+						voxel.name = "toRemove_voxel";
 						voxel.position.copy( intersect.point ).add( intersect.face.normal );
 						//console.log(voxel);
 						//voxel.position.divideScalar( 50 ).floor().multiplyScalar( 50 ).addScalar( 25 );
@@ -124,6 +124,7 @@ function onWindowResize() {
 					var voxel = new THREE.Mesh( cubeGeo, cubeMaterial );
 					voxel.position.copy( intersect.point ).add( intersect.face.normal );
 					//voxel.position.divideScalar( 50 ).floor().multiplyScalar( 50 ).addScalar( 25 );
+					voxel.name = "toRemove_voxel";
 					scene.add( voxel );
 					mystroke[0] = voxel;
 					gest[0] = new Point(x,y);
@@ -154,7 +155,8 @@ function onWindowResize() {
 				
 				var matched = r.Recognize(gest);
 				console.log(matched);
-				var geometry = new THREE.Geometry();
+				/*
+	      			var geometry = new THREE.Geometry();
 				geometry.vertices.push( new THREE.Vector3( _3dminX, 1, _3dminZ ) );
 				geometry.vertices.push( new THREE.Vector3( _3dminX, 1, _3dmaxZ ) );
 				
@@ -171,6 +173,7 @@ function onWindowResize() {
 				var material = new THREE.LineBasicMaterial( { color: 0xff0000, opacity: 1, transparent: false } );
 				var line = new THREE.LineSegments( geometry, material );
 				scene.add( line );
+				*/
 				var width = _3dmaxX -_3dminX;
 				var height = _3dmaxZ -_3dminZ;
 				switch(matched.Name){
@@ -190,7 +193,7 @@ function onWindowResize() {
 							var radius = height/2;
 						}
 						var circleGeometry = new THREE.SphereGeometry( radius, 32, 32 );
-						circleGeometry.name = "circle_"+circles;
+						circleGeometry.name = "circle_"+circle_in_scene;
 						circleGeometry.translate(_3dminX+width/2, 3, _3dminZ+height/2);
 						points.push(
 							new THREE.Vector3(_3dminX+width/2, 3, _3dminZ+height/2)
