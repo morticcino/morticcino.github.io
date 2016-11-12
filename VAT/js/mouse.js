@@ -205,6 +205,7 @@ function onWindowResize() {
 						);
 						var material = new THREE.MeshBasicMaterial( {color: 0x00ff00} );
 						var circle = new THREE.Mesh( circleGeometry, material );
+						scene.remove( sketch_container );
 						scene.add( circle );
 						circle_in_scene++;
 						draw_circle_link();
