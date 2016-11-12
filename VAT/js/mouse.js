@@ -17,7 +17,7 @@ function onWindowResize() {
 			}
       
       function mousemove( x, y ) {
-				if( sketching ){
+				if( draw_mode ){
 					
 					event.preventDefault();
 					
@@ -121,26 +121,24 @@ function onWindowResize() {
 				raycaster.setFromCamera( mouse, camera );
 				var intersects = raycaster.intersectObjects( objects );
 				if ( intersects.length > 0 ) {
-					if(sketching){
-						var intersect = intersects[ 0 ];
-						var voxel = new THREE.Mesh( cubeGeo, cubeMaterial );
-						voxel.position.copy( intersect.point ).add( intersect.face.normal );
-						//voxel.position.divideScalar( 50 ).floor().multiplyScalar( 50 ).addScalar( 25 );
-						voxel.name = "toRemove_voxel";
-						sketch_container = new THREE.Object3D();
-						sketch_conteiner.name = 'sketch_container';
-						sketch_container.add(voxel);
-						scene.add( sketch_container );
-						mystroke[0] = voxel;
-						gest[0] = new Point(x,y);
-						_3dmaxX = voxel.position.x;
-						_3dminX = voxel.position.x;
-						_3dmaxZ = voxel.position.z;
-						_3dminZ = voxel.position.z;
+					var intersect = intersects[ 0 ];
+					var voxel = new THREE.Mesh( cubeGeo, cubeMaterial );
+					voxel.position.copy( intersect.point ).add( intersect.face.normal );
+					//voxel.position.divideScalar( 50 ).floor().multiplyScalar( 50 ).addScalar( 25 );
+					voxel.name = "toRemove_voxel";
+					sketch_container = new THREE.Object3D();
+					sketch_conteiner.name = 'sketch_container';
+					sketch_container.add(voxel);
+					scene.add( sketch_container );
+					mystroke[0] = voxel;
+					gest[0] = new Point(x,y);
+					_3dmaxX = voxel.position.x;
+					_3dminX = voxel.position.x;
+					_3dmaxZ = voxel.position.z;
+					_3dminZ = voxel.position.z;
 
-						draw[0] = {x: voxel.position.x, z:voxel.position.z}; 
-					}
-					
+					draw[0] = {x: voxel.position.x, z:voxel.position.z}; 
+
 				
 				}
 				render();	
