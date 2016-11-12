@@ -127,7 +127,7 @@ function onWindowResize() {
 					//voxel.position.divideScalar( 50 ).floor().multiplyScalar( 50 ).addScalar( 25 );
 					voxel.name = "toRemove_voxel";
 					sketch_container = new THREE.Object3D();
-					sketch_conteiner.name = 'sketch_container';
+					sketch_container.name = 'sketch_container';
 					sketch_container.add(voxel);
 					scene.add( sketch_container );
 					mystroke[0] = voxel;
