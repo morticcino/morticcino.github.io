@@ -125,9 +125,9 @@ function onWindowResize() {
 					var voxel = new THREE.Mesh( cubeGeo, cubeMaterial );
 					voxel.position.copy( intersect.point ).add( intersect.face.normal );
 					//voxel.position.divideScalar( 50 ).floor().multiplyScalar( 50 ).addScalar( 25 );
-					voxel.name = "toRemove_voxel";
+					//voxel.name = "toRemove_voxel";
 					sketch_container = new THREE.Object3D();
-					sketch_container.name = 'sketch_container';
+					//sketch_container.name = 'sketch_container';
 					sketch_container.add(voxel);
 					scene.add( sketch_container );
 					mystroke[0] = voxel;
@@ -189,6 +189,7 @@ function onWindowResize() {
 						geometry.translate(_3dminX+width/2, 1, _3dminZ+height/2);
 						var material = new THREE.MeshBasicMaterial( {color: 0x00ff00} );
 						var cube = new THREE.Mesh( geometry, material );
+						scene.remove( sketch_container );
 						scene.add( cube );
 						break;
 					case "circle":
