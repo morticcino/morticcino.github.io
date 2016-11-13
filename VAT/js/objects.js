@@ -3,7 +3,7 @@ var circles = {
   circles_data: [],
   create: function(cx,cy,r){
             var circleGeometry = new THREE.SphereGeometry( r, 32, 32 );
-						circleGeometry.name = "circle_"+circles_in_scene;
+						circleGeometry.name = "circle_"+this.circles_in_scene;
 						circleGeometry.translate(cx, 3, cy);
 						points.push(
 							new THREE.Vector3(cx, 3, cy)
