@@ -198,7 +198,7 @@ function onWindowResize() {
 						}else{
 							var radius = height/2;
 						}
-						circle.create(_3dminX+width/2,_3dminZ+width/2,radius);
+						circles.create(_3dminX+width/2,_3dminZ+width/2,radius);
 						/*
 						var circleGeometry = new THREE.SphereGeometry( radius, 32, 32 );
 						circleGeometry.name = "circle_"+circle_in_scene;
