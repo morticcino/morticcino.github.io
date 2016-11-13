@@ -1,5 +1,5 @@
 var circles = {
-  var circle_in_scene: 0,
+  circle_in_scene: 0,
   circle_data: [],
   create: function(cx,cy,r){
             var circleGeometry = new THREE.SphereGeometry( r, 32, 32 );
