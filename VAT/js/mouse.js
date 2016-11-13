@@ -198,6 +198,8 @@ function onWindowResize() {
 						}else{
 							var radius = height/2;
 						}
+						circle.create(_3dminX+width/2,_3dminZ+width/2,radius);
+						/*
 						var circleGeometry = new THREE.SphereGeometry( radius, 32, 32 );
 						circleGeometry.name = "circle_"+circle_in_scene;
 						circleGeometry.translate(_3dminX+width/2, 3, _3dminZ+height/2);
@@ -206,9 +208,10 @@ function onWindowResize() {
 						);
 						var material = new THREE.MeshBasicMaterial( {color: 0x00ff00} );
 						var circle = new THREE.Mesh( circleGeometry, material );
-						scene.remove( sketch_container );
 						scene.add( circle );
 						circle_in_scene++;
+						*/
+						scene.remove( sketch_container );
 						draw_circle_link();
 						break;
 					case "triangle":
