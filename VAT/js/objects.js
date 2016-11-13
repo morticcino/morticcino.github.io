@@ -12,7 +12,7 @@ var circles = {
 						var circle = new THREE.Mesh( circleGeometry, material );
 						scene.add( circle );
             					circle_data[circle_in_scene] = {'position':scene.length, 'x':cx, 'y':cy, 'r':r};
-	  					this.circle_in_scene++;                                                                                                                                   ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,                                                                                                                                                                                                                                                                                                                                                                                                                                                 z
+	                                        this.circle_in_scene++;                                                                                                                                   ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,                                                                                                                                                                                                                                                                                                                                                                                                                                                 z
   },
   update: function(){
   }
