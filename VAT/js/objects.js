@@ -2,7 +2,7 @@ var circles = {
   circles_in_scene: 0,
   circles_data: [],
   create: function(cx,cy,r){
-            var circleGeometry = new THREE.SphereGeometry( r, 32, 32 );
+            var circleGeometry = new THREE.CircleGeometry( r, 32, 32 );
 						circleGeometry.name = "circle_"+this.circles_in_scene;
 						circleGeometry.translate(cx, 3, cy);
 						points.push(
