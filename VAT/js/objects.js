@@ -14,7 +14,7 @@ var circles = {
             					this.circles_data[this.circles_in_scene] = {'position':scene.children.length, 'x':cx, 'y':cy, 'r':r};
 	                                        this.circles_in_scene++;
 	  					if(this.circles_in_scene > 1){
-							for(var i = 0; i<this.circles_in_scene;i++){
+							for(var i = 0; i<this.circles_in_scene-1;i++){
 								var cx1 = this.circles_data[i].x;
 								var cy1 = this.circles_data[i].y;
 								var r1 = this.circles_data[i].r;
