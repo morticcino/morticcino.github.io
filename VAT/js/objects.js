@@ -4,9 +4,9 @@ var circles = {
   create: function(cx,cy,r){
             var circleGeometry = new THREE.SphereGeometry( r, 32, 32 );
 						circleGeometry.name = "circle_"+this.circles_in_scene;
-						circleGeometry.translate(cx, 3, cy);
+						circleGeometry.translate(cx, 0, cy);
 						points.push(
-							new THREE.Vector3(cx, 3, cy)
+							new THREE.Vector3(cx, 0, cy)
 						);
 						var material = new THREE.MeshBasicMaterial( {color: 0x00ff00} );
 						var circle = new THREE.Mesh( circleGeometry, material );
