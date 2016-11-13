@@ -240,6 +240,17 @@ function tangent(x1,y1,r1,x2,y2,r2){
 					  	//svgpaper.appendChild(F3D_Polygon.line_group);
 					  }
 					 */
-					group.polygons.appendChild(F3D_Polygon.addPolygon('polygon',poc2x,poc2y,poc1x,poc1y,poc4x,poc4y,poc3x,poc3y));
+					var shape = new THREE.Shape();
+					shape.moveTo( poc1x,poc1y );
+					shape.lineTo( poc2x,poc2y );
+					shape.lineTo( poc3x,poc3y );
+					shape.lineTo( poc4x,poc4y );
+					shape.lineTo( poc1x,poc1y );
+
+					var geometry = new THREE.ShapeGeometry( shape );
+					var material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
+					var mesh = new THREE.Mesh( geometry, material ) ;
+					scene.add( mesh );
+					//group.polygons.appendChild(F3D_Polygon.addPolygon('polygon',poc2x,poc2y,poc1x,poc1y,poc4x,poc4y,poc3x,poc3y));
 					
 }
