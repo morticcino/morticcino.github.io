@@ -250,6 +250,7 @@ function tangent(x1,y1,r1,x2,y2,r2){
 					var geometry = new THREE.ShapeGeometry( shape );
 					var material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
 					var mesh = new THREE.Mesh( geometry, material ) ;
+					mesh.name = 'tangent';
 					scene.add( mesh );
 					//group.polygons.appendChild(F3D_Polygon.addPolygon('polygon',poc2x,poc2y,poc1x,poc1y,poc4x,poc4y,poc3x,poc3y));
 					
