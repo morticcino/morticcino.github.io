@@ -241,11 +241,11 @@ function tangent(x1,y1,r1,x2,y2,r2){
 					  }
 					 */
 					var shape = new THREE.Shape();
-					shape.moveTo( poc1x,poc1y );
-					shape.lineTo( poc2x,poc2y );
+					shape.moveTo( poc4x,poc4y );
 					shape.lineTo( poc3x,poc3y );
-					shape.lineTo( poc4x,poc4y );
+					shape.lineTo( poc2x,poc2y );
 					shape.lineTo( poc1x,poc1y );
+					shape.lineTo( poc4x,poc4y );
 
 					var geometry = new THREE.ShapeGeometry( shape );
 					var material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
