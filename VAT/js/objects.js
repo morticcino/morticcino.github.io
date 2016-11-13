@@ -15,12 +15,12 @@ var circles = {
 	                                        this.circles_in_scene++;
 	  					if(this.circles_in_scene > 1){
 							for(var i = 0; i<this.circles_in_scene;i++){
-								var cx1 = this.circles_data[this.circles_in_scene].x;
-								var cy1 = this.circles_data[this.circles_in_scene].y;
-								var r1 = this.circles_data[this.circles_in_scene].r;
-								var cx2 = this.circles_data[this.circles_in_scene+1].x;
-								var cy2 = this.circles_data[this.circles_in_scene+1].y;
-								var r2 = this.circles_data[this.circles_in_scene+1].r;
+								var cx1 = this.circles_data[i].x;
+								var cy1 = this.circles_data[i].y;
+								var r1 = this.circles_data[i].r;
+								var cx2 = this.circles_data[i+1].x;
+								var cy2 = this.circles_data[i+1].y;
+								var r2 = this.circles_data[i+1].r;
 								tangent(cx1,cy1,r1,cx2,cy2,r2);
 							}
 						}
