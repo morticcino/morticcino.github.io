@@ -11,7 +11,7 @@ var circles = {
 						var material = new THREE.MeshBasicMaterial( {color: 0x00ff00} );
 						var circle = new THREE.Mesh( circleGeometry, material );
 						scene.add( circle );
-            					this.circles_data[this.circles_in_scene] = {'position':scene.length, 'x':cx, 'y':cy, 'r':r};
+            					this.circles_data[this.circles_in_scene] = {'position':scene.children.length, 'x':cx, 'y':cy, 'r':r};
 	                                        this.circles_in_scene++;
 	  					if(this.circles_in_scene > 1){
 							for(var i = 0; i<this.circles_in_scene;i++){
