@@ -239,7 +239,7 @@ function tangent(x1,y1,r1,x2,y2,r2){
 					  	//Fast3d.f3dsphere_group.setAttribute('stroke', 'green');
 					  	//svgpaper.appendChild(F3D_Polygon.line_group);
 					  }
-					 */
+					 
 					var shape = new THREE.Shape();
 					shape.moveTo( poc4x,poc4y );
 					shape.lineTo( poc3x,poc3y );
@@ -252,6 +252,21 @@ function tangent(x1,y1,r1,x2,y2,r2){
 					var mesh = new THREE.Mesh( geometry, material ) ;
 					mesh.name = 'tangent';
 					scene.add( mesh );
+					*/
+					var material = new THREE.LineBasicMaterial({
+						color: 0x0000ff
+					});
+
+					var geometry = new THREE.Geometry();
+					geometry.vertices.push(
+						new THREE.Vector3( poc4x, 0, poc4y ),
+						new THREE.Vector3( poc3x, 0, poc3y ),
+						new THREE.Vector3( poc2x, 0, poc2y ),
+						new THREE.Vector3( poc1x, 0, poc1y )
+					);
+
+					var line = new THREE.Line( geometry, material );
+					scene.add( line );
 					//group.polygons.appendChild(F3D_Polygon.addPolygon('polygon',poc2x,poc2y,poc1x,poc1y,poc4x,poc4y,poc3x,poc3y));
 					
 }
