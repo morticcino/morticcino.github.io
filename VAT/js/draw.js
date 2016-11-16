@@ -253,19 +253,32 @@ function tangent(x1,y1,r1,x2,y2,r2){
 					mesh.name = 'tangent';
 					scene.add( mesh );
 					*/
-					var material = new THREE.LineBasicMaterial({
+					var material_dx = new THREE.LineBasicMaterial({
 						color: 0x0000ff
+					});
+					var material_sx = new THREE.LineBasicMaterial({
+						color: 0xff0000
 					});
 
 					var geometry = new THREE.Geometry();
 					geometry.vertices.push(
 						new THREE.Vector3( poc4x, 0, poc4y ),
 						new THREE.Vector3( poc3x, 0, poc3y ),
+						//new THREE.Vector3( poc2x, 0, poc2y ),
+						//new THREE.Vector3( poc1x, 0, poc1y )
+					);
+
+					var line = new THREE.Line( geometry, material_sx );
+					scene.add( line );
+					var geometry = new THREE.Geometry();
+					geometry.vertices.push(
+						//new THREE.Vector3( poc4x, 0, poc4y ),
+						//new THREE.Vector3( poc3x, 0, poc3y ),
 						new THREE.Vector3( poc2x, 0, poc2y ),
 						new THREE.Vector3( poc1x, 0, poc1y )
 					);
 
-					var line = new THREE.Line( geometry, material );
+					var line = new THREE.Line( geometry, material_dx );
 					scene.add( line );
 					//group.polygons.appendChild(F3D_Polygon.addPolygon('polygon',poc2x,poc2y,poc1x,poc1y,poc4x,poc4y,poc3x,poc3y));
 					
