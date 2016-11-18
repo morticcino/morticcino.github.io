@@ -1,3 +1,4 @@
+//equation line = y-y1 = m(m-m1) -> m=(y-y1)/(m-m1)
 function sketch(){
 				var geometry = new THREE.Geometry();
 				for(var i = 0;i<draw.length-1;i++){
