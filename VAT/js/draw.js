@@ -276,10 +276,10 @@ function tangent(x1,y1,r1,x2,y2,r2){
 					var q = q_value(poc3x,poc3y,poc4x,poc4y);
 					var estensione = 0;
 					if(m<0){
-						x3 = poc3x;
-						x4 = poc4x+100;
-						y3 = poc3y;
-						y4 = y_value(m,x4,q);
+						x3 = poc4x;
+						x4 = poc3x+100;
+						y3 = poc4y;
+						y4 = y_value(m,x3,q);
 					}
 					else{
 						x3 = poc3x-100;
