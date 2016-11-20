@@ -275,16 +275,22 @@ function tangent(x1,y1,r1,x2,y2,r2){
 					var m = m_value(poc3x,poc3y,poc4x,poc4y);
 					var q = q_value(poc3x,poc3y,poc4x,poc4y);
 					var estensione = 0;
-					if(m<0)
-						estensione = poc4x+100;
-	                                else
-						estensione = poc3x-100;
-					var new_x = estensione;
-					var new_y = y_value(m,new_x,q);
+					if(m<0){
+						x3 = poc3x;
+						x4 = poc4x+100;
+						y3 = poc3y;
+						y4 = y_value(m,x4,q);
+					}
+					else{
+						x3 = poc3x-100;
+						x4 = poc4x;
+						y3 = y_value(m,x3,q);
+						y4 = poc4y;
+					}
 					geometry.vertices.push(
-						new THREE.Vector3( new_x, 0, new_y ),
+						new THREE.Vector3( x4, 0, y4 ),
 						/*new THREE.Vector3( poc4x, 0, poc4y ),*/
-						new THREE.Vector3( poc3x, 0, poc3y )
+						new THREE.Vector3( x3, 0, y3 )
 						//new THREE.Vector3( poc2x, 0, poc2y ),
 						//new THREE.Vector3( poc1x, 0, poc1y )
 					);
