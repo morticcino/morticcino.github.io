@@ -274,7 +274,7 @@ function tangent(x1,y1,r1,x2,y2,r2){
 					var geometry = new THREE.Geometry();
 					var m = m_value(poc3x,poc3y,poc4x,poc4y);
 					var q = q_value(poc3x,poc3y,poc4x,poc4y);
-					var new_x = poc4x+5;
+					var new_x = poc4x+100;
 					var new_y = y_value(m,new_x,q);
 					geometry.vertices.push(
 						new THREE.Vector3( new_x, 0, new_y ),
