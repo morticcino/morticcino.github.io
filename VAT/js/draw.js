@@ -285,15 +285,14 @@ function tangent(x1,y1,r1,x2,y2,r2){
 					if(m<0){
 						x3 = poc3x+100;
 						x4 = poc4x-100;
-						y3 = y_value(m,x3,q);
-						y4 = y_value(m,x4,q);
 					}
 					else{
 						x3 = poc3x-100;
-						x4 = poc4x;
-						y3 = y_value(m,x3,q);
-						y4 = poc4y;
+						x4 = poc4x+100;
 					}
+					y3 = y_value(m,x3,q);
+					y4 = y_value(m,x4,q);
+					
 					var container = new THREE.Object3D();
 					drawVoxel(5,0xff0000,x3,y3,container);
 					drawVoxel(5,0xff0000,x4,y4,container);
