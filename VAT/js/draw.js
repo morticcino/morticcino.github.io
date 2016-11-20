@@ -1,7 +1,7 @@
 //equation line = y-y1 = m(m-m1) -> m=(y-y1)/(m-m1)
 // q=-my+x
 function m_value(x1,y1,x2,y2){
-	return (y1-y2)/(x1-x2);
+	return (y2-y1)/(x2-x1);
 }
 function y_value(m,x,q){
 	return m*x+q;
