@@ -6,8 +6,8 @@ function m_value(x1,y1,x2,y2){
 function y_value(m,x,q){
 	return m*x+q;
 }
-function q_value(m,y,x){
-	return -(m*y)+x;
+function q_value(x1,y1,x2,y2){
+	return -x1*((y2-y1)/(x2-x1))+y1;
 }
 function sketch(){
 				var geometry = new THREE.Geometry();
