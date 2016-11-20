@@ -1,9 +1,13 @@
 //equation line = y-y1 = m(m-m1) -> m=(y-y1)/(m-m1)
+// q=-my+x
 function m_value(x1,y1,x2,y2){
 	return (y1-y2)/(x1-x2);
 }
-function y_value(m,x){
-	return m*x;
+function y_value(m,x,q){
+	return m*x+q;
+}
+function q_value(m,y,x){
+	return -(m*y)+x;
 }
 function sketch(){
 				var geometry = new THREE.Geometry();
@@ -269,8 +273,9 @@ function tangent(x1,y1,r1,x2,y2,r2){
 
 					var geometry = new THREE.Geometry();
 					var m = m_value(poc4x,poc4y,poc3x,poc3y);
+					var q = q_value(m,poc3y, poc3x)
 					var new_x = poc3x+5;
-					var new_y = y_value(m,new_x);
+					var new_y = y_value(m,new_x,q);
 					geometry.vertices.push(
 						new THREE.Vector3( poc4x, 0, poc4y ),
 						/*new THREE.Vector3( poc3x, 0, poc3y )*/
