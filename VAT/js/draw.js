@@ -338,8 +338,8 @@ function tangent(x1,y1,r1,x2,y2,r2){
 						
 					);
 
-					var line = new THREE.Line( geometry, material_dx );
-					scene.add( line );
+					var line2 = new THREE.Line( geometry, material_dx );
+					scene.add( line2 );
 					//group.polygons.appendChild(F3D_Polygon.addPolygon('polygon',poc2x,poc2y,poc1x,poc1y,poc4x,poc4y,poc3x,poc3y));
 					
 }
