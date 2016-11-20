@@ -295,8 +295,8 @@ function tangent(x1,y1,r1,x2,y2,r2){
 						y4 = poc4y;
 					}
 					var container = new THREE.Object3D();
-					drawVoxel(2,0xff0000,x3,y3,container);
-					drawVoxel(2,0xff0000,x4,y4,container);
+					drawVoxel(5,0xff0000,x3,y3,container);
+					drawVoxel(5,0xff0000,x4,y4,container);
 					scene.add(container);
 					geometry.vertices.push(
 						//new THREE.Vector3( x4, 0, y4 ),
