@@ -1,5 +1,12 @@
 //equation line = y-y1 = m(m-m1) -> m=(y-y1)/(m-m1)
 // q=-my+x
+function drawVoxel(scale, color, X, Z, container){
+	cubeGeo = new THREE.BoxGeometry( scale, scale, scale );
+	cubeMaterial = new THREE.MeshLambertMaterial( { color: color } );
+	var voxel = new THREE.Mesh( cubeGeo, cubeMaterial );
+	voxel.position.copy( {x:X, y:1, z:Z} );
+	container.add(voxel);
+}
 function m_value(x1,y1,x2,y2){
 	return (y2-y1)/(x2-x1);
 }
@@ -287,10 +294,14 @@ function tangent(x1,y1,r1,x2,y2,r2){
 						y3 = y_value(m,x3,q);
 						y4 = poc4y;
 					}
+					var container = new Object3D();
+					drawVoxel(2,0xff0000,x3,y3,container);
+					drawVoxel(2,0xff0000,x4,y4,container);
+					scene.add(container);
 					geometry.vertices.push(
-						new THREE.Vector3( x4, 0, y4 ),
-						/*new THREE.Vector3( poc4x, 0, poc4y ),*/
-						new THREE.Vector3( x3, 0, y3 )
+						//new THREE.Vector3( x4, 0, y4 ),
+						new THREE.Vector3( poc4x, 0, poc4y ),
+						new THREE.Vector3( poc3x, 0, poc3y )
 						//new THREE.Vector3( poc2x, 0, poc2y ),
 						//new THREE.Vector3( poc1x, 0, poc1y )
 					);
