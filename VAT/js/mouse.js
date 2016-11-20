@@ -123,6 +123,7 @@ function onWindowResize() {
 				if ( intersects.length > 0 ) {
 					var intersect = intersects[ 0 ];
 					var voxel = new THREE.Mesh( cubeGeo, cubeMaterial );
+					intersection_normal = intersect.face.normal;
 					voxel.position.copy( intersect.point ).add( intersect.face.normal );
 					//voxel.position.divideScalar( 50 ).floor().multiplyScalar( 50 ).addScalar( 25 );
 					//voxel.name = "toRemove_voxel";
