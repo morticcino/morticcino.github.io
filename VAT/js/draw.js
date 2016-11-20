@@ -275,7 +275,7 @@ function tangent(x1,y1,r1,x2,y2,r2){
 					var m = m_value(poc3x,poc3y,poc4x,poc4y);
 					var q = q_value(poc3x,poc3y,poc4x,poc4y);
 					var estensione = 0;
-					if(x<0)
+					if(m<0)
 						estensione = 100;
 	                                else
 						estensione = -100;
