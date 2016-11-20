@@ -4,7 +4,7 @@ function drawVoxel(scale, color, X, Z, container){
 	cubeGeo = new THREE.BoxGeometry( scale, scale, scale );
 	cubeMaterial = new THREE.MeshLambertMaterial( { color: color } );
 	var voxel = new THREE.Mesh( cubeGeo, cubeMaterial );
-	voxel.position.copy( {x:X, y:1, z:Z} ).add({x:0,y:1,z:6.123234379392869e-17});
+	voxel.position.copy( {x:X, y:1, z:Z} ).add(intersection_normal);
 	container.add(voxel);
 }
 function m_value(x1,y1,x2,y2){
