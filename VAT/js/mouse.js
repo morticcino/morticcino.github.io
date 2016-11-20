@@ -114,7 +114,7 @@ function onWindowResize() {
 			
 			function mousedown( x, y ) {
 				draw_mode = true;
-				event.preventDefault();
+				//event.preventDefault();
 				maxX = minX = x;
 				maxY = minY = y;
 				mouse.set( ( x / window.innerWidth ) * 2 - 1, - ( y / window.innerHeight ) * 2 + 1 );
