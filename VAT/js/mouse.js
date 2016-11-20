@@ -19,7 +19,7 @@ function onWindowResize() {
       function mousemove( x, y ) {
 				if( draw_mode ){
 					
-					event.preventDefault();
+					//event.preventDefault();
 					
 					
 					/*	
@@ -71,7 +71,7 @@ function onWindowResize() {
 	
 					render();	
 				}else{
-					event.preventDefault();
+					//event.preventDefault();
 					
 					mouse.set( ( x / window.innerWidth ) * 2 - 1, - ( y / window.innerHeight ) * 2 + 1 );
 	
@@ -156,7 +156,7 @@ function onWindowResize() {
       function mouseup(  ){
 				
 				draw_mode = false;
-				event.preventDefault();
+				//event.preventDefault();
 				
 				var matched = r.Recognize(gest);
 				console.log(matched);
