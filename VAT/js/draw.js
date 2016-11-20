@@ -282,14 +282,9 @@ function tangent(x1,y1,r1,x2,y2,r2){
 					var m = m_value(poc3x,poc3y,poc4x,poc4y);
 					var q = q_value(poc3x,poc3y,poc4x,poc4y);
 					var estensione = 0;
-					if(m<0){
-						x3 = poc3x+100;
-						x4 = poc4x-100;
-					}
-					else{
-						x3 = poc3x-100;
-						x4 = poc4x+100;
-					}
+					x3 = poc3x+100;
+					x4 = poc4x-100;
+					
 					y3 = y_value(m,x3,q);
 					y4 = y_value(m,x4,q);
 					
@@ -313,14 +308,9 @@ function tangent(x1,y1,r1,x2,y2,r2){
 					var m = m_value(poc1x,poc1y,poc2x,poc2y);
 					var q = q_value(poc1x,poc1y,poc2x,poc2y);
 					var estensione = 0;
-					if(m<0){
-						x1 = poc1x+100;
-						x2 = poc2x-100;
-					}
-					else{
-						x1 = poc1x-100;
-						x2 = poc2x+100;
-					}
+					x1 = poc1x+100;
+					x2 = poc2x-100;
+					
 					y1 = y_value(m,x1,q);
 					y2 = y_value(m,x2,q);
 					
