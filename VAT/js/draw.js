@@ -288,7 +288,7 @@ function tangent(x1,y1,r1,x2,y2,r2){
 					var material_sx = new THREE.LineBasicMaterial({
 						color: 0xff0000
 					});
-					var gap = 100;
+					var gap = 150;
 					var geometry = new THREE.Geometry();
 					var m = m_value(poc3x,poc3y,poc4x,poc4y);
 					var q = q_value(poc3x,poc3y,poc4x,poc4y);
