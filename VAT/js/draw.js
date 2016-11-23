@@ -1,5 +1,6 @@
 //equation line = y-y1 = m(m-m1) -> m=(y-y1)/(m-m1)
 // q=-my+x
+// http://math.stackexchange.com/questions/352828/increase-length-of-line
 function drawVoxel(scale, color, X, Z, container){
 	cubeGeo = new THREE.BoxGeometry( scale, scale, scale );
 	cubeMaterial = new THREE.MeshLambertMaterial( { color: color } );
