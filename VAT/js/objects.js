@@ -3,7 +3,6 @@ var circles = {
   circles_data: [],
   create: function(cx,cy,r){
         var circleGeometry = new THREE.SphereGeometry( r, 32, 32 );
-	circleGeometry.name = "circle_"+this.circles_in_scene;
 	circleGeometry.translate(cx, 0, cy);
 	//THREE.EventDispatcher.call( circleGeometry );
 	//circleGeometry.addEventListener('click', function(event) {alert("GOT THE EVENT");});
@@ -13,6 +12,7 @@ var circles = {
 	);
 	var material = new THREE.MeshBasicMaterial( {color: 0x00ff00} );
 	var circle = new THREE.Mesh( circleGeometry, material );
+	circle.name = "circle_"+this.circles_in_scene;
 	scene.add( circle );
 	this.circles_data[this.circles_in_scene] = {'position':scene.children.length, 'x':cx, 'y':cy, 'r':r};
 	this.circles_in_scene++;
