@@ -288,7 +288,7 @@ function tangent(x1,y1,r1,x2,y2,r2){
 					var material_sx = new THREE.LineBasicMaterial({
 						color: 0xff0000
 					});
-					var gap = 20;
+					var gap = 60;
 					var geometry = new THREE.Geometry();
 					var m = m_value(poc3x,poc3y,poc4x,poc4y);
 					var q = q_value(poc3x,poc3y,poc4x,poc4y);
@@ -298,8 +298,8 @@ function tangent(x1,y1,r1,x2,y2,r2){
 					
 					y3 = y_value(m,x3,q);
 					y4 = y_value(m,x4,q);
-					var new_x_y = increaseLength(40,poc3x,poc3y,poc4x,poc4y);
-					var new_x_y2 = increaseLength(40,poc4x,poc4y,poc3x,poc3y);
+					var new_x_y = increaseLength(gap,poc3x,poc3y,poc4x,poc4y);
+					var new_x_y2 = increaseLength(gap,poc4x,poc4y,poc3x,poc3y);
 					
 					var container = new THREE.Object3D();
 					drawVoxel(5,0xff0000,x3,y3,container);
@@ -332,8 +332,8 @@ function tangent(x1,y1,r1,x2,y2,r2){
 					var container = new THREE.Object3D();
 					drawVoxel(5,0x00ff00,x1,y1,container);
 					drawVoxel(5,0x00ff00,x2,y2,container);
-					var new_x_y3 = increaseLength(40,poc1x,poc1y,poc2x,poc2y);
-					var new_x_y4 = increaseLength(40,poc2x,poc2y,poc1x,poc1y);
+					var new_x_y3 = increaseLength(gap,poc1x,poc1y,poc2x,poc2y);
+					var new_x_y4 = increaseLength(gap,poc2x,poc2y,poc1x,poc1y);
 					drawVoxel(5,0xCC00CC,new_x_y3.x,new_x_y3.y,container);
 					drawVoxel(5,0x116611,new_x_y4.x,new_x_y4.y,container);
 					scene.add(container);
