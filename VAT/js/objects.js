@@ -5,9 +5,9 @@ var circles = {
         var circleGeometry = new THREE.SphereGeometry( r, 32, 32 );
 	circleGeometry.name = "circle_"+this.circles_in_scene;
 	circleGeometry.translate(cx, 0, cy);
-	THREE.EventDispatcher.call( circleGeometry );
-	circleGeometry.addEventListener('click', function(event) {alert("GOT THE EVENT");});
-	circleGeometry.dispatchEvent({type:'click'});
+	//THREE.EventDispatcher.call( circleGeometry );
+	//circleGeometry.addEventListener('click', function(event) {alert("GOT THE EVENT");});
+	//circleGeometry.dispatchEvent({type:'click'});
 	points.push(
 		new THREE.Vector3(cx, 0, cy)
 	);
