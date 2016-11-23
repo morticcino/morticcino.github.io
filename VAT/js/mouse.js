@@ -122,7 +122,7 @@ function onWindowResize() {
 				var intersects = raycaster.intersectObjects( objects );
 				if ( intersects.length > 0 ) {
 					var intersect = intersects[ 0 ];
-					intersects.object.dispatchEvent({
+					intersect.object.dispatchEvent({
 						type: 'pick',
 						info: e
 					});
