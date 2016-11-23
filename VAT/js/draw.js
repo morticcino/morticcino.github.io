@@ -22,7 +22,11 @@ function increaseLength(increment, x1, y1, x2, y2){
 	var newy = y2 + increment/Math.sqrt(Math.pow(x2-x1,2)+Math.pow(y2-y1,2))*(y2-y1);
 	return {'x':newx,'y':newy};	
 }
-
+function increaseLength2(increment, x1, y1, x2, y2){
+	var newx = x2 + increment/Math.sqrt(Math.pow(x1-x2,2)+Math.pow(y1-y2,2))*(x1-x2);
+	var newy = y2 + increment/Math.sqrt(Math.pow(x1-x2,2)+Math.pow(y1-y2,2))*(y1-y2);
+	return {'x':newx,'y':newy};	
+}
 function sketch(){
 				var geometry = new THREE.Geometry();
 				for(var i = 0;i<draw.length-1;i++){
@@ -295,11 +299,13 @@ function tangent(x1,y1,r1,x2,y2,r2){
 					y3 = y_value(m,x3,q);
 					y4 = y_value(m,x4,q);
 					var new_x_y = increaseLength(20,poc3x,poc3y,poc4x,poc4y);
+					var new_x_y2 = increaseLength2(20,poc3x,poc3y,poc4x,poc4y);
 					
 					var container = new THREE.Object3D();
 					drawVoxel(5,0xff0000,x3,y3,container);
 					drawVoxel(5,0xff0000,x4,y4,container);
 					drawVoxel(5,0x770077,new_x_y.x,new_x_y.y,container);
+					drawVoxel(5,0x770077,new_x_y2.x,new_x_y2.y,container);
 					scene.add(container);
 					geometry.vertices.push(
 						//new THREE.Vector3( x4, 0, y4 ),
