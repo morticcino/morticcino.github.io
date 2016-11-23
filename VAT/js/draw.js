@@ -299,7 +299,7 @@ function tangent(x1,y1,r1,x2,y2,r2){
 					y3 = y_value(m,x3,q);
 					y4 = y_value(m,x4,q);
 					var new_x_y = increaseLength(20,poc3x,poc3y,poc4x,poc4y);
-					var new_x_y2 = increaseLength2(20,poc3x,poc3y,poc4x,poc4y);
+					var new_x_y2 = increaseLength(20,poc4x,poc4y,poc3x,poc3y);
 					
 					var container = new THREE.Object3D();
 					drawVoxel(5,0xff0000,x3,y3,container);
