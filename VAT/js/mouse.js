@@ -103,16 +103,16 @@ function onWindowResize() {
 			function onDocumentMobileMouseDown( event ){
 				var x = event.targetTouches[0].pageX;
 				var y = event.targetTouches[0].pageY;
-				mousedown(x,y, event);
+				mousedown(x,y);
 			}
 			
 			function onDocumentMouseDown( event ) {
 				var x = event.clientX;
 				var y =  event.clientY;
-				mousedown(x,y, event);
+				mousedown(x,y);
 			}
 			
-			function mousedown( x, y, e ) {
+			function mousedown( x, y ) {
 				draw_mode = true;
 				//event.preventDefault();
 				maxX = minX = x;
@@ -122,10 +122,12 @@ function onWindowResize() {
 				var intersects = raycaster.intersectObjects( objects );
 				if ( intersects.length > 0 ) {
 					var intersect = intersects[ 0 ];
+					/*
 					intersect.object.dispatchEvent({
 						type: 'pick',
 						info: e
 					});
+					*/
 					var voxel = new THREE.Mesh( cubeGeo, cubeMaterial );
 					intersection_normal = intersect.face.normal;
 					voxel.position.copy( intersect.point ).add( intersect.face.normal );
