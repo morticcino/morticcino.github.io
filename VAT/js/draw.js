@@ -332,16 +332,16 @@ function tangent(x1,y1,r1,x2,y2,r2){
 					var container = new THREE.Object3D();
 					drawVoxel(5,0x00ff00,x1,y1,container);
 					drawVoxel(5,0x00ff00,x2,y2,container);
-					var new_x_y = increaseLength(40,poc1x,poc1y,poc2x,poc2y);
-					var new_x_y2 = increaseLength(40,poc2x,poc2y,poc1x,poc1y);
+					var new_x_y3 = increaseLength(40,poc1x,poc1y,poc2x,poc2y);
+					var new_x_y4 = increaseLength(40,poc2x,poc2y,poc1x,poc1y);
 					scene.add(container);
 					geometry.vertices.push(
 						//new THREE.Vector3( poc4x, 0, poc4y ),
 						//new THREE.Vector3( poc3x, 0, poc3y ),
 						/*new THREE.Vector3( poc2x, 0, poc2y ),
 						new THREE.Vector3( poc1x, 0, poc1y )*/
-						new THREE.Vector3( new_x_y2.x, 0, new_x_y2.x ),
-						new THREE.Vector3( new_x_y.x, 0, new_x_y.y )
+						new THREE.Vector3( new_x_y4.x, 0, new_x_y4.x ),
+						new THREE.Vector3( new_x_y3.x, 0, new_x_y3.y )
 						
 					);
 
