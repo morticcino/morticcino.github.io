@@ -342,8 +342,8 @@ function tangent(x1,y1,r1,x2,y2,r2){
 						//new THREE.Vector3( poc3x, 0, poc3y ),
 						/*new THREE.Vector3( poc2x, 0, poc2y ),
 						new THREE.Vector3( poc1x, 0, poc1y )*/
-						new THREE.Vector3( poc4x, 0, poc4y ),
-						new THREE.Vector3( poc3x, 0, poc3y )
+						new THREE.Vector3( new_x_y4.x, 0, new_x_y4.y ),
+						new THREE.Vector3( new_x_y3.x, 0, new_x_y3.y )
 						
 					);
 
