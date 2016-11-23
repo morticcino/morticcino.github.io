@@ -305,7 +305,7 @@ function tangent(x1,y1,r1,x2,y2,r2){
 					drawVoxel(5,0xff0000,x3,y3,container);
 					drawVoxel(5,0xff0000,x4,y4,container);
 					drawVoxel(5,0x770077,new_x_y.x,new_x_y.y,container);
-					drawVoxel(5,0x770077,new_x_y2.x,new_x_y2.y,container);
+					drawVoxel(5,0x776677,new_x_y2.x,new_x_y2.y,container);
 					scene.add(container);
 					geometry.vertices.push(
 						//new THREE.Vector3( x4, 0, y4 ),
