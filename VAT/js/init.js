@@ -86,7 +86,7 @@ function init() {
 	document.addEventListener( 'keyup', onDocumentKeyUp, false );
 	document.addEventListener( 'mouseup', onDocumentMouseUp, false );
 	document.addEventListener( 'touchend', onDocumentMobileMouseUp, false );
-	document.addEventListener( 'pick', function(e){console.log('Picked object '+e);}, false );
+	//document.addEventListener( 'pick', function(e){console.log('Picked object '+e);}, false );
 
 	//
 
