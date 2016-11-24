@@ -7,11 +7,11 @@ function onDocumentKeyDown( event ) {
 				}
 */
 	switch( event.key ) {
-		case s: 
+		case 's': 
 			draw = false;
 			select = true;
 			break;
-		case d: 
+		case 'd': 
 			draw = true;
 			select = false;
 			break;
