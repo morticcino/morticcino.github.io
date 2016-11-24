@@ -122,7 +122,7 @@ function onWindowResize() {
 				if(app['tool'] === 'draw'){
 					var intersects = raycaster.intersectObjects( objects );
 				}else if(app['tool'] === 'select'){
-					var intersects = raycaster.intersectObjects( circles );
+					var intersects = raycaster.intersectObjects( circle.circles_data );
 				}
 				if ( intersects.length > 0 ) {
 					var intersect = intersects[ 0 ];
