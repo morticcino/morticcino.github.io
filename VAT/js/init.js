@@ -1,5 +1,6 @@
 function init() {
-
+	app = {};
+	aa['tool'] = 'draw';
 	container = document.createElement( 'div' );
 	document.body.appendChild( container );
 
