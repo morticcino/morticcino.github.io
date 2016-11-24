@@ -8,12 +8,10 @@ function onDocumentKeyDown( event ) {
 */
 	switch( event.key ) {
 		case 's': 
-			draw = false;
-			select = true;
+			app['tool'] = 'select';
 			break;
 		case 'd': 
-			draw = true;
-			select = false;
+			app['tool'] = 'draw';
 			break;
 		default:
 			console.log(event.key);
