@@ -15,7 +15,7 @@ function onDocumentKeyDown( event ) {
 			draw = true;
 			select = false;
 			break;
-		case default:
+		default:
 			console.log(event.key);
 	}
 }
