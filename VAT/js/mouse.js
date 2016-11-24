@@ -119,7 +119,11 @@ function onWindowResize() {
 				maxY = minY = y;
 				mouse.set( ( x / window.innerWidth ) * 2 - 1, - ( y / window.innerHeight ) * 2 + 1 );
 				raycaster.setFromCamera( mouse, camera );
-				var intersects = raycaster.intersectObjects( objects );
+				if(app['tool'] === 'draw'){
+					var intersects = raycaster.intersectObjects( objects );
+				}else if(app['tool'] === 'select'){
+					var intersects = raycaster.intersectObjects( circles );
+				}
 				if ( intersects.length > 0 ) {
 					var intersect = intersects[ 0 ];
 					/*
