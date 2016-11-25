@@ -46,7 +46,7 @@ function onWindowResize() {
 						default:
 							console.log(app['tool']);
 					}
-					var intersects = raycaster.intersectObjects( objects );
+					//var intersects = raycaster.intersectObjects( objects );
 	
 					if ( intersects.length > 0 ) {
 	
@@ -131,11 +131,16 @@ function onWindowResize() {
 				maxY = minY = y;
 				mouse.set( ( x / window.innerWidth ) * 2 - 1, - ( y / window.innerHeight ) * 2 + 1 );
 				raycaster.setFromCamera( mouse, camera );
-				if(app['tool'] === 'draw'){
-					var intersects = raycaster.intersectObjects( objects );
-				}else if(app['tool'] === 'select'){
-					var intersects = raycaster.intersectObjects( circle.circles_data );
-				}
+				switch(app['tool']){
+						case 'draw':
+							intersects = raycaster.intersectObjects( objects );
+							break;
+						case 'select':
+							intersects = raycaster.intersectObjects( circles.circles_data );
+							break;
+						default:
+							console.log(app['tool']);
+					}
 				if ( intersects.length > 0 ) {
 					var intersect = intersects[ 0 ];
 					/*
