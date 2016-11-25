@@ -35,6 +35,7 @@ function onWindowResize() {
 					raycaster.setFromCamera( mouse, camera );
 	
 					var intersects = {};
+					//change pick group
 					switch(app['tool']){
 						case 'draw':
 							intersects = raycaster.intersectObjects( objects );
