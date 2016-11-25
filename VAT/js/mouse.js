@@ -34,6 +34,17 @@ function onWindowResize() {
 	
 					raycaster.setFromCamera( mouse, camera );
 	
+					var intersects = {};
+					switch(app['tool']){
+						case 'draw':
+							intersects = raycaster.intersectObjects( objects );
+							break;
+						case 'select':
+							intersects = raycaster.intersectObjects( circles.circles_data );
+							break;
+						default:
+							console.log(app['tool']);
+					}
 					var intersects = raycaster.intersectObjects( objects );
 	
 					if ( intersects.length > 0 ) {
