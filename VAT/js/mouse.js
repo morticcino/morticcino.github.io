@@ -47,6 +47,7 @@ function onWindowResize() {
 					raycaster.setFromCamera( mouse, camera );
 	
 					var intersects = raycastIntersects();
+					console.log(intersects);
 	
 					if ( intersects.length > 0 ) {
 	
