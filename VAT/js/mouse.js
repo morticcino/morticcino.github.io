@@ -15,7 +15,19 @@ function onWindowResize() {
 				var y =  event.clientY;
 				mousemove(x,y);
 			}
-      
+      function raycastIntersects(){
+      		switch(app['tool']){
+			case 'draw':
+				return raycaster.intersectObjects( objects );
+				break;
+			case 'select':
+				return raycaster.intersectObjects( circles.circles_data );
+				break;
+			default:
+				return {};
+		}
+      }
+
       function mousemove( x, y ) {
 				if( draw_mode ){
 					
@@ -34,19 +46,7 @@ function onWindowResize() {
 	
 					raycaster.setFromCamera( mouse, camera );
 	
-					var intersects = {};
-					//change pick group
-					switch(app['tool']){
-						case 'draw':
-							intersects = raycaster.intersectObjects( objects );
-							break;
-						case 'select':
-							intersects = raycaster.intersectObjects( circles.circles_data );
-							break;
-						default:
-							console.log(app['tool']);
-					}
-					//var intersects = raycaster.intersectObjects( objects );
+					var intersects = raycastIntersects();
 	
 					if ( intersects.length > 0 ) {
 	
