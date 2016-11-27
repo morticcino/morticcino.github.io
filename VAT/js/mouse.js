@@ -46,7 +46,7 @@ function onWindowResize() {
 						case 'select':
 							app['x']=x;
 							app['y']=y;
-							console.log(app['x']-app['old_x']+', '+app['y']-app['old_y']);
+							console.log((app['x']-app['old_x'])+', '+(app['y']-app['old_y']));
 							app['old_x']=x;
 							app['old_y']=y;
 							break;
