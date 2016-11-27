@@ -1,8 +1,10 @@
 function init() {
 	app = {};
 	app['tool'] = 'draw';
-	container = document.createElement( 'div' );
-	document.body.appendChild( container );
+	app['mouse_down']=false;
+	app['intersection']={};
+	app['container'] = document.createElement( 'div' );
+	document.body.appendChild( app['container'] );
 
 	var info = document.createElement( 'div' );
 	info.style.position = 'absolute';
@@ -10,7 +12,7 @@ function init() {
 	info.style.width = '100%';
 	info.style.textAlign = 'center';
 	info.innerHTML = '<a href="http://threejs.org" target="_blank">three.js</a> - voxel painter - webgl<br><strong>click</strong>: add voxel, <strong>shift + click</strong>: remove voxel';
-	container.appendChild( info );
+	app['container'].appendChild( info );
 
 	camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 10000 );
 	camera.position.set(0, 1000, 0 );
@@ -77,7 +79,7 @@ function init() {
 	renderer.setClearColor( 0xf0f0f0 );
 	renderer.setPixelRatio( window.devicePixelRatio );
 	renderer.setSize( window.innerWidth, window.innerHeight );
-	container.appendChild( renderer.domElement );
+	app['container'].appendChild( renderer.domElement );
 
 	document.addEventListener( 'mousemove', onDocumentMouseMove, false );
 	document.addEventListener( 'touchmove', onDocumentMobileMouseMove, false );
