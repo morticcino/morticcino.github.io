@@ -105,6 +105,7 @@ function onWindowResize() {
 				render();
 				*/
 			}
+      }
 			function onDocumentMobileMouseDown( event ){
 				var x = event.targetTouches[0].pageX;
 				var y = event.targetTouches[0].pageY;
@@ -272,4 +273,4 @@ function onWindowResize() {
         
 				render();	
 			}
-      }
+      
