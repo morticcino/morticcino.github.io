@@ -31,59 +31,49 @@ function onWindowResize() {
       }
 
       function mousemove( x, y ) {
-				if( draw_mode ){
-					
-					//event.preventDefault();
-					
-					
-					/*	
-					console.log('minX '+minX);
-					console.log('maxX '+maxX);
-					console.log('minY '+minY);
-					console.log('maxY '+maxY);
-					console.log('clientX '+event.clientX);
-					console.log('clientY '+event.clientY);
-					*/
-					mouse.set( ( x / window.innerWidth ) * 2 - 1, - ( y / window.innerHeight ) * 2 + 1 );
-	
+				if( app['mouse_down'] ){
 					raycaster.setFromCamera( mouse, camera );
 	
-					var intersects = raycastIntersects();
-					console.log(intersects);
+					app['intersects'] = raycastIntersects();
+					
+					if ( app['intersects'].length > 0 ) {
 	
-					if ( intersects.length > 0 ) {
+					var intersect = app['intersects'][ 0 ];
 	
-						var intersect = intersects[ 0 ];
+					mouse.set( ( x / window.innerWidth ) * 2 - 1, - ( y / window.innerHeight ) * 2 + 1 );
 	
-						var voxel = new THREE.Mesh( cubeGeo, cubeMaterial );
-						voxel.name = "toRemove_voxel";
-						voxel.position.copy( intersect.point ).add( intersect.face.normal );
-						//console.log(voxel);
-						//voxel.position.divideScalar( 50 ).floor().multiplyScalar( 50 ).addScalar( 25 );
-						sketch_container.add( voxel );
-						//scene.add( voxel );
-						mystroke[1] = voxel;
-						gest[gest.length] = new Point(x,y);
-						// | is x, _ is z and / is y
-						if( voxel.position.x > _3dmaxX ){
-							_3dmaxX = voxel.position.x;
-						}
-						if( voxel.position.x < _3dminX ){
-							_3dminX = voxel.position.x;
-						}
-							
-						if( voxel.position.z > _3dmaxZ ){
-							_3dmaxZ = voxel.position.z;
-						}
-							
-						if( voxel.position.z < _3dminZ ){
-							_3dminZ = voxel.position.z;
-						}
-            
-						draw[draw.length] = {x: voxel.position.x, z:voxel.position.z}; 
-							
+					switch(app['tool']){
+						case 'select':
+							app['x']=x;
+							app['y']=y;
+							console.log(app['x']-app['old_x']+', '+app['y']-app['old_y']);
+							app['old_x']=x;
+							app['old_y']=y;
+							break;
+						case 'draw':
+							var voxel = new THREE.Mesh( cubeGeo, cubeMaterial );
+							voxel.name = "toRemove_voxel";
+							voxel.position.copy( intersect.point ).add( intersect.face.normal );
+							sketch_container.add( voxel );
+							mystroke[1] = voxel;
+							gest[gest.length] = new Point(x,y);
+							if( voxel.position.x > _3dmaxX ){
+								_3dmaxX = voxel.position.x;
+							}
+							if( voxel.position.x < _3dminX ){
+								_3dminX = voxel.position.x;
+							}
+							if( voxel.position.z > _3dmaxZ ){
+								_3dmaxZ = voxel.position.z;
+							}
+							if( voxel.position.z < _3dminZ ){
+								_3dminZ = voxel.position.z;
+							}
+							draw[draw.length] = {x: voxel.position.x, z:voxel.position.z};
+							break;
 					}
-	
+					
+					
 					render();	
 				}else{
 					//event.preventDefault();
@@ -128,15 +118,17 @@ function onWindowResize() {
 			}
 			
 			function mousedown( x, y ) {
-				draw_mode = true;
+				app['mouse_down']= true;
 				//event.preventDefault();
+				app['x']=app['old_x']=x;
+				app['y']=app['old_x']=y;
 				maxX = minX = x;
 				maxY = minY = y;
 				mouse.set( ( x / window.innerWidth ) * 2 - 1, - ( y / window.innerHeight ) * 2 + 1 );
 				raycaster.setFromCamera( mouse, camera );
-				intersects = raycastIntersects();
-				if ( intersects.length > 0 ) {
-					var intersect = intersects[ 0 ];
+				app['intersects'] = raycastIntersects();
+				if ( app['intersects'].length > 0 ) {
+					var intersect = app['intersects'][ 0 ];
 					console.log(intersect.object.name);
 					/*
 					intersect.object.dispatchEvent({
