@@ -158,7 +158,7 @@ function onWindowResize() {
 				}
 				render();	
 			}
-      }
+      
 			function onDocumentMobileMouseUp( event ){
 				mouseup();
 			}
@@ -272,3 +272,4 @@ function onWindowResize() {
         
 				render();	
 			}
+      }
