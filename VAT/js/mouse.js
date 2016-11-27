@@ -171,7 +171,7 @@ function onWindowResize() {
       
       function mouseup(  ){
 				
-				draw_mode = false;
+				app['mouse_down'] = false;
 				//event.preventDefault();
 				
 				var matched = r.Recognize(gest);
