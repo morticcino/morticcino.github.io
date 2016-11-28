@@ -1,1 +1,1 @@
-f2DDraw.registerEvents();
+F2DDraw.registerEvents();
