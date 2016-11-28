@@ -17,7 +17,8 @@ F2DDraw.prototype.mouseUp = function(){
   console.log('F2DDraw mouseUp');
 };
 f2DDraw.prototype.registerEvents = function(){
-  document.addEventListener('mousedown',this.mouseDown, false);
-  document.addEventListener('mousemove',this.mouseMove, false);
-  document.addEventListener('mouseup',this.mouseUp, false);
+  var canvas = document.getElementById('f3d-canvas');
+  canvas.addEventListener('mousedown',this.mouseDown, false);
+  canvas.addEventListener('mousemove',this.mouseMove, false);
+  canvas.addEventListener('mouseup',this.mouseUp, false);
 }
