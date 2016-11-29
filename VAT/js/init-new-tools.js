@@ -1,5 +1,3 @@
-F2DDraw.prototype.registerEvents();
-
 document.addEventListener('keydown',function onDocumentKeyDown( event ) {
 	switch( event.key ) {
 		case 's': 
