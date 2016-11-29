@@ -1,3 +1,6 @@
+var app = {};
+app['mouse-events'] = {};
+
 function F2DTool(){};
 
 F2DTool.prototype.mouseDown = function(){};
