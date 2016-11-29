@@ -5,12 +5,12 @@ F2DTool.prototype.mouseMove = function(){};
 F2DTool.prototype.mouseUp = function(){};
 F2DTool.prototype.registerEvents = function(){
   var canvas = document.getElementById('f3d-canvas');
-  if(app['mouse-events']){
+  if(app['mouse-events'] != {}){
     canvas.removeEventListener('mousedown',app['mouse-events'].down);
     canvas.removeEventListener('mousemove',app['mouse-events'].move);
     canvas.removeEventListener('mouseup',app['mouse-events'].up);
   }
-  app['mouse-events'] = {};
+  
   app['mouse-events'].down = this.mouseDown;
   app['mouse-events'].move = this.mouseMove;
   app['mouse-events'].up = this.mouseUp;
