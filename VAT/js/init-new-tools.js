@@ -12,3 +12,5 @@ document.addEventListener('keydown',function onDocumentKeyDown( event ) {
 			console.log(event.key);
 	}
 },false);
+
+var app = {};
