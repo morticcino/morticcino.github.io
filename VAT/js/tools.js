@@ -22,27 +22,27 @@ F2DTool.prototype.registerEvents = function(){
   canvas.addEventListener('mouseup',this.mouseUp, false);
 }
 
-var F2DDraw = Object.create (F2DTool); 
+var F2DDraw = new F2DTool(); 
 
-F2DDraw.prototype.mouseDown = function(e){
+F2DDraw.mouseDown = function(e){
   console.log('F2DDraw mouseDown');
 };
-F2DDraw.prototype.mouseMove = function(){
+F2DDraw.mouseMove = function(){
   console.log('F2DDraw mouseMove');
 };
-F2DDraw.prototype.mouseUp = function(){
+F2DDraw.mouseUp = function(){
   console.log('F2DDraw mouseUp');
 };
 
-var F2DSelect = Object.create (F2DTool); 
+var F2DSelect = new F2DTool(); 
 
-F2DSelect.prototype.mouseDown = function(e){
+F2DSelect.mouseDown = function(e){
   console.log('F2DSelect mouseDown');
 };
-F2DSelect.prototype.mouseMove = function(){
+F2DSelect.mouseMove = function(){
   console.log('F2DSelect mouseMove');
 };
-F2DSelect.prototype.mouseUp = function(){
+F2DSelect.mouseUp = function(){
   console.log('F2DSelect mouseUp');
 };
 
