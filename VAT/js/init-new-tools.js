@@ -13,5 +13,4 @@ document.addEventListener('keydown',function onDocumentKeyDown( event ) {
 	}
 },false);
 
-var app = {};
-app['mouse-events'] = {};
+
