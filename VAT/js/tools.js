@@ -46,3 +46,5 @@ F2DSelect.mouseUp = function(){
   console.log('F2DSelect mouseUp');
 };
 
+
+F2DDraw.registerEvents();
