@@ -6,33 +6,17 @@ function init() {
 	app['container'] = document.createElement( 'div' );
 	document.body.appendChild( app['container'] );
 
-	var info = document.createElement( 'div' );
-	info.style.position = 'absolute';
-	info.style.top = '10px';
-	info.style.width = '100%';
-	info.style.textAlign = 'center';
-	info.innerHTML = '<a href="http://threejs.org" target="_blank">three.js</a> - voxel painter - webgl<br><strong>click</strong>: add voxel, <strong>shift + click</strong>: remove voxel';
-	app['container'].appendChild( info );
-
 	camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 10000 );
 	camera.position.set(0, 1000, 0 );
 	camera.lookAt( new THREE.Vector3() );
 
 	scene = new THREE.Scene();
-	// circles = 0;
-	// roll-over helpers
 
 	rollOverGeo = new THREE.BoxGeometry( 50, 50, 50 );
 	rollOverMaterial = new THREE.MeshBasicMaterial( { color: 0xff0000, opacity: 0.5, transparent: true } );
 	rollOverMesh = new THREE.Mesh( rollOverGeo, rollOverMaterial );
-	//scene.add( rollOverMesh );
-
-	// cubes
 
 	cubeGeo = new THREE.BoxGeometry( 2, 2, 2 );
-	cubeMaterial = new THREE.MeshLambertMaterial( { color: 0xfeb74c, map: new THREE.TextureLoader().load( "textures/square-outline-textured.png" ) } );
-
-	// grid
 
 	var size = 500, step = 10;
 
@@ -52,9 +36,7 @@ function init() {
 
 	var line = new THREE.LineSegments( geometry, material );
 	scene.add( line );
-
-	//
-
+	
 	raycaster = new THREE.Raycaster();
 	mouse = new THREE.Vector2();
 
@@ -65,8 +47,6 @@ function init() {
 	scene.add( plane );
 
 	objects.push( plane );
-
-	// Lights
 
 	var ambientLight = new THREE.AmbientLight( 0x606060 );
 	scene.add( ambientLight );
@@ -81,18 +61,6 @@ function init() {
 	renderer.setSize( window.innerWidth, window.innerHeight );
 	app['container'].appendChild( renderer.domElement );
 
-	document.addEventListener( 'mousemove', onDocumentMouseMove, false );
-	document.addEventListener( 'touchmove', onDocumentMobileMouseMove, false );
-	document.addEventListener( 'mousedown', onDocumentMouseDown, false );
-	document.addEventListener( 'touchstart', onDocumentMobileMouseDown, false );
-	document.addEventListener( 'keydown', onDocumentKeyDown, false );
-	document.addEventListener( 'keyup', onDocumentKeyUp, false );
-	document.addEventListener( 'mouseup', onDocumentMouseUp, false );
-	document.addEventListener( 'touchend', onDocumentMobileMouseUp, false );
-	//document.addEventListener( 'pick', function(e){console.log('Picked object '+e);}, false );
-	document.addEventListener('keydown', function(e){console.log(e.key);});
-
-	//
 
 	window.addEventListener( 'resize', onWindowResize, false );
 
