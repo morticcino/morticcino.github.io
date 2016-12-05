@@ -1,5 +1,6 @@
 var app = {};
 app['mouse-events'] = {};
+var objects = [];
 
 function F2DTool(){};
 
