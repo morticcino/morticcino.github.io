@@ -10,7 +10,7 @@ document.addEventListener('keydown',function onDocumentKeyDown( event ) {
 			console.log(event.key);
 	}
 },false);
-
+//call new-init.js function
 init();
 
 
