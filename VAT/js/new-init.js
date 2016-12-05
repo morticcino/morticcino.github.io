@@ -1,5 +1,3 @@
-var objects = [];
-
 function init() {
 	app = {};
 	app['tool'] = 'draw';
