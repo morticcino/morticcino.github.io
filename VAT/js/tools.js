@@ -8,7 +8,7 @@ F2DTool.prototype.mouseDown = function(){};
 F2DTool.prototype.mouseMove = function(){};
 F2DTool.prototype.mouseUp = function(){};
 F2DTool.prototype.registerEvents = function(){
-  var canvas = document.getElementsByTag('canvas')[0];
+  var canvas = document.getElementsByTagName('canvas')[0];
   if(app['mouse-events'] != {}){
     canvas.removeEventListener('mousedown',app['mouse-events'].down);
     canvas.removeEventListener('mousemove',app['mouse-events'].move);
