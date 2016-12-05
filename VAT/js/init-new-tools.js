@@ -11,6 +11,6 @@ document.addEventListener('keydown',function onDocumentKeyDown( event ) {
 	}
 },false);
 //call new-init.js function
-init();
+
 
 
