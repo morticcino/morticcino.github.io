@@ -7,7 +7,7 @@ function F2DTool(){};
 F2DTool.prototype.mouseDown = function(){};
 F2DTool.prototype.mouseMove = function(){};
 F2DTool.prototype.mouseUp = function(){};
-F2DTool.prototype.registerEvents = function(){
+function register(){
   var canvas = document.getElementsByTagName('canvas')[0];
   if(app['mouse-events'] != {}){
     canvas.removeEventListener('mousedown',app['mouse-events'].down);
@@ -22,6 +22,7 @@ F2DTool.prototype.registerEvents = function(){
   canvas.addEventListener('mousemove',this.mouseMove, false);
   canvas.addEventListener('mouseup',this.mouseUp, false);
 }
+F2DTool.prototype.registerEvents = register; 
 
 var F2DDraw = new F2DTool(); 
 
