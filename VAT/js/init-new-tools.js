@@ -11,4 +11,6 @@ document.addEventListener('keydown',function onDocumentKeyDown( event ) {
 	}
 },false);
 
+init();
+
 
