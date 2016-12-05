@@ -55,7 +55,7 @@ function init() {
 	directionalLight.position.set( 1, 0.75, 0.5 ).normalize();
 	scene.add( directionalLight );
         //https://github.com/mrdoob/three.js/issues/352
-	renderer = new THREE.WebGLRenderer( { canvas: 'f3dcanvas' } );
+	renderer = new THREE.WebGLRenderer( { canvas: document.getElementById('f3dcanvas') } );
 	renderer.setClearColor( 0xf0f0f0 );
 	renderer.setPixelRatio( window.devicePixelRatio );
 	renderer.setSize( window.innerWidth, window.innerHeight );
