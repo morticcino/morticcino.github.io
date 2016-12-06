@@ -58,11 +58,11 @@ F2DDraw.mouseDown = function(e){
   console.log('F2DDraw mouseDown');
   onDocumentMouseDown(e);
 };
-F2DDraw.mouseMove = function(){
+F2DDraw.mouseMove = function(e){
   console.log('F2DDraw mouseMove');
   onDocumentMouseMove(e);
 };
-F2DDraw.mouseUp = function(){
+F2DDraw.mouseUp = function(e){
   console.log('F2DDraw mouseUp');
   onDocumentMouseUp(e);
 };
@@ -72,10 +72,10 @@ var F2DSelect = new F2DTool();
 F2DSelect.mouseDown = function(e){
   console.log('F2DSelect mouseDown');
 };
-F2DSelect.mouseMove = function(){
+F2DSelect.mouseMove = function(e){
   console.log('F2DSelect mouseMove');
 };
-F2DSelect.mouseUp = function(){
+F2DSelect.mouseUp = function(e){
   console.log('F2DSelect mouseUp');
 };
 
