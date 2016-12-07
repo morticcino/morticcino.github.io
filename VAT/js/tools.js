@@ -1,7 +1,4 @@
-var app = {};
-app['mouse-events'] = {};
-app['touch-events'] = {};
-var objects = [];
+
 
 /*
 document.addEventListener( 'mousemove', onDocumentMouseMove, false );
