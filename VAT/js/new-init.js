@@ -2,6 +2,8 @@ function init() {
 	app = {};
 	app['tool'] = 'draw';
 	app['mouse_down']=false;
+	app['mouse-events'] = {};
+  	app['touch-events'] = {};
 	app['intersection']={};
 	app['container'] = document.createElement( 'div' );
 	document.body.appendChild( app['container'] );
