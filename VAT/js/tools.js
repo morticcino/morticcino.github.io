@@ -43,9 +43,9 @@ function register(){
   app['touch-events'].move = this.touchMove;
   app['touch-events'].end = this.touchEnd;
   
-  canvas.addEventListener('mousedown',this.mouseDown, false);
-  canvas.addEventListener('mousemove',this.mouseMove, false);
-  canvas.addEventListener('mouseup',this.mouseUp, false);
+  canvas.addEventListener('mousedown',app['mouse-events'].down, false);
+  canvas.addEventListener('mousemove',app['mouse-events'].move, false);
+  canvas.addEventListener('mouseup',app['mouse-events'].up, false);
   canvas.addEventListener('touchstart',app['touch-events'].start);
   canvas.addEventListener('touchmove',app['touch-events'].move);
   canvas.addEventListener('touchend',app['touch-events'].end);
