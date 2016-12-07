@@ -49,6 +49,8 @@ function register(){
   canvas.addEventListener('touchstart',app['touch-events'].start);
   canvas.addEventListener('touchmove',app['touch-events'].move);
   canvas.addEventListener('touchend',app['touch-events'].end);
+  
+  objectsToIntersect = objects;
 }
 F2DTool.prototype.registerEvents = register; 
 
