@@ -16,17 +16,7 @@ function onWindowResize() {
 				mousemove(x,y);
 			}
       function raycastIntersects(){
-	      var intersections = {};
-      		switch(app['tool']){
-			case 'draw':
-				intersections = raycaster.intersectObjects( objects );
-				break;
-			case 'select':
-				intersections = raycaster.intersectObjects( circles.circles_data );
-				break;
-			default:
-				return intersections;
-		}
+	      intersections = raycaster.intersectObjects( objectsToIntersect );
 	      return intersections;
       }
 
