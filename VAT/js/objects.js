@@ -14,7 +14,8 @@ var circles = {
 	var circle = new THREE.Mesh( circleGeometry, material );
 	circle.name = "circle_"+circles.circles_in_scene;
 	scene.add( circle );
-	circles.circles_data.push( circle );
+	var ray = r;
+	circles.circles_data.push( {x: cx, y:cy, r: ray} );
 	circles.circles_in_scene++;
 	if(this.circles_in_scene > 1){
 		for(var i = 0; i<circles.circles_in_scene-1;i++){
