@@ -75,7 +75,7 @@ F2DDraw.mouseUp = function(e){
   console.log('F2DDraw mouseUp');
   onDocumentMouseUp(e);
 };
-F2DDraw.register = function(e){
+F2DDraw.registerEvents = function(e){
   console.log('F2DDraw register');
   drawRegister();
 };
@@ -91,7 +91,7 @@ F2DSelect.mouseMove = function(e){
 F2DSelect.mouseUp = function(e){
   console.log('F2DSelect mouseUp');
 };
-F2DSelect.register = function(e){
+F2DSelect.registerEvents = function(e){
   console.log('F2DSelect register');
   selectRegister();
 };
