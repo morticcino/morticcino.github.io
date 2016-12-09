@@ -12,18 +12,18 @@ var circles = {
 	);
 	var material = new THREE.MeshBasicMaterial( {color: 0x00ff00} );
 	var circle = new THREE.Mesh( circleGeometry, material );
-	circle.name = "circle_"+this.circles_in_scene;
+	circle.name = "circle_"+circles.circles_in_scene;
 	scene.add( circle );
-	this.circles_data.push( circle );
-	this.circles_in_scene++;
+	circles.circles_data.push( circle );
+	circles.circles_in_scene++;
 	if(this.circles_in_scene > 1){
-		for(var i = 0; i<this.circles_in_scene-1;i++){
-			var cx1 = this.circles_data[i].x;
-			var cy1 = this.circles_data[i].y;
-			var r1 = this.circles_data[i].r;
-			var cx2 = this.circles_data[i+1].x;
-			var cy2 = this.circles_data[i+1].y;
-			var r2 = this.circles_data[i+1].r;
+		for(var i = 0; i<circles.circles_in_scene-1;i++){
+			var cx1 = circles.circles_data[i].x;
+			var cy1 = circles.circles_data[i].y;
+			var r1 = circles.circles_data[i].r;
+			var cx2 = circles.circles_data[i+1].x;
+			var cy2 = circles.circles_data[i+1].y;
+			var r2 = circles.circles_data[i+1].r;
 			tangent(cx1,cy1,r1,cx2,cy2,r2);
 		}
 	}
