@@ -47,9 +47,19 @@ function register(){
   canvas.addEventListener('touchmove',app['touch-events'].move);
   canvas.addEventListener('touchend',app['touch-events'].end);
   
+}
+
+function drawRegister(){
+  register();
   objectsToIntersect = objects;
 }
-F2DTool.prototype.registerEvents = register; 
+
+function selectRegister(){
+  register();
+  objectsToIntersect = circles;
+}
+
+F2DTool.prototype.registerEvents = function(){}; 
 
 var F2DDraw = new F2DTool(); 
 
@@ -65,6 +75,10 @@ F2DDraw.mouseUp = function(e){
   console.log('F2DDraw mouseUp');
   onDocumentMouseUp(e);
 };
+F2DDraw.register = function(e){
+  console.log('F2DDraw register');
+  drawRegister();
+};
 
 var F2DSelect = new F2DTool(); 
 
@@ -77,6 +91,9 @@ F2DSelect.mouseMove = function(e){
 F2DSelect.mouseUp = function(e){
   console.log('F2DSelect mouseUp');
 };
-
+F2DSelect.register = function(e){
+  console.log('F2DSelect register');
+  selectRegister();
+};
 
 F2DDraw.registerEvents();
