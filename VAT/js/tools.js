@@ -88,9 +88,11 @@ F2DSelect.mouseDown = function(e){
 };
 F2DSelect.mouseMove = function(e){
   console.log('F2DSelect mouseMove');
+  onSelectMouseMove(e);
 };
 F2DSelect.mouseUp = function(e){
   console.log('F2DSelect mouseUp');
+  onSelectMouseUp(e);
 };
 F2DSelect.registerEvents = function(t){
   console.log('F2DSelect register');
