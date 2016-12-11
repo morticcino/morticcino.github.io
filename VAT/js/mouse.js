@@ -336,7 +336,7 @@ function selectmove( x, y ) {
 			raycaster.setFromCamera( mouse, camera );
 			app['intersects'] = raycastIntersects();
 			if ( app['intersects'].length > 0 ) {
-			
+				//app['intersects'][0].object.position: (0,0,0)
 			}
 			render();	
 		}
