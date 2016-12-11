@@ -291,8 +291,8 @@ function selectmove( x, y ) {
 				var delta_y = app['old_y']-app['y'];
 				app['old_x'] = app['x'];
 				app['old_y'] = app['y'];
-				app['intersects'].object.position.x += app['x'];
-				app['intersects'].object.position.z += app['y'];
+				app['intersect'].object.position.x += app['x'];
+				app['intersect'].object.position.z += app['y'];
 							}
 		
 }
@@ -320,7 +320,7 @@ function selectmove( x, y ) {
 			app['intersects'] = raycastIntersects();
 			if ( app['intersects'].length > 0 ) {
 				app['intersect'] = app['intersects'][ 0 ];
-				console.log(app['intersects'].object.name);
+				console.log(app['intersect'].object.name);
 				//app['intersects'][0].object.position: (0,0,0)
 			}
 			render();	
