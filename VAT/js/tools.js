@@ -84,6 +84,7 @@ var F2DSelect = new F2DTool();
 
 F2DSelect.mouseDown = function(e){
   console.log('F2DSelect mouseDown');
+  onSelectMouseDown();
 };
 F2DSelect.mouseMove = function(e){
   console.log('F2DSelect mouseMove');
