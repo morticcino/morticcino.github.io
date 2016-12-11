@@ -56,7 +56,7 @@ function drawRegister(o){
 
 function selectRegister(o){
   register(o);
-  objectsToIntersect = circles.circles_data;
+  objectsToIntersect = circles.circles_to_pick;
 }
 
 F2DTool.prototype.registerEvents = function(){}; 
