@@ -8,6 +8,14 @@ function init() {
 	app['container'] = document.createElement( 'div' );
 	document.body.appendChild( app['container'] );
 	
+	var info = document.createElement( 'div' );
+	info.style.position = 'absolute';
+	info.style.top = '10px';
+	info.style.width = '100%';
+	info.style.textAlign = 'center';
+	info.innerHTML = 'Press d to draw and s to select';
+	app['container'].appendChild( info );
+	
 	camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 10000 );
 	camera.position.set(0, 1000, 0 );
 	camera.lookAt( new THREE.Vector3() );
