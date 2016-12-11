@@ -274,44 +274,27 @@ function mouseup(  ){
 
 
 function onSelectMobileMouseMove( event ){
-	var x = event.targetTouches[0].pageX;
-	var y = event.targetTouches[0].pageY;
+	app['x'] = event.targetTouches[0].pageX;
+	app['y'] = event.targetTouches[0].pageY;
 	selectmove(x,y);
 }
 
 function onSelectMouseMove( event ) {
-	var x = event.clientX;
-	var y =  event.clientY;
+	app['x'] = event.clientX;
+	app['y'] =  event.clientY;
 	selectmove(x,y);
 }
 
 function selectmove( x, y ) {
-			if( app['mouse_down'] ){
-				raycaster.setFromCamera( mouse, camera );
-
-				app['intersects'] = raycastIntersects();
-
-				if ( app['intersects'].length > 0 ) {
-
-					
-			}else{
-				//event.preventDefault();
-
-				mouse.set( ( x / window.innerWidth ) * 2 - 1, - ( y / window.innerHeight ) * 2 + 1 );
-
-				raycaster.setFromCamera( mouse, camera );
-
-				var intersects = raycaster.intersectObjects( objects );
-
-				if ( intersects.length > 0 ) {
-
-					var intersect = intersects[ 0 ];
-
-					//document.getElementById('coordinates').innerText = 'x= '+intersect.point.x+', y= '+intersect.point.y+', z= '+intersect.point.z;
-
-				}
-			}
-		}
+			if( app['mouse_down'] && app['intersects'].object){
+				var delta_x = app['old_x']-app['x'];
+				var delta_y = app['old_y']-app['y'];
+				app['old_x'] = app['x'];
+				app['old_y'] = app['y'];
+				app['intersects'].object.position.x += app['x'];
+				app['intersects'].object.position.z += app['y'];
+							}
+		
 }
 		function onSelectMobileMouseDown( event ){
 			var x = event.targetTouches[0].pageX;
@@ -336,6 +319,8 @@ function selectmove( x, y ) {
 			raycaster.setFromCamera( mouse, camera );
 			app['intersects'] = raycastIntersects();
 			if ( app['intersects'].length > 0 ) {
+				app['intersect'] = app['intersects'][ 0 ];
+				console.log(intersect.object.name);
 				//app['intersects'][0].object.position: (0,0,0)
 			}
 			render();	
@@ -351,6 +336,7 @@ function selectmove( x, y ) {
 		}
 
 function selectup(  ){
+	app['mouse_down'] = false;
 	console.log('select up');
 		}
 
