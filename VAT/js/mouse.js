@@ -320,7 +320,7 @@ function selectmove( x, y ) {
 			app['intersects'] = raycastIntersects();
 			if ( app['intersects'].length > 0 ) {
 				app['intersect'] = app['intersects'][ 0 ];
-				console.log(intersect.object.name);
+				console.log(app['intersects'].object.name);
 				//app['intersects'][0].object.position: (0,0,0)
 			}
 			render();	
