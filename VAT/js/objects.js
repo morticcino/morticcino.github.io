@@ -1,6 +1,7 @@
 var circles = {
   circles_in_scene: 0,
   circles_data: [],
+	circles_to_pick: [],
   create: function(cx,cy,r){
         var circleGeometry = new THREE.SphereGeometry( r, 32, 32 );
 	circleGeometry.translate(cx, 0, cy);
@@ -13,8 +14,10 @@ var circles = {
 	var material = new THREE.MeshBasicMaterial( {color: 0x00ff00} );
 	var circle = new THREE.Mesh( circleGeometry, material );
 	circle.name = "circle_"+circles.circles_in_scene;
+	  //TMP!!! da rimuovere
 	scene.add( circle );
 	var ray = r;
+	  circles.circles_to_pick(circle);
 	circles.circles_data.push( {x: cx, y:cy, r: ray} );
 	circles.circles_in_scene++;
 	if(this.circles_in_scene > 1){
