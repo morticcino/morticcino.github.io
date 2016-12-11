@@ -1,10 +1,10 @@
 document.addEventListener('keydown',function onDocumentKeyDown( event ) {
 	switch( event.key ) {
 		case 's': 
-			F2DSelect.registerEvents();
+			F2DSelect.registerEvents(F2DSelect);
 			break;
 		case 'd': 
-			F2DDraw.registerEvents();
+			F2DDraw.registerEvents(F2DDraw);
 			break;
 		default:
 			console.log(event.key);
