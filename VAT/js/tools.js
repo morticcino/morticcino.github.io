@@ -22,7 +22,7 @@ F2DTool.prototype.touchMove = function(){};
 F2DTool.prototype.touchStart = function(){};
 F2DTool.prototype.touchEnd = function(){};
 
-function register(){
+function register(tool){
   var canvas = document.getElementsByTagName('canvas')[0];
   if(app['mouse-events'].down != undefined){
     canvas.removeEventListener('mousedown',app['mouse-events'].down);
@@ -33,12 +33,12 @@ function register(){
     canvas.removeEventListener('touchend',app['touch-events'].end);
   }
   
-  app['mouse-events'].down = this.mouseDown;
-  app['mouse-events'].move = this.mouseMove;
-  app['mouse-events'].up = this.mouseUp;
-  app['touch-events'].start = this.touchStart;
-  app['touch-events'].move = this.touchMove;
-  app['touch-events'].end = this.touchEnd;
+  app['mouse-events'].down = tool.mouseDown;
+  app['mouse-events'].move = tool.mouseMove;
+  app['mouse-events'].up = tool.mouseUp;
+  app['touch-events'].start = tool.touchStart;
+  app['touch-events'].move = tool.touchMove;
+  app['touch-events'].end = tool.touchEnd;
   
   canvas.addEventListener('mousedown',app['mouse-events'].down, false);
   canvas.addEventListener('mousemove',app['mouse-events'].move, false);
@@ -49,13 +49,13 @@ function register(){
   
 }
 
-function drawRegister(){
-  register();
+function drawRegister(o){
+  register(o);
   objectsToIntersect = objects;
 }
 
-function selectRegister(){
-  register();
+function selectRegister(o){
+  register(o);
   objectsToIntersect = circles;
 }
 
@@ -75,9 +75,9 @@ F2DDraw.mouseUp = function(e){
   console.log('F2DDraw mouseUp');
   onDocumentMouseUp(e);
 };
-F2DDraw.registerEvents = function(e){
+F2DDraw.registerEvents = function(t){
   console.log('F2DDraw register');
-  drawRegister();
+  drawRegister(t);
 };
 
 var F2DSelect = new F2DTool(); 
@@ -91,9 +91,9 @@ F2DSelect.mouseMove = function(e){
 F2DSelect.mouseUp = function(e){
   console.log('F2DSelect mouseUp');
 };
-F2DSelect.registerEvents = function(e){
+F2DSelect.registerEvents = function(t){
   console.log('F2DSelect register');
-  selectRegister();
+  selectRegister(t);
 };
 
-F2DDraw.registerEvents();
+F2DDraw.registerEvents(this);
