@@ -264,3 +264,92 @@ function mouseup(  ){
 			render();	
 		}
 
+
+
+
+
+
+
+
+
+
+function onSelectMobileMouseMove( event ){
+	var x = event.targetTouches[0].pageX;
+	var y = event.targetTouches[0].pageY;
+	selectmove(x,y);
+}
+
+function onSelectMouseMove( event ) {
+	var x = event.clientX;
+	var y =  event.clientY;
+	selectmove(x,y);
+}
+
+function selectmove( x, y ) {
+			if( app['mouse_down'] ){
+				raycaster.setFromCamera( mouse, camera );
+
+				app['intersects'] = raycastIntersects();
+
+				if ( app['intersects'].length > 0 ) {
+
+					
+			}else{
+				//event.preventDefault();
+
+				mouse.set( ( x / window.innerWidth ) * 2 - 1, - ( y / window.innerHeight ) * 2 + 1 );
+
+				raycaster.setFromCamera( mouse, camera );
+
+				var intersects = raycaster.intersectObjects( objects );
+
+				if ( intersects.length > 0 ) {
+
+					var intersect = intersects[ 0 ];
+
+					//document.getElementById('coordinates').innerText = 'x= '+intersect.point.x+', y= '+intersect.point.y+', z= '+intersect.point.z;
+
+				}
+			}
+		}
+	
+		function onSelectMobileMouseDown( event ){
+			var x = event.targetTouches[0].pageX;
+			var y = event.targetTouches[0].pageY;
+			selectdown(x,y);
+		}
+
+		function onSelectMouseDown( event ) {
+			var x = event.clientX;
+			var y =  event.clientY;
+			selectdown(x,y);
+		}
+
+		function selectdown( x, y ) {
+			app['mouse_down']= true;
+			//event.preventDefault();
+			app['x']=app['old_x']=x;
+			app['y']=app['old_x']=y;
+			maxX = minX = x;
+			maxY = minY = y;
+			mouse.set( ( x / window.innerWidth ) * 2 - 1, - ( y / window.innerHeight ) * 2 + 1 );
+			raycaster.setFromCamera( mouse, camera );
+			app['intersects'] = raycastIntersects();
+			if ( app['intersects'].length > 0 ) {
+			
+			}
+			render();	
+		}
+
+		function onSelectMobileMouseUp( event ){
+			selectup();
+		}
+
+		function onSelectMouseUp( event ){
+
+			selectup();
+		}
+
+function selectup(  ){
+		}
+
