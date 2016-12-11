@@ -17,7 +17,7 @@ var circles = {
 	  //TMP!!! da rimuovere
 	scene.add( circle );
 	var ray = r;
-	  circles.circles_to_pick(circle);
+	  circles.circles_to_pick.push(circle);
 	circles.circles_data.push( {x: cx, y:cy, r: ray} );
 	circles.circles_in_scene++;
 	if(this.circles_in_scene > 1){
