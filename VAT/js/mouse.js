@@ -286,7 +286,7 @@ function onSelectMouseMove( event ) {
 }
 
 function selectmove( x, y ) {
-			if( app['mouse_down'] && app['intersects'].object){
+			if( app['mouse_down'] && app['intersect'].object){
 				var delta_x = app['old_x']-app['x'];
 				var delta_y = app['old_y']-app['y'];
 				app['old_x'] = app['x'];
@@ -337,6 +337,7 @@ function selectmove( x, y ) {
 
 function selectup(  ){
 	app['mouse_down'] = false;
+	app['intersect'] = {};
 	console.log('select up');
 		}
 
