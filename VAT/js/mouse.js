@@ -351,5 +351,6 @@ function selectmove( x, y ) {
 		}
 
 function selectup(  ){
+	console.log('select up');
 		}
 
