@@ -96,4 +96,4 @@ F2DSelect.registerEvents = function(t){
   selectRegister(t);
 };
 
-F2DDraw.registerEvents(this);
+F2DDraw.registerEvents(F2DDraw);
