@@ -312,7 +312,7 @@ function selectmove( x, y ) {
 				}
 			}
 		}
-	
+}
 		function onSelectMobileMouseDown( event ){
 			var x = event.targetTouches[0].pageX;
 			var y = event.targetTouches[0].pageY;
