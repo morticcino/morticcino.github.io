@@ -24,7 +24,7 @@ F2DTool.prototype.touchEnd = function(){};
 
 function register(){
   var canvas = document.getElementsByTagName('canvas')[0];
-  if(app['mouse-events'] != {}){
+  if(app['mouse-events'].down != undefined){
     canvas.removeEventListener('mousedown',app['mouse-events'].down);
     canvas.removeEventListener('mousemove',app['mouse-events'].move);
     canvas.removeEventListener('mouseup',app['mouse-events'].up);
