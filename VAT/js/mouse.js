@@ -276,13 +276,13 @@ function mouseup(  ){
 function onSelectMobileMouseMove( event ){
 	app['x'] = event.targetTouches[0].pageX;
 	app['y'] = event.targetTouches[0].pageY;
-	selectmove(x,y);
+	selectmove(app['x'],app['y']);
 }
 
 function onSelectMouseMove( event ) {
 	app['x'] = event.clientX;
 	app['y'] =  event.clientY;
-	selectmove(x,y);
+	selectmove(app['x'],app['y']);
 }
 
 function selectmove( x, y ) {
