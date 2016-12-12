@@ -286,6 +286,7 @@ function onSelectMouseMove( event ) {
 }
 
 function selectmove( x, y ) {
+	/*
 			if( app['mouse_down'] && app['intersect'].object){
 				var delta_x = app['old_x']-app['x'];
 				var delta_y = app['old_y']-app['y'];
@@ -293,7 +294,38 @@ function selectmove( x, y ) {
 				app['old_y'] = app['y'];
 				app['intersect'].object.position.x += app['x'];
 				app['intersect'].object.position.z += app['y'];
-							}
+	*/						}
+	
+	mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
+	mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
+	raycaster.setFromCamera( mouse, camera );
+	if ( app['SELECTED'] ) {
+		if ( raycaster.ray.intersectPlane( app['plane'], app['intersection'] ) ) {
+			app['SELECTED'].position.copy( app['intersection'].sub( app['offset'] ) );
+		}
+		return;
+	}
+	app['intersects'] = raycastIntersects();
+	if ( app['intersects'].length > 0 ) {
+		if ( app['INTERSECTED'] != app['intersects'][ 0 ].object ) {
+			if ( app['INTERSECTED'] ) app['INTERSECTED'].material.color.setHex( app['INTERSECTED'].currentHex );
+			app['INTERSECTED'] = intersects[ 0 ].object;
+			app['INTERSECTED'].currentHex = app['INTERSECTED'].material.color.getHex();
+			app['plane'].setFromNormalAndCoplanarPoint(
+				camera.getWorldDirection( app['plane'].normal ),
+				app['INTERSECTED'].position );
+		}
+		app['container'].style.cursor = 'pointer';
+	} else {
+		if ( app['INTERSECTED'] ) app['INTERSECTED'].material.color.setHex( app['INTERSECTED'].currentHex );
+		app['INTERSECTED'] = null;
+		app['container'].style.cursor = 'auto';
+	}
+
+	
+	
+	
+	
 		
 }
 		function onSelectMobileMouseDown( event ){
