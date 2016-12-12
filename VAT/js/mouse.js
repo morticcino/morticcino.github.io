@@ -304,7 +304,7 @@ function selectmove( x, y ) {
 			app['SELECTED'].position.copy( app['intersection'].sub( app['offset'] ) );
 		}
 		//return;
-		break;
+		
 	}
 	app['intersects'] = raycastIntersects();
 	if ( app['intersects'].length > 0 ) {
