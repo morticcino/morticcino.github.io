@@ -303,7 +303,8 @@ function selectmove( x, y ) {
 		if ( raycaster.ray.intersectPlane( app['plane'], app['intersection'] ) ) {
 			app['SELECTED'].position.copy( app['intersection'].sub( app['offset'] ) );
 		}
-		return;
+		//return;
+		break;
 	}
 	app['intersects'] = raycastIntersects();
 	if ( app['intersects'].length > 0 ) {
