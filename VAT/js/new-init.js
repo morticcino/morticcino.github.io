@@ -5,6 +5,8 @@ function init() {
 	app['mouse-events'] = {};
   	app['touch-events'] = {};
 	app['intersection']={};
+	app['plane'] = new THREE.Plane();
+	app['intersection'] = new THREE.Vector3(),
 	app['container'] = document.createElement( 'div' );
 	document.body.appendChild( app['container'] );
 	
