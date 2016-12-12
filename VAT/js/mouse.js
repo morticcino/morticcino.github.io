@@ -324,7 +324,7 @@ function selectmove( x, y ) {
 					if ( raycaster.ray.intersectPlane( app['plane'], app['intersection'] ) ) {
 						offset.copy( app['intersection'] ).sub( app['intersect'].position );
 					}
-					container.style.cursor = 'move';
+					app['container'].style.cursor = 'move';
 				
 			}
 			
