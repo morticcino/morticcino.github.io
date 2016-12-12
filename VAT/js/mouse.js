@@ -327,6 +327,7 @@ function selectmove( x, y ) {
 					container.style.cursor = 'move';
 				
 			}
+			
 			render();	
 		}
 
