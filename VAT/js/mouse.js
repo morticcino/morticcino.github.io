@@ -294,7 +294,7 @@ function selectmove( x, y ) {
 				app['old_y'] = app['y'];
 				app['intersect'].object.position.x += app['x'];
 				app['intersect'].object.position.z += app['y'];
-	*/						}
+							}*/
 	
 	mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
 	mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
