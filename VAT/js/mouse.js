@@ -319,9 +319,13 @@ function selectmove( x, y ) {
 			raycaster.setFromCamera( mouse, camera );
 			app['intersects'] = raycastIntersects();
 			if ( app['intersects'].length > 0 ) {
-				app['intersect'] = app['intersects'][ 0 ];
-				console.log(app['intersect'].object.name);
-				//app['intersects'][0].object.position: (0,0,0)
+				app['intersect'] = app['intersects'][ 0 ].object;
+					controls.enabled = false;
+					if ( raycaster.ray.intersectPlane( app['plane'], app['intersection'] ) ) {
+						offset.copy( app['intersection'] ).sub( app['intersect'].position );
+					}
+					container.style.cursor = 'move';
+				
 			}
 			render();	
 		}
