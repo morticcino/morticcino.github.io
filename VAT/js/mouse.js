@@ -299,7 +299,7 @@ function selectmove( x, y ) {
 	mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
 	mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
 	raycaster.setFromCamera( mouse, camera );
-	if ( app['SELECTED'] ) {
+	if ( app['SELECTED'].position ) {
 		if ( raycaster.ray.intersectPlane( app['plane'], app['intersection'] ) ) {
 			app['SELECTED'].position.copy( app['intersection'].sub( app['offset'] ) );
 		}
