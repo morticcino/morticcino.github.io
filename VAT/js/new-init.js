@@ -8,6 +8,7 @@ function init() {
 	app['plane'] = new THREE.Plane();
 	app['intersection'] = new THREE.Vector3(),
 	app['container'] = document.createElement( 'div' );
+	app['offset'] = new THREE.Vector3();
 	document.body.appendChild( app['container'] );
 	
 	var info = document.createElement( 'div' );
