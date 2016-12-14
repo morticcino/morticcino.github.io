@@ -31,7 +31,7 @@ var points = [];
 var sketch_container = {};
 var sketching = true;
 var objectsToIntersect = {},
-    INTERSECTED,SELECTED;
+    INTERSECTED,SELECTED,intersection = new THREE.Vector3();
 init();
 render();
 
