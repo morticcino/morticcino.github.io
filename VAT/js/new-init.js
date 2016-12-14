@@ -10,7 +10,7 @@ function init() {
 	app['container'] = document.createElement( 'div' );
 	app['offset'] = new THREE.Vector3();
 	document.body.appendChild( app['container'] );
-	INTERSECTED,SELECTED;
+	
 	
 	var info = document.createElement( 'div' );
 	info.style.position = 'absolute';
