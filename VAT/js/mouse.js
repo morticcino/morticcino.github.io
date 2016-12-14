@@ -342,13 +342,13 @@ function selectmove(x, y) {
 
 
 
-function onDocumentMobileMouseDown(event) {
+function onSelectMobileMouseDown(event) {
     var x = event.targetTouches[0].pageX;
     var y = event.targetTouches[0].pageY;
     selectdown(x, y);
 }
 
-function onDocumentMouseDown(event) {
+function onSelectMouseDown(event) {
     var x = event.clientX;
     var y = event.clientY;
     selectdown(x, y);
