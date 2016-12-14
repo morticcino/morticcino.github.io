@@ -304,9 +304,9 @@ function selectmove( x, y ) {
 	mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
 	mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
 	raycaster.setFromCamera( mouse, camera );
-	if ( app['SELECTED'].position ) {
+	if ( SELECTED ) {
 		if ( raycaster.ray.intersectPlane( app['plane'], app['intersection'] ) ) {
-			app['SELECTED'].position.copy( app['intersection'].sub( app['offset'] ) );
+			SELECTED.position.copy( app['intersection'].sub( app['offset'] ) );
 		}
 		//return;
 		
@@ -327,47 +327,50 @@ function selectmove( x, y ) {
 		app['INTERSECTED'] = null;
 		app['container'].style.cursor = 'auto';
 	}
-
+	app['container'].style.cursor = 'move';
+	render();
 	
 	
 	
 	
 		
 }
-		function onSelectMobileMouseDown( event ){
+
+		
+
+		function onDocumentMobileMouseDown( event ){
 			var x = event.targetTouches[0].pageX;
 			var y = event.targetTouches[0].pageY;
 			selectdown(x,y);
 		}
 
-		function onSelectMouseDown( event ) {
+		function onDocumentMouseDown( event ) {
 			var x = event.clientX;
 			var y =  event.clientY;
 			selectdown(x,y);
 		}
 
-		function selectdown( x, y ) {
-			app['mouse_down']= true;
-			//event.preventDefault();
-			app['x']=app['old_x']=x;
-			app['y']=app['old_x']=y;
-			maxX = minX = x;
-			maxY = minY = y;
-			mouse.set( ( x / window.innerWidth ) * 2 - 1, - ( y / window.innerHeight ) * 2 + 1 );
+		function selectdown(x,y) {
 			raycaster.setFromCamera( mouse, camera );
-			app['intersects'] = raycastIntersects();
-			if ( app['intersects'].length > 0 ) {
-				app['intersect'] = app['intersects'][ 0 ].object;
-					controls.enabled = false;
-					if ( raycaster.ray.intersectPlane( app['plane'], app['intersection'] ) ) {
-						offset.copy( app['intersection'] ).sub( app['intersect'].position );
-					}
-					app['container'].style.cursor = 'move';
-				
-			}
-			
-			render();	
+			var intersects = raycaster.intersectObjects( objects );
+			if ( intersects.length > 0 ) {
+				controls.enabled = false;
+				SELECTED = intersects[ 0 ].object;
+				if ( raycaster.ray.intersectPlane( plane, intersection ) ) {
+					offset.copy( intersection ).sub( SELECTED.position );
+				}
+				container.style.cursor = 'move';
+			}	
 		}
+
+
+
+
+
+
+
+
+
 
 		function onSelectMobileMouseUp( event ){
 			selectup();
