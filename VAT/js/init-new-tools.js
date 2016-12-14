@@ -30,7 +30,8 @@ var circle_in_scene = 0;
 var points = [];
 var sketch_container = {};
 var sketching = true;
-var objectsToIntersect = {};
+var objectsToIntersect = {},
+    INTERSECTED,SELECTED;
 init();
 render();
 
