@@ -34,6 +34,10 @@ var objectsToIntersect = {},
     INTERSECTED,SELECTED,intersection = new THREE.Vector3();
 var plane = new THREE.Plane();
 
+var camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 10000 );
+camera.position.set(0, 1000, 0 );
+camera.lookAt( new THREE.Vector3() );
+
 var controls = new THREE.TrackballControls( camera );
 controls.rotateSpeed = 1.0;
 controls.zoomSpeed = 1.2;
