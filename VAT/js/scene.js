@@ -26,3 +26,8 @@ function p_and_z(){
 		document.getElementById('svgpaper').viewBox.baseVal.width = sw;
  		document.getElementById('svgpaper').viewBox.baseVal.height = sh;
         }
+
+function save(obj){
+		//return JSON.parse(JSON.stringify(obj));
+		return JSON.stringify(obj);
+	}
