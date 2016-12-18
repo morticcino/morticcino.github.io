@@ -25,25 +25,7 @@ NS="http://www.w3.org/2000/svg";
       */
       var r = new DollarRecognizer();
       
-      function move_next(){
-      	if(F3D_Scene.elementToColor !== ''){
-      		var next = F3D_Scene.elementToColor.nextSibling;
-      		var parent = F3D_Scene.elementToColor.parentElement;
-      		parent.insertBefore(next,F3D_Scene.elementToColor);
-      	}else{
-      		alert('no item to move selected!');
-      	}
-      }
       
-      function move_prev(){
-      	if(F3D_Scene.elementToColor !== ''){
-      		var prev = F3D_Scene.elementToColor.previousSibling;
-      		var parent = F3D_Scene.elementToColor.parentElement;
-      		parent.insertBefore(F3D_Scene.elementToColor,prev);
-      	}else{
-      		alert('no item to move selected!');
-      	}
-      }
       
       function json_parse(str){
       	return JSON.parse(str);
@@ -108,29 +90,7 @@ NS="http://www.w3.org/2000/svg";
       		
       	}
         
-      function undo(){
-      	//var primitive = ['f3dtext_group_','f3dhanddraw_group_','f3dhanddraw_circles_group_','line_group_','f3dextrude_group_', 'f3dextrude_circles_group','f3dtentacle_group_','f3dtentacle_circles_group_'];
-      	
-      	
-      	
-      	if(undo_redo_history > 0){
-      		undo_redo_history -= 1;
-      	}
-      	
-      	load(undo_redo[undo_redo_history].html);
-      	
-      	update_data_structure();
-      	
-      }
       
-      function redo(){
-      	if(undo_redo_history < (undo_redo.length-1)){
-      		undo_redo_history += 1;
-      	}
-      	load(undo_redo[undo_redo_history].html);
-      	
-      	update_data_structure();
-      }
       
       function add_fhd(){
       	if(F3D_Scene.hand_draw_objects[F3D_Scene.hand_draw_object].circles.lenght !== 0)
