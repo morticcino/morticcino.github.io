@@ -141,3 +141,50 @@ function tools(toolstr){
 	        	
         }
       }
+
+function setDrawInteraction(){
+      		var f3d_hd_l = F3D_Scene.hand_draw_objects.length;
+      		for(var i = 0;i<f3d_hd_l;i++){
+      			if(F3D_Scene.hand_draw_objects[i].circles !== ''){
+      				F3D_Scene.hand_draw_objects[i].circles.removeAttributeNS(null, 'onmousedown');
+				F3D_Scene.hand_draw_objects[i].circles.removeAttributeNS(null, 'ontouchstart');
+			}
+			if(F3D_Scene.hand_draw_objects[i].polygons){
+				F3D_Scene.hand_draw_objects[i].polygons.removeAttributeNS(null, 'onmousedown');
+				F3D_Scene.hand_draw_objects[i].polygons.removeAttributeNS(null, 'ontouchstart');	
+			}
+			
+		}
+		svgpaper.addEventListener( 'mousedown', onDocumentMouseDown, false );
+	    	svgpaper.addEventListener( 'touchstart', onDocumentMobileMouseDown, false );
+	    	//for(var i = 0;i<F3D_Scene.tentacle_objects.length;i++){
+		//	F3D_Scene.tentacle_objects[i].circles.removeAttributeNS(null, 'onmousedown');
+		//}
+		var f3d_to_l = F3D_Scene.tentacle_objects.length;
+		for(var i = 0;i<f3d_to_l;i++){
+			if(F3D_Scene.tentacle_objects[i].circles !== ''){
+				F3D_Scene.tentacle_objects[i].circles.removeAttributeNS(null, 'onmousedown');
+				F3D_Scene.tentacle_objects[i].circles.removeAttributeNS(null, 'ontouchstart');
+			}
+			if(F3D_Scene.tentacle_objects[i].polygons){
+				F3D_Scene.tentacle_objects[i].polygons.removeAttributeNS(null, 'ontouchstart');
+				F3D_Scene.tentacle_objects[i].polygons.removeAttributeNS(null, 'ontouchstart');
+			}
+			
+		}
+		var f3d_eo_l = F3D_Scene.extrude_objects.length;
+		for(var i = 0;i<f3d_to_l;i++){
+			if(F3D_Scene.extrude_objects[i].circles !== ''){
+				F3D_Scene.extrude_objects[i].circles.removeAttributeNS(null, 'onmousedown');
+				F3D_Scene.extrude_objects[i].circles.removeAttributeNS(null, 'ontouchstart');
+			}
+			if(F3D_Scene.extrude_objects[i].polygons){
+				F3D_Scene.extrude_objects[i].polygons.removeAttributeNS(null, 'onmousedown');
+				F3D_Scene.extrude_objects[i].polygons.removeAttributeNS(null, 'ontouchstart');	
+			}
+			
+		}
+	    	
+	        	
+      }
+      
