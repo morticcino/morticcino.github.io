@@ -18,3 +18,11 @@ function load(value){
 		
 	//}
       }
+
+function p_and_z(){
+        	//document.getElementById('svgpaper').setAttribute('viewBox',px+" "+py+" "+sw+" "+sh);
+	        document.getElementById('svgpaper').viewBox.baseVal.x = px;
+		document.getElementById('svgpaper').viewBox.baseVal.y = py;
+		document.getElementById('svgpaper').viewBox.baseVal.width = sw;
+ 		document.getElementById('svgpaper').viewBox.baseVal.height = sh;
+        }
