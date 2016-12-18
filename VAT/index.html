@@ -1,0 +1,65 @@
+<html>
+  <head>
+    <title>Crealo tu #13</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <style>
+   
+		</style>
+
+  </head>
+  <body>
+	  <div id="right_column">
+		<svg id="svgpaper" style="width:100%;height:100%" xmlns='http://www.w3.org/2000/svg' xmlns:xlink="http://www.w3.org/1999/xlink">
+			<rect id="bb_selection" x="10" y="10" width="300" height="100" style="display:none;fill:none;stroke-width:3;stroke:rgb(0,0,0)" />
+		</svg>
+	  </div>
+	  <div id="left_column">
+		<div id="scene_modifier">
+			<input id="draw" type="radio" name="tools" onclick="tools('draw')" checked> Draw<br />
+			<input id="select" type="radio" name="tools" onclick="tools('select')" > Select<br />
+			<input id="color_picker" type="color" value="#0000ff" onchange="change_group_color(this.value)"><br />
+			<input id="remove" type="radio" name="tools" onclick="tools('remove')">Remove<br />
+			<input id="tentacle" type="radio" name="tools" onclick="tools('tentacle')"> Tentacle<br />
+			<input id="giger_tool" type="checkbox"> Giger style<br />
+			<input id="radius" type="number" name="radius" onclick="javascript:brush_size=this.value;" value="20" min="1" max="100"> Radius brush<br />
+			<input id="simplify" type="number" name="simplify" onclick="javascript:simplify_value=this.value;" value="5" min="1" max="5"> Simplify value<br />
+			<button id="more_fhd" name="add_fhd" onclick="add_fhd()">Add FHD</button><br />
+			Add text to scene<br />
+			<textarea id="textarea" name="text" rows="4"></textarea><br />
+			<button id="text_to_scene" name="text2scene" onclick="add_text2scene()">Add text</button><br />
+		</div>
+		<div id="scene_update">
+			<textarea id="svgfile" class="textarea" rows="6"></textarea><br />
+			<input id="save" type="radio" name="tools" onclick="tools('save')" > Save<br />
+			<input id="load" type="radio" name="tools" onclick="tools('load')" > Load<br />
+		</div>
+		<div id="navigator">
+			<button id="pan_up" type="button" name="tools" onclick="tools('pan_up')"> Pan Up</button><br />
+			<button id="pan_down" type="button" name="tools" onclick="tools('pan_down')"> Pan Down</button><br />
+			<button id="pan_left" type="button" name="tools" onclick="tools('pan_left')"> Pan Left</button><br />
+			<button id="pan_right" type="button" name="tools" onclick="tools('pan_right')"> Pan Right</button><br />
+			<button id="zoom_in" type="button" name="tools" onclick="tools('zoom_in')"> Zoom In</button><br />
+			<button id="zoom_out" type="button" name="tools" onclick="tools('zoom_out')"> Zoom Out</button><br />
+			<br />
+			<button id="move_prev" name="move_prev" onclick="move_prev()">Move prev</button><br />
+			<button id="move_next" name="move_next" onclick="move_next()">Move next</button><br />
+			<br />
+			<button id="undo" name="undo" onclick="undo()">Undo</button><br />
+			<button id="redo" name="redo" onclick="redo()">Redo</button><br />
+		</div>
+		<br />
+		<div>
+			<h2>IT</h2><br />
+			wip giger tool
+		</div>
+      </div>
+	  
+	<script type="text/javascript" src="../ReDollar/src/dollar.js"></script>
+    <script type="text/javascript" src="../js/simplify.js"></script>
+    <script type="text/javascript" src="../js/f3d_dataType_014.js"></script>  
+  <script>
+     
+  </script>
+  </body>
+</html>
