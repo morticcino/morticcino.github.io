@@ -31,3 +31,41 @@ function save(obj){
 		//return JSON.parse(JSON.stringify(obj));
 		return JSON.stringify(obj);
 	}
+
+function update_data_structure(){
+      	var find_results = find_index('f3dtext_group_');
+      	if(find_results !== ''){
+      		for(var i = 0; i < find_results.length;i++){
+	      		F3D_Scene.text_group[i].group = document.getElementById('f3dtext_group_'+i);
+	      	}	
+      	}
+      	
+      	var find_results = find_index('f3dhanddraw_group_');
+      	if(find_results !== ''){
+	      	for(var i = 0; i < find_results.length;i++){
+	      		F3D_Scene.hand_draw_objects[i]= {'group': '', 'circles': '', 'polygons':'', color: ''};
+	      		F3D_Scene.hand_draw_objects[i].group = document.getElementById('f3dhanddraw_group_'+i);
+	      		F3D_Scene.hand_draw_objects[i].circles = document.getElementById('f3dhanddraw_circles_group_'+i);
+	      		F3D_Scene.hand_draw_objects[i].polygons = document.getElementById('f3dhanddraw_polygons_group_'+i);
+	      	}
+      	}
+      	var find_results = find_index('f3dextrude_group_');
+      	if(find_results !== ''){
+	      	for(var i = 0; i < find_results.length;i++){
+	      		F3D_Scene.extrude_objects[i] = {'group': '','circles': '', 'polygons':'', color: ''};
+	      		F3D_Scene.extrude_objects[i].group = document.getElementById('f3dextrude_group_'+i);
+	      		F3D_Scene.extrude_objects[i].circles = document.getElementById('f3dextrude_circles_group_'+i);
+	      		F3D_Scene.extrude_objects[i].polygons = document.getElementById('f3dextrude_polygons_group_'+i);
+	      	}
+      	}
+      	var find_results = find_index('f3dtentacle_group_');
+      	if(find_results !== ''){
+	      	for(var i = 0; i < find_results.length;i++){
+	      		F3D_Scene.tentacle_objects[i] = {'group': '', 'circles': '', 'polygons':'', color: ''};
+	      		F3D_Scene.tentacle_objects[i].group = document.getElementById('f3dtentacle_group_'+i);
+	      		F3D_Scene.tentacle_objects[i].circles = document.getElementById('f3dtentacle_circles_group_'+i);
+	      		F3D_Scene.tentacle_objects[i].polygons = document.getElementById('f3dtentacle_polygons_group_'+i);
+	      	}
+      	}
+      }
+      
