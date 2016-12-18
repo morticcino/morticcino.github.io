@@ -19,3 +19,13 @@ function find_index(str){
       		return res;
       		
       	}
+
+function matrixTransform(event,x,y){
+		var uupos = document.getElementById('svgpaper').createSVGPoint();
+	        uupos.x = x;
+	        uupos.y = y;
+	        var ctm = event.target.getScreenCTM();
+	        if (ctm = ctm.inverse())
+	            uupos = uupos.matrixTransform(ctm);
+		return uupos;
+	}
