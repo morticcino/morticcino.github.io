@@ -1,0 +1,35 @@
+ .draggable {
+        cursor: move;
+    }
+    
+    .textarea{
+    	width: 100%;
+    }
+    
+    @font-face {
+	    font-family: bebas;
+	    src: url(../css/BEBAS___.ttf);
+	}
+	
+	#left_column{
+		height: 100%;
+		width: 20%;
+		float: right;
+		
+	}
+	
+	#right_column{
+		height: 100%;
+		width: 79%;
+		float: left;
+	}
+	
+	#svgpaper{
+		height: 100%;
+		width: 100%;
+		
+	}
+	
+	svg{
+		border: solid red 1px;
+	}
