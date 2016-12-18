@@ -29,3 +29,7 @@ function matrixTransform(event,x,y){
 	            uupos = uupos.matrixTransform(ctm);
 		return uupos;
 	}
+
+function json_parse(str){
+      	return JSON.parse(str);
+      }
