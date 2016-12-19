@@ -2,11 +2,7 @@ NS="http://www.w3.org/2000/svg";
       var tool = 'draw';
       var undo_redo = [];
       var undo_redo_history = -1;
-      function save_undo(){
-		undo_redo_history += 1;
-		undo_redo[undo_redo_history] = {html: document.getElementById('svgpaper').outerHTML, hd: F3D_Scene.hand_draw_objects.length, ex: F3D_Scene.extrude_objects.length,tn: F3D_Scene.tentacle_objects.length};
-		undo_redo.length = (undo_redo_history+1);
-      }
+      
       //undo_redo[undo_redo_history] = document.getElementById('svgpaper').outerHTML;
       save_undo();
       var brush_size = 20;
