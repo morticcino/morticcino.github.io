@@ -33,17 +33,15 @@ svgpaper = document.getElementById('svgpaper');
 svgpaper.addEventListener( 'mousedown', onDocumentMouseDown, false );
 svgpaper.addEventListener( 'touchstart', onDocumentMobileMouseDown, false );
 
-var app = {};
-
 document.addEventListener('keydown',function onDocumentKeyDown( event ) {
 	switch( event.key ) {
 		case 's': 
-			app['tool'] = 'select';
+			F2DSelect.registerEvents(F2DSelect);
 			break;
 		case 'd': 
-			app['tool'] = 'draw';
+			F2DDraw.registerEvents(F2DDraw);
 			break;
 		default:
 			console.log(event.key);
 	}
-});
+},false);
