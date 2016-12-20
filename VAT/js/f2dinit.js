@@ -3,6 +3,7 @@ var tool = 'draw';
 var undo_redo = [];
 var undo_redo_history = -1;
 var app = {};
+app['mouse-events'] = {};
 
 save_undo();
 
