@@ -8,6 +8,8 @@ F2DTool.prototype.touchMove = function(){};
 F2DTool.prototype.touchStart = function(){};
 F2DTool.prototype.touchEnd = function(){};
 
+app['mouse-events'] = {};
+
 function register(tool){
   var canvas = document.getElementsByTagName('canvas')[0];
   if(app['mouse-events'].down != undefined){
