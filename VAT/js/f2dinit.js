@@ -2,6 +2,7 @@ NS="http://www.w3.org/2000/svg";
 var tool = 'draw';
 var undo_redo = [];
 var undo_redo_history = -1;
+var app = {};
 
 save_undo();
 
