@@ -33,6 +33,8 @@ svgpaper = document.getElementById('svgpaper');
 svgpaper.addEventListener( 'mousedown', onDocumentMouseDown, false );
 svgpaper.addEventListener( 'touchstart', onDocumentMobileMouseDown, false );
 
+var app = {};
+
 document.addEventListener('keydown',function onDocumentKeyDown( event ) {
 	switch( event.key ) {
 		case 's': 
