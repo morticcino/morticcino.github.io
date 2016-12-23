@@ -1,5 +1,5 @@
-pick plane
-recognize circle
+pick working plane
+point/drag to create sphere
 create sphere
 interpolate to the other
 structure data to handle: objects, hierarchies, extrusion, tentacle
