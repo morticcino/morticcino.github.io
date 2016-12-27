@@ -1,8 +1,11 @@
 /*
-il cerchio viene creato in un gruppo dentro al canvas
-Il gruppo è stato creato... quando?
+il cerchio viene creato in un gruppo dentro all'svg
+Il gruppo è creato a partire dal broup id
 */
-function circle (x,y) {}
+function circle (x,y) {
+  this.numberOfCircles++;
+  this.svg.getElementById(this.id_group).appendChild('<circle id="cirlce_'+this.numberOfCircles+'" cx="'+x+'" cy="'+y+'" r="1" stroke="black" stroke-width="1" fill="red" />');
+}
 
 circle.prototype.x = 0;
 circle.prototype.y = 0;
