@@ -86,3 +86,8 @@ function onSelectMouseUp(event) {
 }
 
 function selectup() {}
+
+onDocumentCircleDown(e){};
+
+onDocumentCircleMove(e){};
+onDocumentCircleUp(e){};
