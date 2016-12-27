@@ -30,9 +30,9 @@ function register(tool){
   svg.addEventListener('mousedown',app['mouse-events'].down, false);
   svg.addEventListener('mousemove',app['mouse-events'].move, false);
   svg.addEventListener('mouseup',app['mouse-events'].up, false);
-  svg.addEventListener('touchstart',app['touch-events'].start);
-  svg.addEventListener('touchmove',app['touch-events'].move);
-  svg.addEventListener('touchend',app['touch-events'].end);
+  svg.addEventListener('touchstart',app['touch-events'].start, false);
+  svg.addEventListener('touchmove',app['touch-events'].move, false);
+  svg.addEventListener('touchend',app['touch-events'].end, false);
   
 }
 
