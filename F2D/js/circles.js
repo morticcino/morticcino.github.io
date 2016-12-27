@@ -2,7 +2,7 @@
 il cerchio viene creato in un gruppo dentro all'svg
 Il gruppo è creato a partire dal broup id
 */
-
+function circle(){}
 
 circle.prototype = {
   contructor: function(x,y){
