@@ -73,8 +73,6 @@ function onSelectMouseDown(event) {
     selectdown(x, y);
 }
 
-function selectdown(x, y) {}
-
 
 function onSelectMobileMouseUp(event) {
     selectup();
