@@ -108,16 +108,22 @@ function circleMove(x,y){
 }
 
 function onDocumentCircleDown(e){
+    app['mouse-down'] = true;
     var x = event.pageX;
     var y = event.pageY;
     circleDown(x, y);
 }
 
 function onDocumentCircleMove(e){
-    var x = event.pageX;
-    var y = event.pageY;
-    circleMove(x, y);
+    if(app['mouse-down']){
+        var x = event.pageX;
+        var y = event.pageY;
+        circleMove(x, y);
+    }
+    
+    
 }
 function onDocumentCircleUp(e){
     new_circle = {};
+    app['mouse-down'] = false;
 }
