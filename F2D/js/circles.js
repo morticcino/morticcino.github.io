@@ -24,12 +24,12 @@ circle.prototype = {
 
   add: function(x,y){
     this.numberOfCircles++;
-    this.svg.getElementById(this.id_group).appendChild('<circle id="cirlce_'+this.numberOfCircles+'" cx="'+x+'" cy="'+y+'" r="'+radius+'" stroke="black" stroke-width="1" fill="red" />');
+    this.svg().getElementById(this.id_group).appendChild('<circle id="cirlce_'+this.numberOfCircles+'" cx="'+x+'" cy="'+y+'" r="'+radius+'" stroke="black" stroke-width="1" fill="red" />');
   },
 
   update: function(radius){
   
-    this.svg.getElementById("cirle_"+this.numberOfCircles).setAttribute('r',radius);
+    this.svg().getElementById("cirle_"+this.numberOfCircles).setAttribute('r',radius);
   },
 
   svg: function(){ return document.getElementById('svgpaper');},
