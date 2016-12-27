@@ -37,6 +37,6 @@ circle.prototype = {
     this.x = new_x;
     this.y = new_y;
     this.draw();
-  } 
+  },
   setRay: function(r){}
 }
