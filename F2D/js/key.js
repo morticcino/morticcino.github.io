@@ -10,14 +10,14 @@ F2DTool.prototype.touchStart = function(){};
 F2DTool.prototype.touchEnd = function(){};
 
 function register(tool){
-  var canvas = document.getElementsByTagName('svg')[0];
+  var svg = document.getElementsByTagName('svg')[0];
   if(app['mouse-events'].down != undefined){
-    canvas.removeEventListener('mousedown',app['mouse-events'].down);
-    canvas.removeEventListener('mousemove',app['mouse-events'].move);
-    canvas.removeEventListener('mouseup',app['mouse-events'].up);
-    canvas.removeEventListener('touchstart',app['touch-events'].start);
-    canvas.removeEventListener('touchmove',app['touch-events'].move);
-    canvas.removeEventListener('touchend',app['touch-events'].end);
+    svg.removeEventListener('mousedown',app['mouse-events'].down);
+    svg.removeEventListener('mousemove',app['mouse-events'].move);
+    svg.removeEventListener('mouseup',app['mouse-events'].up);
+    svg.removeEventListener('touchstart',app['touch-events'].start);
+    svg.removeEventListener('touchmove',app['touch-events'].move);
+    svg.removeEventListener('touchend',app['touch-events'].end);
   }
   
   app['mouse-events'].down = tool.mouseDown;
@@ -27,12 +27,12 @@ function register(tool){
   app['touch-events'].move = tool.touchMove;
   app['touch-events'].end = tool.touchEnd;
   
-  canvas.addEventListener('mousedown',app['mouse-events'].down, false);
-  canvas.addEventListener('mousemove',app['mouse-events'].move, false);
-  canvas.addEventListener('mouseup',app['mouse-events'].up, false);
-  canvas.addEventListener('touchstart',app['touch-events'].start);
-  canvas.addEventListener('touchmove',app['touch-events'].move);
-  canvas.addEventListener('touchend',app['touch-events'].end);
+  svg.addEventListener('mousedown',app['mouse-events'].down, false);
+  svg.addEventListener('mousemove',app['mouse-events'].move, false);
+  svg.addEventListener('mouseup',app['mouse-events'].up, false);
+  svg.addEventListener('touchstart',app['touch-events'].start);
+  svg.addEventListener('touchmove',app['touch-events'].move);
+  svg.addEventListener('touchend',app['touch-events'].end);
   
 }
 
