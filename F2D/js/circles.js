@@ -9,10 +9,14 @@ circle.prototype.y = 0;
 circle.prototype.radius = 1;
 circle.prototype.id = "";
 circle.prototype.numberOfCircles = 0;
-circle.prototype.id_group = "";
+circle.prototype.id_group = "group_"+this.numberOfGroups;
 circle.prototype.group = {};
 circle.prototype.object = {};
 circle.prototype.numberOfGroups = 0;
+
+circle.prototype.setGroup = function(i){
+  this.numberOfGroups = i;
+}
 
 circle.prototype.add = function(x,y){
   this.svg.getElementById(this.id_group).appendChild('<circle cx="'+x+'" cy="'+y+'" r="1" stroke="black" stroke-width="1" fill="red" />');
