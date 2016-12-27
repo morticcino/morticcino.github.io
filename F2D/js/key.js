@@ -38,12 +38,10 @@ function register(tool){
 
 function drawRegister(o){
   register(o);
-  objectsToIntersect = objects;
 }
 
 function selectRegister(o){
   register(o);
-  objectsToIntersect = circles.circles_to_pick;
 }
 
 F2DTool.prototype.registerEvents = function(){}; 
