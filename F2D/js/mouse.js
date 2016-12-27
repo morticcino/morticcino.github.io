@@ -101,7 +101,7 @@ function circleDown(x,y){
 function circleMove(x,y){
     var center_x = new_circle.x;
     var center_y = new_circle.y;
-    new_circle.update(distance(center_x,center_y,x,y)); 
+    this.update(distance(center_x,center_y,x,y)); 
     
 }
 
