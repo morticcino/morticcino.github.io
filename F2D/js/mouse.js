@@ -87,7 +87,23 @@ function onSelectMouseUp(event) {
 
 function selectup() {}
 
-function onDocumentCircleDown(e){}
+function circleDown(x,y){
+    
+}
 
-function onDocumentCircleMove(e){}
+function circleMove(x,y){
+
+}
+
+function onDocumentCircleDown(e){
+    var x = event.targetTouches[0].pageX;
+    var y = event.targetTouches[0].pageY;
+    circleDown(x, y);
+}
+
+function onDocumentCircleMove(e){
+    var x = event.targetTouches[0].pageX;
+    var y = event.targetTouches[0].pageY;
+    circleMove(x, y);
+}
 function onDocumentCircleUp(e){}
