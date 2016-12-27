@@ -94,8 +94,8 @@ function distance(x1,y1,x2,y2){
 var new_circle = {};
 
 function circleDown(x,y){
-    new_circle = new circle();
-    new_circle.add(x,y);
+    new_circle = new circle(x,y);
+    
     
     
 }
