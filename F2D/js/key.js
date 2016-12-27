@@ -35,6 +35,8 @@ function register(tool){
   
 }
 
+F2DTool.prototype.registerEvents = function(){}; 
+
 function drawRegister(o){
   register(o);
 }
@@ -43,7 +45,28 @@ function selectRegister(o){
   register(o);
 }
 
-F2DTool.prototype.registerEvents = function(){}; 
+function circleRegister(o){
+  register(o);
+}
+
+var F2DCircle = new F2DTool(); 
+
+F2DCircle.mouseDown = function(e){
+  console.log('F2DCircle mouseDown');
+  onDocumentCircleDown(e);
+};
+F2DCircle.mouseMove = function(e){
+  console.log('F2DCircle mouseMove');
+  onDocumentCircleMove(e);
+};
+F2DCircle.mouseUp = function(e){
+  console.log('F2DCircle mouseUp');
+  onDocumentCircleUp(e);
+};
+F2DCircle.registerEvents = function(t){
+  console.log('F2DCircle register');
+  circleRegister(t);
+};
 
 var F2DDraw = new F2DTool(); 
 
