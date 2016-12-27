@@ -99,3 +99,4 @@ function onDocumentKeyDown( event ) {
 		default:
 			console.log(event.key);
 	}
+}
