@@ -1,5 +1,6 @@
 /*
 il cerchio viene creato in un gruppo dentro al canvas
+Il gruppo è stato creato... quando?
 */
 function circle (x,y) {}
 
@@ -8,10 +9,13 @@ circle.prototype.y = 0;
 circle.prototype.radius = 1;
 circle.prototype.id = "";
 circle.prototype.numberOfCircles = 0;
-circle.prototype.id_group = 0;
+circle.prototype.id_group = "";
+circle.prototype.group = {};
+circle.prototype.object = {};
+circle.prototype.numberOfGroups = 0;
 
-circle.prototype.add = function(){
-
+circle.prototype.add = function(x,y){
+  this.svg.getElementById(this.id_group).appendChild('<circle cx="'+x+'" cy="'+y+'" r="1" stroke="black" stroke-width="1" fill="red" />');
 }
 
 circle.prototype.draw = function(){
