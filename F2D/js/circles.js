@@ -7,8 +7,7 @@ function circle (x,y) {}
 circle.prototype.x = 0;
 circle.prototype.y = 0;
 circle.prototype.radius = 1;
-circle.prototype.id = "";
-circle.prototype.numberOfCircles = 0;
+circle.prototype.numberOfCircles = -1;
 circle.prototype.id_group = "group_"+this.numberOfGroups;
 circle.prototype.group = {};
 circle.prototype.object = {};
@@ -19,12 +18,13 @@ circle.prototype.setGroup = function(i){
 }
 
 circle.prototype.add = function(x,y){
-  this.svg.getElementById(this.id_group).appendChild('<circle cx="'+x+'" cy="'+y+'" r="1" stroke="black" stroke-width="1" fill="red" />');
+  this.numberOfCircles++;
+  this.svg.getElementById(this.id_group).appendChild('<circle id="cirlce_'+this.numberOfCircles+'" cx="'+x+'" cy="'+y+'" r="1" stroke="black" stroke-width="1" fill="red" />');
 }
 
-circle.prototype.draw = function(){
+circle.prototype.update = function(radius){
   
-  this.svg.getElementById("group_"+this.id_group).add;
+  this.svg.getElementById("cirle_"+this.numberOfCircles).setAttribute('r',radius);
 };
 
 circle.prototype.svg = document.getElementById('svgpaper');
