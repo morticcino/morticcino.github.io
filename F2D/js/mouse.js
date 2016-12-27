@@ -87,12 +87,24 @@ function onSelectMouseUp(event) {
 
 function selectup() {}
 
+var new_circle = {};
+function distance(x1,y1,x2,y2){
+    return Math.sqrt( (x1-x2)*(x1-x2) + (y1-y2)*(y1-y2) );
+}
+var new_circle = {};
+
 function circleDown(x,y){
+    new_circle = new circle();
+    new_circle.add(x,y);
+    
     
 }
 
 function circleMove(x,y){
-
+    var center_x = new_circle.x;
+    var center_y = new_circle.y;
+    new_circle.update(center_x,center_y,x,y); 
+    
 }
 
 function onDocumentCircleDown(e){
