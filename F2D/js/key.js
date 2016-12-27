@@ -10,14 +10,13 @@ F2DTool.prototype.touchStart = function(){};
 F2DTool.prototype.touchEnd = function(){};
 
 function register(tool){
-  var svg = document.getElementsByTagName('svg')[0];
   if(app['mouse-events'].down != undefined){
-    svg.removeEventListener('mousedown',app['mouse-events'].down);
-    svg.removeEventListener('mousemove',app['mouse-events'].move);
-    svg.removeEventListener('mouseup',app['mouse-events'].up);
-    svg.removeEventListener('touchstart',app['touch-events'].start);
-    svg.removeEventListener('touchmove',app['touch-events'].move);
-    svg.removeEventListener('touchend',app['touch-events'].end);
+    document.removeEventListener('mousedown',app['mouse-events'].down);
+    document.removeEventListener('mousemove',app['mouse-events'].move);
+    document.removeEventListener('mouseup',app['mouse-events'].up);
+    document.removeEventListener('touchstart',app['touch-events'].start);
+    document.removeEventListener('touchmove',app['touch-events'].move);
+    document.removeEventListener('touchend',app['touch-events'].end);
   }
   
   app['mouse-events'].down = tool.mouseDown;
@@ -27,12 +26,12 @@ function register(tool){
   app['touch-events'].move = tool.touchMove;
   app['touch-events'].end = tool.touchEnd;
   
-  svg.addEventListener('mousedown',app['mouse-events'].down, false);
-  svg.addEventListener('mousemove',app['mouse-events'].move, false);
-  svg.addEventListener('mouseup',app['mouse-events'].up, false);
-  svg.addEventListener('touchstart',app['touch-events'].start, false);
-  svg.addEventListener('touchmove',app['touch-events'].move, false);
-  svg.addEventListener('touchend',app['touch-events'].end, false);
+  document.addEventListener('mousedown',app['mouse-events'].down, false);
+  document.addEventListener('mousemove',app['mouse-events'].move, false);
+  document.addEventListener('mouseup',app['mouse-events'].up, false);
+  document.addEventListener('touchstart',app['touch-events'].start, false);
+  document.addEventListener('touchmove',app['touch-events'].move, false);
+  document.addEventListener('touchend',app['touch-events'].end, false);
   
 }
 
