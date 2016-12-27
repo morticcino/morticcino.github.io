@@ -114,6 +114,9 @@ document.addEventListener('keydown',function onDocumentKeyDown( event ) {
 		case 'd': 
 			F2DDraw.registerEvents(F2DDraw);
 			break;
+		case 'c': 
+			F2DCircle.registerEvents(F2DCircle);
+			break;
 		default:
 			console.log(event.key);
 	}
