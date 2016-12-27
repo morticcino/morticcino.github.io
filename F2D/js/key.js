@@ -86,9 +86,7 @@ F2DSelect.registerEvents = function(t){
   selectRegister(t);
 };
 
-//F2DDraw.registerEvents(F2DDraw);
-
-function onDocumentKeyDown( event ) {
+document.addEventListener('keydown',function onDocumentKeyDown( event ) {
 	switch( event.key ) {
 		case 's': 
 			F2DSelect.registerEvents(F2DSelect);
@@ -99,4 +97,4 @@ function onDocumentKeyDown( event ) {
 		default:
 			console.log(event.key);
 	}
-}
+},false);
