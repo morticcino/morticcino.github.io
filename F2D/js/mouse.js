@@ -108,14 +108,16 @@ function circleMove(x,y){
 }
 
 function onDocumentCircleDown(e){
-    var x = event.targetTouches[0].pageX;
-    var y = event.targetTouches[0].pageY;
+    var x = event.pageX;
+    var y = event.pageY;
     circleDown(x, y);
 }
 
 function onDocumentCircleMove(e){
-    var x = event.targetTouches[0].pageX;
-    var y = event.targetTouches[0].pageY;
+    var x = event.pageX;
+    var y = event.pageY;
     circleMove(x, y);
 }
-function onDocumentCircleUp(e){}
+function onDocumentCircleUp(e){
+    new_circle = {};
+}
