@@ -1,0 +1,10 @@
+document.addEventListener( 'mousemove', onDocumentMouseMove, false );
+document.addEventListener( 'touchmove', onDocumentMobileMouseMove, false );
+document.addEventListener( 'mousedown', onDocumentMouseDown, false );
+document.addEventListener( 'touchstart', onDocumentMobileMouseDown, false );
+document.addEventListener( 'keydown', onDocumentKeyDown, false );
+document.addEventListener( 'keyup', onDocumentKeyUp, false );
+document.addEventListener( 'mouseup', onDocumentMouseUp, false );
+document.addEventListener( 'touchend', onDocumentMobileMouseUp, false );
+document.addEventListener('keydown', onDocumentKeyDown());
+window.addEventListener( 'resize', onWindowResize, false );
