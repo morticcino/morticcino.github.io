@@ -13,10 +13,10 @@ function register(tool){
   if(app['mouse-events'].down != undefined){
     document.removeEventListener('mousedown',app['mouse-events'].down);
     //document.removeEventListener('mousemove',app['mouse-events'].move);
-    //document.removeEventListener('mouseup',app['mouse-events'].up);
+    document.removeEventListener('mouseup',app['mouse-events'].up);
     document.removeEventListener('touchstart',app['touch-events'].start);
     //document.removeEventListener('touchmove',app['touch-events'].move);
-    //document.removeEventListener('touchend',app['touch-events'].end);
+    document.removeEventListener('touchend',app['touch-events'].end);
   }
   
   app['mouse-events'].down = tool.mouseDown;
