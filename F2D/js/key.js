@@ -12,11 +12,11 @@ F2DTool.prototype.touchEnd = function(){};
 function register(tool){
   if(app['mouse-events'].down != undefined){
     document.removeEventListener('mousedown',app['mouse-events'].down);
-    document.removeEventListener('mousemove',app['mouse-events'].move);
-    document.removeEventListener('mouseup',app['mouse-events'].up);
+    //document.removeEventListener('mousemove',app['mouse-events'].move);
+    //document.removeEventListener('mouseup',app['mouse-events'].up);
     document.removeEventListener('touchstart',app['touch-events'].start);
-    document.removeEventListener('touchmove',app['touch-events'].move);
-    document.removeEventListener('touchend',app['touch-events'].end);
+    //document.removeEventListener('touchmove',app['touch-events'].move);
+    //document.removeEventListener('touchend',app['touch-events'].end);
   }
   
   app['mouse-events'].down = tool.mouseDown;
@@ -27,10 +27,10 @@ function register(tool){
   app['touch-events'].end = tool.touchEnd;
   
   document.addEventListener('mousedown',app['mouse-events'].down, false);
-  document.addEventListener('mousemove',app['mouse-events'].move, false);
+  //document.addEventListener('mousemove',app['mouse-events'].move, false);
   document.addEventListener('mouseup',app['mouse-events'].up, false);
   document.addEventListener('touchstart',app['touch-events'].start, false);
-  document.addEventListener('touchmove',app['touch-events'].move, false);
+  //document.addEventListener('touchmove',app['touch-events'].move, false);
   document.addEventListener('touchend',app['touch-events'].end, false);
   
 }
@@ -54,6 +54,8 @@ var F2DCircle = new F2DTool();
 F2DCircle.mouseDown = function(e){
   console.log('F2DCircle mouseDown');
   onDocumentCircleDown(e);
+  document.addEventListener('mousemove',app['mouse-events'].move, false);
+  
 };
 F2DCircle.mouseMove = function(e){
   console.log('F2DCircle mouseMove');
@@ -62,6 +64,7 @@ F2DCircle.mouseMove = function(e){
 F2DCircle.mouseUp = function(e){
   console.log('F2DCircle mouseUp');
   onDocumentCircleUp(e);
+  document.removeEventListener('mousemove',app['mouse-events'].move);
 };
 F2DCircle.registerEvents = function(t){
   console.log('F2DCircle register');
